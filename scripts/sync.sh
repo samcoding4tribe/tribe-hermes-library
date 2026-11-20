@@ -131,12 +131,52 @@ fi
 
 if [ "$ONEDRIVE_ON" = 1 ]; then
   if [ -d "$ONEDRIVE" ] || [ "$DRY" = 1 ]; then
+    # Build the published tree: profiles lose their memories, because the
+    # library is readable by the team. See docs/decisions.md D10.
+    LIB="$(mktemp -d)"
+    trap 'rm -rf "$LIB"' EXIT
+    mkdir -p "$LIB/profiles"
+    for pdir in "$REPO"/profiles/*/; do
+      [ -d "$pdir" ] || continue
+      pname="$(basename "$pdir")"
+      rsync -a --exclude 'memories' --exclude '.DS_Store' \
+        "$pdir" "$LIB/profiles/$pname/"
+    done
+    [ -d "$REPO/templates" ] && rsync -a --exclude '.DS_Store' "$REPO/templates/" "$LIB/templates/"
+    if [ -d "$REPO/docs" ]; then
+      mkdir -p "$LIB/docs"
+      rsync -a --exclude '.DS_Store' "$REPO/docs/" "$LIB/docs/"
+      rm -f "$LIB/docs/library-readme.md"
+    fi
+    [ -f "$REPO/docs/library-readme.md" ] && cp "$REPO/docs/library-readme.md" "$LIB/README.md"
+
     run mkdir -p "$ONEDRIVE"
-    run rsync -a --delete --exclude '.git' --exclude '.DS_Store' \
-      "$REPO/profiles/" "$ONEDRIVE/profiles/"
-    run rsync -a --exclude '.DS_Store' "$REPO/templates/" "$ONEDRIVE/templates/" 2>/dev/null || true
-    run rsync -a --exclude '.DS_Store' "$REPO/docs/" "$ONEDRIVE/docs/" 2>/dev/null || true
-    echo "onedrive: published to $ONEDRIVE"
+    if [ "$DRY" = 1 ]; then
+      echo "  would: publish $(find "$LIB" -type f | wc -l | tr -d ' ') files to $ONEDRIVE"
+    else
+      rsync -a --delete "$LIB/" "$ONEDRIVE/"
+      python3 - "$ONEDRIVE" <<'PY'
+import hashlib, json, os, sys, datetime
+root = sys.argv[1]
+files = {}
+for base, _, names in os.walk(root):
+    for n in names:
+        if n == "_manifest.json" or n == ".DS_Store":
+            continue
+        p = os.path.join(base, n)
+        rel = os.path.relpath(p, root)
+        h = hashlib.sha256()
+        with open(p, "rb") as f:
+            for chunk in iter(lambda: f.read(65536), b""):
+                h.update(chunk)
+        files[rel] = {"sha256": h.hexdigest()[:16], "bytes": os.path.getsize(p)}
+out = {"generated": datetime.datetime.now().isoformat(timespec="seconds"),
+       "files": dict(sorted(files.items()))}
+with open(os.path.join(root, "_manifest.json"), "w") as f:
+    json.dump(out, f, indent=1)
+PY
+      echo "onedrive: published $(find "$ONEDRIVE" -type f ! -name '_manifest.json' | wc -l | tr -d ' ') files to $ONEDRIVE"
+    fi
   else
     echo "onedrive: folder not found, skipped"
   fi
