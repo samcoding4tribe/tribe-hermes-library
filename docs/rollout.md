@@ -18,6 +18,9 @@ Author's context: testing a rollout to workmates before proposing it to the orga
 | EA model | deepseek-flash via the DeepSeek key, set after the clone inherited a broken Anthropic model |
 | EA persona | `~/.hermes/profiles/ea/SOUL.md` (drafts only, cite sources, protect time) |
 | EA skills | 44, cloned from default; none written for the assistant role yet |
+| Private backup | `OneDrive/TRIBE GROUP - samuelkn/Hermes`, text plus database snapshots |
+| Shared library | `OneDrive/TRIBE GROUP - TRIBE Group Tech/Hermes`, templates and published copies |
+| Repo | `~/hermes-agents`, local git only, no remote yet |
 | Connectors | none |
 | Scheduled jobs | none |
 | Messaging channels | none; the gateway is running and multiplexed |
@@ -131,6 +134,9 @@ Two things to settle before a wide rollout: one shared bot with an allowlist, or
 - [ ] Who in IT can grant Graph consent when route 3 arrives
 - [ ] Shared bot or one per person
 - [ ] Does the pilot live on this Mac or on a small always-on machine
+- [ ] Credentials: vault, encrypted archive, or re-enter by hand (security session first)
+- [ ] Remote repo: create it, then push, before trusting the local one
+- [ ] Backup schedule: what runs when, and where failure is reported
 
 ---
 

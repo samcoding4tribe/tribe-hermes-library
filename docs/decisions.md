@@ -118,7 +118,24 @@ credentials go into an encrypted archive and never as plain files.
 
 ---
 
-## D11. A backup is tested or it is a guess
+## D11. Credentials stay out of the backup until the storage question is settled
+
+**Status.** Open. Decided for now: excluded.
+
+**Decision.** `.env` and `auth.json` are not copied by `backup.sh`. They are
+re-entered by hand after a restore until a secure store is agreed.
+
+**Why.** In plain form they would sit in a synced folder that tenant admins can
+read. The three candidates are a vault Hermes reads from, an age-encrypted
+archive with a passphrase held in the password manager, or manual re-entry. That
+choice belongs in a session about security, not in a backup script.
+
+**Revisit when.** A bot token or a shared key exists, or the pilot moves beyond
+this machine.
+
+---
+
+## D12. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.
@@ -126,3 +143,6 @@ onto a clean machine and use it for an hour.
 **Why.** Copies fail in ways that only show up on restore: missing directories,
 paths that only existed on the original machine, a soul that references a skill
 nobody published.
+
+**First run.** Recorded as a to-do: install `ea` from the shared library into a
+clean home directory and use it for an hour.
