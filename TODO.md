@@ -27,6 +27,11 @@ Recorded 20 November 2026. Delete a line when it is done, and say why in the com
 - [ ] Add the check on push: secret scan, unfilled placeholders, skills parse,
       clean install.
 - [ ] Decide the OneDrive library owner, so two people do not edit at once.
+- [ ] Container isolation for role profiles: `terminal.backend: docker` with
+      Docker Desktop or Colima, neither installed yet. Worth doing before an
+      assistant is handed to someone else, not for the single-machine pilot.
+- [ ] Give each role profile only the toolsets it needs, instead of the default
+      set. `hermes tools` per profile.
 
 ## Waiting on other people
 
