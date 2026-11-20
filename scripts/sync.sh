@@ -149,6 +149,7 @@ if [ "$ONEDRIVE_ON" = 1 ]; then
       rm -f "$LIB/docs/library-readme.md"
     fi
     [ -f "$REPO/docs/library-readme.md" ] && cp "$REPO/docs/library-readme.md" "$LIB/README.md"
+    [ -f "$REPO/TODO.md" ] && cp "$REPO/TODO.md" "$LIB/TODO.md"
 
     run mkdir -p "$ONEDRIVE"
     if [ "$DRY" = 1 ]; then
