@@ -21,7 +21,6 @@ REPO="${HERMES_SYNC_REPO:-$HOME/hermes-agents}"
 ONEDRIVE="${HERMES_SYNC_ONEDRIVE:-$HOME/Library/CloudStorage/OneDrive-TribeTravelandEvents/Hermes}"
 HERMES="${HERMES_HOME:-$HOME/.hermes}"
 BUNDLED_SKILLS="$HERMES/hermes-agent/skills"
-DOC="$HOME/Downloads/Hermes EA and Org Rollout.md"
 
 DRY=0 GIT=1 ONEDRIVE_ON=1
 PROFILES=()
@@ -112,10 +111,7 @@ for p in "${PROFILES[@]}"; do
   echo "synced $p"
 done
 
-if [ -f "$DOC" ]; then
-  run mkdir -p "$REPO/docs"
-  run cp "$DOC" "$REPO/docs/rollout.md"
-fi
+# docs/rollout.md is edited in the repo now; nothing is copied in from Downloads.
 
 if [ "$GIT" = 1 ]; then
   git add -A
