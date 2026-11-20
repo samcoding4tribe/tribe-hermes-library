@@ -130,7 +130,7 @@ if [ "$GIT" = 1 ]; then
 fi
 
 if [ "$ONEDRIVE_ON" = 1 ]; then
-  if [ -d "$ONEDRIVE" ] || [ "$DRY" = 1 ]; then
+  if [ -d "$(dirname "$ONEDRIVE")" ] || [ "$DRY" = 1 ]; then
     # Build the published tree: profiles lose their memories, because the
     # library is readable by the team. See docs/decisions.md D10.
     LIB="$(mktemp -d)"
