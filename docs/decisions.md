@@ -1,0 +1,113 @@
+# Decisions
+
+One entry per choice, with the reason. Newest last. If a decision is reversed,
+add a new entry that says so rather than editing history.
+
+---
+
+## D1. The running profile stays local
+
+**Decision.** Profiles run from `~/.hermes/profiles/`. Never from a synced folder.
+
+**Why.** `state.db` is SQLite and is written continuously while the gateway runs.
+Cloud sync tools read and rewrite those files underneath an open process, which
+is how session stores get corrupted. A second reason is availability: an agent
+that needs a cloud folder mounted before it can answer is not an agent you can
+rely on.
+
+---
+
+## D2. Two knowledge bases, different jobs
+
+**Decision.** Local home for running. OneDrive library for templates, published
+copies and documentation.
+
+**Why.** The local home changes constantly and must work offline. The library
+changes rarely and has to be reachable by people who will never open a terminal.
+Mixing them means every runtime write becomes a sync event.
+
+---
+
+## D3. The repo is a versioned mirror, not the runtime
+
+**Decision.** `~/hermes-agents` holds copies of souls, memories, custom skills,
+templates and docs, committed on each sync. The agent never reads from it.
+
+**Why.** History is what lets you see what changed when an assistant starts
+behaving differently. A remote adds an off-site copy. Neither needs to be on the
+path the agent uses to answer a question.
+
+---
+
+## D4. Publish one way, pull with a diff
+
+**Decision.** `sync.sh` copies local to repo and repo to OneDrive. Changes made
+in OneDrive are pulled back by `pull.sh`, which shows the diff and only applies
+with an explicit flag. Souls, memories and skills travel both ways; `config.yaml`
+is publish-only, because the library copy has credentials stripped.
+
+**Why.** Two-way automatic sync silently overwrites whichever side it read
+second. A visible diff costs one command and prevents losing an edit someone
+made deliberately.
+
+---
+
+## D5. Secrets never leave the machine
+
+**Decision.** `.env` and `auth.json` are excluded everywhere. `config.yaml` is
+copied with credential lines removed, keeping only `${VAR}` references.
+
+**Why.** The OneDrive library is readable by more people than the machine it came
+from. A profile that cannot start without its own key is also a profile whose key
+can be rotated without touching twenty other files.
+
+---
+
+## D6. Souls are prose, skills are code
+
+**Decision.** Souls, memories and config can be edited in the library. Skills
+come through the repo and get a run before they are trusted.
+
+**Why.** A soul is read by a person and judged in a minute. A skill contains
+commands and file paths, and a wrong one fails at the worst moment.
+
+---
+
+## D7. One writer at a time
+
+**Decision.** Only one person or agent edits the library at once.
+
+**Why.** OneDrive resolves simultaneous edits by creating a conflicted copy, and
+nobody reads those. A manifest with a hash per file makes drift visible in a
+single line.
+
+---
+
+## D8. New machines install from OneDrive by default
+
+**Decision.** `install-profile.sh <name>` reads the OneDrive library unless
+`--from-repo` is passed.
+
+**Why.** Most people setting up a device already have OneDrive through the org
+account and no git identity. The repo stays the maintainer's tool.
+
+---
+
+## D9. Checks on push, once a remote exists
+
+**Decision.** Later: a pipeline that scans for secrets, checks placeholders are
+filled, parses every skill, and installs a profile into a clean home.
+
+**Why.** Versioning records mistakes. Checks prevent them from reaching other
+machines.
+
+---
+
+## D10. A backup is tested or it is a guess
+
+**Decision.** Once a quarter, install one profile from OneDrive onto a clean
+machine and use it for an hour.
+
+**Why.** Copies fail in ways that only show up on restore: missing directories,
+paths that only existed on the original machine, a soul that references a skill
+nobody published.

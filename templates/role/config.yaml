@@ -1,0 +1,11 @@
+# Minimal starting config for a new role profile.
+# Credentials belong in .env, never here.
+model:
+  default: deepseek-flash
+  provider: deepseek
+
+approvals:
+  mode: manual        # a role assistant asks before running commands
+
+security:
+  redact_secrets: true

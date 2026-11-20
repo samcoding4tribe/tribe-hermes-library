@@ -1,0 +1,17 @@
+# never in git
+.env
+.env.*
+auth.json
+auth.lock
+state.db
+state.db-*
+sessions/
+logs/
+cache/
+audio_cache/
+image_cache/
+*.tar.gz
+*.zip
+*.key
+*.pem
+.DS_Store
