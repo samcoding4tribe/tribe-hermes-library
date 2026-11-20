@@ -14,6 +14,13 @@ Recorded 20 November 2026. Delete a line when it is done, and say why in the com
       clean home directory and confirm it starts and remembers. A backup that
       has never been restored is a guess.
 
+## Done
+
+- [x] **Schedule the backup.** Hermes job `Hermes backup`, daily at 17:00,
+      runs `scripts/nightly.sh` with no model involved. A launchd agent was
+      tried first and failed: macOS blocks rsync writing into OneDrive from a
+      launchd context, so the job runs from the scheduler instead.
+
 ## Later
 
 - [ ] Add `age` and encrypt `.env` plus `auth.json` into the private backup.

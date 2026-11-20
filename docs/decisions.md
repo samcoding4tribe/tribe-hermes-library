@@ -135,7 +135,20 @@ this machine.
 
 ---
 
-## D12. A backup is tested or it is a guess
+## D12. Backups run from the Hermes scheduler, not launchd
+
+**Decision.** A `no_agent` Hermes job fires `scripts/nightly.sh` at 17:00 daily.
+A launchd agent was tried and removed.
+
+**Why.** macOS protects the OneDrive container: a launchd process gets
+"Operation not permitted" on rsync into `CloudStorage`, while the gateway, which
+the user already approved, can write there. The job runs without a model, so it
+costs nothing and has no reasoning to go wrong. Its stdout is empty on a quiet
+day and a failure produces an alert.
+
+---
+
+## D13. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.
