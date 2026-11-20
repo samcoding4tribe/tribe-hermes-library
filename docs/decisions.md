@@ -103,10 +103,25 @@ machines.
 
 ---
 
-## D10. A backup is tested or it is a guess
+## D10. Private backup sits apart from the shared library
 
-**Decision.** Once a quarter, install one profile from OneDrive onto a clean
-machine and use it for an hour.
+**Decision.** Each machine backs up into the owner's own OneDrive folder.
+Souls, memories, configs without credentials, custom skills and database
+snapshots go there. The shared TRIBE Group Tech library holds templates and
+published copies with memories stripped.
+
+**Why.** Memories and session databases contain personal and client detail.
+The shared library is readable by the team, so it carries what is safe to read:
+how an assistant is built. What a particular executive said stays with that
+machine's owner. Tenant admins can read OneDrive either way, which is why
+credentials go into an encrypted archive and never as plain files.
+
+---
+
+## D11. A backup is tested or it is a guess
+
+**Decision.** Once a quarter, restore one profile and one database snapshot
+onto a clean machine and use it for an hour.
 
 **Why.** Copies fail in ways that only show up on restore: missing directories,
 paths that only existed on the original machine, a soul that references a skill
