@@ -7,6 +7,8 @@ Recorded 20 November 2026. Delete a line when it is done, and say why in the com
 - [ ] **Create the remote repo.** Private, on GitHub or Azure DevOps, then
       `git remote add origin ...` and push. Until it exists, the local repo is a
       single copy on one disk and not a backup.
+- [x] **Create the remote repo.** `tribe-hermes-library`, private, pushed on
+      every sync.
 - [ ] **Credentials decision.** Left out of the backup for now. Needs a session
       on secure storage before any bot token exists: a vault Hermes reads from,
       or an age-encrypted archive, or re-entering by hand on restore.

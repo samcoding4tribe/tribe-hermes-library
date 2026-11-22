@@ -185,7 +185,18 @@ revisit per-machine repos, or put a folder per machine inside the existing one.
 
 ---
 
-## D16. A backup is tested or it is a guess
+## D16. Every sync pushes
+
+**Decision.** `sync.sh` commits, then pushes to `origin` when a remote exists.
+A failed push reports but does not stop the run.
+
+**Why.** A remote that lags behind is not a backup, it is a snapshot of whenever
+someone remembered to push. The daily job already calls the same script, so the
+remote stays current without a second habit to remember.
+
+---
+
+## D17. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.

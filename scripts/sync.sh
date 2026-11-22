@@ -122,6 +122,15 @@ if [ "$GIT" = 1 ]; then
     git commit -q -m "sync: $(date '+%Y-%m-%d %H:%M') ${PROFILES[*]}"
     echo "git: committed $(date '+%Y-%m-%d %H:%M')"
   fi
+
+  # keep the remote current; a remote that lags is not a backup
+  if [ "$DRY" = 0 ] && git remote get-url origin >/dev/null 2>&1; then
+    if git push -q origin HEAD 2>/dev/null; then
+      echo "git: pushed to origin"
+    else
+      echo "git: push failed, see 'git push origin main'"
+    fi
+  fi
 fi
 
 if [ "$ONEDRIVE_ON" = 1 ]; then
