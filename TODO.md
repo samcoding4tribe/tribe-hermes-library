@@ -16,6 +16,9 @@ Recorded 20 November 2026. Delete a line when it is done, and say why in the com
 
 ## Done
 
+- [x] **Memories out of git.** `sync.sh` no longer commits `memories/`, and the
+      old copy was removed. Memories live only in the private OneDrive backup.
+- [x] **Library named.** Shared folder is now `TRIBE Group Tech/Hermes Library`.
 - [x] **Schedule the backup.** Hermes job `Hermes backup`, daily at 17:00,
       runs `scripts/nightly.sh` with no model involved. A launchd agent was
       tried first and failed: macOS blocks rsync writing into OneDrive from a
