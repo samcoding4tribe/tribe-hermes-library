@@ -111,10 +111,12 @@ done
 # prune old snapshots
 if ls "$DBDIR"/*.db >/dev/null 2>&1; then
   ls -1t "$DBDIR"/*.db | tail -n +$((KEEP + 1)) | while read -r old; do
-    rm -f "$old"
+    rm -f "$old" "$old-wal" "$old-shm"
     echo "pruned $(basename "$old")"
   done
 fi
+# sidecars left behind by anything that opened a snapshot for inspection
+rm -f "$DBDIR"/*.db-wal "$DBDIR"/*.db-shm
 
 cat > "$DEST/README.md" <<'NOTE'
 # Hermes backup for this machine
