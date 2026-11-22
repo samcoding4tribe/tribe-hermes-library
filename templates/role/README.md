@@ -1,6 +1,6 @@
 # Turning this into a new profile
 
-1. Copy the folder: `cp -r templates/role ~/hermes-agents/profiles/<name>`
+1. Copy the folder: `cp -r templates/role ~/tribe-hermes-library/profiles/<name>`
 2. Fill the placeholders in `SOUL.md`: owner, title, profile name, date.
 3. Create the profile on the machine: `hermes profile create <name>`
 4. Start it and give it the facts it needs: `hermes -p <name> chat`

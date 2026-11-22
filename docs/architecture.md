@@ -12,8 +12,8 @@ from it.
     memories, state.db        ──────▶  db/    session snapshots
     .env (never moves)
 
-  ~/hermes-agents         ──sync───▶  TRIBE Group Tech/Hermes Library  ──push──▶ private repo
-    templates, docs, scripts            templates/, profiles/, docs/            hermes-agents
+  ~/tribe-hermes-library         ──sync───▶  TRIBE Group Tech/Hermes Library  ──push──▶ private repo
+    templates, docs, scripts            templates/, profiles/, docs/            tribe-hermes-library
 ```
 
 ## 1. The running agent, local
@@ -30,7 +30,7 @@ chosen, which is D11.
 
 ## 2. The private backup, OneDrive, per person
 
-`OneDrive/TRIBE GROUP - samuelkn/Hermes/`
+`OneDrive/TRIBE GROUP - samuelkn/Hermes Backup/`
 
 Daily at 17:00, `scripts/nightly.sh` writes:
 
@@ -60,7 +60,7 @@ first. Nothing writes back silently.
 
 ## 4. The repo
 
-`~/hermes-agents`, with a private remote once the key is on GitHub.
+`~/tribe-hermes-library`, with a private remote once the key is on GitHub.
 
 Versioned copy of the library, plus the scripts. No memories, no databases. It is
 what makes a change reviewable, two assistants comparable, and eventually
@@ -74,6 +74,11 @@ checkable on push.
 
 A shared server is the same deal, except its profile is started by the gateway
 rather than by hand, and its backup goes to the same private folder.
+
+Colliding a profile onto a machine is not solved yet: today it is
+`install-profile.sh` plus credentials. Merging a published profile with a local
+one that has drifted needs a procedure, which is written down as the next piece
+of work.
 
 ## What is deliberately not here yet
 

@@ -20,7 +20,7 @@ Author's context: testing a rollout to workmates before proposing it to the orga
 | EA skills | 44, cloned from default; none written for the assistant role yet |
 | Private backup | `OneDrive/TRIBE GROUP - samuelkn/Hermes`, text plus database snapshots |
 | Shared library | `OneDrive/TRIBE GROUP - TRIBE Group Tech/Hermes`, templates and published copies |
-| Repo | `~/hermes-agents`, local git only, no remote yet |
+| Repo | `~/tribe-hermes-library`, local git only, no remote yet |
 | Connectors | none |
 | Scheduled jobs | none |
 | Messaging channels | none; the gateway is running and multiplexed |

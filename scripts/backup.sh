@@ -121,7 +121,7 @@ rm -f "$DBDIR"/*.db-wal "$DBDIR"/*.db-shm
 cat > "$DEST/README.md" <<'NOTE'
 # Hermes backup for this machine
 
-Written by `scripts/backup.sh` from the local `hermes-agents` repo. Text is
+Written by `scripts/backup.sh` from the local `tribe-hermes-library` repo. Text is
 mirrored on each run; databases are snapshots, ten kept by default.
 
 | Path | What |

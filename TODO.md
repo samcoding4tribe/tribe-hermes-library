@@ -24,6 +24,14 @@ Recorded 20 November 2026. Delete a line when it is done, and say why in the com
       tried first and failed: macOS blocks rsync writing into OneDrive from a
       launchd context, so the job runs from the scheduler instead.
 
+- [ ] **Write the collision procedure.** How a published profile is merged onto
+      a machine that already has one, what wins when both changed, and how a new
+      assistant is assembled from a template without copying a stranger's memory.
+- [ ] **Central backup, when the first manager's assistant goes live.** A
+      copy that survives the owner's account being deprovisioned. Access for two
+      named people, database snapshots encrypted. Not before, since it puts
+      conversations in a shared place.
+
 ## Later
 
 - [ ] Add `age` and encrypt `.env` plus `auth.json` into the private backup.

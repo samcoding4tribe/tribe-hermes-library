@@ -30,7 +30,7 @@ Mixing them means every runtime write becomes a sync event.
 
 ## D3. The repo is a versioned mirror, not the runtime
 
-**Decision.** `~/hermes-agents` holds copies of souls, memories, custom skills,
+**Decision.** `~/tribe-hermes-library` holds copies of souls, memories, custom skills,
 templates and docs, committed on each sync. The agent never reads from it.
 
 **Why.** History is what lets you see what changed when an assistant starts

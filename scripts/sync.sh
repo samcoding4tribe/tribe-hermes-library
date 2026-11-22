@@ -17,7 +17,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # shellcheck disable=SC1091
 [ -f "$ROOT/config.env" ] && . "$ROOT/config.env"
 
-REPO="${HERMES_SYNC_REPO:-$HOME/hermes-agents}"
+REPO="${HERMES_SYNC_REPO:-$HOME/tribe-hermes-library}"
 ONEDRIVE="${HERMES_SYNC_ONEDRIVE:-$HOME/Library/CloudStorage/OneDrive-TribeTravelandEvents/Hermes}"
 HERMES="${HERMES_HOME:-$HOME/.hermes}"
 BUNDLED_SKILLS="$HERMES/hermes-agent/skills"
