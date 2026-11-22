@@ -148,7 +148,44 @@ day and a failure produces an alert.
 
 ---
 
-## D13. A backup is tested or it is a guess
+## D13. The shared folder is called Hermes Library and is published to
+
+**Decision.** `OneDrive/TRIBE Group - TRIBE Group Tech/Hermes Library`. Written
+by a machine, read by people, edited only by the maintainer or an agent.
+
+**Why.** "Library" says what it is: a shelf of templates and published copies,
+not a live agent and not a backup. The name also keeps it distinct from the
+private `Hermes` folder in a person's own OneDrive, which is a backup and looks
+nothing like it.
+
+---
+
+## D14. Memories are never committed to git
+
+**Decision.** `sync.sh` leaves `memories/` out of the repo, and removes it if an
+older commit put it there.
+
+**Why.** The remote is for skills, souls and configs, which describe how an
+assistant works. Memories describe what a person said, and those belong in the
+private backup. A remote repository has more readers than a folder does, and
+history keeps what it is given.
+
+---
+
+## D15. One repo, not one per computer
+
+**Decision.** No per-machine repositories for now. Machine state lives in the
+private OneDrive backup; the single repo holds the baseline plus published
+profiles.
+
+**Why.** A repo per machine means a remote, a key and a tidy-up per machine, for
+history nobody reads while there is one machine. The moment several machines run
+assistants and need separate access or separate checks, that changes: either
+revisit per-machine repos, or put a folder per machine inside the existing one.
+
+---
+
+## D16. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.

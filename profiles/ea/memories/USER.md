@@ -1,1 +1,0 @@
-Goes by Sam. Picked the orange accent and the Elite layout in the Hermes desktop app.

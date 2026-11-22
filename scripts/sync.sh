@@ -82,11 +82,10 @@ for p in "${PROFILES[@]}"; do
     fi
   fi
 
-  if [ -d "$src/memories" ]; then
-    run mkdir -p "$dst/memories"
-    for f in "$src"/memories/*.md; do
-      [ -f "$f" ] && run cp "$f" "$dst/memories/"
-    done
+  # memories stay out of git: they live in the private OneDrive backup (D14)
+  if [ -d "$dst/memories" ]; then
+    if [ "$DRY" = 1 ]; then echo "  would: remove profiles/$p/memories from the repo"
+    else rm -rf "$dst/memories"; fi
   fi
 
   if [ -d "$src/cron" ]; then
