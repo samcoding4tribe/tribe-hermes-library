@@ -242,7 +242,36 @@ If permissions cannot be limited that way, move backups back out of the library.
 
 ---
 
-## D20. A backup is tested or it is a guess
+## D20. Who can read a backup is an access question, not a folder question
+
+**Status.** Open. To settle before the first deployment to someone who is not a
+manager.
+
+**Problem.** `Hermes Backups/<machine>/` sits in a library that managers can
+already read, and the Tech library is likely the same. Moving the folder does not
+change who can read it. Meanwhile the agent needs access to those files to run,
+and the person whose profile it is may not need it at all.
+
+**The two levers.**
+
+1. **A service identity.** Hermes runs under an account that can read the backup
+   library, and users never get that access. On a Mac this means a separate macOS
+   user or a server, because the app inherits whatever the logged-in person can
+   read. Thin clients, one runtime.
+2. **Encryption.** Backups are written encrypted, so folder visibility stops
+   mattering. Keys stay with the machine and the owner. Works with per-machine
+   runtimes, and is the only option that survives a folder shared by accident.
+
+**What I would do.** Per-machine runtimes for people who need their own memory,
+with backups encrypted at rest. A service identity when several assistants share
+one host. Both can be true at once.
+
+**Trigger for a decision.** The first profile deployed to someone without
+management permissions.
+
+---
+
+## D21. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.

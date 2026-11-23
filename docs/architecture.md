@@ -92,6 +92,22 @@ Colliding a profile onto a machine is not solved yet: today it is
 one that has drifted needs a procedure, which is written down as the next piece
 of work.
 
+## Who can read what
+
+Folder visibility is not a security control. If a person can open the library in
+OneDrive, they can read whatever sits inside it, including a backup that holds
+memory. Three things follow:
+
+- Permissions decide who can read, so a folder shared with managers is readable
+  by managers no matter what Hermes is configured to do.
+- The agent inherits the access of the account it runs under. A stricter profile
+  setting changes what it is willing to do, not what the operating system lets it
+  read.
+- Anything written into a shared folder should be assumed readable by everyone
+  who can open that folder.
+
+The open question, and the two ways out, are in D20.
+
 ## What is deliberately not here yet
 
 One git repo per computer. Today history lives in one repo and machine state
