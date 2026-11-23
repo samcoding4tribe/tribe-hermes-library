@@ -15,7 +15,8 @@ scripts/backup.sh    soul, memories, config, cron -> private OneDrive folder
 scripts/nightly.sh   runs backup, then sync, once a day
 scripts/pull.sh      library edits back onto a machine, diff first
 scripts/install-profile.sh   library or repo -> a machine
-docs/agent-profiles.md  candidate assistants, by function
+docs/course.md      seven lessons for a first-time user
+docs/agent-profiles.md  what we know and what must be learned before a profile
 docs/onboarding.md   set up a new machine, step by step
 docs/architecture.md where each copy lives and why
 docs/decisions.md    one entry per choice, with the reason
