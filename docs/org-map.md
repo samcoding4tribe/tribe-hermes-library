@@ -81,6 +81,9 @@ profile. A chart that anyone can open should hold only what anyone may read.
 - Four open questions: whether Vanessa and Ness are one person, which two people
   are the internal event-travel consultants, whether Belinda or Dani have teams,
   and the surnames still missing
+- One structural question open on 24 November: if Kate leads the events side and
+  Kelly directs travel, Jodie and Vanessa should report to Kate rather than sit
+  beside her under Leon. Not changed until Sam says which
 
 ## Who may change it
 
@@ -90,11 +93,15 @@ Stated by Sam, 24 November 2026: the managers of the block, plus Kelly, plus Leo
 |---|---|
 | Leon | Heads the group |
 | Kelly | Managing Director, Travel, and part owner |
+| Kate | General Manager, involved with the events side |
 | Jodie, Vanessa | The two leads of the events block |
 
-Open: whether Kate, Belinda and Dani are included. They are managers on the chart,
-but not of that block, and the instruction named the block. Until Sam says
-otherwise, they read but do not edit.
+Open: whether Belinda and Dani are included. They are managers on the chart but not
+of that block. Until Sam says otherwise, they read but do not edit.
+
+Kelly directs the travel section. Kate is involved with events. That division is
+about scope, and the reporting lines it implies are still being settled: see the
+open question below.
 
 How the rule is enforced, honestly: there is no per-person permission inside a git
 repository. Two mechanisms carry it, and both are outside this file.
