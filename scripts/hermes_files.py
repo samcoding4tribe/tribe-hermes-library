@@ -270,7 +270,7 @@ def cmd_pull(cfg, args):
     if not cfg["library"]:
         print("set HERMES_SYNC_ONEDRIVE in config.env")
         return 1
-    name = args.profile or "default"
+    name = args.name or args.profile or "default"
     src = cfg["library"] / "profiles" / name
     local = cfg["hermes"] if name == "default" else cfg["hermes"] / "profiles" / name
     if not src.is_dir():
@@ -338,6 +338,7 @@ def main():
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--keep", type=int, default=10)
     ap.add_argument("--profile")
+    ap.add_argument("name", nargs="?", help="profile name for pull")
     args = ap.parse_args()
     cfg = load_config()
     return {"backup": cmd_backup, "sync": cmd_sync, "pull": cmd_pull, "nightly": cmd_nightly}[args.command](cfg, args)
