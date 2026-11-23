@@ -243,10 +243,10 @@ def cmd_sync(cfg, args):
         stage = Path(tmp)
         shutil.copytree(repo / "profiles", stage / "profiles", dirs_exist_ok=True,
                         ignore=shutil.ignore_patterns("memories", ".DS_Store"))
-        for part in ("templates", "shared-skills"):
+        for part in ("templates", "shared-skills", "apps"):
             if (repo / part).exists():
                 shutil.copytree(repo / part, stage / part, dirs_exist_ok=True,
-                                ignore=shutil.ignore_patterns(".DS_Store"))
+                                ignore=shutil.ignore_patterns(".DS_Store", "status-today.json"))
         if (repo / "docs").exists():
             shutil.copytree(repo / "docs", stage / "docs", dirs_exist_ok=True,
                             ignore=shutil.ignore_patterns(".DS_Store", "library-readme.md"))
