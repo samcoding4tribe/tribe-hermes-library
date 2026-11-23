@@ -1,0 +1,336 @@
+{
+  "org": "TRIBE Group",
+  "as_at": "2026-11-23",
+  "source": "Induction manual 2026 page 4 (names, titles, panels) plus what Sam has stated, 23 Nov 2026",
+  "legend": "Badges carry authority or location, never rank. Only the lines Sam stated are drawn. Laura (Event Director) has left and is not drawn. Jan works as a consultant, not in-house, and sits with external contacts.",
+  "people": [
+    {
+      "id": "leon",
+      "name": "Leon",
+      "role": "Managing Director",
+      "function": "Head of group",
+      "reports_to": null,
+      "badges": [
+        "Head of both businesses",
+        "Part owner, Travel"
+      ],
+      "notes": "Drawn in the events space by Sam's instruction, though he heads the group for both businesses."
+    },
+    {
+      "id": "kate",
+      "name": "Kate Ashton",
+      "known_as": "Kate",
+      "role": "General Manager",
+      "function": "Management",
+      "reports_to": "leon",
+      "badges": [],
+      "notes": "Sam's line manager. T +61 3 8578 3151, M 0419 118 575."
+    },
+    {
+      "id": "belinda",
+      "name": "Belinda",
+      "role": "Finance Manager",
+      "function": "Finance",
+      "reports_to": "leon",
+      "badges": [],
+      "notes": "Surname not yet given. Expense and finance contact."
+    },
+    {
+      "id": "jodie",
+      "name": "Jodie Haylock",
+      "known_as": "Jodie",
+      "role": "Operations Manager - Events",
+      "function": "Events",
+      "reports_to": "leon",
+      "badges": [],
+      "notes": "Offsite since Sam started."
+    },
+    {
+      "id": "dani",
+      "name": "Dani",
+      "role": "Design Manager",
+      "function": "Design",
+      "reports_to": "leon",
+      "badges": [],
+      "notes": "Surname not yet given."
+    },
+    {
+      "id": "ness",
+      "name": "Vanessa Crockett",
+      "known_as": "Ness",
+      "role": "Operations Manager - Travel",
+      "function": "Management",
+      "reports_to": "leon",
+      "badges": [],
+      "notes": "Page 4 gives Vanessa as Operations Manager - Travel; Sam describes Ness as Events Travel. Treated as one person until Sam says otherwise. Hatchers workstream contact."
+    },
+    {
+      "id": "kelly",
+      "name": "Kelly Gelfand",
+      "known_as": "Kelly",
+      "role": "Managing Director Travel",
+      "function": "Travel",
+      "reports_to": "leon",
+      "badges": [
+        "Part owner",
+        "Executive authority"
+      ],
+      "notes": "Part owner with Leon; same level as the other managers, with extra executive authority."
+    },
+    {
+      "id": "sam",
+      "name": "Samuel Klett Navarro",
+      "known_as": "Sam",
+      "role": "AI and Innovation Lead",
+      "function": "AI and innovation",
+      "reports_to": "kate",
+      "badges": [],
+      "notes": "Nobody reports to Sam at present (Sam, 23 Nov 2026)."
+    },
+    {
+      "id": "bianca",
+      "name": "Bianca",
+      "role": "Event Director",
+      "function": "Events",
+      "reports_to": [
+        "ness",
+        "jodie"
+      ],
+      "badges": [],
+      "notes": "",
+      "block": "events",
+      "tier": 1
+    },
+    {
+      "id": "kristen",
+      "name": "Kristen",
+      "role": "Event Director",
+      "function": "Events",
+      "reports_to": [
+        "ness",
+        "jodie"
+      ],
+      "badges": [],
+      "notes": "",
+      "block": "events",
+      "tier": 1
+    },
+    {
+      "id": "kim",
+      "name": "Kim",
+      "role": "Event Director",
+      "function": "Events",
+      "reports_to": [
+        "ness",
+        "jodie"
+      ],
+      "badges": [],
+      "notes": "",
+      "block": "events",
+      "tier": 1
+    },
+    {
+      "id": "carlita",
+      "name": "Carlita",
+      "role": "Event Manager",
+      "function": "Events",
+      "reports_to": [
+        "ness",
+        "jodie"
+      ],
+      "badges": [],
+      "notes": "",
+      "block": "events",
+      "tier": 1
+    },
+    {
+      "id": "zoe",
+      "name": "Zoe",
+      "role": "Event Manager",
+      "function": "Events",
+      "reports_to": [
+        "ness",
+        "jodie"
+      ],
+      "badges": [],
+      "notes": "",
+      "block": "events",
+      "tier": 1
+    },
+    {
+      "id": "sarah",
+      "name": "Sarah",
+      "role": "Event Co-ordinator",
+      "function": "Events",
+      "reports_to": [
+        "ness",
+        "jodie"
+      ],
+      "badges": [],
+      "notes": "",
+      "block": "events",
+      "tier": 1
+    },
+    {
+      "id": "mia",
+      "name": "Mia",
+      "role": "Event Support",
+      "function": "Events",
+      "reports_to": [
+        "ness",
+        "jodie"
+      ],
+      "badges": [],
+      "notes": "",
+      "block": "events",
+      "tier": 1
+    },
+    {
+      "id": "ally",
+      "name": "Ally",
+      "role": "Luxury Travel Advisor",
+      "function": "Travel",
+      "reports_to": "kelly",
+      "badges": [
+        "Gold Coast"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "iva",
+      "name": "Iva Dattelova",
+      "known_as": "Iva",
+      "role": "Luxury Travel Advisor",
+      "function": "Travel",
+      "reports_to": "kelly",
+      "badges": [],
+      "notes": "One of five in Kelly's team. Introducing Sam to Sabre contacts; ran the August automation."
+    },
+    {
+      "id": "maddy",
+      "name": "Maddy",
+      "role": "Luxury Travel Advisor",
+      "function": "Travel",
+      "reports_to": "kelly",
+      "badges": [],
+      "notes": ""
+    },
+    {
+      "id": "martin",
+      "name": "Martin",
+      "role": "Luxury Travel Advisor",
+      "function": "Travel",
+      "reports_to": "kelly",
+      "badges": [],
+      "notes": ""
+    },
+    {
+      "id": "clare",
+      "name": "Clare",
+      "role": "Luxury Travel Advisor",
+      "function": "Travel",
+      "reports_to": "kelly",
+      "badges": [],
+      "notes": ""
+    },
+    {
+      "id": "luci",
+      "name": "Luci",
+      "role": "Finance Manager",
+      "function": "Finance",
+      "badges": [],
+      "notes": "Travel panel of page 4. Under Kelly by Sam's instruction.",
+      "reports_to": "kelly"
+    },
+    {
+      "id": "trent",
+      "name": "Trent",
+      "role": "Group Travel Manager",
+      "function": "Travel",
+      "badges": [],
+      "notes": "Stated as under Ness; drawn with the events block. On the events panel of page 4.",
+      "block": "events",
+      "tier": 1,
+      "reports_to": "ness"
+    },
+    {
+      "id": "holly",
+      "name": "Holly",
+      "role": "Travel Co-ordinator",
+      "function": "Travel",
+      "badges": [],
+      "notes": "Stated as under Ness; drawn with the events block. On the events panel of page 4.",
+      "block": "events",
+      "tier": 1,
+      "reports_to": "ness"
+    },
+    {
+      "id": "jamie",
+      "name": "Jamie",
+      "role": "Travel Manager",
+      "function": "Travel",
+      "badges": [
+        "Philippines"
+      ],
+      "notes": "Offshore, Philippines. A level below the event directors and coordinators by Sam's instruction.",
+      "block": "events",
+      "tier": 2,
+      "reports_to": "ness"
+    },
+    {
+      "id": "jovelle",
+      "name": "Jovelle",
+      "role": "Travel Manager",
+      "function": "Travel",
+      "badges": [
+        "Philippines"
+      ],
+      "notes": "Offshore, Philippines. A level below the event directors and coordinators by Sam's instruction.",
+      "block": "events",
+      "tier": 2,
+      "reports_to": "ness"
+    },
+    {
+      "id": "erj",
+      "name": "ERJ",
+      "role": "Executive Support Partner",
+      "function": "Support",
+      "badges": [
+        "Philippines"
+      ],
+      "notes": "Offshore, Philippines. In the travel group, under Kelly.",
+      "reports_to": "kelly"
+    }
+  ],
+  "groups": [],
+  "external": [
+    {
+      "name": "Jan",
+      "detail": "Luxury Travel Advisor, consultant capacity — not in-house"
+    },
+    {
+      "name": "Sabre — contacts",
+      "detail": "Software supplier, names to come"
+    },
+    {
+      "name": "Noah Webb",
+      "detail": "Agent Hatchers · 24 Nov meeting accepted"
+    }
+  ],
+  "open_questions": [
+    "Is Vanessa on page 4 the same person as Ness?",
+    "Which two people are the internal event-travel consultants?",
+    "Do Belinda or Dani have teams?",
+    "Surnames for Leon, Belinda, Dani and the events team."
+  ],
+  "blocks": [
+    {
+      "id": "events",
+      "title": "Events — drawn together, under Ness and Jodie",
+      "parents": [
+        "ness",
+        "jodie"
+      ]
+    }
+  ]
+}

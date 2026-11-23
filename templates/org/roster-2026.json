@@ -1,0 +1,255 @@
+{
+  "source": "Tribe Group Induction Manual 2026.pdf, page 4 (\"Meet the Tribe\")",
+  "extracted": "2026-11-23",
+  "note": "Photo directory from the induction manual: names, titles and which panel each person appears in. No reporting lines on the page. engagement: employee | offshore (Philippines) | consultant (not in-house). status is 'unknown' until Sam marks who has left.",
+  "divisions": {
+    "events": "Light panel, headed EVENTS",
+    "travel": "Dark panel, headed TRAVEL"
+  },
+  "people": [
+    {
+      "name": "Leon",
+      "title": "Managing Director",
+      "division": "events",
+      "row": 1,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Kate",
+      "title": "General Manager",
+      "division": "events",
+      "row": 1,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Belinda",
+      "title": "Finance Manager",
+      "division": "events",
+      "row": 1,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Jodie",
+      "title": "Operations Manager - Events",
+      "division": "events",
+      "row": 1,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Dani",
+      "title": "Design Manager",
+      "division": "events",
+      "row": 2,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Laura",
+      "title": "Event Director",
+      "division": "events",
+      "row": 2,
+      "status": "left",
+      "engagement": "employee",
+      "location": "Melbourne",
+      "left_source": "Sam, 23 Nov 2026 — the only departure so far"
+    },
+    {
+      "name": "Bianca",
+      "title": "Event Director",
+      "division": "events",
+      "row": 2,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Kristen",
+      "title": "Event Director",
+      "division": "events",
+      "row": 2,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Kim",
+      "title": "Event Director",
+      "division": "events",
+      "row": 2,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Carlita",
+      "title": "Event Manager",
+      "division": "events",
+      "row": 3,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Sarah",
+      "title": "Event Co-ordinator",
+      "division": "events",
+      "row": 3,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Zoe",
+      "title": "Event Manager",
+      "division": "events",
+      "row": 3,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Vanessa",
+      "title": "Operations Manager - Travel",
+      "division": "events",
+      "row": 3,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Trent",
+      "title": "Group Travel Manager",
+      "division": "events",
+      "row": 3,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Holly",
+      "title": "Travel Co-ordinator",
+      "division": "events",
+      "row": 4,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Jamie",
+      "title": "Travel Manager",
+      "division": "events",
+      "row": 4,
+      "status": "unknown",
+      "engagement": "offshore",
+      "location": "Philippines"
+    },
+    {
+      "name": "Jovelle",
+      "title": "Travel Manager",
+      "division": "events",
+      "row": 4,
+      "status": "unknown",
+      "engagement": "offshore",
+      "location": "Philippines"
+    },
+    {
+      "name": "Mia",
+      "title": "Event Support",
+      "division": "events",
+      "row": 4,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Kelly",
+      "title": "Managing Director Travel",
+      "division": "travel",
+      "row": 1,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Luci",
+      "title": "Finance Manager",
+      "division": "travel",
+      "row": 1,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Ally",
+      "title": "Luxury Travel Advisor (Gold Coast)",
+      "division": "travel",
+      "row": 2,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Iva",
+      "title": "Luxury Travel Advisor",
+      "division": "travel",
+      "row": 2,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Jan",
+      "title": "Luxury Travel Advisor",
+      "division": "travel",
+      "row": 2,
+      "status": "unknown",
+      "engagement": "consultant",
+      "location": "not in-house"
+    },
+    {
+      "name": "Maddy",
+      "title": "Luxury Travel Advisor",
+      "division": "travel",
+      "row": 3,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Martin",
+      "title": "Luxury Travel Advisor",
+      "division": "travel",
+      "row": 3,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "Clare",
+      "title": "Luxury Travel Advisor",
+      "division": "travel",
+      "row": 3,
+      "status": "unknown",
+      "engagement": "employee",
+      "location": "Melbourne"
+    },
+    {
+      "name": "ERJ",
+      "title": "Executive Support Partner",
+      "division": "travel",
+      "row": 4,
+      "status": "unknown",
+      "engagement": "offshore",
+      "location": "Philippines"
+    }
+  ]
+}

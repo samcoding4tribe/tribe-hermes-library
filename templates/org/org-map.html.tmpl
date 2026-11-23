@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>People map — __ORG__</title>
+<style>
+  .wrap { font-family: inherit; color: var(--foreground, #e9e9ea); max-width: 960px; }
+  h1 { font-size: 1.05rem; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted-foreground, #a0a0a8); font-size: .8rem; margin: 0 0 22px; line-height: 1.45; }
+  .tree { position: relative; width: 100%; }
+  #wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; color: var(--muted-foreground, #a0a0a8); z-index: 0; }
+  .level { position: relative; z-index: 1; display: flex; gap: 10px; }
+  .level.root { gap: 0; }
+  .level.peers { align-items: flex-start; margin-top: 40px; }
+  .level.joint { margin-top: 40px; align-items: flex-start; gap: 9px; }
+  .level.joint + .level.joint { margin-top: 26px; }
+  .band-label + .level.joint { margin-top: 0; }
+  .joint-cards { display: flex; flex-wrap: wrap; gap: 10px; min-width: 0; }
+  .joint-cards .node { flex: 0 0 158px; min-width: 0; }
+  .level.unplaced { margin-top: 18px; flex-wrap: wrap; gap: 10px; }
+  .level.unplaced .node { flex: 0 0 158px; min-width: 0; }
+  .band-label { font-size: .67rem; text-transform: uppercase; letter-spacing: .08em;
+                color: var(--muted-foreground, #a0a0a8); margin: 34px 0 10px; width: 100%; }
+  .col.spacer { padding-left: 12px; }
+  .level.joint .col .node { width: 100%; min-width: 0; }
+  .col { display: flex; flex-direction: column; flex: 1 1 0; min-width: 0; padding-left: 12px; }
+  .col > .node, .sub .node { width: 100%; min-width: 0; }
+  .sub { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; }
+  .node {
+    background: var(--card, #1b1b1f); border: 1px solid var(--border, #3a3a40); border-radius: 8px;
+    padding: 9px 11px; min-width: 170px; box-sizing: border-box; cursor: pointer;
+    transition: border-color .12s ease;
+  }
+  .node:hover { border-color: var(--muted-foreground, #a0a0a8); }
+  .node.selected { border-color: var(--accent, #ff7a1a); box-shadow: inset 3px 0 0 var(--accent, #ff7a1a); }
+  .node .name { font-weight: 600; font-size: .86rem; line-height: 1.25; }
+  .node .role { color: var(--muted-foreground, #a0a0a8); font-size: .73rem; margin-top: 3px; line-height: 1.3; }
+  .tag {
+    display: inline-block; font-size: .6rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--accent, #ff7a1a); border: 1px solid var(--accent, #ff7a1a); border-radius: 4px;
+    padding: 1px 4px; margin: 5px 4px 0 0; opacity: .9;
+  }
+  .owner { border-color: var(--accent, #ff7a1a); }
+  .ghost { border-style: dashed; cursor: default; }
+  .ext { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .ext .node { min-width: 200px; flex: 0 1 230px; cursor: default; }
+  .ext-title {
+    font-size: .67rem; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted-foreground, #a0a0a8); margin: 0 0 10px; width: 100%;
+  }
+  .legend {
+    margin-top: 26px; padding-top: 12px; border-top: 1px solid var(--border, #3a3a40);
+    color: var(--muted-foreground, #a0a0a8); font-size: .74rem; line-height: 1.5;
+  }
+  .legend b { color: var(--foreground, #e9e9ea); font-weight: 600; }
+  .pick {
+    margin-top: 16px; font-size: .74rem; color: var(--muted-foreground, #a0a0a8);
+    border: 1px solid var(--border, #3a3a40); border-radius: 6px; padding: 8px 10px;
+  }
+  .pick code { color: var(--accent, #ff7a1a); font-size: .8rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="title">People map</h1>
+  <p class="sub" id="sub"></p>
+  <div class="tree" id="tree"><svg id="wires" aria-hidden="true"></svg></div>
+  <div class="ext" id="ext"></div>
+  <div class="legend" id="legend"></div>
+  <div class="pick" id="pick">Click a person to select them.</div>
+</div>
+<script>
+const DATA = __DATA__;
+// Inside the Hermes frame the theme variables are injected; opened standalone they
+// are missing, so fall back to a dark page rather than light text on white.
+if (!getComputedStyle(document.documentElement).getPropertyValue('--foreground').trim()) {
+  const r = document.documentElement.style;
+  [['--foreground','#e9e9ea'],['--muted-foreground','#a0a0a8'],['--border','#3a3a40'],
+   ['--card','#1b1b1f'],['--accent','#ff7a1a']].forEach(([k,v]) => r.setProperty(k,v));
+  r.setProperty('background','#131316');
+  document.documentElement.style.colorScheme = 'dark';
+}
+
+
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const byId = {};
+DATA.people.forEach(p => { byId[p.id] = p; });
+const childrenOf = id => DATA.people.filter(p => p.reports_to === id && !p.block);
+const isRoot = p => !p.unplaced && (p.reports_to === null || p.reports_to === undefined);
+
+function cardHTML(p) {
+  const badges = (p.badges || []).map(b => `<span class="tag">${esc(b)}</span>`).join('');
+  const cls = ['node'];
+  if ((p.badges || []).length) cls.push('owner');
+  return `<div class="${cls.join(' ')}" data-id="${esc(p.id)}" tabindex="0" role="button">
+    <div class="name">${esc(p.name)}${p.known_as && p.known_as !== p.name ? ` <span style="font-weight:400;opacity:.6">(${esc(p.known_as)})</span>` : ''}</div>
+    <div class="role">${esc(p.role)}</div>
+    ${badges}
+  </div>`;
+}
+
+function groupHTML(g) {
+  return `<div class="node ghost"><div class="name">${esc(g.label)}</div>
+    <div class="role">${esc(g.detail || '')}</div></div>`;
+}
+
+function render() {
+  const tree = document.getElementById('tree');
+  document.getElementById('title').textContent = `People map — ${DATA.org}`;
+  document.getElementById('sub').textContent = DATA.source + ' · as at ' + DATA.as_at + '.';
+
+  const groups = DATA.groups || [];
+  const roots = DATA.people.filter(isRoot);
+  let html = '<svg id="wires" aria-hidden="true"></svg>';
+
+  roots.forEach(root => {
+    html += `<div class="level root">${cardHTML(root)}</div>`;
+
+    const peers = childrenOf(root.id);
+    if (!peers.length) return;
+
+    html += '<div class="level peers" data-parent="' + esc(root.id) + '">';
+    peers.forEach(p => {
+      const kids = childrenOf(p.id);
+      const own = groups.filter(g => (g.under || []).length === 1 && g.under[0] === p.id);
+      const sub = (kids.length || own.length)
+        ? `<div class="sub">${kids.map(cardHTML).join('')}${own.map(groupHTML).join('')}</div>`
+        : '';
+      html += `<div class="col" data-head="${esc(p.id)}">${cardHTML(p)}${sub}</div>`;
+    });
+    html += '</div>';
+
+    const order = peers.map(p => p.id);
+    const idxOf = id => { const i = order.indexOf(id); return i < 0 ? 0 : i; };
+    const sharedRow = (parents, cards) => {
+      const idx = Math.min.apply(null, parents.map(idxOf));
+      const rest = Math.max(1, peers.length - idx);
+      return `<div class="level joint" data-parents="${esc(parents.join(','))}">` +
+        `<div style="flex:${idx} 1 0"></div><div class="joint-cards" style="flex:${rest} 1 0">${cards}</div></div>`;
+    };
+
+    // Named people who answer to two managers: one row, aligned under the first of them.
+    const shared = DATA.people.filter(p => Array.isArray(p.reports_to) && !p.block);
+    const keys = {};
+    shared.forEach(p => {
+      const k = p.reports_to.join('+');
+      (keys[k] = keys[k] || { parents: p.reports_to, people: [] }).people.push(p);
+    });
+    Object.keys(keys).forEach(k => {
+      html += sharedRow(keys[k].parents, keys[k].people.map(cardHTML).join(''));
+    });
+
+    // Block groups: people drawn together beneath one or more managers, in tiers.
+    // Membership is visual; each person's own reports_to keeps the factual line.
+    (DATA.blocks || []).forEach(b => {
+      const members = DATA.people.filter(p => p.block === b.id);
+      if (!members.length) return;
+      const tiers = [...new Set(members.map(p => p.tier || 1))].sort((x, y) => x - y);
+      tiers.forEach(tier => {
+        const cards = members.filter(p => (p.tier || 1) === tier).map(cardHTML).join('');
+        if (tier === tiers[0] && b.title) {
+          html += `<div class="band-label">${esc(b.title)}</div>`;
+        }
+        html += sharedRow(b.parents, cards);
+      });
+    });
+
+    // Counted but unnamed teams shared by two managers.
+    groups.filter(g => (g.under || []).length > 1).forEach(g => {
+      html += sharedRow(g.under, groupHTML(g));
+    });
+
+    const looseGroups = groups.filter(g => !(g.under || []).length);
+    const loosePeople = DATA.people.filter(p => p.unplaced);
+    if (looseGroups.length || loosePeople.length) {
+      html += `<div class="band-label">Not yet placed — reporting line unknown</div>` +
+        `<div class="level unplaced">${loosePeople.map(cardHTML).join('')}${looseGroups.map(groupHTML).join('')}</div>`;
+    }
+  });
+
+  tree.innerHTML = html;
+
+  const ext = document.getElementById('ext');
+  ext.innerHTML = (DATA.external && DATA.external.length)
+    ? `<p class="ext-title">External</p>` + DATA.external.map(e =>
+        `<div class="node ghost"><div class="name">${esc(e.name)}</div><div class="role">${esc(e.detail)}</div></div>`).join('')
+    : '';
+
+  document.getElementById('legend').innerHTML =
+    (DATA.legend || '') +
+    (DATA.open_questions && DATA.open_questions.length
+      ? `<br><b>Open:</b> ` + DATA.open_questions.map(esc).join(' · ')
+      : '');
+
+  tree.querySelectorAll('.node[data-id]').forEach(n => {
+    const pick = () => select(n.dataset.id);
+    n.addEventListener('click', pick);
+    n.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+  });
+
+  wire();
+  requestAnimationFrame(wire);
+  if (window.ResizeObserver) new ResizeObserver(() => wire()).observe(tree);
+}
+
+// Elbows: root down to the column row, then a left spine per column feeding its sub-cards.
+function wire() {
+  const tree = document.getElementById('tree');
+  const svg = document.getElementById('wires');
+  if (!tree || !svg) return;
+  const tb = tree.getBoundingClientRect();
+  svg.setAttribute('viewBox', `0 0 ${tb.width} ${tb.height}`);
+  const box = el => el.getBoundingClientRect();
+  const rel = r => ({ left: r.left - tb.left, right: r.right - tb.left, top: r.top - tb.top, bottom: r.bottom - tb.top, cx: r.left - tb.left + r.width / 2 });
+  const seg = [];
+
+  // 1. root to the peer row: trunk, bus, drops.
+  tree.querySelectorAll('.level.peers').forEach(row => {
+    const rootId = row.dataset.parent;
+    const rootCard = tree.querySelector(`.level.root .node[data-id="${rootId}"]`);
+    if (!rootCard) return;
+    const r = rel(box(rootCard));
+    const heads = [...row.querySelectorAll('.col > .node')].map(n => rel(box(n)));
+    if (!heads.length) return;
+    const busY = Math.min(...heads.map(h => h.top)) - 20;
+    const xs = [r.cx].concat(heads.map(h => h.cx));
+    seg.push(`M${Math.min(...xs)} ${busY} H${Math.max(...xs)}`);
+    seg.push(`M${r.cx} ${r.bottom} V${busY}`);
+    heads.forEach(h => seg.push(`M${h.cx} ${busY} V${h.top}`));
+  });
+
+  // 2. each column: spine down the left, one tick into every sub-card.
+  tree.querySelectorAll('.col').forEach(col => {
+    const sub = col.querySelector('.sub');
+    if (!sub) return;
+    const head = rel(box(col.querySelector('.node')));
+    const kids = [...sub.querySelectorAll('.node')].map(n => rel(box(n)));
+    if (!kids.length) return;
+    const spineX = rel(box(col)).left + 5;
+    const lastY = kids[kids.length - 1].top + 12;
+    seg.push(`M${head.left} ${head.bottom} H${spineX}`);
+    seg.push(`M${spineX} ${head.bottom} V${lastY}`);
+    kids.forEach(k => seg.push(`M${spineX} ${k.top + 12} H${k.left}`));
+  });
+
+  // 3. joint rows: one drop from each named manager.
+  tree.querySelectorAll('.level.joint[data-parents]').forEach(row => {
+    const ids = (row.dataset.parents || '').split(',').filter(Boolean);
+    const cards = [...row.querySelectorAll('.node')].map(n => rel(box(n)));
+    if (!cards.length) return;
+    const busY = Math.min(...cards.map(c => c.top)) - 20;
+    const parents = ids.map(id => {
+      const el = tree.querySelector(`.col[data-head="${id}"] > .node`) || tree.querySelector(`.node[data-id="${id}"]`);
+      return el ? rel(box(el)) : null;
+    }).filter(Boolean);
+    if (!parents.length) return;
+    const xs = parents.map(p => p.cx).concat(cards.map(c => c.cx));
+    seg.push(`M${Math.min(...xs)} ${busY} H${Math.max(...xs)}`);
+    parents.forEach(p => seg.push(`M${p.cx} ${p.bottom} V${busY}`));
+    cards.forEach(c => seg.push(`M${c.cx} ${busY} V${c.top}`));
+  });
+
+  svg.innerHTML = `<path d="${seg.join(' ')}" fill="none" stroke="currentColor" stroke-width="1.2"
+    stroke-linecap="round" opacity="0.55" vector-effect="non-scaling-stroke"/>`;
+}
+
+let selectedId = null;
+function select(id) {
+  selectedId = id;
+  document.querySelectorAll('.node').forEach(n => n.classList.toggle('selected', n.dataset.id === id));
+  const p = byId[id];
+  const kids = childrenOf(id);
+  document.getElementById('pick').innerHTML = p
+    ? `Selected: <b>${esc(p.name)}</b> — ${esc(p.role)} · id <code>${esc(id)}</code>` +
+      (kids.length ? ` · reports: ${kids.map(k => esc(k.name)).join(', ')}` : '')
+    : 'Click a person to select them.';
+}
+window.orgMap = {
+  selected: () => selectedId,
+  person: id => byId[id] || null,
+  people: () => DATA.people.slice(),
+  childrenOf,
+  redraw: wire
+};
+render();
+</script>
+</body>
+</html>
