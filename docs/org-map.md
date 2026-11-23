@@ -93,11 +93,12 @@ Stated by Sam, 24 November 2026: the managers of the block, plus Kelly, plus Leo
 |---|---|
 | Leon | Heads the group |
 | Kelly | Managing Director, Travel, and part owner |
+| Belinda | Finance Manager; keeps the roster honest as people join and leave |
 | Kate | General Manager, involved with the events side |
 | Jodie, Vanessa | The two leads of the events block |
 
-Open: whether Belinda and Dani are included. They are managers on the chart but not
-of that block. Until Sam says otherwise, they read but do not edit.
+Open: whether Dani is included. She is a manager on the chart but not of that
+block, so until Sam says otherwise she reads but does not edit.
 
 Kelly directs the travel section. Kate is involved with events. That division is
 about scope, and the reporting lines it implies are still being settled: see the
