@@ -45,6 +45,11 @@ cd ~/tribe-hermes-library
 Then add that machine's credentials to `~/.hermes/profiles/ea/.env`. The library
 never carries keys.
 
+Name it before you start. The profile id follows the role (`assistant-kate`,
+`office-manager`); the name the person sees is a label, set in the roster and
+optionally in the first line of the soul. Do not rename the folder for a
+nickname, since the library, the backup path and the scripts all key on it.
+
 Start it and check the persona:
 
 ```bash

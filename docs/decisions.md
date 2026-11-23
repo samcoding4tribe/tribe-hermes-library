@@ -287,7 +287,22 @@ fault shows up here first rather than on someone else's machine.
 
 ---
 
-## D22. A backup is tested or it is a guess
+## D22. The id is the role, the name is the person's
+
+**Decision.** Profiles are named for the role (`assistant-kate`,
+`office-manager`) and never renamed for a nickname. What a person sees is a
+label: roster title, messaging bot name, and optionally the first line of the
+soul. A rename of the id is a migration and is treated as one.
+
+**Why.** Everything downstream keys on the folder name: the library copy, the
+backup directory, the scripts, this documentation. A nickname that becomes an id
+turns a cosmetic wish into a path change across four systems. Separating the two
+lets people personalise what they see while the baseline stays updatable, which
+is the whole point of the shared library.
+
+---
+
+## D23. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.

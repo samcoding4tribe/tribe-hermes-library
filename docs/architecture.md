@@ -70,6 +70,25 @@ where they belong. A skill may say "ask who signs off"; it may not say who that
 is. Personal detail never enters a work profile, and a manager's context never
 lands in Sam's memory.
 
+## 3b. Names: the id stays, the label is theirs
+
+Two different things carry a name.
+
+**The profile id** is the folder: `assistant-kate`, `office-manager`. Skills,
+memory, backups and library copies all key on it, so it stays stable and
+role-based.
+
+**The label** is what a person sees: the roster title in Bot Mode, the messaging
+bot's own name, and optionally the first line of their soul, "You are Jarvis".
+
+Someone who wants to call their assistant Jarvis changes the label and nothing
+else. Baseline updates from the library still reach them, because the id and the
+shared skills never moved.
+
+`hermes profile rename` changes the id, which is a migration: paths in the
+library, this repo and the backup folder all follow it. Use it when the role
+changes, not when the nickname does.
+
 ## 4. The repo
 
 `~/tribe-hermes-library`, with a private remote once the key is on GitHub.
