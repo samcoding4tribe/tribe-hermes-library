@@ -199,8 +199,8 @@ remote stays current without a second habit to remember.
 ## D17. Shared skills are the crossover, never shared memory
 
 **Decision.** `admin` and `ea` load skills from one folder through
-`skills.external_dirs`. Their memories stay separate, and no personal fact is
-copied into a work profile.
+`skills.external_dirs`. Their memories stay separate, and no one person's detail
+is copied into another person's profile.
 
 **Why.** What should be identical across assistants is the procedure. What should
 never be identical is what a person said. Sharing a folder of skills gives the

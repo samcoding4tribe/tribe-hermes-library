@@ -60,7 +60,7 @@ first. Nothing writes back silently.
 
 ## 3a. Two assistants, one skill set
 
-`admin` is Sam's personal admin assistant. `ea` is the executive assistant pilot
+`admin` is Sam's own work admin assistant. `ea` is the executive assistant pilot
 for a manager. They are separate profiles with separate memories and separate
 backups, and they read the same skills from `~/tribe-hermes-library/shared-skills`
 through `skills.external_dirs`.

@@ -22,5 +22,5 @@ under 60 characters.
 
 | Profile | Reads this folder |
 |---|---|
-| `admin` | personal admin for Sam |
+| `admin` | Sam's own work admin |
 | `ea` | executive assistant pilot for a manager |
