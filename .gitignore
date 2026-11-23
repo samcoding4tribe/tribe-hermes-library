@@ -16,3 +16,5 @@ image_cache/
 *.pem
 logs/
 .DS_Store
+# generated from the leave calendar
+apps/team-map/status-today.json
