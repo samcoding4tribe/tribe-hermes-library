@@ -1,129 +1,98 @@
-# Possible agent profiles for TRIBE Group
+# Agent profiles for TRIBE Group
 
-Drafted 23 November 2026, from the public site and from how the shared drive is
-organised. Role-based on purpose: names get attached when a person is chosen,
-not before.
+Revised 23 November 2026. The first draft treated each job as its own assistant,
+which was wrong. People do several jobs, and the events team does mostly the
+same ones as each other.
 
 The business, in one line: TRIBE Events sells conferences and incentive programs,
 TRIBE Travel sells leisure travel as a Virtuoso agency, and both sell care and
 detail rather than volume.
 
-## What the work actually is
+## The shape that fits
 
-| Function | The recurring labour | Where the evidence is |
+Two kinds of assistant, one per person:
+
+**Manager assistant.** Diary, inbox, briefings, follow-ups, the things that
+protect a manager's attention. Fewer tasks, higher stakes, more sending rights.
+
+**Team assistant.** For event managers, coordinators and travel advisors. Budget
+work, bookings, flight checks, run sheets, venue research, theme ideas, and
+keeping account managers in the loop. Many tasks, repetitive, internal.
+
+Both read the same shared skills. What differs is authority: a coordinator's
+assistant drafts and checks, a manager's assistant can send after approval.
+
+## Skills for the team assistant
+
+| Skill | What it does | Where it reads |
 |---|---|---|
-| Client proposals | Rebuilding the same document shape for every brief, pricing, options | `PROPOSALS/`, `MASTER TEMPLATES & DOCS/` |
-| Supplier management | Rates, availability, confirmations, contracts, expiry dates | `SUPPLIERS/` |
-| Event delivery | Run sheets, call times, staff briefings, on-the-night problems | `EVENTS CLIENTS/`, run-sheet attachments |
-| Travel advisory | Itineraries, preferences, visas, hotel benefits, changes | `TRAVEL/`, Virtuoso membership |
-| Design | Decks, collateral, headshots, client brand work | `DESIGN TRIBE/`, `DESIGN CLIENTS (Dani)/` |
-| Marketing | Case studies, award entries, social, post-event write-ups | `MARKETING/` |
-| Finance and admin | Invoice chasing, supplier bills, expenses, staff records | `FINANCE/`, `ADMIN/` |
-| Internal systems | Workflow, tools, IT liaison | `WORKFLOW/`, `SYSTEMS/`, `COMWIRE/` |
+| `budget-check` | Reconciles a budget sheet against quotes and bookings, flags variances | event folder, `FINANCE/` |
+| `flight-watch` | Cross-checks itineraries against bookings, flags mismatches and schedule changes | booking confirmations, `TRAVEL/` |
+| `run-sheet` | Builds the run sheet from the event folder: times, suppliers, staff, contacts | `EVENTS CLIENTS/<event>/` |
+| `account-manager-brief` | Turns the state of an event into three lines an account manager can forward | event folder, mailbox |
+| `supplier-chase` | Drafts confirmation chases and tracks what is outstanding | `SUPPLIERS/` |
+| `venue-research` | Compiles options with capacity, location, cost ranges and past use | `SUPPLIERS/`, past proposals |
+| `theme-ideas` | Proposes directions with references and precedent from past events | past events, `MARKETING/` |
 
-## The profiles worth building
+## Skills for the manager assistant
 
-### 1. `admin` (exists)
+| Skill | What it does |
+|---|---|
+| `inbox-triage` | Sorts, summarises, drafts replies for approval |
+| `meeting-prep` | One page per meeting: who, what for, what was promised last time |
+| `daily-brief` | What is due, what needs a decision, what can wait |
+| `follow-up-watch` | What was promised and has not happened |
 
-Sam's own work admin. Inbox triage, diary, meeting prep, follow-ups, travel
-bookings, expense claims. Drafts only.
+Shared by both: `weekly-review`, `draft-then-ask`.
 
-### 2. `proposal-writer`
+## Responsibility levels
 
-For whoever owns new business in events. Reads a client brief, pulls the matching
-structure from `MASTER TEMPLATES & DOCS/`, drafts the narrative sections, and
-assembles a budget skeleton with the pricing fields left for a human to confirm.
-Reads past proposals in `PROPOSALS/` to keep the voice consistent.
+The same skill behaves differently depending on who owns the profile. This is
+configuration, not a second tool.
 
-- Skills: `proposal-from-brief`, `pricing-sheet-check`, `case-study-match`
-- Cron: Monday, list proposals older than five days with no reply
-- Guardrail: never sends to a client, never invents a price, every figure cites
-  its source document
+| Level | Who | Can | Cannot |
+|---|---|---|---|
+| Draft | coordinators | read internal folders, draft documents and email, propose budgets | send, book, approve a payment |
+| Approve | event managers | send approved communication, confirm a booking after a human yes | move money, sign a contract |
+| Oversee | managers | everything above, plus briefs and delegation | act outside their own mailbox |
 
-### 3. `supplier-desk`
+Approval mode is `manual` on role profiles, so a command asks before it runs.
 
-The register that keeps itself. Contacts, rates, contract dates, confirmations
-outstanding. Weekly, it reports what expires in the next sixty days and what has
-not replied.
+## What that means in practice
 
-- Skills: `supplier-register`, `chase-outstanding`, `contract-expiry`
-- Cron: Monday 08:00, expiry and chase list
-- Guardrail: drafts the chase email, a person sends it
+- One profile per person, one machine each. Memory stays personal.
+- Skills live in `shared-skills/`, improved once and inherited by everyone.
+- Two coordinators with identical skills still keep separate memories.
+- A manager's assistant is the same engine with a different soul, a different
+  skill list and a stricter gate.
+- Budgets, run sheets and the supplier register stay in the drive. The assistant
+  reads them; it does not become a second copy.
 
-### 4. `event-runner`
+## Counts
 
-For the week of an event. Turns the event folder into a run sheet with times,
-suppliers, staff assignments and a contact tree, then keeps a live problem log
-during the day.
-
-- Skills: `run-sheet-from-folder`, `staff-brief`, `problem-log`
-- Cron: daily 06:00 during an event week only
-- Guardrail: reads the event folder, writes only to its own log
-
-### 5. `travel-advisor`
-
-For the travel side. Builds itinerary drafts from advisor notes and client
-preferences, checks passport and visa validity against travel dates, and lists
-the Virtuoso or hotel-program benefits that apply.
-
-- Skills: `itinerary-draft`, `travel-document-check`, `preference-profile`
-- Cron: weekly, clients travelling in the next thirty days with missing documents
-- Guardrail: no bookings, no payments, no supplier holds. Recommendations cite
-  the source rate or availability note
-
-### 6. `marketing-desk`
-
-Post-event, turns photos, run sheets and debrief notes into a case study, three
-social captions and an award-entry skeleton.
-
-- Skills: `case-study-from-event`, `caption-set`, `award-entry`
-- Cron: two weeks after each event closes
-- Guardrail: client approval before anything leaves the building, no client
-  names without a signed release
-
-### 7. `finance-ops`
-
-Invoice chasing and supplier reconciliation. Reads the finance folder and the
-supplier register, drafts reminders, flags a bill without a matching purchase
-order.
-
-- Skills: `invoice-chase`, `po-match`, `expense-claim-check`
-- Cron: Tuesday and Thursday 09:00
-- Guardrail: read-only against accounting, drafts only, never posts a transaction
-
-### 8. `systems-keeper`
-
-Not for a manager. This is the profile that tends the library: checks backups
-ran, publishes the library, keeps the docs current, reports drift between
-machines. Mostly what `default` does on this machine today, written down so it
-survives handover.
-
-## What they share
-
-One folder, `shared-skills/`, loaded by every profile: `inbox-triage`,
-`meeting-prep`, `weekly-review`, `draft-then-ask`. Written once, improved once.
-
-## What each one needs before it works
-
-| Need | Profiles | Who provides it |
+| Team | People | Archetype |
 |---|---|---|
-| Browser session to Outlook | admin, proposals, finance | Sam signs in once per machine |
-| Teams bot | all client-facing ones | tenant app registration |
-| Graph mail and calendar | finance, travel-advisor on a schedule | admin consent, scoped policy |
-| Access to the relevant drive folders | all | folder permissions, not the whole drive |
-| A named owner | all | Sam, per profile |
+| Managers | few | manager assistant |
+| Event managers and coordinators | most of the events team | team assistant |
+| Travel advisors | a handful | team assistant, travel skills |
+| Finance and admin | one or two | team assistant, finance skills |
 
-## Order I would build them
+Start with one event manager and one coordinator, because they do the same work
+and their feedback will be about the same skills.
 
-1. `admin`, already running, because it proves the pattern on real work
-2. `proposal-writer`, the largest recurring labour and the clearest win
-3. `supplier-desk`, because it compounds: one register improves every proposal
-4. `travel-advisor`, once document checking is understood by the advisors
-5. The rest when someone asks for them
+## Order I would build
 
-## What I could not tell from outside
+1. `run-sheet`, `flight-watch`, `budget-check`. They recur every event and fail
+   expensively when done by hand.
+2. `account-manager-brief`, because the gap between coordinators and account
+   managers is where information gets lost.
+3. Manager skills, once the pattern holds on the events side.
+4. `venue-research` and `theme-ideas` last, since judgment there is the hardest
+   to encode and the easiest to get wrong.
 
-- Who owns new business and proposals today
-- Whether events and travel use the same client records
+## Still unknown
+
+- How many managers, coordinators and advisors actually need one
+- Whether coordinators own a budget or only track one against someone else's
 - Whether the finance system has an API or only exports
-- How many machines would need a profile first
+- Who signs off on a booking, and whether that varies by event size
