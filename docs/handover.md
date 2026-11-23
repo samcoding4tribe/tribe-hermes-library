@@ -66,6 +66,7 @@ The `.sh` versions still work on the Mac and are no longer developed (D21).
 | D16 | Every sync pushes; a remote that lags is not a backup |
 | D18 | Nothing goes into a profile before it is observed |
 | D20 | Who can read a backup is an access question. Still open |
+| D22 | The id is the role, the label is the person's. Never rename a folder for a nickname |
 
 ## What cost time, so you do not pay twice
 
