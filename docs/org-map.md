@@ -81,9 +81,9 @@ profile. A chart that anyone can open should hold only what anyone may read.
 - Four open questions: whether Vanessa and Ness are one person, which two people
   are the internal event-travel consultants, whether Belinda or Dani have teams,
   and the surnames still missing
-- One structural question open on 24 November: if Kate leads the events side and
-  Kelly directs travel, Jodie and Vanessa should report to Kate rather than sit
-  beside her under Leon. Not changed until Sam says which
+- Settled 24 November: whether the events leads report through Kate is unclear in
+  the business, so Jodie and Vanessa stay level with her under Leon. Recorded on
+  their cards, and easy to change if that firms up
 
 ## Who may change it
 
