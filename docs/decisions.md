@@ -302,7 +302,25 @@ is the whole point of the shared library.
 
 ---
 
-## D23. A backup is tested or it is a guess
+## D23. The org chart is edited by the people it describes
+
+**Decision.** Leon, Kelly, Jodie and Vanessa may change `people.json`, and the
+three others read it. Changes arrive through the library folder, and Sam pulls
+them into the repo, where `render.py` validates the graph before the chart is
+regenerated.
+
+**Why.** An org chart maintained by one person goes stale between conversations,
+and the cost of that is a new assistant asking its user to describe a company the
+business already knows. Editing by the people named on the chart keeps it current,
+and a validation step keeps it correct.
+
+**Constraint.** Git has no folder-level permissions, so a manager with write
+access to the repo can change anything. The library folder is where edit rights
+belong; the repo stays the maintainer's.
+
+---
+
+## D24. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.

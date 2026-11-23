@@ -82,6 +82,31 @@ profile. A chart that anyone can open should hold only what anyone may read.
   are the internal event-travel consultants, whether Belinda or Dani have teams,
   and the surnames still missing
 
+## Who may change it
+
+Stated by Sam, 24 November 2026: the managers of the block, plus Kelly, plus Leon.
+
+| May edit | Why |
+|---|---|
+| Leon | Heads the group |
+| Kelly | Managing Director, Travel, and part owner |
+| Jodie, Vanessa | The two leads of the events block |
+
+Open: whether Kate, Belinda and Dani are included. They are managers on the chart,
+but not of that block, and the instruction named the block. Until Sam says
+otherwise, they read but do not edit.
+
+How the rule is enforced, honestly: there is no per-person permission inside a git
+repository. Two mechanisms carry it, and both are outside this file.
+
+- **The library folder.** `Hermes Library/templates/org` needs edit permission for
+  the four names above and read for everyone else. That is a SharePoint folder
+  permission, set by whoever administers the library.
+- **The repo.** Git access is per repository, not per folder. Anyone given write
+  access can change anything in it. So the people who edit should edit in the
+  library, and Sam pulls their change back, which also means the change is
+  validated before it lands.
+
 ## Updating it
 
 ```bash
