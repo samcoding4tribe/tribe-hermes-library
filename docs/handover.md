@@ -21,6 +21,7 @@ is mostly Windows.
 | Third profile | `~/.hermes/profiles/ea`, a manager's assistant (pilot) |
 | Repo | `~/tribe-hermes-library`, private remote `tribe-hermes-library` |
 | Shared skills | `~/tribe-hermes-library/shared-skills` (empty on purpose, D18) |
+| Org map | `templates/org/people.json`, 26 people, documented in `docs/org-map.md` |
 | Shared library | `OneDrive / TRIBE Group Tech / Hermes Library` |
 | Machine backups | `OneDrive / TRIBE Group Tech / Hermes Backups / <machine>` |
 | Nightly job | Hermes cron `Hermes backup`, 17:00, runs `scripts/hermes_files.py nightly` |
@@ -87,6 +88,8 @@ The `.sh` versions still work on the Mac and are no longer developed (D21).
 
 ## What to do next
 
+0. Use the org map at setup: show the chart, take the person's id, ask the five
+   relationship questions. It is the one piece of shared knowledge that is ready.
 1. Run the flow once on a Windows machine.
 2. Restore test: install `ea` from the library into a clean home and use it.
 3. Settle the access model in D20 before a non-manager gets a profile.

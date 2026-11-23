@@ -45,6 +45,13 @@ cd ~/tribe-hermes-library
 Then add that machine's credentials to `~/.hermes/profiles/ea/.env`. The library
 never carries keys.
 
+If the profile belongs to a named person, open `templates/org/org-map.html`, ask
+them which card is theirs, and take the `id` rather than a typed job title. Ask
+the relationship questions against the chart: who they report to, who reports to
+them, who approves expenses and travel, who is copied on client mail, who covers
+leave. Write the answers into their context, not into the chart. See
+`docs/org-map.md`.
+
 Name it before you start. The profile id follows the role (`assistant-kate`,
 `office-manager`); the name the person sees is a label, set in the roster and
 optionally in the first line of the soul. Do not rename the folder for a

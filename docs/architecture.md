@@ -49,6 +49,7 @@ person, not shared with the team.
 | Path | Contents |
 |---|---|
 | `templates/role/` | The blank starting point for a new assistant |
+| `templates/org/` | The org spine: who exists, who reports to whom. Used at setup, in `docs/org-map.md` |
 | `profiles/<name>/` | Soul, config without credentials, custom skills. No memories |
 | `docs/` | Architecture, decisions, the rollout plan |
 | `README.md`, `TODO.md` | What this is, and what is outstanding |
