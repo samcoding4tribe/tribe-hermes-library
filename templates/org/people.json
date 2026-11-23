@@ -2,7 +2,7 @@
   "org": "TRIBE Group",
   "as_at": "2026-11-23",
   "source": "Induction manual 2026 page 4 (names, titles, panels) plus what Sam has stated, 23 Nov 2026",
-  "legend": "Badges carry authority or location, never rank. Only the lines Sam stated are drawn. Laura (Event Director) has left and is not drawn. Jan works as a consultant, not in-house, and sits with external contacts.",
+  "legend": "Badges carry authority or location, never rank. Only the lines Sam stated are drawn. Laura (Event Director) has left and is not drawn. Jan works as a consultant, not in-house, and sits with external contacts. The events team is co-led by Jodie and Vanessa; each person carries one reporting line to the lead whose function matches, and the block shows the shared lead.",
   "people": [
     {
       "id": "leon",
@@ -92,98 +92,84 @@
       "name": "Bianca",
       "role": "Event Director",
       "function": "Events",
-      "reports_to": [
-        "ness",
-        "jodie"
-      ],
+      "reports_to": "jodie",
       "badges": [],
       "notes": "",
       "block": "events",
-      "tier": 1
+      "tier": 1,
+      "co_led_with": "ness"
     },
     {
       "id": "kristen",
       "name": "Kristen",
       "role": "Event Director",
       "function": "Events",
-      "reports_to": [
-        "ness",
-        "jodie"
-      ],
+      "reports_to": "jodie",
       "badges": [],
       "notes": "",
       "block": "events",
-      "tier": 1
+      "tier": 1,
+      "co_led_with": "ness"
     },
     {
       "id": "kim",
       "name": "Kim",
       "role": "Event Director",
       "function": "Events",
-      "reports_to": [
-        "ness",
-        "jodie"
-      ],
+      "reports_to": "jodie",
       "badges": [],
       "notes": "",
       "block": "events",
-      "tier": 1
+      "tier": 1,
+      "co_led_with": "ness"
     },
     {
       "id": "carlita",
       "name": "Carlita",
       "role": "Event Manager",
       "function": "Events",
-      "reports_to": [
-        "ness",
-        "jodie"
-      ],
+      "reports_to": "jodie",
       "badges": [],
       "notes": "",
       "block": "events",
-      "tier": 1
+      "tier": 1,
+      "co_led_with": "ness"
     },
     {
       "id": "zoe",
       "name": "Zoe",
       "role": "Event Manager",
       "function": "Events",
-      "reports_to": [
-        "ness",
-        "jodie"
-      ],
+      "reports_to": "jodie",
       "badges": [],
       "notes": "",
       "block": "events",
-      "tier": 1
+      "tier": 1,
+      "co_led_with": "ness"
     },
     {
       "id": "sarah",
       "name": "Sarah",
       "role": "Event Co-ordinator",
       "function": "Events",
-      "reports_to": [
-        "ness",
-        "jodie"
-      ],
+      "reports_to": "jodie",
       "badges": [],
       "notes": "",
       "block": "events",
-      "tier": 1
+      "tier": 1,
+      "co_led_with": "ness"
     },
     {
       "id": "mia",
       "name": "Mia",
       "role": "Event Support",
       "function": "Events",
-      "reports_to": [
-        "ness",
-        "jodie"
-      ],
+      "reports_to": "jodie",
       "badges": [],
       "notes": "",
       "block": "events",
-      "tier": 1
+      "tier": 1,
+      "co_led_with": "ness"
     },
     {
       "id": "ally",
@@ -251,7 +237,8 @@
       "notes": "Stated as under Ness; drawn with the events block. On the events panel of page 4.",
       "block": "events",
       "tier": 1,
-      "reports_to": "ness"
+      "reports_to": "ness",
+      "co_led_with": "jodie"
     },
     {
       "id": "holly",
@@ -262,7 +249,8 @@
       "notes": "Stated as under Ness; drawn with the events block. On the events panel of page 4.",
       "block": "events",
       "tier": 1,
-      "reports_to": "ness"
+      "reports_to": "ness",
+      "co_led_with": "jodie"
     },
     {
       "id": "jamie",
@@ -275,7 +263,8 @@
       "notes": "Offshore, Philippines. A level below the event directors and coordinators by Sam's instruction.",
       "block": "events",
       "tier": 2,
-      "reports_to": "ness"
+      "reports_to": "ness",
+      "co_led_with": "jodie"
     },
     {
       "id": "jovelle",
@@ -288,7 +277,8 @@
       "notes": "Offshore, Philippines. A level below the event directors and coordinators by Sam's instruction.",
       "block": "events",
       "tier": 2,
-      "reports_to": "ness"
+      "reports_to": "ness",
+      "co_led_with": "jodie"
     },
     {
       "id": "erj",

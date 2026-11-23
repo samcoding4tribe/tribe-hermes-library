@@ -44,6 +44,11 @@ Published to `Hermes Library/templates/org`, so it is readable by the team.
   name or more than one root.
 - No line is drawn that the business did not state. An unnamed team is a dashed
   card with a count, not invented names.
+- **One reporting line per person.** Where two managers genuinely share a team,
+  the line goes to the lead whose function matches the role, the block shows the
+  shared lead, and `co_led_with` records the other without drawing a second line.
+  A person with two parents appears twice or gets picked arbitrarily, and neither
+  is a decision a data file should make quietly.
 - Badges carry authority and location, never seniority.
 
 ## Using it at setup
@@ -67,7 +72,9 @@ profile. A chart that anyone can open should hold only what anyone may read.
 ## Current state
 
 - Root: Leon, from whom every stated line descends
-- One drawn block: the events team, grouped under Ness and Jodie
+- One drawn block: the events team, co-led by Jodie and Vanessa. Each person has a
+  single line, event roles to Jodie, travel roles to Vanessa, and the block shows
+  that the two lead it together
 - Three external entries: a consultant, a software supplier, and a partner contact
 - Four open questions: whether Vanessa and Ness are one person, which two people
   are the internal event-travel consultants, whether Belinda or Dani have teams,

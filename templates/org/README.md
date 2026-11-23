@@ -6,6 +6,9 @@ place a new user in the organisation at setup time instead of asking them to
 describe it from scratch, and so that every assistant in the org answers "who
 does X report to" the same way.
 
+One reporting line per person. Co-leadership is a block plus `co_led_with`, never
+two parents.
+
 The facts live in `people.json`. The look lives in `org-map.html.tmpl`. Nothing
 about an individual's preferences, performance or private notes belongs here —
 those stay in that person's own profile.
