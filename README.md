@@ -24,6 +24,22 @@ docs/decisions.md    one entry per choice, with the reason
 
 ## Everyday use
 
+```
+scripts/hermes_files.py   one implementation for macOS, Windows and Linux
+scripts/*.sh              the original macOS version, kept until Windows is tested
+```
+
+```bash
+python3 scripts/hermes_files.py backup --dry-run
+python3 scripts/hermes_files.py sync
+python3 scripts/hermes_files.py pull ea --apply
+python3 scripts/hermes_files.py nightly
+```
+
+On Windows use `python scripts\hermes_files.py backup`, or `py` if that is what
+the machine provides. The shell versions below need bash, rsync and sqlite3, which
+a stock Windows machine does not have.
+
 ```bash
 ./scripts/sync.sh --dry-run     # what changed
 ./scripts/sync.sh               # copy, commit, publish to OneDrive

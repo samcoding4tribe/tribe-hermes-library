@@ -271,7 +271,23 @@ management permissions.
 
 ---
 
-## D21. A backup is tested or it is a guess
+## D21. One implementation in Python, not two
+
+**Decision.** `scripts/hermes_files.py` carries backup, sync, pull and nightly for
+every platform. The bash scripts stay in the repo for now and are not developed
+further.
+
+**Why.** Most of the estate is Windows, and bash with rsync and sqlite3 does not
+exist there. A PowerShell copy would be a second implementation to keep in step,
+and two implementations drift until one is wrong in a way nobody notices. Python
+ships with Hermes on every platform and carries sqlite in its standard library.
+
+**Cost.** The Mac's scheduled job now runs the same file Windows will run, so a
+fault shows up here first rather than on someone else's machine.
+
+---
+
+## D22. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.
