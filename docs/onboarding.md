@@ -79,6 +79,20 @@ chmod +x ~/.hermes/scripts/hermes-backup.sh
 
 and create the job in the app under Cron, daily at 17:00, with no model attached.
 
+## 4a. Windows machines
+
+Most of the estate is Windows, and the same file works there.
+
+- Run the scripts as `python scripts\hermes_files.py backup`, `sync`, `nightly`.
+  Hermes ships a Python runtime, so nothing needs installing.
+- There is no equivalent of the macOS Files and Folders prompt, so the OneDrive
+  write that failed from a launchd job on the Mac has no counterpart here.
+- Schedule the nightly run with the Hermes scheduler, exactly as on the Mac, or
+  with Task Scheduler if the gateway is not always running.
+- The OneDrive folder is named `OneDrive - TribeTravelandEvents` rather than
+  `OneDrive-TribeTravelandEvents`. Set that path in `config.env`.
+- `git` for Windows is required only if this machine pushes to the repo.
+
 ## 5. Microsoft access when the native apps will not sign in
 
 This is the part that trips people up. On a managed Mac, the Microsoft account

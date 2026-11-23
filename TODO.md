@@ -26,6 +26,9 @@ Recorded 20 November 2026. Delete a line when it is done, and say why in the com
       tried first and failed: macOS blocks rsync writing into OneDrive from a
       launchd context, so the job runs from the scheduler instead.
 
+- [ ] **Run the whole flow on one Windows machine.** The Python implementation has
+      only been exercised on this Mac so far: backup, publish, push, and the
+      scheduled run.
 - [ ] **Write the collision procedure.** How a published profile is merged onto
       a machine that already has one, what wins when both changed, and how a new
       assistant is assembled from a template without copying a stranger's memory.
