@@ -1,0 +1,62 @@
+{
+  "jobs": [
+    {
+      "id": "e7be658a5877",
+      "name": "Hermes backup",
+      "prompt": "Run the Hermes backup script and publish the library. Output is the script's own stdout.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "hermes-backup.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 17 * * *",
+        "display": "0 17 * * *"
+      },
+      "schedule_display": "0 17 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 3
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-20T16:45:50.988591+11:00",
+      "next_run_at": "2026-11-23T17:00:00+11:00",
+      "last_run_at": "2026-11-22T17:29:02.695758+11:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "origin",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-fb5a8dcfe37ddd63a4e4f7b00a6b038d44797610d30305d9fa2e60c4063f95d8",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:502",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-11-22T17:00:00+11:00",
+        "dispatched_at": "2026-11-22T17:29:01.602503+11:00",
+        "lateness_seconds": 1741.6,
+        "kind": "late"
+      }
+    }
+  ],
+  "updated_at": "2026-11-22T17:29:02.696104+11:00"
+}
