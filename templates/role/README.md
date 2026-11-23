@@ -5,7 +5,8 @@
 3. Create the profile on the machine: `hermes profile create <name>`
 4. Start it and give it the facts it needs: `hermes -p <name> chat`
 5. Add the credentials it needs to `~/.hermes/profiles/<name>/.env`.
-6. Walk it through the job twice, then write the first skill.
+5. Watch the job being done twice. Only then write the first skill, from the
+   steps you actually saw, not from what the role usually involves.
 7. Sync: `./scripts/sync.sh <name>`
 
 Keep the hard rules identical across profiles. Vary the facts, the skills, the

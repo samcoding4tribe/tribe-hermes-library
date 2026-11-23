@@ -1,98 +1,107 @@
-# Agent profiles for TRIBE Group
+# Profiles: what we know, what we must learn
 
-Revised 23 November 2026. The first draft treated each job as its own assistant,
-which was wrong. People do several jobs, and the events team does mostly the
-same ones as each other.
+**Rule for this file.** Nothing here counts as knowledge until someone who does
+the job has said it, or it has been seen happening. Anything written ahead of
+that is a placeholder marked `UNKNOWN`, and no skill, schedule or permission is
+decided before the workflow behind it is observed.
 
-The business, in one line: TRIBE Events sells conferences and incentive programs,
-TRIBE Travel sells leisure travel as a Virtuoso agency, and both sell care and
-detail rather than volume.
+The first version of this file broke that rule. It inferred skills, authority
+levels and a build order from folder names, which is guesswork dressed as
+design. It has been removed rather than corrected in place, because a wrong
+document is harder to unlearn than an empty one.
 
-## The shape that fits
+## What is actually known
 
-Two kinds of assistant, one per person:
+Sourced from Sam, 23 November 2026:
 
-**Manager assistant.** Diary, inbox, briefings, follow-ups, the things that
-protect a manager's attention. Fewer tasks, higher stakes, more sending rights.
+- TRIBE Group runs two businesses: TRIBE Events (conferences and incentives) and
+  TRIBE Travel (leisure, Virtuoso agency).
+- The events team, managers and coordinators alike, does much the same work:
+  budgets, bookings, flight cross-checks, run sheets, venue research, themes, and
+  keeping account managers informed.
+- What differs is responsibility, not the task list.
+- Managers need diary and inbox help; coordinators need help executing.
+- This machine is a work machine. Nothing personal belongs on it.
 
-**Team assistant.** For event managers, coordinators and travel advisors. Budget
-work, bookings, flight checks, run sheets, venue research, theme ideas, and
-keeping account managers in the loop. Many tasks, repetitive, internal.
+That is all. Everything below is a form to fill, not a claim.
 
-Both read the same shared skills. What differs is authority: a coordinator's
-assistant drafts and checks, a manager's assistant can send after approval.
+## What must be learned before a profile is built
 
-## Skills for the team assistant
+For each person who might get one:
 
-| Skill | What it does | Where it reads |
+| Field | Why it matters | Status |
 |---|---|---|
-| `budget-check` | Reconciles a budget sheet against quotes and bookings, flags variances | event folder, `FINANCE/` |
-| `flight-watch` | Cross-checks itineraries against bookings, flags mismatches and schedule changes | booking confirmations, `TRAVEL/` |
-| `run-sheet` | Builds the run sheet from the event folder: times, suppliers, staff, contacts | `EVENTS CLIENTS/<event>/` |
-| `account-manager-brief` | Turns the state of an event into three lines an account manager can forward | event folder, mailbox |
-| `supplier-chase` | Drafts confirmation chases and tracks what is outstanding | `SUPPLIERS/` |
-| `venue-research` | Compiles options with capacity, location, cost ranges and past use | `SUPPLIERS/`, past proposals |
-| `theme-ideas` | Proposes directions with references and precedent from past events | past events, `MARKETING/` |
+| Role and what they are accountable for | Decides the soul and the approval level | UNKNOWN |
+| The five tasks that eat the most time | Decides the first three skills | UNKNOWN |
+| How each task is done today, step by step | A skill is that sequence, nothing more | UNKNOWN |
+| What they read, and where it lives | Access is granted per folder | UNKNOWN |
+| What they produce, and who receives it | Defines the output format | UNKNOWN |
+| What goes wrong most often | Where the assistant earns its place | UNKNOWN |
+| What they are not allowed to do | Sets the guardrails | UNKNOWN |
+| What a good result looks like to them | The acceptance test | UNKNOWN |
 
-## Skills for the manager assistant
+## How to learn it
 
-| Skill | What it does |
-|---|---|
-| `inbox-triage` | Sorts, summarises, drafts replies for approval |
-| `meeting-prep` | One page per meeting: who, what for, what was promised last time |
-| `daily-brief` | What is due, what needs a decision, what can wait |
-| `follow-up-watch` | What was promised and has not happened |
+1. Sit with one person for an hour and watch them work. Note the steps, the files
+   opened, and the points where they sigh.
+2. Ask four questions about each task: how often, how long, what breaks, who
+   checks it.
+3. Collect three real artifacts: an input, an output, and one that went wrong.
+4. Write the sequence down and read it back to them. Their corrections are the
+   skill.
+5. Only when a sequence has been done twice, the same way, does it become a
+   shared skill.
 
-Shared by both: `weekly-review`, `draft-then-ask`.
+## Blank profile card
 
-## Responsibility levels
+Copy this per person. Nothing gets filled in from imagination.
 
-The same skill behaves differently depending on who owns the profile. This is
-configuration, not a second tool.
+```md
+## <name> — <role>
 
-| Level | Who | Can | Cannot |
-|---|---|---|---|
-| Draft | coordinators | read internal folders, draft documents and email, propose budgets | send, book, approve a payment |
-| Approve | event managers | send approved communication, confirm a booking after a human yes | move money, sign a contract |
-| Oversee | managers | everything above, plus briefs and delegation | act outside their own mailbox |
+Owner: UNKNOWN
+Machine: UNKNOWN
+Accountable for: UNKNOWN
 
-Approval mode is `manual` on role profiles, so a command asks before it runs.
+### Tasks, by time cost
+1. UNKNOWN
+2. UNKNOWN
+3. UNKNOWN
 
-## What that means in practice
+### Task detail (repeat per task)
+Inputs: UNKNOWN
+Steps: UNKNOWN
+Output: UNKNOWN
+Receiver: UNKNOWN
+Frequency: UNKNOWN
+Common failure: UNKNOWN
+Who checks it: UNKNOWN
 
-- One profile per person, one machine each. Memory stays personal.
-- Skills live in `shared-skills/`, improved once and inherited by everyone.
-- Two coordinators with identical skills still keep separate memories.
-- A manager's assistant is the same engine with a different soul, a different
-  skill list and a stricter gate.
-- Budgets, run sheets and the supplier register stay in the drive. The assistant
-  reads them; it does not become a second copy.
+### Data sources
+Folder or system: UNKNOWN
+Access granted by: UNKNOWN
+Update cycle: UNKNOWN
 
-## Counts
+### Guardrails
+May send: UNKNOWN
+May book: UNKNOWN
+May approve: UNKNOWN
+Never: UNKNOWN
 
-| Team | People | Archetype |
-|---|---|---|
-| Managers | few | manager assistant |
-| Event managers and coordinators | most of the events team | team assistant |
-| Travel advisors | a handful | team assistant, travel skills |
-| Finance and admin | one or two | team assistant, finance skills |
+### Acceptance
+Good looks like: UNKNOWN
+Tested by: UNKNOWN
+```
 
-Start with one event manager and one coordinator, because they do the same work
-and their feedback will be about the same skills.
+## What is deliberately not decided
 
-## Order I would build
+- Which people get a profile first
+- The name of any skill. Names come from observed steps, not from this document
+- The schedule of any job. Something has to be worth repeating before it recurs
+- Which channel: desktop, Teams or email. That follows the person
+- Anything about finance, travel documents or client records, none of it observed
 
-1. `run-sheet`, `flight-watch`, `budget-check`. They recur every event and fail
-   expensively when done by hand.
-2. `account-manager-brief`, because the gap between coordinators and account
-   managers is where information gets lost.
-3. Manager skills, once the pattern holds on the events side.
-4. `venue-research` and `theme-ideas` last, since judgment there is the hardest
-   to encode and the easiest to get wrong.
+## The one thing that is decided
 
-## Still unknown
-
-- How many managers, coordinators and advisors actually need one
-- Whether coordinators own a budget or only track one against someone else's
-- Whether the finance system has an API or only exports
-- Who signs off on a booking, and whether that varies by event size
+`shared-skills/` stays empty until a procedure has been watched twice. An empty
+folder costs nothing. A folder full of guesses costs trust.

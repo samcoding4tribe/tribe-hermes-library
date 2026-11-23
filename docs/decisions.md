@@ -209,7 +209,21 @@ procedure improves.
 
 ---
 
-## D18. A backup is tested or it is a guess
+## D18. Nothing is written into a profile before it is observed
+
+**Decision.** Souls start from a template with placeholders. Skills start from a
+workflow watched twice. No skill name, schedule or permission is invented ahead
+of the work it serves, and any assumption that does appear is marked as one.
+
+**Why.** Assumed knowledge is harder to remove than absent knowledge, because it
+reads like fact in every later session and quietly shapes what the agent does.
+A corrected document leaves the original claim behind; an empty field invites the
+right answer. The cost of waiting is one conversation. The cost of guessing is a
+knowledge base that argues with reality.
+
+---
+
+## D19. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.
