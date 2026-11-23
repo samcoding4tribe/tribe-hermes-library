@@ -316,10 +316,10 @@
   "blocks": [
     {
       "id": "events",
-      "title": "Events — drawn together, under Ness and Jodie",
+      "title": "Events — co-led by Jodie and Ness",
       "parents": [
-        "ness",
-        "jodie"
+        "jodie",
+        "ness"
       ]
     }
   ]

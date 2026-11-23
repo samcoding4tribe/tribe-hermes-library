@@ -25,6 +25,8 @@
   .level.joint .col .node { width: 100%; min-width: 0; }
   .col { display: flex; flex-direction: column; flex: 1 1 0; min-width: 0; padding-left: 12px; }
   .col > .node, .sub .node { width: 100%; min-width: 0; }
+  .band-label.in-col { margin: 12px 0 4px; font-size: .58rem; opacity: .7; }
+  .node.co-lead { opacity: .55; border-style: dashed; background: transparent; }
   .sub { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; }
   .node {
     background: var(--card, #1b1b1f); border: 1px solid var(--border, #3a3a40); border-radius: 8px;
@@ -120,11 +122,32 @@ function render() {
     if (!peers.length) return;
 
     html += '<div class="level peers" data-parent="' + esc(root.id) + '">';
+    const blocks = DATA.blocks || [];
     peers.forEach(p => {
       const kids = childrenOf(p.id);
       const own = groups.filter(g => (g.under || []).length === 1 && g.under[0] === p.id);
-      const sub = (kids.length || own.length)
-        ? `<div class="sub">${kids.map(cardHTML).join('')}${own.map(groupHTML).join('')}</div>`
+
+      // A block drawn beneath its first-named lead: the staff belong to one column,
+      // the block label says who co-leads, and no one is drawn twice.
+      const ledBlocks = blocks.filter(b => (b.parents || [])[0] === p.id);
+      let blockCards = '';
+      ledBlocks.forEach(b => {
+        const members = DATA.people.filter(x => x.block === b.id)
+          .sort((a, c) => (a.tier || 1) - (c.tier || 1));
+        if (!members.length) return;
+        blockCards += `<div class="band-label in-col">${esc(b.title || '')}</div>` +
+          members.map(cardHTML).join('');
+      });
+
+      const coLeadBlocks = blocks.filter(b => (b.parents || []).indexOf(p.id) > 0);
+      const coLead = coLeadBlocks.map(b => {
+        const lead = byId[(b.parents || [])[0]];
+        return `<div class="node ghost co-lead"><div class="name">Co-leads this team</div>` +
+          `<div class="role">with ${esc(lead ? lead.name : '')}</div></div>`;
+      }).join('');
+
+      const sub = (kids.length || own.length || blockCards || coLead)
+        ? `<div class="sub">${kids.map(cardHTML).join('')}${own.map(groupHTML).join('')}${blockCards}${coLead}</div>`
         : '';
       html += `<div class="col" data-head="${esc(p.id)}">${cardHTML(p)}${sub}</div>`;
     });
@@ -153,6 +176,9 @@ function render() {
     // Block groups: people drawn together beneath one or more managers, in tiers.
     // Membership is visual; each person's own reports_to keeps the factual line.
     (DATA.blocks || []).forEach(b => {
+      // Drawn inside its lead's column above; only fall back to a joint row when
+      // the first parent is not one of the managers in this row.
+      if (order.indexOf((b.parents || [])[0]) >= 0) return;
       const members = DATA.people.filter(p => p.block === b.id);
       if (!members.length) return;
       const tiers = [...new Set(members.map(p => p.tier || 1))].sort((x, y) => x - y);

@@ -33,7 +33,8 @@ Published to `Hermes Library/templates/org`, so it is readable by the team.
 | `reports_to` | An id, or a list of ids, or null for the root |
 | `badges` | Authority or location. Never rank |
 | `notes` | Why a line is drawn as it is, and what is unresolved |
-| `block`, `tier` | Drawing only. Where a card sits, not who it answers to |
+- `block`, `tier` | Drawing only. Where a card sits, not who it answers to
+- `co_led_with` | Names a second lead for context. Never draws a second line
 
 ## The rules the file enforces
 
@@ -72,9 +73,10 @@ profile. A chart that anyone can open should hold only what anyone may read.
 ## Current state
 
 - Root: Leon, from whom every stated line descends
-- One drawn block: the events team, co-led by Jodie and Vanessa. Each person has a
-  single line, event roles to Jodie, travel roles to Vanessa, and the block shows
-  that the two lead it together
+- Layout: Leon, then the six managers in one row, then each manager's people in a
+  column beneath, joined by one spine per column. Events staff sit in Jodie's
+  column under a label naming both leads; Vanessa's column carries a dashed card
+  saying she co-leads it with Jodie, so no line is invented and nobody is drawn twice
 - Three external entries: a consultant, a software supplier, and a partner contact
 - Four open questions: whether Vanessa and Ness are one person, which two people
   are the internal event-travel consultants, whether Belinda or Dani have teams,
