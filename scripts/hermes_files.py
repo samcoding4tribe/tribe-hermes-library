@@ -111,6 +111,13 @@ def copy_text(src: Path, dst: Path, include_memories: bool, bundled: Path):
         shutil.copy2(src / "SOUL.md", dst / "SOUL.md")
     if (src / "config.yaml").exists():
         (dst / "config.yaml").write_text(sanitize((src / "config.yaml").read_text(encoding="utf-8")), encoding="utf-8")
+    if include_memories and (src / "workspace").is_dir():
+        # per-profile notes (context, procedures in draft, decisions) are private:
+        # backed up with the profile, never published or committed
+        shutil.copytree(src / "workspace", dst / "workspace", dirs_exist_ok=True,
+                        ignore=shutil.ignore_patterns(".DS_Store"))
+    elif (dst / "workspace").exists():
+        shutil.rmtree(dst / "workspace")
     if include_memories and (src / "memories").is_dir():
         mem_dst = dst / "memories"
         mem_dst.mkdir(exist_ok=True)

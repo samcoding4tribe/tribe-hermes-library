@@ -22,6 +22,7 @@ is mostly Windows.
 | Repo | `~/tribe-hermes-library`, private remote `tribe-hermes-library` |
 | Shared skills | `~/tribe-hermes-library/shared-skills` (empty on purpose, D18) |
 | Org map | `templates/org/people.json`, 26 people, documented in `docs/org-map.md` |
+| Per-profile notes | `~/.hermes/profiles/<name>/workspace/`, private, in `docs/profile-notes.md` |
 | Shared library | `OneDrive / TRIBE Group Tech / Hermes Library` |
 | Machine backups | `OneDrive / TRIBE Group Tech / Hermes Backups / <machine>` |
 | Nightly job | Hermes cron `Hermes backup`, 17:00, runs `scripts/hermes_files.py nightly` |

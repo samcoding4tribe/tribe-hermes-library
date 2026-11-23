@@ -17,6 +17,7 @@ scripts/pull.sh      library edits back onto a machine, diff first
 scripts/install-profile.sh   library or repo -> a machine
 docs/handover.md    read this first: state, decisions, what hurt
 docs/org-map.md     who is in the org, and how setup uses it
+docs/profile-notes.md  the notes each profile keeps for itself
 docs/course.md      seven lessons for a first-time user
 docs/agent-profiles.md  what we know and what must be learned before a profile
 docs/onboarding.md   set up a new machine, step by step

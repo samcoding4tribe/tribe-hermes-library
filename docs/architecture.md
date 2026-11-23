@@ -90,6 +90,14 @@ shared skills never moved.
 library, this repo and the backup folder all follow it. Use it when the role
 changes, not when the nickname does.
 
+## 3c. Each profile's own notes
+
+A profile keeps working papers beside its memory: `workspace/context.md` for who
+the person is, `procedures.md` for a path done twice, `decisions.md` for choices
+about that assistant alone. Written when there is something to write, never
+scaffolded. Private: copied into the machine's backup, excluded from the repo and
+from the library. Details in `docs/profile-notes.md`.
+
 ## 4. The repo
 
 `~/tribe-hermes-library`, with a private remote once the key is on GitHub.
