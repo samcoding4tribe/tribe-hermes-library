@@ -147,6 +147,7 @@ if [ "$ONEDRIVE_ON" = 1 ]; then
         "$pdir" "$LIB/profiles/$pname/"
     done
     [ -d "$REPO/templates" ] && rsync -a --exclude '.DS_Store' "$REPO/templates/" "$LIB/templates/"
+    [ -d "$REPO/shared-skills" ] && rsync -a --exclude '.DS_Store' "$REPO/shared-skills/" "$LIB/shared-skills/"
     if [ -d "$REPO/docs" ]; then
       mkdir -p "$LIB/docs"
       rsync -a --exclude '.DS_Store' "$REPO/docs/" "$LIB/docs/"

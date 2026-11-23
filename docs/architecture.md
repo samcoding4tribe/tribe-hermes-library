@@ -58,6 +58,18 @@ Published one way, from a machine. The maintainer or an agent can edit it there,
 and that edit comes onto a machine through `pull.sh`, which shows the diff
 first. Nothing writes back silently.
 
+## 3a. Two assistants, one skill set
+
+`admin` is Sam's personal admin assistant. `ea` is the executive assistant pilot
+for a manager. They are separate profiles with separate memories and separate
+backups, and they read the same skills from `~/tribe-hermes-library/shared-skills`
+through `skills.external_dirs`.
+
+That is the crossover: a procedure written once serves both, while facts stay
+where they belong. A skill may say "ask who signs off"; it may not say who that
+is. Personal detail never enters a work profile, and a manager's context never
+lands in Sam's memory.
+
 ## 4. The repo
 
 `~/tribe-hermes-library`, with a private remote once the key is on GitHub.

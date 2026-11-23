@@ -196,7 +196,20 @@ remote stays current without a second habit to remember.
 
 ---
 
-## D17. A backup is tested or it is a guess
+## D17. Shared skills are the crossover, never shared memory
+
+**Decision.** `admin` and `ea` load skills from one folder through
+`skills.external_dirs`. Their memories stay separate, and no personal fact is
+copied into a work profile.
+
+**Why.** What should be identical across assistants is the procedure. What should
+never be identical is what a person said. Sharing a folder of skills gives the
+first without the second, and it keeps the maintenance in one place when a
+procedure improves.
+
+---
+
+## D18. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.

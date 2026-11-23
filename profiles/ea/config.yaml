@@ -931,6 +931,8 @@ skills:
 # =============================================================================
 # Agent Behavior
 # =============================================================================
+  external_dirs:
+    - /Users/samuelkn/tribe-hermes-library/shared-skills
 agent:
   # Maximum tool-calling iterations per conversation (default: 500)
   # Higher = more room for complex tasks, but costs more tokens
