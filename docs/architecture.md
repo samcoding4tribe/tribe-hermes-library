@@ -30,7 +30,7 @@ chosen, which is D11.
 
 ## 2. The private backup, OneDrive, per person
 
-`OneDrive/TRIBE GROUP - samuelkn/Hermes Backup/`
+`OneDrive/TRIBE Group Tech/Hermes Backups/<machine>/`
 
 Daily at 17:00, `scripts/nightly.sh` writes:
 

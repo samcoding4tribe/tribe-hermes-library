@@ -110,6 +110,11 @@ Souls, memories, configs without credentials, custom skills and database
 snapshots go there. The shared TRIBE Group Tech library holds templates and
 published copies with memories stripped.
 
+**Superseded 23 November 2026.** At Sam's request, machine backups moved to
+`TRIBE Group Tech/Hermes Backups/<machine>/`, inside the Tech library. The
+separation now depends on folder permissions rather than on a separate library.
+See D19.
+
 **Why.** Memories and session databases contain personal and client detail.
 The shared library is readable by the team, so it carries what is safe to read:
 how an assistant is built. What a particular executive said stays with that
@@ -223,7 +228,21 @@ knowledge base that argues with reality.
 
 ---
 
-## D19. A backup is tested or it is a guess
+## D19. Backups sit under Hermes Backups, and access is enforced there
+
+**Decision.** One folder per machine: `TRIBE Group Tech/Hermes Backups/<machine>/`,
+holding the text mirror and database snapshots. Never in git, never in the shared
+library.
+
+**Why.** Grouping by machine under one heading makes the estate legible: who runs
+what, where. The cost is that these folders now live in the library the team can
+see, so the privacy of memory depends on permissions instead of on a separate
+location. That folder must be limited to the machine's owner and one IT person.
+If permissions cannot be limited that way, move backups back out of the library.
+
+---
+
+## D20. A backup is tested or it is a guess
 
 **Decision.** Once a quarter, restore one profile and one database snapshot
 onto a clean machine and use it for an hour.

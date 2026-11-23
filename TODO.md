@@ -34,6 +34,10 @@ Recorded 20 November 2026. Delete a line when it is done, and say why in the com
       named people, database snapshots encrypted. Not before, since it puts
       conversations in a shared place.
 
+- [ ] **Restrict `Hermes Backups` to owner plus one IT person.** It now sits in
+      the Tech library, so anyone with library access can read memories unless
+      the folder permissions say otherwise.
+
 ## Later
 
 - [ ] Add `age` and encrypt `.env` plus `auth.json` into the private backup.

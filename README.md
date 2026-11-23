@@ -44,7 +44,8 @@ The choices behind it, one per entry: [docs/decisions.md](docs/decisions.md).
 - The live profile stays in `~/.hermes/profiles/`. Never run one from a
   synced folder; SQLite and cloud sync do not mix.
 - Memories never enter this repo. They go to the private backup only.
-- The shared folder is `TRIBE Group Tech/Hermes Library`. The private one is
-  `TRIBE GROUP - samuelkn/Hermes`.
+- The shared folder is `TRIBE Group Tech/Hermes Library`. Machine backups sit in
+  `TRIBE Group Tech/Hermes Backups/<machine>/`, one folder per machine, and never
+  in git.
 - OneDrive holds a published copy for people and machines that do not use
   git. It is one-way: repo to OneDrive, never back.

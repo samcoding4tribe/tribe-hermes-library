@@ -121,6 +121,7 @@ Before handing the machine to anyone:
 | Symptom | Cause |
 |---|---|
 | `Operation not permitted` writing to OneDrive | Files and Folders access not granted to the app, or the job runs from launchd |
+| Backup folder missing | `HERMES_BACKUP_ONEDRIVE` in `config.env` still points at an old path |
 | `The supported API model names are ...` | Profile points at a model its provider does not serve. Fix the model in that profile's config |
 | Empty answers, no memory | Wrong profile. Memory is per profile, not per machine |
 | Push rejected | SSH key for this machine not added to GitHub under its own title |
