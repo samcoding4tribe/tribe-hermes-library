@@ -158,7 +158,7 @@
         const initials = p.name.split(" ").map(s => s[0]).join("").slice(0,2);
         const el = document.createElement("div");
         el.className = "face";
-        el.innerHTML = `<div class="avatar">${initials}</div><div>${p.name.split(" ")[0]}</div>`;
+        el.innerHTML = `<div class="avatar">${initials}</div><div>${p.short || p.name.split(" ")[0]}</div>`;
         box.appendChild(el);
       });
     }

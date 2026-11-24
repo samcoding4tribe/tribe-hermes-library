@@ -99,6 +99,7 @@ def build(xlsx, week_start, where, aliases):
         places = sorted({v["place"] for v in days_out.values() if v["place"]})
         out_people.append({
             "name": name,
+            "short": name.split()[0],
             "id": people[name]["id"],
             "days": days_out,
             "away_days": len(away),
@@ -124,7 +125,7 @@ def render_html(data, org_names):
             place = v.get("place", "")
             text = f"{label} · {place}" if place else label
             cells.append(f"<td>{text}</td>")
-        rows.append(f"<tr><th>{p['name']}</th>{''.join(cells)}</tr>")
+        rows.append(f"<tr><th>{p.get('short', p['name'])}</th>{''.join(cells)}</tr>")
 
     away_lines = []
     for p in sorted(away, key=lambda x: -x["away_days"]):
@@ -180,7 +181,7 @@ def main():
         bits = [f"{dt.date.fromisoformat(d).strftime('%a')} {v['label']}"
                 + (f" ({v['place']})" if v.get("place") else "")
                 for d, v in p["days"].items() if v.get("code")]
-        lines.append(f"{p['name']}: " + "; ".join(bits))
+        lines.append(f"{p.get('short', p['name'])}: " + "; ".join(bits))
     if data["skipped"]:
         lines += ["", "Not on the org chart, so not shown: " + ", ".join(data["skipped"])]
     pathlib.Path(str(prefix) + ".txt").write_text("\n".join(lines) + "\n")

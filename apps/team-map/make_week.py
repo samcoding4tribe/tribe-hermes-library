@@ -96,7 +96,7 @@ def write_email(data, monday, out):
             if d.weekday() == 4 and not txt:
                 txt, cls = "wfh", "blank"
             cells.append(f'<td class="{cls}">{txt}</td>')
-        rows.append(f'<tr><td class="name">{p["name"]}</td>{"".join(cells)}</tr>')
+        rows.append(f'<tr><td class="name">{p.get("short", p["name"])}</td>{"".join(cells)}</tr>')
     rows.append('<tr class="rest"><td class="name">Everyone else</td>'
                 '<td>in</td><td>in</td><td>in</td><td>in</td><td>wfh</td></tr>')
 
@@ -132,7 +132,8 @@ def main():
     (out / "data.js").write_text(
         "window.WEEK = " + json.dumps({
             "week_start": data["week_start"],
-            "people": [{"name": p["name"], "places": p["places"], "days": p["days"]}
+            "people": [{"name": p["name"], "short": p.get("short", p["name"].split()[0]),
+                        "places": p["places"], "days": p["days"]}
                        for p in data["people"]],
         }) + ";\n")
 
