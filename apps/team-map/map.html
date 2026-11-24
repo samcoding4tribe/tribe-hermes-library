@@ -5,8 +5,8 @@
 <title>Where is the TRIBE</title>
 <style>
   :root{
-    --bg:#0f1114; --land:#20242b; --coast:#2f353f; --ink:#f2efe9; --muted:#8d8578;
-    --accent:#ff7a2f; --home:#ffd8bf; --leave:#8fd6c6;
+    --bg:#08121a; --land:#33475c; --land-near:#8a6236; --coast:#5d778f; --ink:#f7f3ec;
+    --muted:#a1958a; --accent:#ff8a3d; --home:#ffd9a8; --leave:#4fd1b5;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);
@@ -16,8 +16,11 @@
   .sub{color:var(--muted);font-size:12.5px;margin:0}
   .stage{position:relative;margin-top:14px}
   svg{display:block;width:100%;height:auto}
-  .land{fill:var(--land);stroke:var(--coast);stroke-width:.5}
-  .graticule{fill:none;stroke:#191d23;stroke-width:.6}
+  .land{fill:var(--land);stroke:var(--coast);stroke-width:.45}
+  .land.here{fill:var(--land-near);stroke:#ffbe86;stroke-width:.7}
+  .ocean{fill:url(#ocean)}
+  .pin-core{filter:url(#glow)}
+  .graticule{fill:none;stroke:#1d2733;stroke-width:.5}
   .pin-label{font-size:9.5px;fill:var(--ink);paint-order:stroke;stroke:#0f1114;stroke-width:2.5}
   .chip{fill:#1a1d22;stroke:#333a44}
   .chip-text{font-size:10px;fill:var(--muted)}
@@ -32,7 +35,6 @@
 <body>
 <div class="wrap">
   <h1 id="title">Where is the TRIBE?</h1>
-  <p class="sub" id="sub">week of 30 November 2026</p>
 
   <div class="stage"><svg id="map" viewBox="0 0 1000 520" aria-label="World map of where the team is"></svg></div>
 
@@ -59,61 +61,68 @@
 
   document.getElementById("title").textContent =
     `Where is the TRIBE?  ${fmt(days[0])} – ${fmt(days[4])}`;
-  document.getElementById("sub").textContent =
-    "office, onsite and leave for the week · Friday is work from home unless stated";
 
   const width = 1000, height = 520;
   const svg = d3.select("#map");
-  const proj = d3.geoNaturalEarth1().fitExtent([[8, 8],[width-8, height-8]], {type:"Sphere"});
+
+  const COORDS = {
+    "Melbourne": [144.96, -37.81], "Adelaide": [138.60, -34.93], "Sydney": [151.21, -33.87],
+    "Brisbane": [153.03, -27.47], "Perth": [115.86, -31.95], "Hobart": [147.33, -42.88],
+    "Gold Coast": [153.40, -28.02], "Canberra": [149.13, -35.28], "Darwin": [130.84, -12.46],
+    "Cairns": [145.77, -16.92], "Auckland": [174.76, -36.85], "Manila": [120.98, 14.60],
+    "Bali": [115.19, -8.65], "Singapore": [103.82, 1.35], "London": [-0.13, 51.51],
+    "Los Angeles": [-118.24, 34.05], "New York": [-74.01, 40.71], "Tokyo": [139.69, 35.69],
+    "Paris": [2.35, 48.86], "Dubai": [55.27, 25.20]
+  };
+
+  const pins = {};
+  data.people.forEach(p => {
+    const ds = Object.values(p.days || {});
+    const away = ds.some(v => v.code);
+    const work = ds.some(v => ["onsite", "site visit"].includes(v.label));
+    const leave = ds.some(v => ["leave", "family", "other leave"].includes(v.label));
+    const place = (p.places || [])[0];
+    if (!place && away) return;           // unknown place: a chip, never a guess
+    const key = place || "Melbourne";
+    pins[key] = pins[key] || {count: 0, work: 0, leave: 0};
+    pins[key].count++;
+    if (work) pins[key].work++;
+    if (leave) pins[key].leave++;
+  });
+
+  // Stay in Australia when that is where everyone is; world otherwise.
+  const used = Object.keys(pins).map(k => COORDS[k]).filter(Boolean);
+  const inAustralia = used.length && used.every(([lon, lat]) =>
+    lon >= 110 && lon <= 157 && lat <= -9 && lat >= -45);
+  const AU = {type: "Polygon", coordinates: [[[112, -9], [155, -9], [155, -45], [112, -45], [112, -9]]]};
+  const proj = inAustralia
+    ? d3.geoMercator().fitExtent([[26, 26], [width - 26, height - 26]], AU)
+    : d3.geoNaturalEarth1().fitExtent([[8, 8], [width - 8, height - 8]], {type: "Sphere"});
   const path = d3.geoPath(proj);
 
-  svg.append("path").attr("d", path({type:"Sphere"})).attr("fill","#12151a");
-  const grid = d3.geoGraticule().step([20,20])();
-  svg.append("path").attr("class","graticule").attr("d", path(grid));
+  const defs = svg.append("defs");
+  const og = defs.append("linearGradient").attr("id", "ocean")
+    .attr("x1", "0%").attr("y1", "0%").attr("x2", "35%").attr("y2", "100%");
+  og.append("stop").attr("offset", "0%").attr("stop-color", "#123243");
+  og.append("stop").attr("offset", "55%").attr("stop-color", "#0c1e2b");
+  og.append("stop").attr("offset", "100%").attr("stop-color", "#071018");
+  const gl = defs.append("filter").attr("id", "glow")
+    .attr("x", "-80%").attr("y", "-80%").attr("width", "260%").attr("height", "260%");
+  gl.append("feGaussianBlur").attr("stdDeviation", "3").attr("result", "b");
+  const merge = gl.append("feMerge");
+  merge.append("feMergeNode").attr("in", "b");
+  merge.append("feMergeNode").attr("in", "SourceGraphic");
+
+  svg.append("path").attr("class", "ocean").attr("d", path({type: "Sphere"}));
+  svg.append("path").attr("class", "graticule")
+     .attr("d", path(d3.geoGraticule().step(inAustralia ? [5, 5] : [20, 20])()));
 
   Promise.resolve(window.WORLD).then(world => {
     svg.append("g").selectAll("path")
       .data(topojson.feature(world, world.objects.countries).features)
-      .join("path").attr("class","land").attr("d", path);
-
-    const places = data.places || {};
-    const pins = {};
-    data.people.forEach(p => {
-      const days = Object.values(p.days || {});
-      const away = days.some(v => v.code);
-      const work = days.some(v => ["onsite", "site visit"].includes(v.label));
-      const leave = days.some(v => ["leave", "family", "other leave"].includes(v.label));
-      const place = (p.places || [])[0];
-      // Someone away with no recorded place is a chip, not a pin on the office.
-      if (!place && away) return;
-      const key = place || "Melbourne";
-      pins[key] = pins[key] || {count:0, work:0, leave:0, names:[]};
-      pins[key].count++;
-      pins[key].names.push(p.name);
-      if (work) pins[key].work++;
-      if (leave) pins[key].leave++;
-    });
-
-    // Coordinates for recorded places only. Anything unknown stays off the map.
-    const COORDS = {
-      "Melbourne": MEL,
-      "Adelaide": [138.60, -34.93],
-      "Sydney": [151.21, -33.87],
-      "Brisbane": [153.03, -27.47],
-      "Perth": [115.86, -31.95],
-      "Hobart": [147.33, -42.88],
-      "Gold Coast": [153.40, -28.02],
-      "Auckland": [174.76, -36.85],
-      "Manila": [120.98, 14.60],
-      "Bali": [115.19, -8.65],
-      "Singapore": [103.82, 1.35],
-      "London": [-0.13, 51.51],
-      "Los Angeles": [-118.24, 34.05],
-      "New York": [-74.01, 40.71],
-      "Tokyo": [139.69, 35.69],
-      "Paris": [2.35, 48.86],
-      "Dubai": [55.27, 25.20]
-    };
+      .join("path")
+      .attr("class", d => inAustralia && d.id === "036" ? "land here" : "land")
+      .attr("d", path);
 
     const g = svg.append("g");
     Object.entries(pins).forEach(([place, info]) => {
@@ -121,14 +130,16 @@
       if (!xy) return;
       const [x, y] = proj(xy);
       const isHome = place === "Melbourne";
+      const colour = isHome ? "#ffd9a8" : info.work ? "#ff8a3d" : "#4fd1b5";
       g.append("circle").attr("cx", x).attr("cy", y)
-        .attr("r", isHome ? 7 + Math.min(9, info.count * .7) : 6)
-        .attr("fill", isHome ? "var(--home)" : info.work ? "var(--accent)" : "var(--leave)")
-        .attr("opacity", .92);
+        .attr("r", isHome ? 6 + Math.min(10, info.count * .8) : 7)
+        .attr("fill", colour).attr("class", "pin-core");
       g.append("circle").attr("cx", x).attr("cy", y)
-        .attr("r", isHome ? 14 + Math.min(9, info.count) : 11)
-        .attr("fill","none").attr("stroke", isHome ? "#ffd8bf" : "#ff7a2f").attr("opacity", .28);
-      g.append("text").attr("x", x + 12).attr("y", y + 4).attr("class","pin-label")
+        .attr("r", isHome ? 16 + Math.min(10, info.count) : 13)
+        .attr("fill", "none").attr("stroke", colour).attr("opacity", .35).attr("stroke-width", 1.2);
+      g.append("line").attr("x1", x + 12).attr("y1", y).attr("x2", x + 24).attr("y2", y)
+        .attr("stroke", colour).attr("stroke-width", .8).attr("opacity", .5);
+      g.append("text").attr("x", x + 28).attr("y", y + 4).attr("class", "pin-label")
         .text(place + " · " + info.count);
     });
 
