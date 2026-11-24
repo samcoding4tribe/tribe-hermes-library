@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Where is the TRIBE</title>
+<title>Where is my TRIBE?</title>
 <style>
   :root{
     --bg:#f6f1e7; --land:#d8cdbb; --land-near:#f3c39a; --coast:#b8a894; --ink:#2f2a23;
@@ -35,7 +35,7 @@
 </head>
 <body>
 <div class="wrap">
-  <h1 id="title">Where is the TRIBE?</h1>
+  <h1 id="title">Where is my TRIBE?</h1>
 
   <div class="stage"><svg id="map" viewBox="0 0 1000 520" aria-label="World map of where the team is"></svg></div>
 
@@ -68,7 +68,7 @@
   const fmt = d => new Date(d + "T00:00:00").toLocaleDateString("en-AU", {day:"numeric", month:"short"});
 
   document.getElementById("title").textContent =
-    `Where is the TRIBE?  ${fmt(days[0])} – ${fmt(days[4])}`;
+    `Where is my TRIBE?  ${fmt(days[0])} – ${fmt(days[4])}`;
 
   const width = 1000, height = 520;
 

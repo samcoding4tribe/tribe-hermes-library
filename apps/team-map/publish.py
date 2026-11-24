@@ -24,11 +24,35 @@ SYNC_ROOT = pathlib.Path(
 ).expanduser()
 WEB_ROOT = ("https://tribemanagement.sharepoint.com/"
             "Shared%20Documents/TRIBE%20Group%20Tech")
-FOLDER = "Whereabouts"          # sibling of Hermes Library, so publishing never touches it
+FOLDER = "Where is my TRIBE"     # sibling of Hermes Library, so publishing never touches it
+KEEP_WEEKS = 2                   # this week and last; older folders are removed
 
 
 def web_url(relative):
     return WEB_ROOT + "/" + urllib.parse.quote(relative)
+
+
+def prune(keep=KEEP_WEEKS, protect=None):
+    """Keep the newest reviewable weeks; older copies name who was on leave."""
+    root = SYNC_ROOT / FOLDER
+    if not root.exists():
+        return []
+    weeks = sorted((d for d in root.iterdir() if d.is_dir() and d.name[:2] == "20"),
+                   key=lambda d: d.name)
+    drop = weeks[:-keep] if keep else []
+    for d in drop:
+        if protect and d.name == protect:
+            continue
+        shutil.rmtree(d)
+    return [d.name for d in drop]
+
+
+def link_for(monday):
+    """Where that week's published copy lives, preferring the document."""
+    stem = f"Where is my TRIBE - {monday.isoformat()}"
+    folder = SYNC_ROOT / FOLDER / monday.isoformat()
+    name = f"{stem}.pdf" if (folder / f"{stem}.pdf").exists() else f"{stem}.png"
+    return web_url(f"{FOLDER}/{monday.isoformat()}/{name}")
 
 
 def publish(monday):
@@ -38,10 +62,20 @@ def publish(monday):
 
     dest_dir = SYNC_ROOT / FOLDER / monday.isoformat()
     dest_dir.mkdir(parents=True, exist_ok=True)
-    dest = dest_dir / f"whereabouts-{monday.isoformat()}.png"
-    shutil.copy2(src, dest)
 
-    url = web_url(f"{FOLDER}/{monday.isoformat()}/{dest.name}")
+    # the image, and the same note as a document so the table travels with it
+    png = dest_dir / f"Where is my TRIBE - {monday.isoformat()}.png"
+    shutil.copy2(src, png)
+
+    pdf_src = HERE / "weeks" / monday.isoformat() / "note.pdf"
+    pdf = None
+    if pdf_src.exists():
+        pdf = dest_dir / f"Where is my TRIBE - {monday.isoformat()}.pdf"
+        shutil.copy2(pdf_src, pdf)
+
+    target = pdf or png
+    url = web_url(f"{FOLDER}/{monday.isoformat()}/{target.name}")
+    removed = prune(protect=monday.isoformat())
 
     page = HERE / "weeks" / monday.isoformat() / "email.html"
     if page.exists():
@@ -51,7 +85,7 @@ def publish(monday):
                       lambda m: m.group(1) + url + m.group(2), html)
         page.write_text(html)
 
-    return dest, url
+    return target, url, removed
 
 
 def main():
@@ -61,9 +95,11 @@ def main():
     day = dt.date.fromisoformat(args.week)
     monday = day - dt.timedelta(days=day.weekday())
 
-    dest, url = publish(monday)
+    dest, url, removed = publish(monday)
     print(f"copied to {dest}")
     print(f"link: {url}")
+    if removed:
+        print("removed older weeks: " + ", ".join(removed))
 
 
 if __name__ == "__main__":

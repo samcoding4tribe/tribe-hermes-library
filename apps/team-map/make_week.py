@@ -25,7 +25,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 
 EMAIL = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8" />
-<title>Where is the TRIBE? {range}</title>
+<title>Where is my TRIBE? {range}</title>
 <style>
   body{{margin:0;padding:24px;background:#f4f1ec;font-family:-apple-system,"Segoe UI",Arial,sans-serif;color:#24201c}}
   .mail{{max-width:720px;margin:0 auto;background:#fffdf9;border:1px solid #e6ded2;border-radius:14px;overflow:hidden}}
@@ -51,11 +51,11 @@ EMAIL = """<!DOCTYPE html>
 <div class="mail">
   <div class="head">
     <p class="kicker">TRIBE · weekly whereabouts</p>
-    <h1>Where is the TRIBE? {range}</h1>
+    <h1>Where is my TRIBE? {range}</h1>
   </div>
   <div class="mapWrap"><img src="map.png" alt="Map showing where the team is this week" /></div>
   <div class="body">
-    <p class="fullsizeLine"><a class="fullsize" href="{link}">Open the map full size</a> on the TRIBE group site</p>
+    <p class="fullsizeLine"><a class="fullsize" href="{link}">Open the full note</a> on the TRIBE group site</p>
     <h2>The week at a glance</h2>
     <table>
       <thead><tr><th>Name</th>{head}</tr></thead>
@@ -73,8 +73,7 @@ def published_url(monday):
     """The SharePoint address for that week's map, if it has been published."""
     try:
         import publish
-        return publish.web_url(f"{publish.FOLDER}/{monday.isoformat()}/"
-                               f"whereabouts-{monday.isoformat()}.png")
+        return publish.link_for(monday)
     except Exception:
         return "#"
 

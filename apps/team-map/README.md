@@ -74,11 +74,13 @@ an alias table, or the org map's ids need to be added to the calendar sheet.
    wedding, honeymoon, festival, cruise, hike, food, golf, park. Anything else
    falls back to a palm tree. Holiday pins are teal; trip pins are orange.
 
-5. `publish.py --week <date>` copies that week's map to the TRIBE GROUP site, under
-   `Shared Documents/TRIBE Group Tech/Whereabouts/<date>/`, and writes its web
-   address into that week's `email.html`. The note then carries both: the map
-   embedded so it always renders, and a link for the full size. The folder sits
-   beside `Hermes Library` so publishing the library never touches it.
+5. `publish.py --week <date>` copies that week's note to the TRIBE GROUP site,
+   under `Shared Documents/TRIBE Group Tech/Where is my TRIBE/<date>/`, as a PDF
+   (title, map and the table) and a PNG of the map, and writes the address into
+   that week's `email.html`. The note then carries both: the map embedded so it
+   always renders, and a link to the full note. The folder sits beside
+   `Hermes Library`, so publishing the library never touches it, and only the two
+   most recent weeks are kept: older copies name who was on leave.
 
 6. `make_week.py` builds one folder per week, `weeks/<monday>/`, holding
    `data.json`, `data.js`, `map.html`, the captured `map.png` and `email.html`.
