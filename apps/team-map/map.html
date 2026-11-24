@@ -84,12 +84,13 @@
     const place = (p.places || [])[0];
     if (!place && away) return;           // unknown place: a chip, never a guess
     const key = place || "Melbourne";
-    pins[key] = pins[key] || {count: 0, work: 0, leave: 0, labels: []};
+    pins[key] = pins[key] || {count: 0, work: 0, leave: 0, labels: [], names: []};
     pins[key].count++;
     if (work) pins[key].work++;
     if (leave) pins[key].leave++;
     const kinds = [...new Set(ds.filter(v => v.code).map(v => v.label))];
     pins[key].labels.push(...kinds);
+    pins[key].names.push(p.short || p.name.split(" ")[0]);
   });
 
   // Stay in Australia when that is where everyone is; world otherwise.
@@ -134,9 +135,10 @@
       const [x, y] = proj(xy);
       const isHome = place === "Melbourne";
       const colour = isHome ? "#e0641f" : info.work ? "#c8521d" : "#2c8d79";
-      const kinds = [...new Set(info.labels || [])];
-      const kind = kinds.length === 1 ? kinds[0] : "";   // site visit, onsite, leave
-      const caption = [place, kind].filter(Boolean).join(" · ") + " · " + info.count;
+      // A trip pin names who is there; the base pin carries a count.
+      const caption = isHome
+        ? place + " · " + info.count
+        : place + " · " + (info.names || []).join(", ");
       g.append("circle").attr("cx", x).attr("cy", y)
         .attr("r", isHome ? 6 + Math.min(10, info.count * .8) : 7)
         .attr("fill", colour).attr("class", "pin-core");
