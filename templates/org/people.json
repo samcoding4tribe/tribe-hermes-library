@@ -2,7 +2,7 @@
   "org": "TRIBE Group",
   "as_at": "2026-11-23",
   "source": "Induction manual 2026 page 4 (names, titles, panels) plus what Sam has stated, 23 Nov 2026",
-  "legend": "Badges carry authority or location, never rank. Only the lines Sam stated are drawn. Laura (Event Director) has left and is not drawn. Jan works as a consultant, not in-house, and sits with external contacts. The events team is co-led by Jodie and Vanessa; each person carries one reporting line to the lead whose function matches, and the block shows the shared lead.",
+  "legend": "Badges carry authority or location, never rank. Only the lines Sam stated are drawn. Laura (Event Director) is on leave, not departed, and is drawn with the events team. Jan works as a consultant, not in-house, and sits with external contacts. The events team is co-led by Jodie and Vanessa; each person carries one reporting line to the lead whose function matches, and the block shows the shared lead.",
   "people": [
     {
       "id": "leon",
@@ -290,6 +290,19 @@
       ],
       "notes": "Offshore, Philippines. In the travel group, under Kelly.",
       "reports_to": "kelly"
+    },
+    {
+      "id": "laura",
+      "name": "Laura Groot",
+      "known_as": "Laura",
+      "role": "Event Director",
+      "function": "Events",
+      "reports_to": "jodie",
+      "badges": [],
+      "notes": "On leave, not departed (Sam, 24 Nov 2026). Earlier note had her as having left.",
+      "block": "events",
+      "tier": 1,
+      "co_led_with": "ness"
     }
   ],
   "groups": [],

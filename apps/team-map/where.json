@@ -1,0 +1,4 @@
+{
+  "note": "Place names only. kind=work shows for onsite/site inspection; kind=holiday shows only when public is true.",
+  "kristen": {"locations": [{"from": "2026-11-30", "to": "2026-12-04", "place": "Adelaide", "kind": "work"}]}
+}

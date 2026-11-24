@@ -1,0 +1,33 @@
+{
+ "note": "calendar name -> org id. Regenerate when either side changes.",
+ "map": {
+  "Belinda Colaco": "belinda",
+  "Belinda Torr": "belinda",
+  "Bianca Berger": "bianca",
+  "Carlita Gray": "carlita",
+  "Dani Lang": "dani",
+  "Holly Lockwood-Hanlon": "holly",
+  "Jamie Gonzales": "jamie",
+  "Jodie Haylock": "jodie",
+  "Jovelle Victorio": "jovelle",
+  "Kate Ashton": "kate",
+  "Kim Thorne": "kim",
+  "Kristen Manias": "kristen",
+  "Laura Groot": "laura",
+  "Leon Burman": "leon",
+  "Mia Kaufman": "mia",
+  "Samuel Klett Navarro": "sam",
+  "Sarah Adams": "sarah",
+  "Trent Campbell": "trent",
+  "Vanessa Crockett": "ness",
+  "Zoe Aris": "zoe"
+ },
+ "unmatched": [
+  "2026",
+  "Felicity Lampert",
+  "Janna Kogan",
+  "Kaja Merchan",
+  "Nitsanne Fedida",
+  "Olivia Cavallo"
+ ]
+}

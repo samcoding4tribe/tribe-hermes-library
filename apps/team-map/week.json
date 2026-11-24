@@ -1,0 +1,633 @@
+{
+ "week_start": "2026-11-30",
+ "sheet": "2026",
+ "people": [
+  {
+   "name": "Belinda Colaco",
+   "id": "belinda",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Bianca Berger",
+   "id": "bianca",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "DIL",
+     "label": "leave",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 1,
+   "places": []
+  },
+  {
+   "name": "Carlita Gray",
+   "id": "carlita",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "OS",
+     "label": "onsite",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "OS",
+     "label": "onsite",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "OS",
+     "label": "onsite",
+     "place": ""
+    }
+   },
+   "away_days": 3,
+   "places": []
+  },
+  {
+   "name": "Dani Lang",
+   "id": "dani",
+   "days": {
+    "2026-11-30": {
+     "code": "S",
+     "label": "site visit",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "S",
+     "label": "site visit",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 2,
+   "places": []
+  },
+  {
+   "name": "Holly Lockwood-Hanlon",
+   "id": "holly",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Jamie Gonzales",
+   "id": "jamie",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Jodie Haylock",
+   "id": "jodie",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Jovelle Victorio",
+   "id": "jovelle",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Kate Ashton",
+   "id": "kate",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Kim Thorne",
+   "id": "kim",
+   "days": {
+    "2026-11-30": {
+     "code": "S",
+     "label": "site visit",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "S",
+     "label": "site visit",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "S",
+     "label": "site visit",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 3,
+   "places": []
+  },
+  {
+   "name": "Kristen Manias",
+   "id": "kristen",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Laura Groot",
+   "id": "laura",
+   "days": {
+    "2026-11-30": {
+     "code": "OTH",
+     "label": "other leave",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "OTH",
+     "label": "other leave",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "OTH",
+     "label": "other leave",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "OTH",
+     "label": "other leave",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "OTH",
+     "label": "other leave",
+     "place": ""
+    }
+   },
+   "away_days": 5,
+   "places": []
+  },
+  {
+   "name": "Leon Burman",
+   "id": "leon",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Mia Kaufman",
+   "id": "mia",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "OS",
+     "label": "onsite",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "OS",
+     "label": "onsite",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "OS",
+     "label": "onsite",
+     "place": ""
+    }
+   },
+   "away_days": 3,
+   "places": []
+  },
+  {
+   "name": "Samuel Klett Navarro",
+   "id": "sam",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Sarah Adams",
+   "id": "sarah",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Trent Campbell",
+   "id": "trent",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Vanessa Crockett",
+   "id": "ness",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  },
+  {
+   "name": "Zoe Aris",
+   "id": "zoe",
+   "days": {
+    "2026-11-30": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-01": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-02": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-03": {
+     "code": "",
+     "label": "",
+     "place": ""
+    },
+    "2026-12-04": {
+     "code": "",
+     "label": "",
+     "place": ""
+    }
+   },
+   "away_days": 0,
+   "places": []
+  }
+ ]
+}

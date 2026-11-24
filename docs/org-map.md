@@ -4,8 +4,8 @@ One source of truth for who is in the organisation and who reports to whom, used
 at setup so a new assistant does not ask its user to describe a company the
 business already knows.
 
-Verified 24 November 2026: 26 people, one root, the renderer exits clean, the
-chart draws 26 cards and no unnamed groups.
+Verified 24 November 2026: 27 people, one root, the renderer exits clean, and the
+chart draws 27 cards plus the externals, with no unnamed groups.
 
 ## Where it lives
 
