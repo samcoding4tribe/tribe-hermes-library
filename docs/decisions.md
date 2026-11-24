@@ -331,3 +331,23 @@ nobody published.
 
 **First run.** Recorded as a to-do: install `ea` from the shared library into a
 clean home directory and use it for an hour.
+
+---
+
+## D25. The weekly note is produced at 11am on Monday, after the meeting
+
+**Decision.** The whereabouts note is generated at about 11am each Monday, not
+overnight and not before the breakfast meeting. The half hour after the meeting
+is the window for small corrections: a location that changed, a person who
+joined the roster that morning.
+
+**Why.** The Monday breakfast meeting is where the week is agreed. A note built
+before it is stale by the time it is read, and the corrections it needs are
+exactly the ones discussed at the table.
+
+**How.** The period folder is generated on the Monday and left for a person to
+review and send. Generation is a draft, never a send: the note goes to everyone
+in the org, so a human decides the moment it leaves.
+
+**Open.** Whether the generator runs on a schedule or on request is not yet
+decided. Scheduling it would only create the folder; sending stays manual.
