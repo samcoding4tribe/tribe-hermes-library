@@ -28,18 +28,18 @@ EMAIL = """<!DOCTYPE html>
 <title>Where is my TRIBE? {range}</title>
 <style>
   body{{margin:0;padding:24px;background:#f4f1ec;font-family:-apple-system,"Segoe UI",Arial,sans-serif;color:#24201c}}
-  .mail{{max-width:720px;margin:0 auto;background:#fffdf9;border:1px solid #e6ded2;border-radius:14px;overflow:hidden}}
-  .head{{padding:24px 28px 0}}
+  .mail{{max-width:860px;margin:0 auto;background:#fffdf9;border:1px solid #e6ded2;border-radius:14px;overflow:hidden}}
+  .head{{padding:26px 32px 0}}
   .kicker{{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#c8521d;margin:0 0 8px}}
-  h1{{margin:0;font-size:24px;line-height:1.2;font-weight:600;letter-spacing:-.01em}}
-  .mapWrap{{margin:18px 0 0;padding:0 18px}}
+  h1{{margin:0;font-size:27px;line-height:1.2;font-weight:600;letter-spacing:-.01em}}
+  .mapWrap{{margin:18px 0 0;padding:0 22px}}
   .mapWrap img{{display:block;width:100%;height:auto;border-radius:10px;border:1px solid #e7dfd2}}
-  .body{{padding:8px 28px 6px;font-size:14px;line-height:1.55}}
+  .body{{padding:8px 32px 6px;font-size:14.5px;line-height:1.55}}
   h2{{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a7f72;margin:22px 0 8px;font-weight:600}}
-  table{{width:100%;border-collapse:collapse;font-size:12.5px}}
-  th,td{{text-align:left;padding:7px 8px;border-top:1px solid #efe8de}}
-  th{{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a7f72;font-weight:600;border-top:none;padding-bottom:4px}}
-  td.name{{font-weight:600;white-space:nowrap}}
+  table{{width:100%;border-collapse:collapse;font-size:14px}}
+  th,td{{text-align:left;padding:9px 10px;border-top:1px solid #efe8de}}
+  th{{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:#8a7f72;font-weight:600;border-top:none;padding-bottom:5px}}
+  td.name{{font-weight:700;white-space:nowrap}}
   td.blank{{color:#b9b0a4}}
   tr.rest td{{color:#8a7f72;font-style:italic}}
   .foot{{padding:14px 28px 22px;font-size:11.5px;color:#93887b;border-top:1px solid #efe8de;margin-top:16px}}
@@ -61,7 +61,6 @@ EMAIL = """<!DOCTYPE html>
       <thead><tr><th>Name</th>{head}</tr></thead>
       <tbody>{rows}</tbody>
     </table>
-    <p style="margin-top:14px;color:#5d5348;font-size:13px">{note}</p>
   </div>
   <div class="foot"><p class="note">{foot}</p></div>
 </div>
@@ -117,18 +116,13 @@ def write_email(data, monday, out):
     rows.append('<tr class="rest"><td class="name">Everyone else</td>'
                 '<td>in</td><td>in</td><td>in</td><td>in</td><td>wfh</td></tr>')
 
-    unplaced = [p for p in away if not (p["places"] or [])]
-    note = ("Place names show once they are recorded: an onsite trip, a site visit, or a holiday "
-            "someone has chosen to share.")
-    if unplaced:
-        note += (f" Today {len(unplaced)} of {len(away)} away have no location yet, so their "
-                 "faces sit under the map until one is added.")
+    # no legend under the table: the map carries its own key
 
     rng = f"{days[0].strftime('%-d %b')} – {days[4].strftime('%-d %b')}"
     foot = ("Draft for review. Statuses from the leave calendar; travel side to follow. "
             "Friday is work from home unless stated.")
     html = EMAIL.format(range=rng, monday=monday.isoformat(), head=head,
-                        rows="".join(rows), note=note, foot=foot,
+                        rows="".join(rows), foot=foot,
                         link=published_url(monday))
     (out / "email.html").write_text(html)
 
