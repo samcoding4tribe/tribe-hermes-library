@@ -131,9 +131,18 @@ function render() {
       // the block label says who co-leads, and no one is drawn twice.
       const ledBlocks = blocks.filter(b => (b.parents || [])[0] === p.id);
       let blockCards = '';
+      const rank = p => {
+        const r = (p.role || '').toLowerCase();
+        if (r.includes('director')) return 0;
+        if (r.includes('manager')) return 1;
+        if (r.includes('co-ordinator') || r.includes('coordinator')) return 2;
+        if (r.includes('support')) return 3;
+        return 4;
+      };
       ledBlocks.forEach(b => {
         const members = DATA.people.filter(x => x.block === b.id)
-          .sort((a, c) => (a.tier || 1) - (c.tier || 1));
+          .sort((a, c) => (a.tier || 1) - (c.tier || 1) || rank(a) - rank(c) ||
+            (a.name || '').localeCompare(c.name || ''));
         if (!members.length) return;
         blockCards += `<div class="band-label in-col">${esc(b.title || '')}</div>` +
           members.map(cardHTML).join('');
