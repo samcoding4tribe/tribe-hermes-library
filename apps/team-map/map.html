@@ -169,6 +169,7 @@
   west = Math.max(-179, west); east = Math.min(179, east);
   south = Math.max(-60, south); north = Math.min(72, north);
 
+
   // Counter-clockwise for d3's spherical winding, or it means "the rest of the world".
   const box = {type: "Polygon", coordinates: [[
     [west, south], [west, north], [east, north], [east, south], [west, south]

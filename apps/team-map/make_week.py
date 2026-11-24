@@ -29,9 +29,8 @@ EMAIL = """<!DOCTYPE html>
 <style>
   body{{margin:0;padding:24px;background:#f4f1ec;font-family:-apple-system,"Segoe UI",Arial,sans-serif;color:#24201c}}
   .mail{{max-width:860px;margin:0 auto;background:#fffdf9;border:1px solid #e6ded2;border-radius:14px;overflow:hidden}}
-  .head{{padding:26px 32px 0}}
-  .kicker{{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#c8521d;margin:0 0 8px}}
-  h1{{margin:0;font-size:27px;line-height:1.2;font-weight:600;letter-spacing:-.01em}}
+  .head{{padding:30px 32px 0}}
+  h1{{margin:0;padding-top:2px;font-size:27px;line-height:1.2;font-weight:600;letter-spacing:-.01em}}
   .mapWrap{{margin:18px 0 0;padding:0 22px}}
   .mapWrap img{{display:block;width:100%;height:auto;border-radius:10px;border:1px solid #e7dfd2}}
   .body{{padding:8px 32px 6px;font-size:14.5px;line-height:1.55}}
@@ -50,7 +49,6 @@ EMAIL = """<!DOCTYPE html>
 <body>
 <div class="mail">
   <div class="head">
-    <p class="kicker">TRIBE · weekly whereabouts</p>
     <h1>Where is my TRIBE? {range}</h1>
   </div>
   <div class="mapWrap"><img src="map.png" alt="Map showing where the team is this week" /></div>
