@@ -56,7 +56,60 @@
         "lateness_seconds": 18.5,
         "kind": "on_time"
       }
+    },
+    {
+      "id": "22fa62cad71e",
+      "name": "Weekly whereabouts note",
+      "prompt": "Build this week's TRIBE whereabouts note. Draft only: there is no sending step, and you must not send, schedule or forward any email.\n\n1. Work in /Users/samuelkn/tribe-hermes-library. In apps/team-map run:\n   python3 make_week.py --xlsx \"$HOME/Library/CloudStorage/OneDrive-TribeTravelandEvents/TRIBE GROUP - Share Drive/Leave Calendar 2026.xlsx\" --week <today's date YYYY-MM-DD>\n   That writes apps/team-map/weeks/<monday>/ with data.json, data.js, map.html and email.html.\n2. Capture the map: open weeks/<monday>/map.html in the browser, wait for window.__mapReady, set the viewport to 1060 wide at device scale 2, hide the h1, then screenshot the .stage element down to the last face in #unplaced, and save it as weeks/<monday>/map.png.\n3. Read the rendered pin labels back out of the DOM and check the email: first names only, the base city carries a count, a trip carries names, anyone with no recorded place appears as a face under the map. Compare against data.json.\n4. Run python3 scripts/hermes_files.py sync from the repo root so templates and generators publish. The generated week folder must not be published or committed.\n5. Report, in plain prose: the folder path, the pins with their counts and names, who is away with no location, and any event in the workflow sheet the run could not place. If the workflow sheet or the leave calendar is missing or renamed, say so plainly instead of guessing.\n\nContext you cannot see: the leave calendar lives in the Share Drive as 'Leave Calendar' with a year in the name. Work places come from the newest Workflow_*.xlsx in WORKFLOW/ on the same Share Drive, matched by the Onsite column's initials. where.json holds only overrides: site visits and shared holidays. Fridays default to work from home unless the calendar says otherwise. Leave data is private: never put the generated week folder in the shared library or in git.",
+      "skills": [
+        "recurring-visual-reports"
+      ],
+      "skill": "recurring-visual-reports",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 11 * * 1",
+        "display": "every monday 11am"
+      },
+      "schedule_display": "every monday 11am",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-24T13:49:43.441182+11:00",
+      "next_run_at": "2026-11-30T11:00:00+11:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "origin",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-fb5a8dcfe37ddd63a4e4f7b00a6b038d44797610d30305d9fa2e60c4063f95d8",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:502",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "timezone": "Australia/Melbourne"
     }
   ],
-  "updated_at": "2026-11-23T17:00:22.322125+11:00"
+  "updated_at": "2026-11-24T13:49:43.445500+11:00"
 }

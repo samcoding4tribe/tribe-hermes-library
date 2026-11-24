@@ -44,6 +44,8 @@ EMAIL = """<!DOCTYPE html>
   tr.rest td{{color:#8a7f72;font-style:italic}}
   .foot{{padding:14px 28px 22px;font-size:11.5px;color:#93887b;border-top:1px solid #efe8de;margin-top:16px}}
   .note{{margin:0 0 6px}}
+  .fullsizeLine{{margin:10px 0 0;font-size:12px;color:#8a7f72}}
+  .fullsizeLine a{{color:#c8521d;text-decoration:none;font-weight:600}}
 </style></head>
 <body>
 <div class="mail">
@@ -53,6 +55,7 @@ EMAIL = """<!DOCTYPE html>
   </div>
   <div class="mapWrap"><img src="map.png" alt="Map showing where the team is this week" /></div>
   <div class="body">
+    <p class="fullsizeLine"><a class="fullsize" href="{link}">Open the map full size</a> on the TRIBE group site</p>
     <h2>The week at a glance</h2>
     <table>
       <thead><tr><th>Name</th>{head}</tr></thead>
@@ -64,6 +67,16 @@ EMAIL = """<!DOCTYPE html>
 </div>
 </body></html>
 """
+
+
+def published_url(monday):
+    """The SharePoint address for that week's map, if it has been published."""
+    try:
+        import publish
+        return publish.web_url(f"{publish.FOLDER}/{monday.isoformat()}/"
+                               f"whereabouts-{monday.isoformat()}.png")
+    except Exception:
+        return "#"
 
 
 def cell(day):
@@ -116,7 +129,8 @@ def write_email(data, monday, out):
     foot = ("Draft for review. Statuses from the leave calendar; travel side to follow. "
             "Friday is work from home unless stated.")
     html = EMAIL.format(range=rng, monday=monday.isoformat(), head=head,
-                        rows="".join(rows), note=note, foot=foot)
+                        rows="".join(rows), note=note, foot=foot,
+                        link=published_url(monday))
     (out / "email.html").write_text(html)
 
 
