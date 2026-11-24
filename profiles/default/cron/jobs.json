@@ -30,7 +30,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-11-20T16:45:50.988591+11:00",
-      "next_run_at": "2026-11-24T17:00:00+11:00",
+      "next_run_at": "2026-11-25T17:00:00+11:00",
       "last_run_at": "2026-11-23T17:00:22.321538+11:00",
       "last_status": "ok",
       "last_error": null,
@@ -49,11 +49,14 @@
       },
       "enabled_toolsets": null,
       "workdir": null,
-      "fire_claim": null,
+      "fire_claim": {
+        "at": "2026-11-24T17:00:32.657832+11:00",
+        "by": "TTEL-MMPK7Q3CV2.local:44816:cc709470b5db43eb8937d8321c86cbfd"
+      },
       "last_dispatch": {
-        "scheduled_at": "2026-11-23T17:00:00+11:00",
-        "dispatched_at": "2026-11-23T17:00:18.542363+11:00",
-        "lateness_seconds": 18.5,
+        "scheduled_at": "2026-11-24T17:00:00+11:00",
+        "dispatched_at": "2026-11-24T17:00:32.604787+11:00",
+        "lateness_seconds": 32.6,
         "kind": "on_time"
       }
     },
@@ -111,5 +114,5 @@
       "timezone": "Australia/Melbourne"
     }
   ],
-  "updated_at": "2026-11-24T14:15:00.952109+11:00"
+  "updated_at": "2026-11-24T17:00:32.658609+11:00"
 }
