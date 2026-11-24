@@ -70,8 +70,13 @@ def publish(monday):
     pdf_src = HERE / "weeks" / monday.isoformat() / "note.pdf"
     pdf = None
     if pdf_src.exists():
-        pdf = dest_dir / f"Where is my TRIBE - {monday.isoformat()}.pdf"
-        shutil.copy2(pdf_src, pdf)
+        fresh = pdf_src.stat().st_mtime >= src.stat().st_mtime
+        if fresh:
+            pdf = dest_dir / f"Where is my TRIBE - {monday.isoformat()}.pdf"
+            shutil.copy2(pdf_src, pdf)
+        else:
+            print("  note: note.pdf is older than map.png, publishing the image instead")
+            pdf_src.unlink()          # a stale document is worse than none
 
     target = pdf or png
     url = web_url(f"{FOLDER}/{monday.isoformat()}/{target.name}")
@@ -100,6 +105,7 @@ def main():
     print(f"link: {url}")
     if removed:
         print("removed older weeks: " + ", ".join(removed))
+    print(f"published: {dest.name}")
 
 
 if __name__ == "__main__":

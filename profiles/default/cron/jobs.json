@@ -60,7 +60,7 @@
     {
       "id": "22fa62cad71e",
       "name": "Weekly whereabouts note",
-      "prompt": "Build this week's TRIBE whereabouts note. Draft only: there is no sending step, and you must not send, schedule or forward any email.\n\n1. Work in /Users/samuelkn/tribe-hermes-library. In apps/team-map run:\n   python3 make_week.py --xlsx \"$HOME/Library/CloudStorage/OneDrive-TribeTravelandEvents/TRIBE GROUP - Share Drive/Leave Calendar 2026.xlsx\" --week <today's date YYYY-MM-DD>\n   That writes apps/team-map/weeks/<monday>/ with data.json, data.js, map.html, map.png and email.html.\n2. Capture the map: open weeks/<monday>/map.html in the browser, wait for window.__mapReady, set the viewport to 1060 wide at device scale 2, hide the h1, then screenshot the .stage element down to the last face in #unplaced, and save it as weeks/<monday>/map.png.\n3. Run python3 publish.py --week <monday>. It copies the map to the TRIBE GROUP site under TRIBE Group Tech/Whereabouts/<monday>/ and writes that address into email.html. Open the printed link while signed in and confirm the image loads.\n4. Read the rendered pin labels back out of the DOM and check the email: first names only, the base city carries a count, a trip carries names, anyone with no recorded place appears as a face under the map. Compare against data.json.\n5. Run python3 scripts/hermes_files.py sync from the repo root so templates and generators publish. The generated week folder and the Whereabouts copies must not go into git or the Hermes Library.\n6. Report, in plain prose: the folder path, the SharePoint link, the pins with their counts and names, who is away with no location, and any event in the workflow sheet the run could not place. If the workflow sheet or the leave calendar is missing or renamed, say so plainly instead of guessing.\n\nContext you cannot see: the leave calendar lives in the Share Drive as 'Leave Calendar' with a year in the name. Work places come from the newest Workflow_*.xlsx in Share Drive/WORKFLOW, matched by the Onsite column's initials. where.json holds only overrides: site visits and shared holidays. Fridays default to work from home unless the calendar says otherwise. Leave data is private: never put the generated week folder in the shared library or in git. The note carries the map inline so it renders everywhere, plus the SharePoint link for full size.",
+      "prompt": "Build the TRIBE whereabouts note for the week that starts on this Monday. Draft only: there is no sending step, and you must not send, schedule or forward any email.\n\n1. Work in /Users/samuelkn/tribe-hermes-library. In apps/team-map run:\n   python3 make_week.py --xlsx \"$HOME/Library/CloudStorage/OneDrive-TribeTravelandEvents/TRIBE GROUP - Share Drive/Leave Calendar 2026.xlsx\" --week <this Monday, YYYY-MM-DD>\n   --week snaps to the Monday of whatever date it is given, so pass today's date when this fires on a Monday. When rehearsing on another day, pass the coming Monday, not today.\n   It writes apps/team-map/weeks/<monday>/ with data.json, data.js, map.html, map.png and email.html.\n2. Capture the map: open weeks/<monday>/map.html, wait for window.__mapReady, viewport 1060 wide at device scale 2, hide the h1, screenshot the .stage element down to the last face in #unplaced, save as weeks/<monday>/map.png. Read the pin labels back out of the DOM and compare to data.json.\n3. Print the note as a one-page PDF: open weeks/<monday>/email.html, set document.title to an ASCII title, then Page.printToPDF with printBackground, A4, scale 0.88, 0.25 margins, into weeks/<monday>/note.pdf. Check it is one page; if the footer spills, reduce the scale.\n4. Run python3 publish.py --week <monday>. It copies the note to the TRIBE GROUP site under TRIBE Group Tech/Where is my TRIBE/<monday>/ and writes the address into email.html. It refuses to publish a note.pdf older than map.png, so reprint the PDF rather than working around it. It also deletes week folders beyond the two most recent.\n5. If and only if the preview browser has a Microsoft login, open the printed link and confirm it loads. If it redirects to sign-in, say plainly that you verified the file on disk but not the link.\n6. Run python3 scripts/hermes_files.py sync from the repo root. No week folder, data.json or published map may reach the Hermes Library or git.\n7. Report in plain prose: the folder, the link, the pins with counts and names, who is away with no recorded place, any event the workflow sheet places but the roster cannot match, and anything that looked fragile.\n\nContext you cannot see: the leave calendar lives in Share Drive as 'Leave Calendar' with the year in its name. Work places come from the newest Workflow_*.xlsx in Share Drive/WORKFLOW, matched by the Onsite column's initials. where.json holds only overrides: site visits and shared holidays. Fridays default to work from home unless the calendar says otherwise. Leave data is private. The note carries the map and table in the body and a link to the published copy; the Monday send is done by a person, never by this job.",
       "skills": [
         "recurring-visual-reports"
       ],
@@ -90,8 +90,8 @@
       "paused_reason": null,
       "created_at": "2026-11-24T13:49:43.441182+11:00",
       "next_run_at": "2026-11-30T11:00:00+11:00",
-      "last_run_at": null,
-      "last_status": null,
+      "last_run_at": "2026-11-25T09:18:05.510482+11:00",
+      "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
       "last_delivery_unverified": null,
@@ -109,12 +109,11 @@
       "enabled_toolsets": null,
       "workdir": null,
       "timezone": "Australia/Melbourne",
-      "fire_claim": {
-        "at": "2026-11-25T09:17:06.249868+11:00",
-        "by": "TTEL-MMPK7Q3CV2.local:44816:7bb1f0339c5f4d27b9e845548d73a3f1",
-        "extra_slot": "2026-11-30T11:00:00+11:00"
-      }
+      "fire_claim": null,
+      "canonical_completions": [
+        "175c27f0bd904b2fa20a6e5ca637e779"
+      ]
     }
   ],
-  "updated_at": "2026-11-25T09:17:06.250595+11:00"
+  "updated_at": "2026-11-25T09:18:55.764599+11:00"
 }

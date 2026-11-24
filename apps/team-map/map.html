@@ -85,9 +85,12 @@
     "SA": [138.60, -34.93], "WA": [115.86, -31.95], "TAS": [147.33, -42.88],
     "NT": [130.84, -12.46], "ACT": [149.13, -35.28]
   };
-  const ALIAS = {"Saigon": "Ho Chi Minh City", "HCMC": "Ho Chi Minh City", "Mel": "Melbourne",
-                 "Melb": "Melbourne", "Syd": "Sydney", "Bne": "Brisbane", "Bris": "Brisbane",
-                 "Port Douglas": "Cairns", "Hayman Island": "Cairns", "Sunshine Coast": "Brisbane"};
+  const ALIAS = {"saigon": "Ho Chi Minh City", "hcmc": "Ho Chi Minh City", "mel": "Melbourne",
+                 "melb": "Melbourne", "melbourne ": "Melbourne", "syd": "Sydney", "bne": "Brisbane",
+                 "bris": "Brisbane", "per": "Perth", "adl": "Adelaide", "hba": "Hobart",
+                 "cns": "Cairns", "ool": "Gold Coast", "drw": "Darwin", "cbr": "Canberra",
+                 "port douglas": "Cairns", "hayman island": "Cairns",
+                 "sunshine coast": "Brisbane", "goldie": "Gold Coast"};
   const norm = s => String(s || "").toLowerCase().replace(/[^a-z ]/g, " ").replace(/\s+/g, " ").trim();
   // Built on first use: COORDS is declared below this point.
   let _city = null, _region = null;
@@ -101,7 +104,11 @@
     if (direct) return direct;
     const parts = String(place).split(/&|\/|,| and /i).map(s => s.trim()).filter(Boolean);
     const hits = parts
-      .map(part => byCity()[norm(ALIAS[part] || part)] || byRegion()[norm(ALIAS[part] || part)])
+      .map(part => {
+        const key = norm(part);
+        const target = norm(ALIAS[key] || part);
+        return byCity()[target] || byRegion()[target];
+      })
       .filter(Boolean);
     if (!hits.length) return null;
     return [hits.reduce((a, c) => a + c[0], 0) / hits.length,

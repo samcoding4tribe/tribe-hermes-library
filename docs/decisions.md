@@ -378,3 +378,24 @@ everyone has access, because everyone will eventually back up there. Before the
 first send, ask one person outside the Tech group to open a link. If it is
 restricted, the fallback is a `Whereabouts` folder with its own permissions granted
 to everyone except external users.
+
+---
+
+## D27. Who produces the note, and who only reads it
+
+**Decision.** The note is produced on the machine of whoever is on that Monday:
+Sam, Kate, or the manager on duty, through their own agent (EA, PA or admin
+profile). Everyone else in the group reads the result.
+
+**Why.** The two halves need different access. Reading the published copy must
+work for the whole org, so it sits in a folder nobody has to be invited to.
+Producing it needs the leave calendar, the workflow sheet and a browser to render
+the note, which only the producer's machine has.
+
+**How.** Each producer installs the job on their own machine, under their own
+profile and account. There is no shared runner, and the job never sends: a person
+sends, and the draft is the handover point.
+
+**Consequence.** An access test is only meaningful if it is done by an ordinary
+employee, since administrators can open things the org cannot. Do not test with
+someone who manages the site.
