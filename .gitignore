@@ -18,3 +18,5 @@ logs/
 .DS_Store
 # generated from the leave calendar
 apps/team-map/status-today.json
+# per-week output carries leave data: keep it out of git and the library
+apps/team-map/weeks/
