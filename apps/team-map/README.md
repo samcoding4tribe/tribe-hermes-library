@@ -46,7 +46,19 @@ an alias table, or the org map's ids need to be added to the calendar sheet.
    included; anyone else is listed as skipped.
 2. `map.html` draws the world map from `week-data.js` and `where.json`. People away
    with no recorded place appear as faces under the map rather than as guesses.
-3. Places live in `where.json`, keyed by person id, one entry per trip:
+3. Work places come from the workflow sheet, not from typing. `workflow.py` finds
+   the newest `Workflow_*.xlsx` in `WORKFLOW/` on the Share Drive (so the yearly
+   rename is handled), reads each row's Destination, Date range and the Onsite
+   column, and matches those initials to the org chart through `aliases.json`.
+   Set `TRIBE_WORKFLOW_DIR` to point somewhere else. A row named `CG & HL` on
+   `26 - 27` in November puts Carlita and Holly at that destination on those days.
+   Places the sheet spells loosely are resolved to a point: exact name, then any
+   stop of a multi-stop trip (`Saigon & Siem Reap`), then a country or state
+   (`QLD`, `China`). No match means no pin, and the person shows as unplaced.
+
+4. `where.json` is the override, for travel the sheet does not carry (a site
+   visit, a holiday someone has shared). It is checked before the sheet, keyed by
+   person id:
 
    ```json
    {"kim": {"locations": [{"from": "2026-11-30", "to": "2026-12-04",
@@ -62,7 +74,7 @@ an alias table, or the org map's ids need to be added to the calendar sheet.
    wedding, honeymoon, festival, cruise, hike, food, golf, park. Anything else
    falls back to a palm tree. Holiday pins are teal; trip pins are orange.
 
-4. `make_week.py` builds one folder per week, `weeks/<monday>/`, holding
+5. `make_week.py` builds one folder per week, `weeks/<monday>/`, holding
    `data.json`, `data.js`, `map.html`, the captured `map.png` and `email.html`.
    The note that goes out is `weeks/<monday>/email.html`: title, map, week at a
    glance. There is no single shared mock-up; each week is its own folder.

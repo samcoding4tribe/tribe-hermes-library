@@ -71,6 +71,42 @@
     `Where is the TRIBE?  ${fmt(days[0])} – ${fmt(days[4])}`;
 
   const width = 1000, height = 520;
+
+  // The workflow sheet writes places loosely ("Saigon & Siem Reap", "QLD", "China").
+  // Resolve to a point: exact name, then any stop of a multi-stop trip, then a
+  // country or state. No guess means no pin, and the person shows as unplaced.
+  const COUNTRY = {
+    "China": [104.2, 35.9], "Vietnam": [106.3, 16.0], "Cambodia": [104.99, 12.57],
+    "Japan": [138.3, 36.2], "Thailand": [100.9, 15.9], "Indonesia": [113.9, -0.8],
+    "New Zealand": [174.9, -40.9], "Fiji": [178.1, -17.7], "Singapore": [103.82, 1.35],
+    "United States": [-98.6, 39.8], "USA": [-98.6, 39.8], "UK": [-1.5, 52.5],
+    "England": [-1.5, 52.5], "Europe": [10.0, 48.0], "India": [78.9, 20.6],
+    "QLD": [153.03, -27.47], "NSW": [151.21, -33.87], "VIC": [144.96, -37.81],
+    "SA": [138.60, -34.93], "WA": [115.86, -31.95], "TAS": [147.33, -42.88],
+    "NT": [130.84, -12.46], "ACT": [149.13, -35.28]
+  };
+  const ALIAS = {"Saigon": "Ho Chi Minh City", "HCMC": "Ho Chi Minh City", "Mel": "Melbourne",
+                 "Melb": "Melbourne", "Syd": "Sydney", "Bne": "Brisbane", "Bris": "Brisbane",
+                 "Port Douglas": "Cairns", "Hayman Island": "Cairns", "Sunshine Coast": "Brisbane"};
+  const norm = s => String(s || "").toLowerCase().replace(/[^a-z ]/g, " ").replace(/\s+/g, " ").trim();
+  // Built on first use: COORDS is declared below this point.
+  let _city = null, _region = null;
+  const byCity = () => _city || (_city = Object.fromEntries(
+    Object.entries(COORDS).map(([k, v]) => [norm(k), v])));
+  const byRegion = () => _region || (_region = Object.fromEntries(
+    Object.entries(COUNTRY).map(([k, v]) => [norm(k), v])));
+  function coordsFor(place) {
+    if (!place) return null;
+    const direct = byCity()[norm(place)] || byRegion()[norm(place)];
+    if (direct) return direct;
+    const parts = String(place).split(/&|\/|,| and /i).map(s => s.trim()).filter(Boolean);
+    const hits = parts
+      .map(part => byCity()[norm(ALIAS[part] || part)] || byRegion()[norm(ALIAS[part] || part)])
+      .filter(Boolean);
+    if (!hits.length) return null;
+    return [hits.reduce((a, c) => a + c[0], 0) / hits.length,
+            hits.reduce((a, c) => a + c[1], 0) / hits.length];
+  }
   const svg = d3.select("#map");
 
   const COORDS = {
@@ -112,7 +148,7 @@
   });
 
   // Frame the pins, not a fixed projection: the view adapts to where the week is.
-  const used = Object.keys(pins).map(k => COORDS[k]).filter(Boolean);
+  const used = Object.keys(pins).map(k => coordsFor(k)).filter(Boolean);
   const inAustralia = used.length && used.every(([lon, lat]) =>
     lon >= 110 && lon <= 157 && lat <= -9 && lat >= -45);
 
@@ -169,7 +205,7 @@
 
     const g = svg.append("g");
     Object.entries(pins).forEach(([place, info]) => {
-      const xy = COORDS[place];
+      const xy = coordsFor(place);
       if (!xy) return;
       const [x, y] = proj(xy);
       const isHome = place === "Melbourne";

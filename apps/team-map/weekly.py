@@ -21,6 +21,7 @@ import pathlib
 import zipfile
 
 import leave_calendar as lc
+import workflow as wf
 
 HERE = pathlib.Path(__file__).resolve().parent
 
@@ -65,7 +66,8 @@ def place_for(person_id, code, when, where):
     return None
 
 
-def build(xlsx, week_start, where, aliases):
+def build(xlsx, week_start, where, aliases, events=None, initials=None):
+    """Week data. Places come from where.json first, then the workflow sheet."""
     days = [week_start + dt.timedelta(days=i) for i in range(5)]
     with zipfile.ZipFile(xlsx) as z:
         strings = lc.shared_strings(z)
@@ -87,6 +89,10 @@ def build(xlsx, week_start, where, aliases):
                 continue
             entry = people.setdefault(name, {"name": name, "id": pid, "days": {}})
             spot = place_for(pid, row["code"], d, where) if pid else None
+            if not spot and events and row["code"] in {"OS", "S"}:
+                place = wf.place_for((initials or {}).get(pid, ""), d, events)
+                if place:
+                    spot = {"place": place, "kind": "work", "activity": ""}
             entry["days"][d.isoformat()] = {
                 "code": row["code"],
                 "label": SHORT.get(row["code"], row["code"]),

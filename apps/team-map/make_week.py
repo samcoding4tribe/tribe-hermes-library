@@ -19,6 +19,7 @@ import json
 import pathlib
 
 import weekly
+import workflow as wf
 
 HERE = pathlib.Path(__file__).resolve().parent
 
@@ -79,7 +80,9 @@ def cell(day):
 def build_week(xlsx, monday):
     where = weekly.load_json("where.json", {})
     aliases = weekly.load_json("aliases.json", {"map": {}})["map"]
-    return weekly.build(xlsx, monday, where, aliases)
+    sheet = wf.find_sheet()
+    evs = wf.events(sheet) if sheet else []
+    return weekly.build(xlsx, monday, where, aliases, evs, wf.initials_of()), sheet, len(evs)
 
 
 def write_email(data, monday, out):
@@ -124,7 +127,7 @@ def main():
     args = ap.parse_args()
 
     monday = weekly.monday_of(dt.date.fromisoformat(args.week))
-    data = build_week(args.xlsx, monday)
+    data, sheet, n_events = build_week(args.xlsx, monday)
     stamp = monday.isoformat()
 
     out = HERE / "weeks" / stamp
@@ -151,6 +154,10 @@ def main():
     print(f"{stamp}: {len(data['people'])} people, {len(away)} away")
     print(f"  {out}/map.html  -> capture as {out}/map.png")
     print(f"  {out}/email.html")
+    if sheet:
+        print(f"  places: {sheet.name} ({n_events} events)")
+    else:
+        print("  places: workflow sheet not found, where.json only")
 
 
 if __name__ == "__main__":
