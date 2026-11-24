@@ -21,6 +21,7 @@
   .ocean{fill:url(#ocean)}
   .pin-core{filter:url(#glow)}
   .graticule{fill:none;stroke:#e6ddcc;stroke-width:.5}
+  .pin-emoji{font-size:17px}
   .pin-label{font-size:13px;fill:#2f2a23;font-weight:600;paint-order:stroke;stroke:#f6f1e7;stroke-width:3}
   .chip{fill:#1a1d22;stroke:#333a44}
   .chip-text{font-size:10px;fill:var(--muted)}
@@ -41,7 +42,7 @@
   <div class="legend">
     <span><i class="dot" style="background:var(--home)"></i>at home base, Melbourne</span>
     <span><i class="dot" style="background:var(--accent)"></i>onsite or site visit</span>
-    <span><i class="dot" style="background:var(--leave)"></i>on leave</span>
+    <span><i class="dot" style="background:var(--leave)"></i>on leave or holiday</span>
     <span><i class="dot" style="background:#556"></i>location not recorded</span>
   </div>
 
@@ -79,7 +80,15 @@
     "Cairns": [145.77, -16.92], "Auckland": [174.76, -36.85], "Manila": [120.98, 14.60],
     "Bali": [115.19, -8.65], "Singapore": [103.82, 1.35], "Cambodia": [104.99, 12.57], "Phnom Penh": [104.92, 11.56], "London": [-0.13, 51.51],
     "Los Angeles": [-118.24, 34.05], "New York": [-74.01, 40.71], "Tokyo": [139.69, 35.69],
-    "Paris": [2.35, 48.86], "Dubai": [55.27, 25.20]
+    "Paris": [2.35, 48.86], "Dubai": [55.27, 25.20],
+    // holiday places people actually go to from here
+    "Queenstown": [168.66, -45.03], "Niseko": [140.69, 42.86], "Aspen": [-106.82, 39.19],
+    "Zurich": [8.54, 47.38], "Reykjavik": [-21.94, 64.15], "Honolulu": [-157.86, 21.31],
+    "Nadi": [177.44, -17.75], "Port Vila": [168.32, -17.73], "Phuket": [98.39, 7.88],
+    "Rome": [12.50, 41.90], "Barcelona": [2.17, 41.39], "Lisbon": [-9.14, 38.72],
+    "Vancouver": [-123.12, 49.28], "Cape Town": [18.42, -33.92], "Marrakech": [-7.99, 31.63],
+    "Ubud": [115.26, -8.51], "Seminyak": [115.16, -8.69], "Hanoi": [105.83, 21.03],
+    "Ho Chi Minh City": [106.63, 10.82], "Siem Reap": [103.86, 13.36], "Koh Samui": [100.06, 9.51]
   };
 
   const pins = {};
@@ -91,13 +100,15 @@
     const place = (p.places || [])[0];
     if (!place && away) return;           // unknown place: a chip, never a guess
     const key = place || "Melbourne";
-    pins[key] = pins[key] || {count: 0, work: 0, leave: 0, labels: [], names: []};
+    pins[key] = pins[key] || {count: 0, work: 0, leave: 0, labels: [], names: [],
+                               kinds: new Set(), acts: new Set()};
     pins[key].count++;
     if (work) pins[key].work++;
     if (leave) pins[key].leave++;
     const kinds = [...new Set(ds.filter(v => v.code).map(v => v.label))];
     pins[key].labels.push(...kinds);
     pins[key].names.push(p.short || p.name.split(" ")[0]);
+    ds.forEach(v => { if (v.kind) pins[key].kinds.add(v.kind); if (v.activity) pins[key].acts.add(v.activity); });
   });
 
   // Frame the pins, not a fixed projection: the view adapts to where the week is.
@@ -118,6 +129,8 @@
   if (east - west < minSpan) {
     const mid = (west + east) / 2; west = mid - minSpan / 2; east = mid + minSpan / 2;
   }
+  // A longitude beyond 180 reads as "the rest of the world" to d3: clamp inside.
+  west = Math.max(-179, west); east = Math.min(179, east);
   south = Math.max(-60, south); north = Math.min(72, north);
 
   // Counter-clockwise for d3's spherical winding, or it means "the rest of the world".
@@ -160,11 +173,17 @@
       if (!xy) return;
       const [x, y] = proj(xy);
       const isHome = place === "Melbourne";
-      const colour = isHome ? "#e0641f" : info.work ? "#c8521d" : "#2c8d79";
+      const onHoliday = info.kinds && info.kinds.has("holiday") && !info.kinds.has("work");
+      const EMOJI = {ski: "⛷️", snowboard: "🏂", beach: "🏖️", surf: "🏄", city: "🏙️", safari: "🦁",
+                     wedding: "💍", honeymoon: "🥂", festival: "🎉", cruise: "🛳️", hike: "🥾",
+                     food: "🍜", golf: "⛳", park: "🎢"};
+      const act = info.acts ? [...info.acts][0] : "";
+      const mark = onHoliday ? (EMOJI[act] || "🌴") : "";
+      const colour = isHome ? "#e0641f" : onHoliday ? "#0f8f7a" : "#c8521d";
       // A trip pin names who is there; the base pin carries a count.
       const caption = isHome
         ? place + " · " + info.count
-        : place + " · " + (info.names || []).join(", ");
+        : place + (mark ? " " + mark.trim() : "") + " · " + (info.names || []).join(", ");
       g.append("circle").attr("cx", x).attr("cy", y)
         .attr("r", isHome ? 6 + Math.min(10, info.count * .8) : 7)
         .attr("fill", colour).attr("class", "pin-core");
@@ -173,8 +192,11 @@
         .attr("fill", "none").attr("stroke", colour).attr("opacity", .35).attr("stroke-width", 1.2);
       g.append("line").attr("x1", x + 12).attr("y1", y).attr("x2", x + 24).attr("y2", y)
         .attr("stroke", colour).attr("stroke-width", .8).attr("opacity", .5);
-      g.append("text").attr("x", x + 28).attr("y", y + 4).attr("class", "pin-label")
+      const flip = x + 30 + caption.length * 7 > width - 8;
+      g.append("text").attr("x", flip ? x - 22 : x + 30).attr("y", y + 4)
+        .attr("text-anchor", flip ? "end" : "start").attr("class", "pin-label")
         .text(caption);
+
     });
 
     // People with no recorded place, shown as chips rather than invented pins

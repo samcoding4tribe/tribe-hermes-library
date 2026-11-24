@@ -46,7 +46,23 @@ an alias table, or the org map's ids need to be added to the calendar sheet.
    included; anyone else is listed as skipped.
 2. `map.html` draws the world map from `week-data.js` and `where.json`. People away
    with no recorded place appear as faces under the map rather than as guesses.
-3. `make_week.py` builds one folder per week, `weeks/<monday>/`, holding
+3. Places live in `where.json`, keyed by person id, one entry per trip:
+
+   ```json
+   {"kim": {"locations": [{"from": "2026-11-30", "to": "2026-12-04",
+                           "place": "Gold Coast", "kind": "work"}]},
+    "dani": {"locations": [{"from": "2026-12-14", "to": "2026-12-19",
+                            "place": "Queenstown", "kind": "holiday",
+                            "public": true, "activity": "ski"}]}}
+   ```
+
+   `kind: work` shows on onsite and site-visit days. `kind: holiday` shows only
+   when `public` is true, so nobody is revealed as away unless they agreed.
+   `activity` picks the little marker: ski, snowboard, beach, surf, city, safari,
+   wedding, honeymoon, festival, cruise, hike, food, golf, park. Anything else
+   falls back to a palm tree. Holiday pins are teal; trip pins are orange.
+
+4. `make_week.py` builds one folder per week, `weeks/<monday>/`, holding
    `data.json`, `data.js`, `map.html`, the captured `map.png` and `email.html`.
    The note that goes out is `weeks/<monday>/email.html`: title, map, week at a
    glance. There is no single shared mock-up; each week is its own folder.

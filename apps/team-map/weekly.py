@@ -47,7 +47,7 @@ def monday_of(day):
 
 
 def place_for(person_id, code, when, where):
-    """A place name only where the record covers that day and the code fits."""
+    """Where someone is, and why, only for days a record covers."""
     entry = where.get(person_id) or {}
     for loc in entry.get("locations", []):
         try:
@@ -59,10 +59,10 @@ def place_for(person_id, code, when, where):
             continue
         kind = loc.get("kind", "")
         if kind == "work" and code in {"OS", "S"}:
-            return loc.get("place", "")
+            return {"place": loc.get("place", ""), "kind": "work", "activity": loc.get("activity", "")}
         if kind == "holiday" and loc.get("public") and code in {"AL", "FM", "OTH", "DIL", "X"}:
-            return loc.get("place", "")
-    return ""
+            return {"place": loc.get("place", ""), "kind": "holiday", "activity": loc.get("activity", "")}
+    return None
 
 
 def build(xlsx, week_start, where, aliases):
@@ -86,10 +86,13 @@ def build(xlsx, week_start, where, aliases):
                 skipped.add(name)
                 continue
             entry = people.setdefault(name, {"name": name, "id": pid, "days": {}})
+            spot = place_for(pid, row["code"], d, where) if pid else None
             entry["days"][d.isoformat()] = {
                 "code": row["code"],
                 "label": SHORT.get(row["code"], row["code"]),
-                "place": place_for(pid, row["code"], d, where) if pid else "",
+                "place": (spot or {}).get("place", ""),
+                "kind": (spot or {}).get("kind", ""),
+                "activity": (spot or {}).get("activity", ""),
             }
 
     out_people = []

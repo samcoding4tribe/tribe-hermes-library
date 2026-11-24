@@ -69,8 +69,10 @@ def cell(day):
     if not day:
         return ""
     code, label, place = day.get("code", ""), day.get("label", ""), day.get("place", "")
+    kind = day.get("kind", "")
     if place:
-        return f"{label} · {place}"
+        word = "holiday" if kind == "holiday" else label
+        return f"{word} · {place}"
     return label
 
 
