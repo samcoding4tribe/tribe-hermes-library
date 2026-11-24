@@ -74,13 +74,17 @@ def build(xlsx, week_start, where, aliases):
         grid = lc.read_grid(z, paths[sheet], strings)
 
     by_day = {d: lc.statuses_for(grid, lc.parse_day_blocks(grid), d) for d in days}
-    people = {}
+    people, skipped = {}, set()
     for d, rows in by_day.items():
         for row in rows:
             name = row["name"]
             if not name.strip() or lc.to_serial(name):
                 continue
             pid = aliases.get(name)
+            if not pid:
+                # not on the org chart: skip, and report it so the sheet gets tidied
+                skipped.add(name)
+                continue
             entry = people.setdefault(name, {"name": name, "id": pid, "days": {}})
             entry["days"][d.isoformat()] = {
                 "code": row["code"],
@@ -100,7 +104,8 @@ def build(xlsx, week_start, where, aliases):
             "away_days": len(away),
             "places": places,
         })
-    return {"week_start": week_start.isoformat(), "sheet": sheet, "people": out_people}
+    return {"week_start": week_start.isoformat(), "sheet": sheet,
+            "people": out_people, "skipped": sorted(skipped)}
 
 
 def render_html(data, org_names):
@@ -170,6 +175,8 @@ def main():
                 + (f" ({v['place']})" if v.get("place") else "")
                 for d, v in p["days"].items() if v.get("code")]
         lines.append(f"{p['name']}: " + "; ".join(bits))
+    if data["skipped"]:
+        lines += ["", "Not on the org chart, so not shown: " + ", ".join(data["skipped"])]
     pathlib.Path(str(prefix) + ".txt").write_text("\n".join(lines) + "\n")
     print(f"{data['week_start']}: {len(data['people'])} people, {len(away)} away")
     print("\n".join(lines[2:]))

@@ -1,4 +1,16 @@
 {
-  "note": "Place names only. kind=work shows for onsite/site inspection; kind=holiday shows only when public is true.",
-  "kristen": {"locations": [{"from": "2026-11-30", "to": "2026-12-04", "place": "Adelaide", "kind": "work"}]}
+  "note": "Place names only, per person id. kind=work shows for onsite/site inspection; kind=holiday shows only when public is true. Empty until someone records a trip.",
+  "_schema": {
+    "<person-id>": {
+      "locations": [
+        {
+          "from": "YYYY-MM-DD",
+          "to": "YYYY-MM-DD",
+          "place": "City",
+          "kind": "work|holiday",
+          "public": true
+        }
+      ]
+    }
+  }
 }
