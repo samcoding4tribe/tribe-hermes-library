@@ -39,6 +39,8 @@ EMAIL = """<!DOCTYPE html>
   th,td{{text-align:left;padding:9px 10px;border-top:1px solid #efe8de}}
   th{{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:#8a7f72;font-weight:600;border-top:none;padding-bottom:5px}}
   td.name{{font-weight:700;white-space:nowrap}}
+  td .place{{color:#8a7f72;font-size:13px}}
+  td{{vertical-align:top;line-height:1.35}}
   td.blank{{color:#b9b0a4}}
   tr.rest td{{color:#8a7f72;font-style:italic}}
   .foot{{padding:14px 28px 22px;font-size:11.5px;color:#93887b;border-top:1px solid #efe8de;margin-top:16px}}
@@ -82,7 +84,8 @@ def cell(day):
     kind = day.get("kind", "")
     if place:
         word = "holiday" if kind == "holiday" else label
-        return f"{word} · {place}"
+        # two lines in the cell: what they are doing, then where
+        return f'{word}<br><span class="place">{place}</span>'
     return label
 
 
