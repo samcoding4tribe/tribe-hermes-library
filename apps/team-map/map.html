@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Where is the TRIBE</title>
+<style>
+  :root{
+    --bg:#0f1114; --land:#20242b; --coast:#2f353f; --ink:#f2efe9; --muted:#8d8578;
+    --accent:#ff7a2f; --home:#ffd8bf; --leave:#8fd6c6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:-apple-system,"Segoe UI",Arial,sans-serif}
+  .wrap{padding:26px 30px 20px}
+  h1{font-size:26px;line-height:1.15;margin:0 0 4px;font-weight:600;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:12.5px;margin:0}
+  .stage{position:relative;margin-top:14px}
+  svg{display:block;width:100%;height:auto}
+  .land{fill:var(--land);stroke:var(--coast);stroke-width:.5}
+  .graticule{fill:none;stroke:#191d23;stroke-width:.6}
+  .pin-label{font-size:9.5px;fill:var(--ink);paint-order:stroke;stroke:#0f1114;stroke-width:2.5}
+  .chip{fill:#1a1d22;stroke:#333a44}
+  .chip-text{font-size:10px;fill:var(--muted)}
+  .legend{display:flex;gap:18px;margin-top:12px;font-size:11px;color:var(--muted);flex-wrap:wrap}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:99px;margin-right:6px;vertical-align:1px}
+  .unplaced{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+  .face{display:flex;flex-direction:column;align-items:center;gap:4px;width:64px;font-size:9.5px;color:var(--muted);text-align:center}
+  .avatar{width:34px;height:34px;border-radius:99px;background:#20242b;border:1px solid #3a414b;
+          display:grid;place-items:center;font-size:11px;color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="title">Where is the TRIBE?</h1>
+  <p class="sub" id="sub">week of 30 November 2026</p>
+
+  <div class="stage"><svg id="map" viewBox="0 0 1000 520" aria-label="World map of where the team is"></svg></div>
+
+  <div class="legend">
+    <span><i class="dot" style="background:var(--home)"></i>at home base, Melbourne</span>
+    <span><i class="dot" style="background:var(--accent)"></i>onsite or site visit</span>
+    <span><i class="dot" style="background:var(--leave)"></i>on leave</span>
+    <span><i class="dot" style="background:#556"></i>location not recorded</span>
+  </div>
+
+  <div class="unplaced" id="unplaced"></div>
+</div>
+
+<script src="lib/d3.min.js"></script>
+<script src="lib/topojson-client.min.js"></script>
+<script src="lib/world.js"></script>
+<script src="week-data.js"></script>
+<script>
+(function(){
+  const MEL = [144.96, -37.81];
+  const data = window.WEEK || {week_start: "2026-11-30", people: [], places: {}};
+  const days = ["2026-11-30","2026-12-01","2026-12-02","2026-12-03","2026-12-04"];
+  const fmt = d => new Date(d + "T00:00:00").toLocaleDateString("en-AU", {day:"numeric", month:"short"});
+
+  document.getElementById("title").textContent =
+    `Where is the TRIBE?  ${fmt(days[0])} – ${fmt(days[4])}`;
+  document.getElementById("sub").textContent =
+    "office, onsite and leave for the week · Friday is work from home unless stated";
+
+  const width = 1000, height = 520;
+  const svg = d3.select("#map");
+  const proj = d3.geoNaturalEarth1().fitExtent([[8, 8],[width-8, height-8]], {type:"Sphere"});
+  const path = d3.geoPath(proj);
+
+  svg.append("path").attr("d", path({type:"Sphere"})).attr("fill","#12151a");
+  const grid = d3.geoGraticule().step([20,20])();
+  svg.append("path").attr("class","graticule").attr("d", path(grid));
+
+  Promise.resolve(window.WORLD).then(world => {
+    svg.append("g").selectAll("path")
+      .data(topojson.feature(world, world.objects.countries).features)
+      .join("path").attr("class","land").attr("d", path);
+
+    const places = data.places || {};
+    const pins = {};
+    data.people.forEach(p => {
+      const days = Object.values(p.days || {});
+      const away = days.some(v => v.code);
+      const work = days.some(v => ["onsite", "site visit"].includes(v.label));
+      const leave = days.some(v => ["leave", "family", "other leave"].includes(v.label));
+      const place = (p.places || [])[0];
+      // Someone away with no recorded place is a chip, not a pin on the office.
+      if (!place && away) return;
+      const key = place || "Melbourne";
+      pins[key] = pins[key] || {count:0, work:0, leave:0, names:[]};
+      pins[key].count++;
+      pins[key].names.push(p.name);
+      if (work) pins[key].work++;
+      if (leave) pins[key].leave++;
+    });
+
+    // Coordinates for recorded places only. Anything unknown stays off the map.
+    const COORDS = {
+      "Melbourne": MEL,
+      "Adelaide": [138.60, -34.93],
+      "Sydney": [151.21, -33.87],
+      "Brisbane": [153.03, -27.47],
+      "Perth": [115.86, -31.95],
+      "Hobart": [147.33, -42.88],
+      "Gold Coast": [153.40, -28.02],
+      "Auckland": [174.76, -36.85],
+      "Manila": [120.98, 14.60],
+      "Bali": [115.19, -8.65],
+      "Singapore": [103.82, 1.35],
+      "London": [-0.13, 51.51],
+      "Los Angeles": [-118.24, 34.05],
+      "New York": [-74.01, 40.71],
+      "Tokyo": [139.69, 35.69],
+      "Paris": [2.35, 48.86],
+      "Dubai": [55.27, 25.20]
+    };
+
+    const g = svg.append("g");
+    Object.entries(pins).forEach(([place, info]) => {
+      const xy = COORDS[place];
+      if (!xy) return;
+      const [x, y] = proj(xy);
+      const isHome = place === "Melbourne";
+      g.append("circle").attr("cx", x).attr("cy", y)
+        .attr("r", isHome ? 7 + Math.min(9, info.count * .7) : 6)
+        .attr("fill", isHome ? "var(--home)" : info.work ? "var(--accent)" : "var(--leave)")
+        .attr("opacity", .92);
+      g.append("circle").attr("cx", x).attr("cy", y)
+        .attr("r", isHome ? 14 + Math.min(9, info.count) : 11)
+        .attr("fill","none").attr("stroke", isHome ? "#ffd8bf" : "#ff7a2f").attr("opacity", .28);
+      g.append("text").attr("x", x + 12).attr("y", y + 4).attr("class","pin-label")
+        .text(place + " · " + info.count);
+    });
+
+    // People with no recorded place, shown as chips rather than invented pins
+    const unknown = data.people.filter(p => !(p.places || []).length && Object.values(p.days||{}).some(v => v.code));
+    const box = document.getElementById("unplaced");
+    if (unknown.length) {
+      const label = document.createElement("div");
+      label.className = "face";
+      label.style.width = "auto";
+      label.style.color = "#8d8578";
+      label.textContent = "no location recorded:";
+      box.appendChild(label);
+      unknown.forEach(p => {
+        const initials = p.name.split(" ").map(s => s[0]).join("").slice(0,2);
+        const el = document.createElement("div");
+        el.className = "face";
+        el.innerHTML = `<div class="avatar">${initials}</div><div>${p.name.split(" ")[0]}</div>`;
+        box.appendChild(el);
+      });
+    }
+
+    window.__mapReady = true;
+  });
+})();
+</script>
+</body>
+</html>

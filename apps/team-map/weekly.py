@@ -166,6 +166,12 @@ def main():
     prefix = HERE / args.out_prefix
     pathlib.Path(str(prefix) + ".json").write_text(json.dumps(data, indent=1))
     pathlib.Path(str(prefix) + ".html").write_text(render_html(data, {}))
+    pathlib.Path(HERE / "week-data.js").write_text(
+        "window.WEEK = " + json.dumps({
+            "week_start": data["week_start"],
+            "people": [{"name": p["name"], "places": p["places"],
+                        "days": p["days"]} for p in data["people"]],
+        }) + ";\n")
 
     away = [p for p in data["people"] if p["away_days"]]
     lines = [f"Team whereabouts, week of {data['week_start']}",

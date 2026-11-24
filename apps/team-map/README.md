@@ -39,6 +39,22 @@ against `kristen`, "Bianca Berger" against `bianca`, and the calendar still list
 Laura, who has left. Nineteen names against twenty-six people. So the app needs
 an alias table, or the org map's ids need to be added to the calendar sheet.
 
+## How the Monday note is made
+
+1. `weekly.py` reads the calendar for the coming week and writes `week.json`,
+   `week.html`, `week.txt` and `week-data.js`. Only people on the org chart are
+   included; anyone else is listed as skipped.
+2. `map.html` draws the world map from `week-data.js` and `where.json`. People away
+   with no recorded place appear as faces under the map rather than as guesses.
+3. The map is captured to `map.png` (headless browser, tight crop), and
+   `email-mockup.html` is the note that goes out: title, map, week at a glance.
+
+Before sending, add the places: edit `where.json`, or ask the assistant to. Then
+re-run steps 1 to 3. Nothing sends itself.
+
+Friday is work from home unless the calendar says otherwise; that is a display
+default in the note, not a code in the sheet.
+
 ## Not built yet
 
 The map page itself. It wants three things settled first: the location source
