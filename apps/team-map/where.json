@@ -19,5 +19,25 @@
         "kind": "work"
       }
     ]
+  },
+  "trent": {
+    "locations": [
+      {
+        "from": "2026-11-23",
+        "to": "2026-11-27",
+        "place": "Cambodia",
+        "kind": "work"
+      }
+    ]
+  },
+  "kristen": {
+    "locations": [
+      {
+        "from": "2026-11-23",
+        "to": "2026-11-27",
+        "place": "Cambodia",
+        "kind": "work"
+      }
+    ]
   }
 }
