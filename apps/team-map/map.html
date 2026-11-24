@@ -56,7 +56,14 @@
 (function(){
   const MEL = [144.96, -37.81];
   const data = window.WEEK || {week_start: "2026-11-30", people: [], places: {}};
-  const days = ["2026-11-30","2026-12-01","2026-12-02","2026-12-03","2026-12-04"];
+  const addDays = (iso, n) => {
+    const d = new Date(iso + "T00:00:00");   // local time: toISOString would shift a day
+    d.setDate(d.getDate() + n);
+    const pad = x => String(x).padStart(2, "0");
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  };
+  const week0 = data.week_start || new Date().toISOString().slice(0, 10);
+  const days = [0, 1, 2, 3, 4].map(i => addDays(week0, i));
   const fmt = d => new Date(d + "T00:00:00").toLocaleDateString("en-AU", {day:"numeric", month:"short"});
 
   document.getElementById("title").textContent =
@@ -93,15 +100,34 @@
     pins[key].names.push(p.short || p.name.split(" ")[0]);
   });
 
-  // Stay in Australia when that is where everyone is; world otherwise.
+  // Frame the pins, not a fixed projection: the view adapts to where the week is.
   const used = Object.keys(pins).map(k => COORDS[k]).filter(Boolean);
   const inAustralia = used.length && used.every(([lon, lat]) =>
     lon >= 110 && lon <= 157 && lat <= -9 && lat >= -45);
-  const AU = {type: "Polygon", coordinates: [[[112, -9], [155, -9], [155, -45], [112, -45], [112, -9]]]};
-  const proj = inAustralia
-    ? d3.geoMercator().fitExtent([[26, 26], [width - 26, height - 26]], AU)
-    : d3.geoNaturalEarth1().fitExtent([[8, 8], [width - 8, height - 8]], {type: "Sphere"});
+
+  const lons = used.map(c => c[0]), lats = used.map(c => c[1]);
+  let west = Math.min(...lons), east = Math.max(...lons);
+  let south = Math.min(...lats), north = Math.max(...lats);
+
+  // A single city is not a week: keep a sane minimum window so one pin does not
+  // become a street map, and never cross the poles.
+  const minSpan = 18;
+  const padLon = Math.max((east - west) * 0.25, 3);
+  const padLat = Math.max((north - south) * 0.25, 2.5);
+  west -= padLon; east += padLon; north += padLat; south -= padLat;
+  if (east - west < minSpan) {
+    const mid = (west + east) / 2; west = mid - minSpan / 2; east = mid + minSpan / 2;
+  }
+  south = Math.max(-60, south); north = Math.min(72, north);
+
+  // Counter-clockwise for d3's spherical winding, or it means "the rest of the world".
+  const box = {type: "Polygon", coordinates: [[
+    [west, south], [west, north], [east, north], [east, south], [west, south]
+  ]]};
+  const proj = d3.geoMercator().fitExtent([[30, 30], [width - 30, height - 30]], box);
   const path = d3.geoPath(proj);
+  window.__mapView = {inAustralia, west: Math.round(west), east: Math.round(east),
+                      south: Math.round(south), north: Math.round(north)};
 
   const defs = svg.append("defs");
   const og = defs.append("linearGradient").attr("id", "ocean")
@@ -119,7 +145,7 @@
   svg.append("path").attr("class", "ocean").attr("d", path({type: "Sphere"}))
      .attr("stroke", "#e0d5c2").attr("stroke-width", 1);
   svg.append("path").attr("class", "graticule")
-     .attr("d", path(d3.geoGraticule().step(inAustralia ? [5, 5] : [20, 20])()));
+     .attr("d", path(d3.geoGraticule().step(east - west < 60 ? [5, 5] : [20, 20])()));
 
   Promise.resolve(window.WORLD).then(world => {
     svg.append("g").selectAll("path")
