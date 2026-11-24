@@ -5,8 +5,8 @@
 <title>Where is the TRIBE</title>
 <style>
   :root{
-    --bg:#08121a; --land:#33475c; --land-near:#8a6236; --coast:#5d778f; --ink:#f7f3ec;
-    --muted:#a1958a; --accent:#ff8a3d; --home:#ffd9a8; --leave:#4fd1b5;
+    --bg:#f6f1e7; --land:#d8cdbb; --land-near:#f3c39a; --coast:#b8a894; --ink:#2f2a23;
+    --muted:#7c7367; --accent:#c8521d; --home:#e0641f; --leave:#2c8d79;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);
@@ -17,19 +17,19 @@
   .stage{position:relative;margin-top:14px}
   svg{display:block;width:100%;height:auto}
   .land{fill:var(--land);stroke:var(--coast);stroke-width:.45}
-  .land.here{fill:var(--land-near);stroke:#ffbe86;stroke-width:.7}
+  .land.here{fill:var(--land-near);stroke:#d98a53;stroke-width:.8}
   .ocean{fill:url(#ocean)}
   .pin-core{filter:url(#glow)}
-  .graticule{fill:none;stroke:#1d2733;stroke-width:.5}
-  .pin-label{font-size:9.5px;fill:var(--ink);paint-order:stroke;stroke:#0f1114;stroke-width:2.5}
+  .graticule{fill:none;stroke:#e6ddcc;stroke-width:.5}
+  .pin-label{font-size:9.5px;fill:#2f2a23;font-weight:600;paint-order:stroke;stroke:#f6f1e7;stroke-width:2.6}
   .chip{fill:#1a1d22;stroke:#333a44}
   .chip-text{font-size:10px;fill:var(--muted)}
   .legend{display:flex;gap:18px;margin-top:12px;font-size:11px;color:var(--muted);flex-wrap:wrap}
   .dot{display:inline-block;width:8px;height:8px;border-radius:99px;margin-right:6px;vertical-align:1px}
   .unplaced{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
   .face{display:flex;flex-direction:column;align-items:center;gap:4px;width:64px;font-size:9.5px;color:var(--muted);text-align:center}
-  .avatar{width:34px;height:34px;border-radius:99px;background:#20242b;border:1px solid #3a414b;
-          display:grid;place-items:center;font-size:11px;color:var(--ink);font-weight:600}
+  .avatar{width:34px;height:34px;border-radius:99px;background:#efe7d8;border:1px solid #cdbfa9;
+          display:grid;place-items:center;font-size:11px;color:#4a4238;font-weight:600}
 </style>
 </head>
 <body>
@@ -103,9 +103,9 @@
   const defs = svg.append("defs");
   const og = defs.append("linearGradient").attr("id", "ocean")
     .attr("x1", "0%").attr("y1", "0%").attr("x2", "35%").attr("y2", "100%");
-  og.append("stop").attr("offset", "0%").attr("stop-color", "#123243");
-  og.append("stop").attr("offset", "55%").attr("stop-color", "#0c1e2b");
-  og.append("stop").attr("offset", "100%").attr("stop-color", "#071018");
+  og.append("stop").attr("offset", "0%").attr("stop-color", "#fdfaf3");
+  og.append("stop").attr("offset", "55%").attr("stop-color", "#f6f0e4");
+  og.append("stop").attr("offset", "100%").attr("stop-color", "#eee5d3");
   const gl = defs.append("filter").attr("id", "glow")
     .attr("x", "-80%").attr("y", "-80%").attr("width", "260%").attr("height", "260%");
   gl.append("feGaussianBlur").attr("stdDeviation", "3").attr("result", "b");
@@ -113,7 +113,8 @@
   merge.append("feMergeNode").attr("in", "b");
   merge.append("feMergeNode").attr("in", "SourceGraphic");
 
-  svg.append("path").attr("class", "ocean").attr("d", path({type: "Sphere"}));
+  svg.append("path").attr("class", "ocean").attr("d", path({type: "Sphere"}))
+     .attr("stroke", "#e0d5c2").attr("stroke-width", 1);
   svg.append("path").attr("class", "graticule")
      .attr("d", path(d3.geoGraticule().step(inAustralia ? [5, 5] : [20, 20])()));
 
@@ -130,7 +131,7 @@
       if (!xy) return;
       const [x, y] = proj(xy);
       const isHome = place === "Melbourne";
-      const colour = isHome ? "#ffd9a8" : info.work ? "#ff8a3d" : "#4fd1b5";
+      const colour = isHome ? "#e0641f" : info.work ? "#c8521d" : "#2c8d79";
       g.append("circle").attr("cx", x).attr("cy", y)
         .attr("r", isHome ? 6 + Math.min(10, info.count * .8) : 7)
         .attr("fill", colour).attr("class", "pin-core");
