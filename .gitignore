@@ -20,3 +20,8 @@ logs/
 apps/team-map/status-today.json
 # per-week output carries leave data: keep it out of git and the library
 apps/team-map/weeks/
+apps/team-map/week.html
+apps/team-map/week.txt
+apps/team-map/week.json
+apps/team-map/week-data.js
+apps/team-map/map-*.png
