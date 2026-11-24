@@ -46,8 +46,10 @@ an alias table, or the org map's ids need to be added to the calendar sheet.
    included; anyone else is listed as skipped.
 2. `map.html` draws the world map from `week-data.js` and `where.json`. People away
    with no recorded place appear as faces under the map rather than as guesses.
-3. The map is captured to `map.png` (headless browser, tight crop), and
-   `email-mockup.html` is the note that goes out: title, map, week at a glance.
+3. `make_week.py` builds one folder per week, `weeks/<monday>/`, holding
+   `data.json`, `data.js`, `map.html`, the captured `map.png` and `email.html`.
+   The note that goes out is `weeks/<monday>/email.html`: title, map, week at a
+   glance. There is no single shared mock-up; each week is its own folder.
 
 Before sending, add the places: edit `where.json`, or ask the assistant to. Then
 re-run steps 1 to 3. Nothing sends itself.
