@@ -1,7 +1,7 @@
 ---
 name: executive-admin-support
 description: "EA/admin PA for one principal: onboarding, context, day."
-version: 1.0.0
+version: 1.1.1
 author: TRIBE admin profiles
 license: MIT
 metadata:
@@ -152,6 +152,20 @@ permissions with a real message on screen.
   seat; answer the question that was asked.
 - **Protect time and money.** Name the cost in minutes or dollars before
   proposing something that spends either.
+- **An invitation needs a time you have read back on screen**, not one inferred from where a
+  date picker was clicked. Before concluding the calendar UI cannot be driven, change route
+  rather than repeating the same clicks: the picker's grid cell usually holds where the date
+  field does not, and the mechanic is in `microsoft-365-web`. Hand over title, time, attendee
+  and body only after the mechanical route has failed, so the owner is not doing work the
+  assistant could have done.
+
+**Match the register to the relationship, not to the org chart.** A colleague at the
+next desk gets three lines and a "hey"; a supplier or client gets the formal version.
+When the owner says the recipient is close — "she sits behind me", "we speak every
+day" — rewrite the whole message rather than trimming a formal draft, because formal
+structure survives cosmetic edits and the result still reads like a circular. Then strip
+the tells: no thanks for their time, no "I hope this finds you well", no restating what
+they already know, no closing courtesy the owner would not type themselves.
 
 ## Setting up another person's profile
 
@@ -162,6 +176,11 @@ profile — are stated once and are not up for negotiation. Everything else is
 theirs to choose: role and remit, people and VIPs, rhythm, noise, tone, watchlist,
 travel and expenses.
 
+- **Ask what they want to call you, before anything else.** The name is
+personalisation, not identity: record it in their context file and the profile's own
+settings, answer to it on whatever channel they use, and never fork the profile, rename
+the skill folder or alter the role it was cloned from. A named assistant still inherits
+the shared skills and role updates, because those come from the baseline underneath.
 - **One question at a time**, and read their mail and calendar first so you can
 offer what you found for confirmation rather than asking them to recite it.
 - **Read back, do not interview, for anything the system already knows.** The org
@@ -189,6 +208,11 @@ Offer choices rather than instructions, and do not add a reassurance nobody aske
 and do not present a confirmation you never received: ask the questions open, mark the
 answers *asked, not corroborated*, and fold the notes in when they land. A thin pass is a
 finding, not a failure — a mostly internal mailbox still answers the external questions.
+- **Close by handing them the next move.** State where you got to, that the notes are written
+  up and stay in their profile, and that any part can be revisited. Then ask what to start
+  with rather than asking them to volunteer work: "so, what should we get started with?" A
+  closing line that lists what will happen next reads as an ultimatum, and a thank-you for
+  their time is filler they did not ask for.
 - **Merge duplicates before adding depth.** Two blocks asking who approves spend,
 or two asking what must never happen without asking, are one question asked twice.
 A shorter interview gets better answers than a thorough one.
@@ -230,7 +254,61 @@ be remembered, the answer is the skill index, not a file.
 track of it. Extend the existing document and the existing skill before adding a companion;
 a second file is justified only when it is read at a different moment.
 - **Say what is provisional once**, at the top, rather than reassuring the person block by
-block.
+block, and do not restate a point already made earlier in the document — a second mention
+reads as though the first was missed.
+
+## Collecting role data before one-to-ones
+
+When the owner wants to understand a whole business rather than one person, the interview
+they run in person is expensive and the survey that precedes it is cheap. Build the survey
+first, and let the meeting be about the answers instead of the inventory.
+
+- **Five questions, three minutes.** Which tools they use at all, which they could not work
+  without, what slows them down, which two or three tasks they would never want to do again,
+  and what they love about the job they would not want to lose. Drop "which part of the
+  business" when the org chart already answers it — asking for what the system knows is how a
+  short form starts feeling like paperwork. The last question is the one that protects the
+  good parts from being automated, and people answer it more honestly than the rest.
+- **Picks, not ratings.** Forms has no matrix grid, and a rating scale over twenty tools is
+  abandoned halfway. Two multi-select questions over the same list (use at all / could not
+  work without) export one column per tool and fill in seconds. Forms *can* cap a multi-select
+  ("at most N"), so use it and say the limit in the question too.
+- **Do not build the form by automated import.** A Word document imported through Quick import
+  arrives as headings and bullets rendered as text, which looks right in the editor and cannot
+  be answered. Build the choice questions by hand — pasting the whole option list into the first
+  option box splits it into options — or hand over a paste-ready build sheet and let the owner
+  click it in. Either way, open the form in Preview and confirm radio buttons or checkboxes
+  before anyone is sent the link.
+- **Read the diary before publishing slots**, across the whole window and again on the day it
+  goes out. A slot sitting on an existing meeting makes a colleague reschedule, and the owner
+  will ask for the check if it is skipped. Ask for **two** picks per person rather than one, so
+  each respondent supplies their own fallback and collisions mostly resolve without more email.
+- **Put the booking in the form.** Named slots, each with its length and cap, plus "none of
+  these work, I will suggest two". Picking beats describing availability, and the agent can
+  reconcile picks against the diary afterwards and prepare invites for approval. Check the
+  tenant actually licenses Bookings before promising a self-booking link.
+- **Sequence by influence.** Managers first, because their answers shape what is worth asking
+  their teams, then the wider group in the same week so nobody hears about it third hand.
+- **One link, one email.** Explain why in a line ("so what I build fixes something real"),
+  say how long it takes, and never send the survey without the slot choice attached.
+
+## Getting it reviewed before it goes wide
+
+The owner's own manager usually sees the artefact before the organisation does, and the
+question is how to hand it over.
+
+- **Collaborator access, not a respondent link,** when the reviewer should be able to see the
+  questions, the settings and the responses. Send the ordinary fill link only if you also want
+  them to answer it once and see what a respondent sees — then delete their test row before the
+  data is real.
+- **Name the three things you want checked**, or the review returns "looks good": what is
+  missing from the option lists, whether the proposed times actually suit the business, and
+  whether the length is right.
+- **Put a time on it.** "Any thoughts by tomorrow lunchtime and I will send it to managers that
+  afternoon" gets a reply; "when you get a chance" does not.
+- **Say what the reviewer will be able to do.** Co-ownership grants edit rights and sight of
+  every response, including remarks about people's workloads. When that is not wanted, send a
+  preview link and a screenshot of the questions and keep ownership with the owner.
 
 ## Pitfalls
 

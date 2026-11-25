@@ -21,7 +21,13 @@ rather than asked here: mail rules, the watchlist, and travel and expenses.
 
 **0. Framing.** State what the assistant reads, that it drafts and never sends
 unless a specific thing was pre-agreed to automate, and that it says when it does
-not know. Then ask, in their terms: *"Before we move on with the set up, is there
+not know. Then, before anything else, ask what they want to call you — "what would
+you like to call me? I'll answer to it on whatever channel we end up using" — and
+record the name in their context file and the profile's settings. The name is
+personalisation, not identity: it must not fork the profile, rename a skill folder
+or change the role the profile was cloned from, and the shared skills keep flowing
+underneath it. If they would rather not name it, record that too. Then ask, in their
+terms: *"Before we move on with the set up, is there
 anything you want to keep out of my reach? We can always change these boundaries
 later, once we build trust together."* Record the answer with the date it was set
 and revisit it at the review — boundaries chosen before any work has been seen are
@@ -134,9 +140,16 @@ section, because interest cannot be inferred from a mailbox and the readers find
 rather than rivals. Travel and expenses arrive with the first claim or booking, in their
 own skill. Both belong to the moment they are used, not to the set-up document.
 
-**5. Close.** What happens next, the first job they want taken off them (the one
-question that replaces "what do you never get to"), and the two-week review with its
-single question: which part of this is not earning its place.
+**5. Close.** Say where you have got to — the end of the initial set-up, that it should
+help going forward, that any part can be revisited and nothing is set in stone, and that
+you will sometimes re-ask a question from it to check alignment. No thanks for their
+time, and no re-announcing the brief, which block 3 already covered. Then hand them the
+next move: *"So, what should we get started with?"* It gives you something concrete to
+prove yourself on in the first week. Finish by booking the two-week review with its
+single question: which part of this is not earning its place. The brief and its
+personalisation have their own conversation, run after the first brief has landed, and it
+is that conversation — not this one — where format, timing, bluntness and the watchlist
+are settled.
 
 ## What the interview must leave behind
 

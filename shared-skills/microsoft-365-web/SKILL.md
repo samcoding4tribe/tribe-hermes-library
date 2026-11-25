@@ -1,7 +1,7 @@
 ---
 name: microsoft-365-web
 description: "Outlook and Teams web access when Graph is blocked."
-version: 1.0.0
+version: 1.1.0
 author: TRIBE admin profiles
 license: MIT
 metadata:
@@ -124,8 +124,88 @@ you have read the inbox. Write "the seven threads that rendered" rather than
 pane; the invite body and the attendee list are not in the subject line you
 clicked, and the attendees are usually the point.
 - The calendar header (`Loaded N events in N selected calendars`) is the cheapest
-proof that a quiet week is genuinely quiet rather than not yet loaded. Quote it
-when reporting an empty diary.
+  proof that a quiet week is genuinely quiet rather than not yet loaded. Quote it
+  when reporting an empty diary.
+
+### Scanning the diary for a date window
+
+Day cells do not expose their event text in a node you can read reliably, and the
+"Loaded N events" header is missing from some views. What does work is the event
+elements' own accessible names, which pair a full date with a time:
+
+```python
+js("""[...document.querySelectorAll('[aria-label]')]
+  .map(e => e.getAttribute('aria-label') || '')
+  .filter(l => /December \\d{1,2}, 2026/.test(l) && /\\d{1,2}:\\d{2}/.test(l))""")
+```
+
+Swap the month for the window you need and run it in month view: one line per
+event, each carrying its date. It covers the days the view has rendered, which is
+what a slot check needs. Report two things from it beyond clashes: an empty day,
+and any pair of events starting at the same minute, because the grid renders a
+double-booking without complaint and nobody else will notice it.
+
+## Creating an invitation
+
+Read the resolved date and time back before going any further; the click is not
+the setting.
+
+Sequence that has held end to end — follow it in this order rather than
+improvising clicks:
+
+1. **New event** from the calendar. The composer opens on today, at the next half
+   hour, with a Teams toggle already on.
+2. Title line, then the attendee line: `insertText` the address and dispatch
+   Enter, then confirm a chip with the person's name and availability appeared.
+3. Click the date line to open the picker, then click the small **calendar icon at
+   the right of the start date field**. A month grid opens: check its header,
+   click the day cell, and read the date back out of the page text before
+   touching anything else.
+4. Click the **Start time** field, Backspace a dozen times to clear it, then
+   `insertText` `11:00 AM`; repeat for End time. The header line must read e.g.
+   `Mon 30/11/2026 11:00 AM - 11:30 AM`.
+5. Close the picker by clicking **blank space in the left margin of the dialog**,
+   never the middle of the compose.
+6. Click the body area, confirm the cursor is in the body, then insert the whole
+   message in one call.
+7. Read four things off the screen before Send — title, attendee chip, exact date
+   and times, body text where it belongs — then send and verify it landed.
+
+Pitfalls that cost real time here, each one observed:
+
+- **Month grids render the neighbouring month's leading and trailing days in the
+  same rows.** Clicking at the position of a month's final day can land on the
+  2nd of the next one. After any date selection, read `\\d{1,2}/\\d{1,2}/\\d{4}`
+  out of the page text and correct it before touching the times.
+- **The date field is a control, not a text box.** Focus, select-all and
+  `insertText` are often ignored, and the picker popup takes focus back. Click
+  the exact cell inside the picker, then verify the value.
+- **The date field is a control, not a text box.** Typing appends to the masked
+  value instead of replacing it, so a select-all then `insertText` leaves rubble
+  like `:5/11/202630/11/2026`, and the field may still submit the original date.
+  Use the calendar-grid cell, and Backspace the value to empty before typing if
+  you must type at all.
+- **Opening the composer from the grid is not dependable.** A click on a day-view
+  slot can select the slot and open nothing, so do not build the event out of the
+  grid. If two attempts at a coordinate have not held, change route — grid cell,
+  then hand-over — rather than trying a fifth coordinate.
+- **With the picker open, a click lands in whichever field sits under the cursor.**
+  Text inserted after such a click went into a scheduling poll's end-date field
+  and silently converted the draft into a poll with three options. Close the
+  picker from the margin, and if the composer ever shows "Create a poll to find
+  the best meeting time", discard the draft and rebuild it as an **Event** rather
+  than sending a poll to a colleague.
+- **Verify the invitation after sending, not the composer closing.** The event must
+  be back on the grid at the right time, and its detail pane must read
+  `You're the organizer, <name> didn't respond`. That is the difference between a
+  sent invitation and a closed window.
+- **Never dispatch an invitation whose date, time and recipient you have not read
+  back on screen.** Hand the owner the exact set instead: title, start and end,
+  attendee address, paste-ready body. An invite with the wrong time reaches a
+  colleague and has to be withdrawn; a short hand-over costs them thirty seconds.
+- **Invitations are forwardable by default**, so an owner who wants a colleague to
+  add people only needs a line in the body saying so; changing attendees directly
+  stays with the organiser.
 
 ## Getting attachments and files onto disk
 
@@ -150,6 +230,81 @@ session, so the cookies do the authorising:
 
 Then parse the file locally with openpyxl or pandas. A spreadsheet is workable data;
 its rendered viewer is not.
+
+## Composing a draft in the web editor
+
+The compose pane is a small editor with its own rules. These steps were exercised
+end to end; follow them in order rather than improvising clicks.
+
+1. **New mail**: click the button whose accessible name matches
+   `/New mail|New message/`.
+2. **To**: click the To row, `cdp('Input.insertText', text=address)`, then dispatch
+   an Enter key event so the address resolves into a recipient chip. Verify a chip
+   appeared; a raw string in the field is not a recipient.
+3. **Subject**: `document.querySelector('input[aria-label=Subject]')`, focus and
+   select it, then insertText.
+4. **Body**: `document.querySelector('[contenteditable=true][role=textbox]')`,
+   focus it, and send the whole body in one `cdp('Input.insertText')` call.
+   Newlines survive and render as paragraph breaks, so write the prose you want
+   rather than assembling it line by line.
+5. **Save and verify**: wait for the compose header to read `Draft saved at HH:MM`,
+   then open the Drafts folder and read the row. The compose pane is not proof; a
+   row in Drafts with the right subject and time is.
+
+Pitfalls that cost real time here:
+
+- **A DOM Range plus Backspace does not clear the body.** Selecting with
+  `selectNodeContents` and pressing Backspace can leave the old text in place, and
+  the replacement then lands on top of it. To rewrite: `el.focus()`,
+  `document.execCommand('selectAll', false, null)`, dispatch Delete, then check
+  `el.innerText.length` is about zero before inserting the new body.
+- **Clicking an unrelated row while compose is open opens another draft under you.**
+  Before editing, read the subject input and the To chips; otherwise a "rewrite"
+  lands in somebody else's message.
+- **Update the existing draft rather than composing a second one.** A reply to
+  "make it more casual" is an edit of the draft they already have. Two drafts to
+  the same person is clutter the principal has to clean up.
+- **One insertText call per field.** Typing a paragraph character by character
+  through key events is slow enough to hit tool timeouts.
+
+## Building a survey in Forms
+
+Forms is the right tool for a pre-meeting survey. Do not author it by automated import: a
+Word document imported through **Quick import** produced headings and bullets as text
+paragraphs, which looks correct in the editor and cannot be answered by respondents. Build
+the questions by hand, pasting the whole option list into the first option box so Forms splits
+it, or hand the owner a paste-ready build sheet and let them click it in — they finish it
+faster than a designer that reorders fields under you.
+
+Forms does support caps (**at most N options**), so a "pick two or three" question can be
+enforced rather than merely worded. Verify answerability in **Preview** before sharing: zero
+radio or checkbox inputs on a question with options means the form is broken.
+
+Before offering time slots, read the principal's calendar for the whole window and re-check
+it the day the form goes out; a slot that lands on an existing meeting is a reschedule you
+have handed to a colleague. Ask for **two** picks per person, not one, so every respondent
+supplies their own fallback and most clashes resolve without another round of email. Check
+`bookings.cloud.microsoft/bookwithme` before promising a self-booking link; where the tenant
+does not licence Bookings, named slots in the form are the fallback.
+
+A designer page opens as its own CDP target, so a click that "does nothing" means `js()` is
+still on the old tab — list targets and navigate to the full URL, with the `id=` printed in
+full. Full recipe: `references/forms-and-bookings.md`.
+
+## The window belongs to them
+
+This browser is the principal's window as much as the agent's: they read mail and forms in it
+while you work. Navigating the tab they are looking at takes the page away from them mid-read,
+and they will notice before you finish the next call.
+
+- **Say so before you take the window.** One line: what you are about to do and that the tab
+  will move. It costs a sentence and prevents the interruption being read as the agent
+  breaking their machine.
+- **Prefer a new tab over reusing theirs**, and leave their reading tab where it was.
+- **One profile means one browser.** There is no side channel to build in: a second Chromium
+  on the same `user_data_dir` collides, and pointing the config at Edge drops the Microsoft
+  sign-in this profile depends on. A genuinely separate build browser is a second profile with
+  its own sign-in, which is a decision for the owner, not something to improvise mid-task.
 
 ## Drafting rules for these profiles
 
@@ -206,6 +361,12 @@ needs an explicit one.
 - **Quote the badge, not a total you did not read.** An unread count is the
   folder's claim; the rows you reviewed are yours. Presenting one as the other is
   how an assistant reports an empty afternoon on a full inbox.
+- **A navigation that times out waiting for the daemon is not a broken browser.**
+  After a burst of clicks and text inserts, `Page.navigate` can return
+  `timed out after 5s waiting for the daemon`; call `ensure_real_tab()` in a fresh
+  `browser_exec` call and the session recovers with its state intact, including
+  anything that was already saved. Retry once before reporting the browser as
+  unusable, and prefer reading state you already have over re-driving the UI.
 - **Do not schedule inbox or diary briefs before access is verified.** A cron
   that fires into a sign-in page produces noise the human learns to ignore.
 
