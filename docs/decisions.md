@@ -416,3 +416,20 @@ picked up, reused or managed by someone else.
 **Not iCloud.** This Mac has no iCloud Drive and Desktop and Documents are plain
 local folders. Nothing in this setup should depend on iCloud, and no path offered to
 a colleague should point at one.
+
+---
+
+## D29. Research stays inside the folders it was given
+
+**Decision.** An agent or subagent working on TRIBE files searches only the three
+synced libraries under `OneDrive-TribeTravelandEvents`, with bounded depth. No
+Spotlight (`mdfind`), no home-directory sweeps, no touching Desktop, Documents,
+Downloads, iCloud or the OneDrive internals in Group Containers.
+
+**Why.** A disc-wide Spotlight query prompts macOS for access to iCloud and other
+protected folders. On a work machine that prompt is alarming and, worse, it invites
+consent to something nobody asked for. It also means an agent can wander into
+personal material while looking for a supplier list.
+
+**How.** Name the libraries and the search terms in the brief. If a file is not in
+those libraries, report it as not found rather than widening the search.
