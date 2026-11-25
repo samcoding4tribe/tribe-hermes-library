@@ -318,6 +318,12 @@ and a validation step keeps it correct.
 access to the repo can change anything. The library folder is where edit rights
 belong; the repo stays the maintainer's.
 
+**Amended 26 November 2026.** Access, not edit. Sam's clarification: the four named
+managers need to be able to read the org chart — it describes them, and it is their
+property — but they do not edit it. Changes come to Sam, who applies them in the
+repo. The library copy therefore stays a published artefact, and `sync` can refresh
+it without destroying anyone's work.
+
 ---
 
 ## D24. A backup is tested or it is a guess
