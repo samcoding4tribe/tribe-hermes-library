@@ -1,48 +1,40 @@
-# Two separate projects, tracked here
+# Five threads, one page each
 
-Both came from the same conversation on 25 November 2026 and are deliberately kept
-apart: different users, different source content, different failure modes.
+Every open thread has a checkpoint with the same four parts: where it stands, what
+finished looks like, the remaining work in order, and what only Sam can answer. Start at
+the checkpoint, not the brief, when picking something up.
 
-## 1. Events preferred supplier knowledge base
+| # | Thread | Checkpoint | State | Next action |
+|---|---|---|---|---|
+| 0 | OneDrive will not hand over files | `checkpoint-onedrive.md` | Broken, blocks the two knowledge projects | Relaunch the client, then reset with Sam's yes |
+| 1 | Profile set-up interview | `checkpoint-interview.md` | Kit written, needs consolidating | Two small edits, then a dry run |
+| 2 | Events supplier knowledge base | `checkpoint-events-suppliers.md` | Brief done, nothing built | Fix hydration, then build the list |
+| 3 | Travel consultant support | `checkpoint-travel-support.md` | Brief done, waiting on design | Sam's five topics, then a pilot |
+| 4 | Weekly whereabouts note | `checkpoint-whereabouts.md` | Running, scheduled, rehearsed | One access test by an ordinary employee |
 
-Brief: `events-suppliers.md`. Status: draft for review, nothing built.
+Work one at a time, top to bottom. Thread 0 first because it unblocks 2 and 3, then 1
+because it is nearly finished and gates every future profile.
 
-The problem is content and metadata, not software: supplier paperwork is re-made per
-event, the master list is named 2025 and was last saved in 2026, and insurance is
-tracked by filename. The recommendation is a SharePoint list plus a documents
-library with closed term sets and an append-only rates list, inside the existing
-licence, with owner and expiry reminders in phase one.
+Out of scope here, and owned by the builder workstream: naming rules beyond the label,
+telemetry on which skills get used, and pooling improved skills back into the baseline.
+The naming rule itself is D22 and D31 in `docs/decisions.md`.
 
-## 2. Interactive support for travel consultants
+## The briefs behind them
 
-Brief: `travel-support.md`. Status: draft for review, nothing built.
+- `events-suppliers.md` — research and recommendation for the supplier knowledge base:
+  three competing supplier records, paperwork remade per event, a SharePoint list plus a
+  documents library with closed vocabularies and an append-only rates list.
+- `travel-support.md` — research and recommendation for the consultant assistant: an
+  answer needs three places at once, so five curated topics with owners and a written
+  refusal rule come before any platform choice.
 
-The problem is that an answer needs three places at once (OneNote for logins and
-commission, the manual for rate codes, a client folder for fees), and the assistant
-cannot be better than the content it reads. The recommendation is a Copilot Studio
-agent piloted on five curated topics with one consultant, with a written refusal
-rule, because a wrong fee reaching a client is the risk worth designing against.
-
-## Working order, agreed 25 November 2026
-
-One thread at a time. First the profile set-up interview, checkpointed in
-`checkpoint-interview.md`, because it gates every future profile and does not wait on
-anything. The two knowledge projects follow, and the travel one waits for Sam's design
-work.
-
-## Shared blocker, found while researching both
-
-Most of the source material will not open on this Mac. Files carry the `dataless`
-flag, meaning OneDrive has them as online-only placeholders, and reading one fails
-with `Resource deadlock avoided`. Counts at the time of research: 3,463 of 3,714
-files in the Share Drive, and 1,093 of 1,112 in the Travel library.
-
-Nothing above can be built on content that will not open, so hydrating those folders
-comes before either phase one. It is also why both briefs mark document contents
-UNKNOWN rather than guessing.
+Both were produced on 25 November 2026 and both mark document contents UNKNOWN, because
+of the hydration fault above. That is honest rather than incomplete: nothing was inferred
+from a filename that was never opened.
 
 ## A security note worth acting on separately
 
 `TRIBE GROUP - TRIBE Travel/XXX - KELLY to review what to keep/Copy of Passwords (002).xlsx`
-is a plaintext-looking credential file sitting in a live folder. Whatever happens with
-these projects, that one should be moved to a password manager and deleted.
+is a credential file in a live folder. By decision it stays where it is and no agent may
+open it: see `config/exclusions.txt`, D30, and `scripts/scope_check.py` for what currently
+matches.
