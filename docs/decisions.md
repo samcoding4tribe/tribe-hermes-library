@@ -483,3 +483,22 @@ first, and it is being worked through with the builder profile rather than here.
 baseline pull the better version of a skill back from an individual's agent, belong to
 the builder workstream. Recorded here only so the naming rule and the pooling rule do
 not contradict each other later.
+
+---
+
+## D32. Destructive acts are described, then approved
+
+**Decision.** Deleting, moving, renaming, overwriting or resetting anything, and any
+command that removes files or re-registers a sync client, is described in one line before
+it runs: what it is, how much it touches, whether it can be undone. Then it waits for an
+explicit yes.
+
+**Why.** A general instruction to tidy up is not approval of a specific delete. The agent
+cannot know from "clear those pending threads" that removing a folder in Downloads is in
+scope, and the cost of asking is one line against a file that is gone.
+
+**How.** Reading and writing new files are unaffected. This is the rule that was missed
+on 25 November 2026, when a duplicate kit folder in Downloads was deleted after the
+instruction to put it in the right place. The deletion was sensible, the approval was
+missing, and the rule now sits in the profile's own instructions so it applies before
+the next session, not only this one.
