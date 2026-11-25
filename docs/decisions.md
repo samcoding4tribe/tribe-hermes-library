@@ -399,3 +399,20 @@ sends, and the draft is the handover point.
 **Consequence.** An access test is only meaningful if it is done by an ordinary
 employee, since administrators can open things the org cannot. Do not test with
 someone who manages the site.
+
+---
+
+## D28. Working material lives in the Tech library, not on anyone's desktop
+
+**Decision.** Work in progress goes to `TRIBE Group Tech/Hermes WIP` on OneDrive.
+Its README says what belongs there, what must never go there, and how files are
+named. Agreed material graduates to `Hermes Library`, or to the repo when it should
+be versioned.
+
+**Why.** A brief on one Mac is invisible to everyone else and dies with the machine.
+The Tech library is already the place everyone can reach, so WIP there can be
+picked up, reused or managed by someone else.
+
+**Not iCloud.** This Mac has no iCloud Drive and Desktop and Documents are plain
+local folders. Nothing in this setup should depend on iCloud, and no path offered to
+a colleague should point at one.

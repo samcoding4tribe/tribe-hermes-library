@@ -98,6 +98,11 @@ the agent. Add that only when the agent on the other end is expecting it.
   of ids** when someone answers to two managers at once. `"unplaced": true` marks
   a person whose reporting line is not known yet; they render in a band beneath
   the tree rather than floating loose or inventing a parent.
+- **Lateral working relationships are deliberately absent.** Who works side by side with
+  whom is personal, changes as people move, and belongs in that person's own context
+  file, not in the shared spine where every deploying agent would read it as structure.
+  They are also asymmetric: two people can describe the same working pair with different
+  weights, and both records stand. Never reconcile them into one shared edge.
 - `blocks` place people together beneath one or more managers in numbered tiers,
   without changing anyone's `reports_to`: the block decides where a card is drawn,
   the person's own line stays factual. Use it when the owner wants a team kept in

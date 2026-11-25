@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- Starter for a people map widget. Replace the placeholder cards; keep the CSS.
+     Call it with ::preview{file="<absolute path>"} on its own line. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>People map</title>
+<style>
+  .wrap { font-family: inherit; color: var(--foreground, #e9e9ea); max-width: 960px; }
+  h1 { font-size: 1.05rem; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted-foreground, #a0a0a8); font-size: .8rem; margin: 0 0 22px; line-height: 1.45; }
+  .tree { display: flex; flex-direction: column; align-items: flex-start; }
+  .node {
+    background: var(--card, #1b1b1f); border: 1px solid var(--border, #3a3a40); border-radius: 8px;
+    padding: 10px 14px; min-width: 210px; box-sizing: border-box;
+  }
+  .node .name { font-weight: 600; font-size: .9rem; }
+  .node .role { color: var(--muted-foreground, #a0a0a8); font-size: .76rem; margin-top: 2px; line-height: 1.35; }
+  .tag {
+    display: inline-block; font-size: .64rem; text-transform: uppercase; letter-spacing: .07em;
+    color: var(--accent, #ff7a1a); border: 1px solid var(--accent, #ff7a1a); border-radius: 4px;
+    padding: 1px 5px; margin-top: 6px; opacity: .9;
+  }
+  .stem { width: 1px; height: 24px; background: var(--foreground, #e9e9ea); opacity: .45; margin-left: 30px; }
+  .band {
+    border: 1px dashed var(--border, #3a3a40); border-radius: 10px; padding: 14px 14px 16px;
+    background: color-mix(in srgb, var(--card, #1b1b1f) 60%, transparent);
+  }
+  .band-title {
+    font-size: .68rem; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted-foreground, #a0a0a8); margin-bottom: 12px;
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .row .node { min-width: 158px; flex: 1 1 158px; max-width: 340px; }
+  .owner { border-color: var(--accent, #ff7a1a); }
+  .lead { border-color: var(--foreground, #e9e9ea); }
+  .reports {
+    margin-top: 8px; padding-top: 7px; border-top: 1px dashed var(--border, #3a3a40);
+    font-size: .72rem; color: var(--muted-foreground, #a0a0a8); line-height: 1.35;
+  }
+  .ext { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; }
+  .ext .node { min-width: 210px; flex: 0 1 240px; }
+  .ext-title { font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-foreground, #a0a0a8); margin: 0 0 10px; }
+  .legend {
+    margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--border, #3a3a40);
+    color: var(--muted-foreground, #a0a0a8); font-size: .74rem; line-height: 1.5;
+  }
+  .legend b { color: var(--foreground, #e9e9ea); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Organisation — people map</h1>
+  <p class="sub">As given by the owner. Only the lines drawn below are confirmed; everything else is a card.</p>
+
+  <div class="tree">
+    <div class="node">
+      <div class="name">Top person</div>
+      <div class="role">Role · above the whole organisation</div>
+    </div>
+    <div class="stem"></div>
+
+    <div class="band">
+      <div class="band-title">Same level, beneath the person above</div>
+      <div class="row">
+        <!-- A card that holds a reporting line: keep .lead and add a .reports block -->
+        <div class="node lead">
+          <div class="name">Person A</div>
+          <div class="role">Role</div>
+          <div class="reports">↳ Person who reports to them — role</div>
+        </div>
+        <div class="node">
+          <div class="name">Person B</div>
+          <div class="role">Role</div>
+        </div>
+        <!-- Authority or ownership: keep .owner and a .tag, never a bigger box -->
+        <div class="node owner">
+          <div class="name">Person C</div>
+          <div class="role">Role</div>
+          <span class="tag">Part owner · executive power</span>
+          <div class="reports">↳ Person D, plus N unnamed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ext">
+    <div style="width:100%"><p class="ext-title">External</p></div>
+    <div class="node">
+      <div class="name">Supplier or partner</div>
+      <div class="role">What they do, names to come</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <b>Solid-bordered card</b> — holds a reporting line. <b>Accent border</b> — ownership or delegated authority, shown as a badge because it is authority rather than rank.
+    Still open: surnames, titles, and anyone counted but not yet named.
+  </div>
+</div>
+</body>
+</html>
