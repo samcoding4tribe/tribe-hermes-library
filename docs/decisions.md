@@ -502,3 +502,30 @@ on 25 November 2026, when a duplicate kit folder in Downloads was deleted after 
 instruction to put it in the right place. The deletion was sensible, the approval was
 missing, and the rule now sits in the profile's own instructions so it applies before
 the next session, not only this one.
+
+---
+
+## D33. Two profiles with two jobs: the builder and the admin
+
+**Decision.** `default` on Sam's machine is the builder. It builds and maintains profiles,
+the shared library, scheduled jobs, skills and documentation, and it is the more capable
+of the two: it may change tooling, write skills, run jobs and dispatch research. The
+`admin` profile is the organisational baseline for what an admin actually does, meaning
+inbox, diary, follow-ups, expenses and paperwork, and its soul is what the rest of the
+company inherits.
+
+**Why.** Sam did not want the admin doing builder work, and the reason is sound: a
+baseline that keeps changing to suit one engineer stops being a baseline. The two sexes
+of work also fail differently. Builder mistakes corrupt a template; admin mistakes reach
+a client.
+
+**How it is kept honest.** The admin soul stays the reference for admin behaviour and only
+receives additive rules that apply to any assistant, such as never deleting without a yes
+and never opening credential or client files. The builder soul names the boundary in its
+first paragraph so neither drifts.
+
+**Note on history.** The builder profile's soul had at some point been replaced by the
+shipped baseline paragraph. No backup of an earlier builder soul was found on this
+machine or in either library, so it was rebuilt from the admin persona's structure and
+the rules agreed in this conversation, rather than restored. If a richer version exists
+somewhere else, it should replace this one rather than be merged into it.
