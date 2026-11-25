@@ -98,6 +98,14 @@ about that assistant alone. Written when there is something to write, never
 scaffolded. Private: copied into the machine's backup, excluded from the repo and
 from the library. Details in `docs/profile-notes.md`.
 
+## 3d. The loop back is designed, and not built
+
+Everything above moves outward: template to person, one way. The return path — worked
+profiles improving the baseline — has a design and no code, in
+`docs/architecture-loop.md`. Two rules from it are already settled and shape anything
+that gets built: the pipeline writes to the library and never into a live profile, and
+no baseline update overwrites a soul (D34).
+
 ## 4. The repo
 
 `~/tribe-hermes-library`, with a private remote once the key is on GitHub.

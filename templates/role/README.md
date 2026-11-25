@@ -7,8 +7,8 @@
    assistant is invoked on every channel afterwards (D22, D31).
 1. Copy the folder to a role-based id:
    `cp -r templates/role ~/tribe-hermes-library/profiles/<role-name>`. The id is
-   not the assistant's name. A person may call theirs Jarvis; the folder stays
-   `assistant-<their name>`.
+   the role, never the assistant's name and never the person's (D22). A person may
+   call theirs Jarvis; the folder stays something like `assistant-coordinator`.
 2. Fill the placeholders in `SOUL.md`: owner, title, profile name, date.
 3. Create the profile on the machine: `hermes profile create <name>`
 4. Add the credentials it needs to `~/.hermes/profiles/<name>/.env`.

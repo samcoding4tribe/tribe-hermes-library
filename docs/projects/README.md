@@ -11,6 +11,8 @@ the checkpoint, not the brief, when picking something up.
 | 2 | Events supplier knowledge base | `checkpoint-events-suppliers.md` | Brief done, nothing built | Fix hydration, then build the list |
 | 3 | Travel consultant support | `checkpoint-travel-support.md` | Brief done, waiting on design | Sam's five topics, then a pilot |
 | 4 | Weekly whereabouts note | `checkpoint-whereabouts.md` | Running, scheduled, rehearsed | One access test by an ordinary employee |
+| 5 | Pooling worked profiles into the baseline | `checkpoint-distillation.md` | Parked, nothing built | Start after profiles have been worked for a month |
+| 6 | Protecting keys across the estate | `checkpoint-credentials.md` | Parked, not started | Only when a trigger in that file is met |
 
 Work one at a time, top to bottom. Thread 0 first because it unblocks 2 and 3, then 1
 because it is nearly finished and gates every future profile.

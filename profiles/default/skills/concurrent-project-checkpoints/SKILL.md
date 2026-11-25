@@ -63,6 +63,11 @@ Name what is out of scope and whose workstream it belongs to. A thread that keep
 re-entering the list from another conversation is the usual cause of "how many are we
 doing?".
 
+When the user redirects mid-conversation — "we are getting sidetracked" — the tangent
+becomes a parked thread: write the page, add the row with state Parked, say where it is in
+one line, and go back to the thread they named. Finishing the tangent anyway, or defending
+it at length, is what makes the user stop trusting the list.
+
 ## Pitfalls
 
 - A checkpoint that restates the brief is a second brief. Cite it by filename and spend

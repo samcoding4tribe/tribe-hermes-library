@@ -529,3 +529,23 @@ shipped baseline paragraph. No backup of an earlier builder soul was found on th
 machine or in either library, so it was rebuilt from the admin persona's structure and
 the rules agreed in this conversation, rather than restored. If a richer version exists
 somewhere else, it should replace this one rather than be merged into it.
+
+---
+
+## D34. A soul is local; a rule may travel
+
+**Decision.** No baseline update overwrites a profile's `SOUL.md`. Souls are authored on
+the machine that runs them, by the person whose assistant it is, with the template as a
+starting point only. What may be harvested from a soul and offered back as a baseline
+change is a *rule* — a boundary, or a failure learned the expensive way — never voice,
+tone or phrasing. A soul change reaches a person as a diff they choose to apply, never as
+a file that replaces theirs.
+
+**Why.** Voice is the personalisation. Pool several people's voices and the estate
+converges on one house voice wearing each manager's name, and the assistants stop being
+the thing that made them worth having. Rules are different: "never send without the ABN"
+cost somebody a mistake to learn, and it is true for anyone doing that job.
+
+**Status.** The voice half was settled by Sam on 26 November 2026. The mechanism half —
+how a harvested rule becomes a proposal, at what threshold, approved by whom — is thread 5
+in `docs/projects/`, parked until profiles have actually been worked.
