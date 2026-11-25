@@ -89,3 +89,5 @@ Recorded 20 November 2026. Delete a line when it is done, and say why in the com
       Azure subscription and Copilot licensing exist.
 - [ ] Move `Copy of Passwords (002).xlsx` out of the live travel folder into a password
       manager and delete the file.
+- [ ] Set up Sam's own persona first, through the builder profile, with the name asked
+      before anything else (D31).

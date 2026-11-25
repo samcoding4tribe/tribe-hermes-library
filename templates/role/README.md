@@ -1,5 +1,9 @@
 # Turning this into a new profile
 
+0. Ask what the person wants to call it. This is the first question of the setup
+   interview, not the last, because the name is how it is invoked on every channel
+   afterwards (Teams, email, the desktop app). Record it as the label; the folder id
+   stays role-based, so the baseline stays updatable. See D22 and D31.
 1. Copy the folder to a role-based id:
    `cp -r templates/role ~/tribe-hermes-library/profiles/<role-name>`. The id is
    not the assistant's name. A person may call theirs Jarvis; the folder stays

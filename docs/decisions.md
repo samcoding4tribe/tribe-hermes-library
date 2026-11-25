@@ -453,3 +453,33 @@ them is a rule enforced in one place, and it survives people adding new files.
 
 **To do.** The two password workbooks still belong in a password manager eventually.
 That is a separate decision.
+
+---
+
+## D31. The name is asked first, answered on any channel, and never touches the baseline
+
+**Decision.** Three things belong together.
+
+1. The setup interview asks what the person wants their assistant called, as the first
+   question. The answer is stored as the label.
+2. That label is what the person says on any channel to reach it: typing the name in
+   Teams, addressing it in an email, naming it in the desktop app.
+3. The label changes nothing that the shared baseline depends on. Skills, guardrails
+   and profile updates still flow from the generic `pa`, `admin` and `ea` profiles and
+   from the library, keyed on the role id, not on the name.
+
+**Why.** People personalise what they talk to, and they should. But if a nickname
+becomes an id, then every future update to the baseline has to be applied by hand to a
+folder called something else, and the pool of shared skills stops being pullable. The
+name is a layer over the role, not a fork of it.
+
+**Consequence.** A person may rename their assistant whenever they like, with no
+migration. What cannot be renamed casually is the profile id, and that is D22.
+
+**Open.** Which persona is built first is not decided. Sam's own is the intended
+first, and it is being worked through with the builder profile rather than here.
+
+**Also noted, not this repo's job.** Telemetry for skill use, and the pool that lets a
+baseline pull the better version of a skill back from an individual's agent, belong to
+the builder workstream. Recorded here only so the naming rule and the pooling rule do
+not contradict each other later.
