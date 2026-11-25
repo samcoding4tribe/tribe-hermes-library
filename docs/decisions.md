@@ -471,8 +471,8 @@ That is a separate decision.
 2. That label is what the person says on any channel to reach it: typing the name in
    Teams, addressing it in an email, naming it in the desktop app.
 3. The label changes nothing that the shared baseline depends on. Skills, guardrails
-   and profile updates still flow from the generic `pa`, `admin` and `ea` profiles and
-   from the library, keyed on the role id, not on the name.
+   and profile updates still flow from the two baselines, `admin` and `ea`, and from the
+   library, keyed on the role id, not on the name.
 
 **Why.** People personalise what they talk to, and they should. But if a nickname
 becomes an id, then every future update to the baseline has to be applied by hand to a

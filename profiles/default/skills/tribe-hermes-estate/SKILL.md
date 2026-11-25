@@ -82,6 +82,21 @@ as taste.
 - Sam's idea vault is `~/Documents/sam-tribe-brain` (Obsidian, git on `main`, Obsidian Git
   commits and pushes). Reading it is allowed; writes happen on request only. Its note
   format, tag rules and the `hermes` tag are in `references/sam-tribe-brain.md`.
+- `docs/setup.md` is the estate's front door: install on Windows and macOS, the three
+  `config.env` paths per platform, then the first-run sequence. It publishes as the
+  library's `README.md` through a name special-case in the scripts. Publishing steps and
+  the checks that prove a run landed: `references/library-publishing.md`.
+- `templates/builder/` is the first profile on any new machine — labelled Hermes, its soul
+  carrying the first-run job: run the setup interview, create the owner's role profile, hand
+  the person over (D35). It holds `{{OWNER}}`-style placeholders and must never carry one
+  person's details. The live `profiles/default/SOUL.md` is a separate copy and is not
+  regenerated from the template.
+- `docs/projects/README.md` numbers every thread with its checkpoint file. Parked threads
+  still get a row and a file, so a direction raised mid-conversation costs one small page
+  rather than a re-argument later.
+- The vault holds ideas; the repo holds decisions and procedures. Do not copy a decision
+  into the vault as a second version — the vault note says what the idea is and points at
+  the repo path that settles it.
 
 ## Pitfalls
 
@@ -111,3 +126,13 @@ as taste.
 - Where a doc states a rule and then gives an example that breaks it, readers follow the
   example. Fix the example, not just the rule (a role id illustrated with a person's name
   is how `assistant-<their name>` survived a naming decision).
+- Never explain a repo↔library difference you measured before your own sync ran. Reading the
+  library first and the repo second makes an in-flight sync look like a missing script
+  feature, and the correction costs the user's trust in every other state you report. Sync,
+  then measure both sides.
+- Name a document for the person who opens the folder, not for its role in the repo:
+  `setup` or `start here`, never `library-readme`. The published filename stays `README.md`
+  because that is what the file browser surfaces; the title inside carries the meaning.
+- The 17:00 job, `sync` and any manual publish all push to `origin`, so a claim that work is
+  "committed locally" is wrong on this estate. Check `git remote -v` before describing the
+  repo as local-only.

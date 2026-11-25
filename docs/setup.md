@@ -17,6 +17,8 @@ decision was made, go to `docs/decisions.md`. If you are picking up unfinished w
 | `shared-skills/` | Procedures the assistants share, loaded by reference so one edit serves all |
 | `docs/` | Architecture, decisions, the rollout plan, the setup interview, the open threads |
 | `apps/` | Small tools that read the shared data, such as the team map |
+| `scripts/` | `hermes_files.py` — `backup`, `sync`, `pull`, `nightly` — plus the older shell versions. One implementation for macOS and Windows (D21) |
+| `config.env.example` | The only file that holds paths. Copied to `config.env` and filled per machine |
 | `_manifest.json` | A hash per file. If a local copy differs, this shows it in one line |
 
 ## What is deliberately absent
@@ -54,10 +56,13 @@ curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scri
 
 Hermes data lives in `~/.hermes`. Then run `hermes setup`.
 
-### Both platforms: point the scripts at this machine
+### Both platforms: the scripts come from the library
 
-Clone or copy the repo to `~/tribe-hermes-library` (`%USERPROFILE%\tribe-hermes-library`
-on Windows), then edit the three paths at the top of `config.env`:
+`scripts/` is published into this library, so a new machine needs nothing from git. Copy
+the whole library folder to `~/tribe-hermes-library` (`%USERPROFILE%\tribe-hermes-library`
+on Windows); it arrives with `scripts/`, `config.env.example`, the templates and the
+published profiles. Then copy `config.env.example` to `config.env` and fill the three paths
+for this machine:
 
 ```
 # macOS
@@ -92,42 +97,57 @@ if the gateway is not always running.
 
 ---
 
-## 2. The first profile is Hermes
+## 2. Hand the machine to the agent
 
-Before any assistant exists, the machine needs the profile that builds them. On this
-estate that profile is called **Hermes** and it is the default profile the installer
-creates.
+The installer leaves a default profile that knows nothing about this estate. Do not
+hand-edit it. Open Hermes and paste one line:
 
-1. Replace the default profile's soul with `templates/builder/SOUL.md`.
-2. Fill its placeholders: owner name, role, machine asset name, date.
-3. Set the label to Hermes. The folder stays `default`; the label is what people see
-   (D22).
-4. Start it and confirm in one line that it knows its job.
+> You are the builder on this machine, not the assistant. Read `README.md` in the
+> `TRIBE Group Tech/Hermes Library` folder on OneDrive, starting at step 2, and follow it.
+> Ask me before anything destructive.
 
-Full steps: `templates/builder/README.md`.
+That gives it the three things a stock install cannot know: that it is the builder, where
+the truth lives, and that it acts only as far as the procedure goes. From there it should
+work one step at a time, with your yes on each:
 
-## 3. First run: Hermes builds the assistant
+1. Copy `templates/builder/SOUL.md` over its own soul and fill `{{OWNER}}`, `{{ROLE}}`,
+   `{{MACHINE}}` and `{{DATE}}`.
+2. Copy `config.env.example` to `config.env` and fill the three paths for this machine.
+3. Run the proof query and the backup dry run.
+4. Offer the nightly job, and wait for your yes before scheduling it.
 
-The Hermes profile has one job before it becomes a maintainer: turn this machine into a
-working assistant for its owner. It does that by running the setup interview, not by
-inventing a persona.
+The label is Hermes. The folder stays `default`, because the label is presentation and the
+id is the role (D22).
 
-1. **Interview.** `docs/profiles/interview/onboarding-interview.md`, blocks 0 to 8, as a
-   conversation. Block 0 asks what the person wants their assistant called, because that
-   is the one answer that is theirs and not ours (D31).
-2. **Create the profile.** A role-based id such as `admin`, `ea` or `assistant-coordinator`
-   — never the assistant's name and never the person's (D22). Soul from `templates/role/`,
-   with the placeholders filled from the interview answers and nothing else.
-3. **Set the model explicitly.** A clone inherits the source model, including a broken
-   one. Set it, then prove it answers before handing it over.
+If it cannot find the folder, paste the full path instead: the value of
+`HERMES_SYNC_ONEDRIVE` in the section above is exactly that path.
+
+Doing it by hand is the fallback, not the plan — `templates/builder/README.md`.
+
+## 3. First run: the baseline profile, personalised by the interview
+
+The builder's one job before it becomes a maintainer is to turn this machine into a working
+assistant for its owner, by personalising a baseline rather than inventing a persona.
+
+1. **Choose the baseline.** `admin` for anyone, `ea` for a manager. Those are the two
+   baselines; there is no third to choose from. The profile id is the baseline id, never
+   the assistant's name and never the person's (D22).
+2. **Install it from this library.** `profiles/admin/` or `profiles/ea/` into
+   `~/.hermes/profiles/<id>`. Set the model explicitly — a clone inherits a broken one —
+   then prove it answers before anything else happens.
+3. **Run the interview in that profile**, not about it.
+   `docs/profiles/interview/onboarding-interview.md`, blocks 0 to 8, as a conversation held
+   inside the assistant. Block 0 asks what the person wants their assistant called, which is
+   the one answer that is theirs and not ours (D31).
 4. **Wire the access.** Mail and calendar first, through the browser route in the
    `microsoft-365-web` skill. A profile that cannot see the inbox has nothing to do.
 5. **Write the four artefacts** the interview produces: the name, `workspace/context.md`,
    the procedures the person actually described in `workspace/procedures.md`, and their
-   brief preferences. Nothing is written ahead of the conversation.
+   brief preferences. Nothing is written ahead of the conversation, and nothing is copied in
+   from another person's profile.
 6. **Hand the person over to their assistant**, and say plainly how to reach it: the
-   wrapper command (`<profile-id> chat`), the profile list in the desktop app, or the
-   channel it was given. Then run one real task together and read the result back.
+   wrapper command (`<profile-id> chat`), the profile list in the desktop app, or the channel
+   it was given. Then run one real task together and read the result back.
 7. **Book the review** two weeks out: one question, which part is not earning its place.
 
 Hermes stays as the maintainer profile on that machine, and stays out of the assistant's
