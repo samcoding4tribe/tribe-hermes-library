@@ -23,6 +23,13 @@ cannot be better than the content it reads. The recommendation is a Copilot Stud
 agent piloted on five curated topics with one consultant, with a written refusal
 rule, because a wrong fee reaching a client is the risk worth designing against.
 
+## Working order, agreed 25 November 2026
+
+One thread at a time. First the profile set-up interview, checkpointed in
+`checkpoint-interview.md`, because it gates every future profile and does not wait on
+anything. The two knowledge projects follow, and the travel one waits for Sam's design
+work.
+
 ## Shared blocker, found while researching both
 
 Most of the source material will not open on this Mac. Files carry the `dataless`
