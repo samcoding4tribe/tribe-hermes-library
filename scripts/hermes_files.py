@@ -249,9 +249,9 @@ def cmd_sync(cfg, args):
                                 ignore=shutil.ignore_patterns(".DS_Store", "status-today.json", "weeks"))
         if (repo / "docs").exists():
             shutil.copytree(repo / "docs", stage / "docs", dirs_exist_ok=True,
-                            ignore=shutil.ignore_patterns(".DS_Store", "library-readme.md"))
-        if (repo / "docs" / "library-readme.md").exists():
-            shutil.copy2(repo / "docs" / "library-readme.md", stage / "README.md")
+                            ignore=shutil.ignore_patterns(".DS_Store", "setup.md"))
+        if (repo / "docs" / "setup.md").exists():
+            shutil.copy2(repo / "docs" / "setup.md", stage / "README.md")
         if (repo / "TODO.md").exists():
             shutil.copy2(repo / "TODO.md", stage / "TODO.md")
         lib.mkdir(parents=True, exist_ok=True)

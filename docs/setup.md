@@ -1,4 +1,4 @@
-# Hermes library
+# Start here: setting up Hermes on a new machine
 
 The shared reference for the assistants Hermes runs at TRIBE Group, and the front door
 for setting one up. Readable by the team. Written from one machine at a time.

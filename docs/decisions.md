@@ -562,9 +562,10 @@ in `docs/projects/`, parked until profiles have actually been worked.
 
 **Decision.** Every new machine starts with the builder profile, labelled Hermes, built from
 `templates/builder/`. Its soul carries the first-run job: run the set-up interview and
-create the owner's assistant profile, then hand the person over to it. The library's
-`README.md` is the procedure for setting a machine up, from install through to that
-handover, and it links to the other procedures rather than repeating them.
+create the owner's assistant profile, then hand the person over to it. `docs/setup.md` — the
+**start here** guide, published as the library's `README.md` — is the procedure for setting a
+machine up, from install through to that handover, and it links to the other procedures
+rather than repeating them.
 
 **Why.** Setup is going to happen when Sam is not in the room. A colleague with the folder
 and no instructions has two options: guess, or ask Sam. An agent with a soul that names the

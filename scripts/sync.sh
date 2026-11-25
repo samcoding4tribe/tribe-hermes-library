@@ -151,9 +151,9 @@ if [ "$ONEDRIVE_ON" = 1 ]; then
     if [ -d "$REPO/docs" ]; then
       mkdir -p "$LIB/docs"
       rsync -a --exclude '.DS_Store' "$REPO/docs/" "$LIB/docs/"
-      rm -f "$LIB/docs/library-readme.md"
+      rm -f "$LIB/docs/setup.md"
     fi
-    [ -f "$REPO/docs/library-readme.md" ] && cp "$REPO/docs/library-readme.md" "$LIB/README.md"
+    [ -f "$REPO/docs/setup.md" ] && cp "$REPO/docs/setup.md" "$LIB/README.md"
     [ -f "$REPO/TODO.md" ] && cp "$REPO/TODO.md" "$LIB/TODO.md"
 
     run mkdir -p "$ONEDRIVE"
