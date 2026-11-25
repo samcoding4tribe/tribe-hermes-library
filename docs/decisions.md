@@ -555,3 +555,21 @@ cost somebody a mistake to learn, and it is true for anyone doing that job.
 **Status.** The voice half was settled by Sam on 26 November 2026. The mechanism half —
 how a harvested rule becomes a proposal, at what threshold, approved by whom — is thread 5
 in `docs/projects/`, parked until profiles have actually been worked.
+
+---
+
+## D35. The first profile on a new machine is Hermes, and the library README is the front door
+
+**Decision.** Every new machine starts with the builder profile, labelled Hermes, built from
+`templates/builder/`. Its soul carries the first-run job: run the set-up interview and
+create the owner's assistant profile, then hand the person over to it. The library's
+`README.md` is the procedure for setting a machine up, from install through to that
+handover, and it links to the other procedures rather than repeating them.
+
+**Why.** Setup is going to happen when Sam is not in the room. A colleague with the folder
+and no instructions has two options: guess, or ask Sam. An agent with a soul that names the
+first job has a third, and it is the one that scales.
+
+**Consequence.** `templates/builder/` holds placeholders, never one person's details, so the
+profile can be installed somewhere that is not this Mac. The role profile is created by the
+interview, never copied from a filled-in example.

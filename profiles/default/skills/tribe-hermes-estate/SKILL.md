@@ -96,6 +96,12 @@ as taste.
   (`~/tribe-hermes-library/shared-skills`), so it is not portable to another machine. Any
   plan to push updates back has to close that gap first — design §4 in
   `docs/architecture-loop.md`.
+- Never `grep -r` from the repo root: `profiles/*/skills/.hub/index-cache/` holds huge
+  catalogue blobs (86 MB on one file) and will flood a tool result. Scope searches to
+  `docs/`, `scripts/`, `templates/` or a named file.
+- `sync` publishes `profiles/`, `templates/`, `shared-skills/`, `apps/` and `docs/`, and it
+  wipes and rebuilds the library folder from the repo each run. Anything put into the
+  library by hand is deleted, so edits belong in the repo. It also commits and pushes.
 - Two backup locations are described in the docs (a private per-user folder, and
   `Hermes Backups/<machine>`). Check what the script writes today instead of trusting the
   older note, and correct the note.
