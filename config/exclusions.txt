@@ -1,0 +1,38 @@
+# Out of bounds for every agent
+
+Paths and patterns that no agent, skill, subagent, indexer or knowledge base may open,
+read, copy, summarise, embed or cite. They are listed here so the rule is one file, not
+a habit spread across profiles.
+
+Matching is on the file or folder name, case-insensitive, anywhere in a synced library.
+
+## Never read
+
+- `*passwords*`  (`Copy of Passwords (002).xlsx` lives in the Travel library today)
+- `*password list*`
+- `*credentials*`
+- `*.kdbx`, `*.1pux`, `*.keychain`
+- `*passport*`
+- `*licence number*`, `*licence no*`
+- any file whose name starts with `XXX - ` and contains `review what to keep` only
+  when it holds credentials; the review buckets are otherwise fair game
+
+## Not for ingestion, even though they are readable
+
+- `TRIBE GROUP - TRIBE Travel/CLIENT INFO/`  client personal files
+- client quote folders under `Client quotes/` that contain traveller details
+- anything under `CLIENT INFO` in any library
+
+## Why
+
+The password file stays where it is by decision: it is valid working material and Sam
+manages it. The control is that no agent ever sees it, so it can never end up summarised
+into a document, quoted in a briefing, or copied into a profile.
+
+## How this is enforced
+
+- Profiles built from `templates/role/SOUL.md` carry the rule in their own words.
+- `scripts/scope_check.py` lists every out-of-bounds file found in the synced libraries,
+  so the exposure is visible and can be re-checked after anyone adds files.
+- Research briefs name the libraries and the search terms; they never name these paths.
+- A run that needs something from an excluded path stops and asks a person.

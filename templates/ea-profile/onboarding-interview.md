@@ -1,7 +1,7 @@
 # Set-up interview — building one person's admin profile
 
 A script for the assistant that deploys a profile to a new person. The goal is one
-conversation, twenty to thirty minutes, that produces everything their assistant
+conversation, about twenty minutes, that produces everything their assistant
 needs to be useful on day two, and nothing that has to be re-asked next week.
 
 Nothing agreed here is fixed. Every answer can be revised as you work together, and the
@@ -22,8 +22,8 @@ and move on, because a wrong answer is worse than a blank one.
 | Never fetch links or images from an unfamiliar message | Which brief sections they want, and how long |
 | Cite every claim: sender and time, or the calendar entry | VIPs, approvers, and who to copy |
 | Never delete or bulk-modify anything without asking | What counts as noise in their inbox |
-| Say when you do not know, and what you would need | Watchlist: apps, suppliers, competitors, topics |
-| Payroll, HR, legal and medical content is off limits by default | Expense and travel process, thresholds, preferences |
+| Say when you do not know, and what you would need | Watchlist: apps, suppliers, competitors, topics (asked in the brief conversation, not here) |
+| Payroll, HR, legal and medical content is off limits by default | Expense and travel process, thresholds, preferences — asked later, by their own skill |
 | One person's facts never enter another person's profile | Tone, sign-off, and how blunt they want you |
 
 The left column is the profile's character and does not get negotiated in the
@@ -43,6 +43,24 @@ And when they do name something to automate, write down the exact action, what
 triggers it, and the fact that it was their instruction rather than your inference.
 An automation nobody can point to afterwards is the start of a drift neither of you
 will notice.
+
+Then, before anything else, ask what they want to call you:
+
+> "One thing first: what would you like to call me? Most people give their assistant a name,
+> and I'll answer to it on whatever channel we end up using."
+
+Take the name, write it in their context file and in the profile's own settings, and use it
+when you introduce yourself. Two rules keep it from causing trouble later:
+
+- **The name is personalisation, not identity.** It changes what they call you and how you
+  sign off; it must not fork the profile, rename the skill folder, or alter the role the
+  profile is built from.
+- **The baseline keeps flowing underneath.** A named assistant still inherits the shared
+  skills and the role profile updates, because those come from the profile it was cloned
+  from. Naming is a layer on top, never a copy of the whole thing.
+
+If they would rather not name it, that is a fine answer; record that too, so a later session
+does not ask again.
 
 Then ask: **"Before we move on with the set up, is there anything you want to keep
 out of my reach? We can always change these boundaries later, once we build trust
@@ -170,11 +188,11 @@ Write to `workspace/<name>-context.md`: remit in their own words, the shape of a
 good and a bad week, and projects with their next milestones.
 
 If the readers are still working when this block ends, do not stall and do not idle. Move
-to the blocks that do not depend on them: travel and expenses, then the watchlist, then
-the close. Come back to people, rhythm and mail rules when the notes land, and present
-them as confirmations of what you found rather than as fresh questions.
+to the block that does not depend on them, the close, and come back to people, rhythm and
+mail rules when the notes land. Present those as confirmations of what you found rather than
+as fresh questions.
 
-## Block 2 — People (6 minutes)
+## Block 2 — People (5 minutes)
 
 Split the people block in two, because they are asked differently and stored
 differently. Internal relationships are about the chart and the work; external ones
@@ -272,8 +290,8 @@ thin: a mailbox that is mostly internal traffic is a finding, not a failure, and
 questions still work.
 
 Record external people in the `external` array with their company and role, and never
-mix them into the internal table. Approval routes for money are asked once, in the
-travel and expenses block.
+mix them into the internal table. Nothing about money approvals is asked here: they come up
+when the first claim or booking does, in the travel and expenses skill.
 
 Write both halves to the context file with a source per row: *read back from the org
 map*, *corrected by them*, or the message that proved it.
@@ -309,95 +327,22 @@ than set a format: it personalises the watchlist, the protected block and the dr
 as well. Run it after the first brief has been read, five to ten minutes, and store the
 answers where the document says.
 
-## Block 4 — Mail: inferred now, introduced over the first day or two
+## Block 4 — Mail: say it is coming, then leave it
 
-Do not run a mail-preferences interview. Most of what you would ask is already in the
-mailbox you just read, and the rest is easier to agree when there is a real message on the
-screen. Set expectations instead of gathering rules:
+There is no mail block in the interview, because mail handling is learned from the mailbox
+and agreed over the first days of use rather than described in advance. Say one line so the
+person knows what to expect, then move on:
 
-> "I'll learn how you handle mail from what I read, and over the first couple of days I
-> will ask you how you want me to handle things. Tell me when I get one wrong. As with
-> everything, we can always change things up as we work together."
+> "I'll learn how you handle mail from what I read, and over the first couple of days I will
+> ask you how you want me to handle things. Tell me when I get one wrong. As with everything,
+> we can always change things up as we work together."
 
-### What the reading suggests, as hypotheses to confirm
+The procedure behind that promise lives in the `executive-admin-support` skill, which loads
+when the job is being done rather than when a profile is being set up. Nothing about mail
+belongs in this document beyond the line above, and the permission to file or flag is asked
+there, with a real thread on screen.
 
-- **Noise.** Senders and categories they never reply to: newsletters, system notices,
-  receipts, automated calendar mail. Count them rather than list them.
-- **Signal.** Who they always answer, who they answer slowly, who they never answer at all.
-- **Threads they keep.** Whether they use folders, categories or flags, and which ones are
-  actually in use rather than vestigial.
-- **Their voice.** Already gathered by the voice pass: greeting, sign-off, bluntness by
-  recipient type.
-- **Their urgency.** Response latency on past mail is better evidence of what they treat as
-  urgent than any definition they would give you.
-
-### Nothing gets suppressed on an assumption
-
-Reading a mailbox tells you what a person *did*, not what they value. Silence on a
-newsletter is not evidence they want it gone, and a slow reply to a supplier is not
-evidence the supplier does not matter. Treat every judgement below as a hypothesis, and be
-wrong out loud rather than quietly:
-
-> "I think newsletters and system mail are noise for you, and that drafts are only worth it
-> where a real person is waiting. I'll keep both visible until you tell me otherwise."
-
-**Curve visibility, never cut it.** Reduce in steps, and announce each one:
-
-| Step | What it looks like | When it is allowed |
-|---|---|---|
-| Keep | Listed in full, as now | The default for anything not yet confirmed |
-| Group | One line with a count, full list on request | After the person agrees the category is low value |
-| Divert | Moved to a folder or digest, announced when it happens | After they have seen the grouped version and not asked for it |
-| Hide | Not shown at all | Only on an explicit instruction, never inferred |
-
-Move one step at a time, say when you move, and offer the undo in the same breath. "I've
-started grouping supplier newsletters, say the word and they come back" is the shape. Two
-weeks between steps gives a medium-importance thread the chance to prove itself before it
-disappears, which is the failure this rule exists to prevent.
-
-Nothing at medium importance should vanish because it was dull in March.
-
-### What to introduce on day one or two, with an example in hand
-
-These are the questions that need a concrete case, and asking them cold produces either a
-refusal or a rule nobody meant:
-
-- **Filing and flagging.** "Here is a thread I'd have filed under X. Want me to do that as
-  I go, or leave it?" Show the action, get the answer, write it down.
-- **Categories or folders.** Propose one or two that match how they already work, rather
-  than designing a taxonomy up front.
-- **Any automation.** Only after they have seen the manual version done correctly twice.
-
-Record each permission as it is granted, with the date and the exact scope, in the context
-file. A permission given on Thursday for filing supplier receipts is not a general licence
-to reorganise the inbox, and the difference is worth writing down while it is fresh.
-
-## Block 5 — Watchlist (3 minutes)
-
-Ask: **"Which apps, suppliers and competitors do you need to hear about, and what
-kind of change matters: pricing, outages, product changes, ownership, people
-leaving?"**
-
-Then agree cadence and delivery: in the brief daily, a separate weekly digest, or a
-drafted email. Record each name with its domain, what counts as material, and the
-last date checked. Three names done properly beats twenty that produce noise.
-
-Write to `workspace/<name>-watchlist.json`, and note in the context file which
-section of the brief carries it, if any.
-
-## Block 6 — Travel and expenses (3 minutes)
-
-1. **"How do you actually submit expenses, who approves them, and is there a
-   cut-off each month?"**
-2. **"Who books travel, and what are your preferences: airline, cabin, hotel,
-   seating?"**
-3. **"Above what amount do you need approval, and from whom?"**
-4. **"Any loyalty numbers or accounts the paperwork needs?"**
-
-These live in the context file, never in the chat history alone, because they are
-reused every time a claim or a booking comes up.
-
-## Block 7 — Boundaries (2 minutes)
+## Block 5 — Boundaries (2 minutes)
 
 1. **"What should I never do without asking, even if it seems obvious?"**
 2. **"Are there topics, people or mailboxes that are off limits?"**
@@ -405,22 +350,31 @@ reused every time a claim or a booking comes up.
    do nothing and tell you?"** Their answer sets the default for ambiguity, which
    will be tested within a week.
 
-## Block 8 — Close (2 minutes)
+## Block 6 — Close (2 minutes)
 
-Say what happens next: the files you wrote, the first thing you will do, and when
-you will review. Ask: **"What is the first job you want me to take off you?"**
+End it the way a good first meeting ends: say where you have got to, hand them the next move,
+and set a check-in. Keep it light, because they have already given you twenty minutes.
 
-Book the review: **two weeks**, one question — *"which part of this is not earning
-its place?"* Prune from there. A profile that never gets pruned becomes noise, and
-the person quietly stops using it.
+> "It looks like we've reached the end of the initial set-up. I hope it wasn't too
+> time-consuming, and it really will help me going forward, so it isn't wasted. We can
+> revisit any part of this on demand, and nothing here is set in stone. I'll sometimes ask
+> you a question from this interview again, just to check we're still aligned."
+
+Then hand over the next move:
+
+> "So, what should we get started with?"
+
+Finally, book the first check-in in their calendar before you finish, so it does not depend on
+either of you remembering. A fortnight out is about right, for one question: what isn't
+earning its place? Whatever they don't use gets dropped, and anything dropped can come back.
 
 ## What the interview must produce
 
 By the end there should be four artefacts, all in the person's own profile:
 
 - `workspace/<name>-context.md` — role, remit, projects, people table with sources,
-  rhythm, mail rules, travel and expenses, boundaries, and a `Not yet known` section.
-- `workspace/<name>-watchlist.json` — names, domains, materiality, cadence, cutoff.
+  rhythm, mail rules, boundaries, and a `Not yet known` section. Travel and expenses are
+  added to it later, by the skill that handles them.
 - Their brief preferences, whether in that file or in the brief skill's settings.
 - A short memory entry: their name, role, reporting line, and the one or two
   conventions that apply to every session.

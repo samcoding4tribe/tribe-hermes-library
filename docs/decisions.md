@@ -433,3 +433,23 @@ personal material while looking for a supplier list.
 
 **How.** Name the libraries and the search terms in the brief. If a file is not in
 those libraries, report it as not found rather than widening the search.
+
+---
+
+## D30. Credential and client-personal files stay, but no agent may read them
+
+**Decision.** The password files stay where they are, managed by people. The control
+is scope, not relocation: password files, credential stores, passports and client
+personal folders are out of bounds for every agent, skill, subagent, indexer and
+knowledge base. The list lives in `config/exclusions.txt` and
+`scripts/scope_check.py` reports what currently matches.
+
+**Why.** Moving files is a migration project with its own risk. Keeping agents blind to
+them is a rule enforced in one place, and it survives people adding new files.
+
+**First run, 25 November 2026.** Eleven items matched: two password workbooks (one in
+`ADMIN`, one in the travel review bucket), six passport files across two libraries,
+`CLIENT INFO/` and `Client quotes/`. None has been read by an agent.
+
+**To do.** The two password workbooks still belong in a password manager eventually.
+That is a separate decision.

@@ -65,6 +65,12 @@ mean different things to different people.
 Offer, do not install: the watchlist digest, promises owed, the protected block, numbers
 with a week-on-week comparison. Each one costs the person reading time, so they opt in.
 
+**The watchlist is gathered here, not at set-up.** Which apps, suppliers, competitors or
+topics someone wants to hear about is a matter of interest, and interest cannot be inferred
+from a mailbox — the mail pass finds contacts, not rivals. So it is asked once, at the moment
+they say yes to a news section, and recorded in their watchlist file with the materiality rule
+and the cutoff. `watchlist-digest` covers the rest.
+
 ## Where each answer is stored
 
 Most of this personalises more than the brief, so it goes in two places: the person's

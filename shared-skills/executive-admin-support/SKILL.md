@@ -125,6 +125,18 @@ preamble, no praise, no restating the request.
 Every claim about a date, number, person or commitment carries its source: the
 message subject and time, the calendar entry, the document. "One unread from a supplier at 3:36 PM" beats "you have some unread mail".
 
+## Learning the mail rules over the first days
+
+Mail handling is not configured at set-up. Say one line so the person knows it is coming,
+then learn it on the job: "I'll learn how you handle mail from what I read, and over the
+first couple of days I will ask you how you want me to handle things. Tell me when I get one
+wrong."
+
+The procedure behind that promise lives in the `mail-handling` skill, which loads whenever a
+mailbox is being handled, in this profile or any other. It covers inferring the rules, saying
+them as hypotheses, curving visibility in steps rather than cutting it, and agreeing
+permissions with a real message on screen.
+
 ## Boundaries
 
 - **Draft, never send.** No email, message, invite or form leaves the account
@@ -170,6 +182,13 @@ names its boundary is useful, one that looks complete is not. One browser sessio
 one reader at a time.
 - **Let the person choose the mode**: preset questions or a quick chat, with the block
 outline as the guide for either.
+- **Write for an adult.** No question that sounds like a timetable ("when do you not want
+to be interrupted") — infer the rhythm from the mail and confirm it in one line instead.
+Offer choices rather than instructions, and do not add a reassurance nobody asked for.
+- **When a reader lags, ask directly.** Do not stall the conversation waiting for a pass,
+and do not present a confirmation you never received: ask the questions open, mark the
+answers *asked, not corroborated*, and fold the notes in when they land. A thin pass is a
+finding, not a failure — a mostly internal mailbox still answers the external questions.
 - **Merge duplicates before adding depth.** Two blocks asking who approves spend,
 or two asking what must never happen without asking, are one question asked twice.
 A shorter interview gets better answers than a thorough one.
@@ -180,14 +199,38 @@ thing automated". When they name one, write down the action, its trigger, and th
 fact that it was their instruction.
 - **Do not mention sharing with other people.** The profile is personalised;
 a sentence about who else can see it raises a question they did not ask.
-- **End with four artefacts**: the context file, the watchlist, a line saying the
-brief is unconfigured until they have seen one, and one short memory entry. Then book
-the two-week review — "which part of this is not earning its place?" The brief is
-configured from their reaction to a real one, never from a checklist at set-up.
+- **End with three artefacts**: the context file, a line saying the brief is
+unconfigured until they have seen one, and one short memory entry. The watchlist is not
+produced here; it is gathered when they opt into a news section. Then book the two-week
+review — "which part of this is not earning its place?" The brief is configured from their
+reaction to a real one, never from a checklist at set-up.
 
 The block outline is in `references/profile-setup-interview.md`. The full script to
 fill in for a specific person is kept in the org library, in the `ea-profile`
 folder under the templates tree. Cover it with the owner before running it on anyone.
+
+## Defer what can wait
+
+Set-up exists to get somebody using the assistant, not to collect preferences. Anything
+that needs a real artefact to react to is deferred, and anything that is really a procedure
+belongs in the skill that runs it.
+
+- **Nothing is configured before it has been seen.** The brief is configured after the first
+one lands, mail rules after the first real thread, and a watchlist only when the person opts
+into a news section — interest cannot be inferred from a mailbox, because the readers find
+contacts, not rivals.
+- **Travel and expenses are not asked at set-up.** They arrive with the first claim or
+booking, in their own skill. Thresholds and approvers asked early read as paperwork and
+delay the first win.
+- **Procedures live where they run.** A behaviour needed daily goes in the skill that loads
+for that job (mail rules in `mail-handling`, news in `watchlist-digest`), not in the set-up
+document, which is read once and then never again. When the owner asks where something will
+be remembered, the answer is the skill index, not a file.
+- **One document, not a kit.** The owner has to be able to find the set-up material and keep
+track of it. Extend the existing document and the existing skill before adding a companion;
+a second file is justified only when it is read at a different moment.
+- **Say what is provisional once**, at the top, rather than reassuring the person block by
+block.
 
 ## Pitfalls
 

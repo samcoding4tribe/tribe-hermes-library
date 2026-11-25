@@ -13,6 +13,26 @@ Recorded 20 November 2026. Delete a line when it is done, and say why in the com
       clean home directory and confirm it starts and remembers. A backup that
       has never been restored is a guess.
 
+## Profiles and skills
+
+- [ ] **Relationship and alignment skill.** Not the setup interview: the ongoing habit of
+      checking that the assistant still works the way the person wants. Three jobs. Ask a
+      question from the setup interview again, at random, to confirm the answer still holds.
+      Notice when a change (role, team, supplier, system) means something recorded earlier is
+      now wrong. Push a corrected fact to the places it is reflected, so the person is not
+      asked twice and two records do not disagree.
+      The distinction that matters: this is about **on-device personalisation** — the settings
+      and context that belong to one person on one machine — not the general role profile used
+      to stand a new one up. A change in the general profile is a deployment decision; a change
+      in personalisation is theirs, and should be applied without a rebuild.
+
+
+
+- [ ] **Travel and expenses skill.** Claims, bookings, approvals and thresholds, run when
+      the first real claim or booking appears rather than during setup. Deliberately not
+      built yet: people should see the assistant working before they are asked for paperwork
+      preferences. The interview block was removed on 25 Nov 2026 and points here instead.
+
 ## Done
 
 - [x] **Memories out of git.** `sync.sh` no longer commits `memories/`, and the

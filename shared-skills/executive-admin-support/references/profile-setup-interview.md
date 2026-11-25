@@ -14,8 +14,8 @@ asking; never fetch links from an unfamiliar message; one person's facts never e
 another person's profile; payroll, HR, legal and medical content off limits by
 default.
 
-Chosen: role and remit, people and VIPs, rhythm, noise, tone, watchlist, travel and
-expenses, boundaries.
+Chosen: role and remit, people and VIPs, rhythm, noise, tone. Deferred to first use
+rather than asked here: mail rules, the watchlist, and travel and expenses.
 
 ## Blocks
 
@@ -112,43 +112,43 @@ and quiet after six, and Wednesdays look like a wall of meetings. Is that roughl
 the week runs?"* Then ask only what the data cannot: *"when do you most need to be left
 alone?"* and *"which part of the week would you defend if something had to give?"*
 
-**The brief is a trial, not a specification.** Do not configure it here. Say a first one
-arrives tomorrow morning and that they should react to it: *"read it, then tell me what's
-noise, what's missing, and what you'd want more of."* No section checklist, no length
-question, no delivery interrogation on day one; deliver it in chat and move it if they
-ask. A person cannot request what they have not seen, and the two or three items they
-never thought to ask for are what earn the habit. Record only that the brief is
-unconfigured until they have seen one, and revise it from their reaction rather than
-before it.
+**The brief is a trial, not a specification.** Do not configure it here. Say it in these
+terms: *"Tomorrow morning I will send you a brief. Have a look when it lands, and when you
+are free we can set it up together to your taste. It usually takes five or ten minutes. We
+can do it at the end of this chat, or whenever you ask me."* No section checklist, no length
+question, no delivery interrogation on day one; deliver it in chat and move it if they ask.
+A person cannot request what they have not seen, and the two or three items they never
+thought to ask for are what earn the habit. Record only that the brief is unconfigured
+until they have seen one, and revise it from their reaction rather than before it.
 
-**4. Mail rules.** Which senders or categories are noise; what makes something
-urgent as opposed to merely new; whether the assistant may mark read, flag and file
-(reversible and invisible only, in their words); whether drafts are wanted for
-everything or only the important threads, and how they sign off.
+**4. Mail: one line, then leave it.** There is no mail block. Say only that the rules
+will be learned on the job — *"I'll learn how you handle mail from what I read, and over
+the first couple of days I will ask you how you want me to handle things. Tell me when I
+get one wrong."* — and move on. Noise, urgency, filing permissions and draft scope are
+all agreed later, with a real thread on screen, following the `mail-handling` skill.
+Asking them cold produces a rule nobody meant, and it is the block most likely to make a
+set-up feel like paperwork.
 
-**5. Watchlist.** Which apps, suppliers, competitors and topics, and what kind of
-change matters (pricing, outages, product changes, ownership, people leaving).
-Cadence and delivery are settled with the rhythm block. Three names done properly
-beat twenty that produce noise.
+**Nothing else is configured here.** The watchlist is gathered when they opt into a news
+section, because interest cannot be inferred from a mailbox and the readers find contacts
+rather than rivals. Travel and expenses arrive with the first claim or booking, in their
+own skill. Both belong to the moment they are used, not to the set-up document.
 
-**6. Travel and expenses.** How claims are submitted, who approves, any monthly
-cut-off; who books travel and their preferences; the threshold above which approval
-is needed and from whom; loyalty numbers the paperwork needs. Approval routes are
-asked here only.
-
-**7. Close.** What happens next, the first job they want taken off them (the one
+**5. Close.** What happens next, the first job they want taken off them (the one
 question that replaces "what do you never get to"), and the two-week review with its
 single question: which part of this is not earning its place.
 
 ## What the interview must leave behind
 
-A context file with a `Not yet known` section, a watchlist, brief preferences, and
-one short memory entry. Anything left only in the chat is lost next session and the
-person notices within a week.
+Three things: a context file with a `Not yet known` section, a line saying the brief is
+unconfigured until they have seen one, and one short memory entry. The watchlist and the
+travel and expenses detail are produced later, by the skills that own them. Anything left
+only in the chat is lost next session and the person notices within a week.
 
 ## Questions that look different but are the same
 
-Who approves spend in the people block and the expense approver in the travel block.
+Who approves spend in the people block and the expense approver in the travel block —
+the travel block is gone, so ask it once, in the skill that runs the first claim.
 "What should I never do without asking" in the framing and in a boundaries block.
 A title question when the org chart already holds the title. "The thing you keep
 meaning to get to" and "the first job to take off me". Each pair is one question;
