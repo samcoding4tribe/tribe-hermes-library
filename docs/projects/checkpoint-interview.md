@@ -1,5 +1,15 @@
 # Checkpoint: the profile set-up interview
 
+> **Tomorrow morning, start here.** Open this file, then
+> `docs/profiles/interview/README.md`. The first job is remaining work item 1 and 2:
+> the README line that says to give the profile the person's name, and the duplicate
+> steps in `templates/role/README.md`. Both are small edits. Stop after those two and
+> tell Sam, because everything after them needs his answers, not more work.
+>
+> Nothing else is waiting on the machine. The backup job ran at 17:00 on 25 November,
+> the whereabouts job next fires Monday 11:00, and the OneDrive hydration fault is
+> still unfixed, so no file contents can be read until that is sorted.
+
 **Chosen to finish first, 25 November 2026.** Of the threads running today this is the
 one that is nearly done, gates every future profile, and does not depend on the broken
 OneDrive hydration. It is also the smallest: an afternoon, not a week.
