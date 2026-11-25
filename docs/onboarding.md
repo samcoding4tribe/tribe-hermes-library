@@ -24,7 +24,25 @@ hermes doctor
 If the policy on the machine blocks unsigned apps or background services, stop
 here and sort that with IT first. Everything else depends on the gateway running.
 
-## 2. Let the app reach OneDrive
+## 2. The approved places to keep things
+
+TRIBE runs on Microsoft 365. Everything an agent writes for the company lives in one
+of three places:
+
+- `TRIBE Group Tech/Hermes Library` for the shared, reusable version of anything.
+- `TRIBE Group Tech/Hermes Backups/<machine>` for each machine's runtime state.
+- The repo `tribe-hermes-library` for anything that should be versioned and reviewed.
+
+Work in progress goes to `TRIBE Group Tech/Hermes WIP`. The machine itself holds the
+live runtime under `~/.hermes`, which is never published.
+
+iCloud Drive, iCloud Desktop and Documents, and iCloud backups are not part of this
+setup and must not be used for TRIBE material. If a machine has Desktop and Documents
+synced to iCloud, do not put agent working files there: they leave the company
+tenant and nobody can manage them. On Windows the equivalent rule is OneDrive for
+Business, never a personal OneDrive.
+
+## 2a. Let the app reach OneDrive
 
 The app needs Files and Folders access the first time it writes into the
 OneDrive container. The symptoms when it is missing are `Operation not permitted`

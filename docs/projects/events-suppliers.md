@@ -4,24 +4,24 @@
 
 ## 1. What exists today
 
-`TRIBE GROUP - Share Drive/SUPPLIERS/` has 38 folders at one level, mixing cities (`Melbourne`, `Sydney`), countries (`USA`, `Europe`), venues (`Hyatt`, `W Ibiza`), categories (`Caterers`) and a person (`Satwinder`). Six files sit beside them: `Preferred Suppliers list- 2025.xlsx` (80 KB, last saved August 2026), `Hotel Directory.xlsx`, `2022 Hotel Availability.xlsx`, a `.lnk` shortcut to the preferred list, and two event leftovers.
+`TRIBE GROUP - Share Drive/SUPPLIERS/` has 38 folders at one level, mixing cities (`Melbourne`, `Sydney`), countries (`USA`), venues (`Hyatt`), categories (`Caterers`) and a person (`Satwinder`). Six files sit beside them: `Preferred Suppliers list- 2025.xlsx` (79 KB, last saved August 2026), `Hotel Directory.xlsx`, `2022 Hotel Availability.xlsx`, a `.lnk` shortcut to the preferred list, and two event leftovers.
 
 Three records compete:
 
-- The master sheet, named for 2025 but edited in 2026, with a shortcut beside it that implies another copy somewhere. UNKNOWN where.
+- The master sheet, named 2025, edited 2026, with a shortcut implying another copy. UNKNOWN where.
 - Per-event copies: 43 top-level folders under `EVENTS CLIENTS/`, 32 named `suppliers`, 23 Supplier Agreement files, 50 confidentiality agreements, 38 `contracts` folders. One example: `EVENTS CLIENTS/CBA/2019/03 RSELT Conference March (CBA-1901)/Supplier Agreements/Florist Supplier Agreement.docx`.
-- A client list with another shape: `EVENTS CLIENTS/CBA/CBA Preferred Suppliers.xlsx` has categories in rows, cities as columns, and contacts inside the company cell.
+- A client list shaped differently: `EVENTS CLIENTS/CBA/CBA Preferred Suppliers.xlsx` has categories in rows, cities as columns, and contacts inside the company cell.
 
 Insurance is a filename convention, not a register: `ADMIN/PL insurance and WorkCover/Certificate of Currency - Public Liability 31 August 2026.pdf`. Travel already uses `TRIBE GROUP - TRIBE Travel/Supplier - VIRTUOSO/`.
 
-Friction: no owner field in anything I could read; dates only where typed into a filename; one supplier in up to four places.
+Friction: no owner field, dates only in filenames, one supplier in up to four places.
 
-Caveat: 3,463 of 3,714 Share Drive files are online-only placeholders that would not open here (error: Resource deadlock avoided), including every `SUPPLIERS/` file I could see, so their contents are UNKNOWN.
+Caveat: 3,463 of 3,714 Share Drive files are online-only placeholders that would not open here (Resource deadlock avoided), including every `SUPPLIERS/` file I saw, so contents are UNKNOWN.
 
 ## 2. Options
 
-- **SharePoint list (Microsoft Lists)**, same engine. 30 million items per list, lookups, item version history, content approval, views; an afternoon to build without a developer. Lists mobile apps are retired, so phones use Teams or a browser, and offline editing only works through OneDrive list sync on Windows and macOS. Included in the existing licence.
-- **Document library with content types and managed metadata.** Right for contracts and certificates; closed term sets stop "Melbourne", "melb" and "VIC" becoming three cities. Search reads content, but "caterers expiring in 60 days" is a view over columns.
+- **SharePoint list (Microsoft Lists)**, same engine. 30 million items per list, lookups, item version history, content approval, views; an afternoon, no developer. Lists mobile apps are retired: phones use Teams or a browser, and offline editing needs OneDrive list sync on Windows or macOS. Included in the existing licence.
+- **Document library with content types and managed metadata.** Right for contracts and certificates; closed term sets stop "Melbourne", "melb" and "VIC" becoming three cities. Search reads content, but filtering by expiry needs columns.
 - **Power Apps form or canvas.** Better mobile capture; $5 per user per app or $20 per user per month, plus maintenance. Phase three.
 - **Loop.** A page canvas for guidance, with no columns, views or expiry dates.
 - **Teams tab and SharePoint page.** Views and links, not storage.
@@ -40,21 +40,21 @@ Three lists and one library on the Tech site.
 
 Closed term sets: category (venue, AV, catering, DMC, transport, decor, entertainment, photography, speakers, merchandise, staffing); city or region (folder names plus overseas); tier (Preferred, Approved, Trial, Do not use); status (Active, On hold, Archived).
 
-A fact is a field if you need to filter, sort or be reminded; a document if a human must read it.
+A fact is a field if you must filter, sort or be reminded; otherwise it is a document.
 
 ## 4. Keeping it current
 
-- One named owner per record. A team cannot be accountable for an expiry date.
-- Annual review for Preferred, six monthly for Trial. Lapsed insurance moves a supplier to On hold by view, not memory.
-- One weekly Power Automate flow: anything expiring in 60 or 30 days goes to the owner and a Teams channel.
-- Contact history logged after each event; reviews fed by the debrief, whose template sits in `MASTER TEMPLATES & DOCS/Debrief & Survey`.
-- Events reference SupplierID rather than copying the record; the event folder keeps only that event's signed documents.
+- One named owner per record; a team cannot be accountable for an expiry date.
+- Annual review for Preferred, six monthly for Trial; lapsed insurance moves a supplier to On hold by view, not memory.
+- One weekly Power Automate flow alerts the owner and a Teams channel 60 and 30 days before expiry.
+- Contact history logged after each event; reviews fed by `MASTER TEMPLATES & DOCS/Debrief & Survey`, which already exists.
+- Events reference SupplierID rather than copying it; the event folder keeps only its own signed documents.
 
 ## 5. Phases
 
-**Phase 1, one week, no developer.** Suppliers list, Documents library, four term sets, about 15 fields, five views, versioning on, Teams tab, hand import of the 2025 list (row count UNKNOWN).
+**Phase 1, one week, no developer.** Suppliers list, Documents library, four term sets, about 15 fields, five views, versioning, Teams tab, hand import of the 2025 list (row count UNKNOWN).
 
-**Phase 2, two to four weeks.** Rates list, expiry flow, Reviews, backfill of contracts and certificates from `SUPPLIERS/` and event folders, owner named per record.
+**Phase 2, two to four weeks.** Rates list, expiry flow, Reviews, backfill from `SUPPLIERS/` and the event folders, owner named per record.
 
 **Phase 3.** Power Apps form for onsite use, contract generation, Graph read access for the Hermes agent.
 
@@ -63,19 +63,19 @@ Recommended: the same with the expiry flow in phase 1. The failures worth fixing
 
 ## 6. Open questions
 
-1. Who owns supplier data: Jodie, Vanessa, or an operations coordinator? The org map has events co-led.
+1. Who owns supplier data: Jodie, Vanessa, or an operations coordinator?
 2. How many active suppliers are there, and how many are used once?
-3. Are suppliers contracted per event or annually? The per-event agreements suggest the former.
-4. Can supplier rates sit in one list visible to all events staff, given client confidentiality?
-5. Which Microsoft 365 plan is held, and is Power Apps or premium Power Automate licensed?
+3. Are suppliers contracted per event or annually?
+4. Can supplier rates be visible to all events staff, given client confidentiality?
+5. Which plan is held, and is Power Apps or premium Power Automate licensed?
 6. Should Travel's `Supplier - X` folders merge in, or stay separate?
-7. Who may see contract values: all events staff, leads only, or finance?
+7. Who may see contract values: all staff, leads, or finance?
 8. What qualifies a supplier as Preferred, and who signs that off?
 
 ## What I could not verify
 
-- Contents of `SUPPLIERS/`: placeholders that would not open.
-- Whether `Preferred Suppliers list- 2025.xlsx` is the live master, and where the `.lnk` points.
+- Contents of `SUPPLIERS/`: none would open.
+- Whether the 2025 list is the live master, and where the `.lnk` points.
 - Any supplier WHS or insurance certificate.
-- Whether tier definitions exist today.
-- Tenant licensing and SharePoint administration.
+- Existing tiers.
+- Tenant licensing and admin.
