@@ -74,7 +74,12 @@ an alias table, or the org map's ids need to be added to the calendar sheet.
    wedding, honeymoon, festival, cruise, hike, food, golf, park. Anything else
    falls back to a palm tree. Holiday pins are teal; trip pins are orange.
 
-5. `publish.py --week <date>` copies that week's note to the TRIBE GROUP site,
+5. `add_person.py --name "Ava Nguyen" --role "Event Coordinator" --reports-to ness`
+   adds someone to the org chart and the calendar aliases together, because the note
+   joins the two. It is a dry run unless you add `--write`, and it refuses an id that
+   already exists, a manager who is not on the chart, or a calendar name already mapped.
+
+6. `publish.py --week <date>` copies that week's note to the TRIBE GROUP site,
    under `Shared Documents/TRIBE Group Tech/Where is my TRIBE/<date>/`, as a PDF
    (title, map and the table) and a PNG of the map, and writes the address into
    that week's `email.html`. The note then carries both: the map embedded so it

@@ -34,8 +34,9 @@ nothing. Only two weeks are kept on the site.
 3. Dani's palette and fonts applied once, in the template.
 4. A decision on the Graph send, so the note is real HTML rather than a pasted picture
    if it goes out that way.
-5. A one-line command for adding a new starter to the roster and the aliases, so a
-   Monday morning addition takes seconds.
+5. ~~A one-line command for adding a new starter~~ Done: `apps/team-map/add_person.py`,
+   dry run by default, refuses a duplicate id, an unknown manager or a calendar name
+   already mapped. Needs a real person to prove it end to end.
 
 ## Remaining work, in order
 
@@ -44,7 +45,7 @@ nothing. Only two weeks are kept on the site.
 2. Watch the first real run on Monday 30 November, 11:00.
 3. Apply Dani's values to `apps/team-map/make_week.py` when they arrive.
 4. Decide on the Graph send, and on who sends: Sam, Kate, or the manager on duty.
-5. Build the roster command.
+5. ~~Build the roster command~~ Done, see definition of done item 5.
 
 ## What it needs from you
 

@@ -1,9 +1,10 @@
 # Turning this into a new profile
 
-0. Ask what the person wants to call it. This is the first question of the setup
-   interview, not the last, because the name is how it is invoked on every channel
-   afterwards (Teams, email, the desktop app). Record it as the label; the folder id
-   stays role-based, so the baseline stays updatable. See D22 and D31.
+0. Ask what the person wants to call it, then run the set-up interview from
+   `docs/profiles/interview/onboarding-interview.md`. That document is the procedure:
+   eight blocks, the reason for each question, and the four artefacts it must produce.
+   Do not restate the questions here. The name is asked first because it is how the
+   assistant is invoked on every channel afterwards (D22, D31).
 1. Copy the folder to a role-based id:
    `cp -r templates/role ~/tribe-hermes-library/profiles/<role-name>`. The id is
    not the assistant's name. A person may call theirs Jarvis; the folder stays
@@ -16,6 +17,9 @@
 6. Watch the job being done twice. Write the steps in `workspace/procedures.md`
    first, then promote them to a skill once they hold. See `docs/profile-notes.md`.
 7. Sync: `python3 scripts/hermes_files.py sync`
+
+The interview itself, the second conversation about the brief, and how context is
+budgeted are in `docs/profiles/interview/`. Read them there rather than here.
 
 Keep the hard rules identical across profiles. Vary the facts, the skills, the
 channels and the schedule, not the guardrails.

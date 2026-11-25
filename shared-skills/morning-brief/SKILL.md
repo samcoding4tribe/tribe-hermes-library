@@ -1,7 +1,7 @@
 ---
 name: morning-brief
 description: "Daily brief: diary, mail, waiting on, decisions."
-version: 1.0.0
+version: 1.1.0
 author: TRIBE admin profiles
 license: MIT
 metadata:
@@ -42,7 +42,10 @@ rather than restoring it because it seems useful. The order below is the full se
    say nothing.
 4. **Waiting on others.** Who owes what, the date promised, working days overdue,
    and the drafted nudge attached. Aged, because three days old and nine days old
-   need different actions.
+   need different actions. Take the date and time off the thread header before
+   writing the age — a principal who remembers "since Monday" for something sent
+   Tuesday will repeat it to the correspondent, so the brief corrects the record
+   quietly with the timestamp rather than adopting their recollection.
 5. **You owe people.** Promises the principal made, still open, with a drafted reply
    ready to approve. Approving is seconds; composing is a context switch.
 6. **Project state.** For a principal building systems rather than running a
@@ -107,10 +110,19 @@ Never label something urgent without stating the consequence or the deadline.
   fresh yes in the conversation.
 - **Chases ladder:** rung 1 at 3-5 working days, warm and brief, restating the ask
   with an easy out; rung 2 at 5-7 working days after rung 1, adding a reason and
-  lowering the bar to yes or no; rung 3 at 7-10 working days, a graceful close that
+  lower the bar to yes or no; rung 3 at 7-10 working days, a graceful close that
   offers to park it, after which stop chasing and report. Count working days, not
   calendar days; an out-of-office resets the clock; never chase a VIP without
   showing the proposed rung first.
+- **Consolidate chases to one correspondent.** When several threads with the same
+  person have gone quiet, send one message listing each ask with its date rather
+  than a nudge per thread: a returning inbox is worked top-down, so three separate
+  nudges scatter through the queue and the oldest ask is the one that gets read
+  last. Name the item with money or a blocked decision attached first, cc whoever
+  was copied on it, and open with a line acknowledging their absence — that turns
+  a chase into a courtesy. When the principal supplies the item list from memory,
+  verify each date in the threads before drafting; the ages are what decide the
+  urgency.
 
 ## Keep a log or the brief dies
 

@@ -1,0 +1,57 @@
+{
+  "jobs": [
+    {
+      "id": "c89599799cd0",
+      "name": "Vipin check-in reminder",
+      "prompt": "Remind Sam that the Vipin Vijayan (Comwire IT) check-in email is due now, in one short message. State the three open threads and their ages as of today: 365 cost reductions on invoice INV-72745 (sent Wed 18 Nov, no reply), written confirmation that Tribe-DC01 files and dependencies have been migrated before approving server and backup deletion against quote 1576689-1 (sent Fri 20 Nov, no reply), and the Hermes trial per-machine requirements (sent Tue 24 Nov, no reply). Say the consolidated draft is ready, cc Kate because she was on the DC01 thread, and ask whether to put it in Outlook as a draft now. Do not send anything, do not draft into Outlook unless Sam asks in that conversation, and do not open the browser. Keep it under six lines.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-11-26T14:30:00+11:00",
+        "display": "once at 2026-11-26 14:30"
+      },
+      "schedule_display": "once at 2026-11-26 14:30",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-26T09:20:47.797793+11:00",
+      "next_run_at": "2026-11-26T14:30:00+11:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "origin",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-6f4824c267d99f8e4eb661d44bb2a640adb52b42ecf4e3037f07b89bc2f6e808",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:502",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "attach_to_session": true,
+      "timezone": "Australia/Melbourne"
+    }
+  ],
+  "updated_at": "2026-11-26T09:20:47.802283+11:00"
+}

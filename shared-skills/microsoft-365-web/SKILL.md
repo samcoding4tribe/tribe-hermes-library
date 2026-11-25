@@ -1,7 +1,7 @@
 ---
 name: microsoft-365-web
 description: "Outlook and Teams web access when Graph is blocked."
-version: 1.1.0
+version: 1.2.0
 author: TRIBE admin profiles
 license: MIT
 metadata:
@@ -142,8 +142,17 @@ js("""[...document.querySelectorAll('[aria-label]')]
 Swap the month for the window you need and run it in month view: one line per
 event, each carrying its date. It covers the days the view has rendered, which is
 what a slot check needs. Report two things from it beyond clashes: an empty day,
-and any pair of events starting at the same minute, because the grid renders a
-double-booking without complaint and nobody else will notice it.
+and any pair of events starting at the same minute.
+
+A same-minute pair is a prompt to look, not a clash to report. Before calling it
+one, open both and compare organiser, subject and location: organisations
+routinely book a meeting room at the same time as a Teams meeting so the team
+joins from one room instead of separate desks, which renders as two entries and
+is one meeting. The reverse failure matters more than the false alarm — telling
+the principal they are double-booked when they are not erodes the one thing the
+brief sells, which is judgement. Say what you saw and what would confirm it:
+"these two start at the same minute; if the room entry is the Teams call, ignore
+it, otherwise Tuesday has a problem."
 
 ## Creating an invitation
 
@@ -177,14 +186,12 @@ Pitfalls that cost real time here, each one observed:
   same rows.** Clicking at the position of a month's final day can land on the
   2nd of the next one. After any date selection, read `\\d{1,2}/\\d{1,2}/\\d{4}`
   out of the page text and correct it before touching the times.
-- **The date field is a control, not a text box.** Focus, select-all and
-  `insertText` are often ignored, and the picker popup takes focus back. Click
-  the exact cell inside the picker, then verify the value.
-- **The date field is a control, not a text box.** Typing appends to the masked
-  value instead of replacing it, so a select-all then `insertText` leaves rubble
-  like `:5/11/202630/11/2026`, and the field may still submit the original date.
-  Use the calendar-grid cell, and Backspace the value to empty before typing if
-  you must type at all.
+- **The date field is a control, not a text box.** Three ways it bites: focus,
+  select-all and `insertText` are often ignored; the picker popup takes focus
+  back; and typing appends to the masked value instead of replacing it, leaving
+  rubble like `:5/11/202630/11/2026` while the field still submits the original
+  date. Click the day cell in the picker, and if you must type, Backspace the
+  value to empty first, then verify what the field actually holds.
 - **Opening the composer from the grid is not dependable.** A click on a day-view
   slot can select the slot and open nothing, so do not build the event out of the
   grid. If two attempts at a coordinate have not held, change route — grid cell,
@@ -356,8 +363,11 @@ needs an explicit one.
   plainly on screen. Download the file and read it with openpyxl instead of driving
   a grid the page cannot see.
 - **The mail search box is `#topSearchInput`** (type `text`, role `combobox`);
-  `input[type="search"]` does not exist. Set the value, then dispatch a `keydown`
-  with `key: 'Enter'` to run the search, and read results from the message list.
+  `input[type="search"]` does not exist. The id is not always present on the
+  loaded page, so fall back to the accessible name before concluding the box is
+  missing: find the `input` whose `aria-label` or `placeholder` matches
+  `/search/i`, tag it with your own id, then `fill_input` that and dispatch a
+  `keydown` with `key: 'Enter'`. Read results from the message list.
 - **Quote the badge, not a total you did not read.** An unread count is the
   folder's claim; the rows you reviewed are yours. Presenting one as the other is
   how an assistant reports an empty afternoon on a full inbox.

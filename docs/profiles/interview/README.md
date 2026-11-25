@@ -14,7 +14,10 @@ TRIBE, without re-deriving the design or moving facts between profiles by hand.
 
 ## The order of operations for a new profile
 
-1. Copy the role profile from `templates/role/` and give it the person's name.
+1. Copy the role profile from `templates/role/` to a role-based id
+   (`assistant-kate`), not to the assistant's name. The name the person chooses is a
+   label, so renaming it later changes nothing downstream (D22, D31). Ask for it in
+   Block 0, before anything else.
 2. Read `onboarding-interview.md` and run it as a conversation, not a form. Blocks
    zero to eight, twenty to thirty minutes, two short sessions if the answers get
    thin.
