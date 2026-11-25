@@ -57,3 +57,15 @@ Recorded 20 November 2026. Delete a line when it is done, and say why in the com
 
 - [ ] Tenant permission to install the Teams bot.
 - [ ] Who in IT can grant Graph consent, when route 3 arrives.
+
+## Projects opened 25 November 2026
+
+- [ ] Fix OneDrive placeholder hydration on this Mac: right-click `SUPPLIERS` and
+      `TRIBE Travel` in Finder, choose Always keep on this device, then prove one file
+      opens. Until then no content migration can be done from this machine.
+- [ ] Events supplier knowledge base: agree the owner, the tier definition and whether
+      rates are visible to all events staff, then build phase one.
+- [ ] Travel support pilot: choose the five topics and their owners, confirm whether an
+      Azure subscription and Copilot licensing exist.
+- [ ] Move `Copy of Passwords (002).xlsx` out of the live travel folder into a password
+      manager and delete the file.
