@@ -168,6 +168,10 @@ as taste.
   tuple in `cmd_sync` — the publish step copies a list, not the tree. Adding the folder and
   running `sync` is two changes, and forgetting the second one looks exactly like "the folder
   never made it to OneDrive".
+- After editing a live profile's `SOUL.md`, statements here still work because this chat opened
+  before the edit — the change reaches a session only when its system prompt is rebuilt. Use
+  `hermes sessions refresh-prompts` (stamps a refresh epoch in that profile's `state.db`; the
+  prompt rebuilds once on the session's next turn, one prefix-cache break), or start a new chat.
 - Two backup locations are described in the docs (a private per-user folder, and
   `Hermes Backups/<machine>`). Check what the script writes today instead of trusting the
   older note, and correct the note.

@@ -62,5 +62,11 @@ people's practice. This keeps one profile healthy and current on one machine.
 
 - Whether the maintenance pass runs weekly, monthly, or on demand.
 - Whether the delegated builder may edit a soul, or only propose the diff.
-- A decision on the restart: accept "start a new chat" as the refresh, or build the handover
-  note into the pass.
+- A decision on the restart: the refresh is now known to be `hermes sessions refresh-prompts`
+  plus one turn, so this is only about whether a handover note is also wanted.
+
+## Next action
+
+Write the refresh step into the maintenance pass: after a soul or memory change, run
+`hermes sessions refresh-prompts` for that profile and say so, because otherwise the change
+sits invisible until somebody starts a new chat and wonders why the assistant is unchanged.
