@@ -20,7 +20,7 @@ is mostly Windows.
 | Second profile | `~/.hermes/profiles/admin`, Sam's work admin |
 | Third profile | `~/.hermes/profiles/ea`, a manager's assistant (pilot) |
 | Repo | `~/tribe-hermes-library`, private remote `tribe-hermes-library` |
-| Shared skills | `~/tribe-hermes-library/shared-skills` (empty on purpose, D18) |
+| Shared skills | `~/tribe-hermes-library/shared-skills` — seven skills, all procedures that are about the job rather than the person (D17) |
 | Org map | `templates/org/people.json`, 26 people, documented in `docs/org-map.md` |
 | Per-profile notes | `~/.hermes/profiles/<name>/workspace/`, private, in `docs/profile-notes.md` |
 | Shared library | `OneDrive / TRIBE Group Tech / Hermes Library` |
@@ -86,6 +86,27 @@ The `.sh` versions still work on the Mac and are no longer developed (D21).
   both through fallbacks.
 - **Folders look private and are not.** Anything in a shared library is readable
   by everyone with access, whatever Hermes is configured to do.
+
+## What changed on 26 November 2026
+
+- **`docs/setup.md` is now the front door** and publishes as the library's `README.md`:
+  install on Windows and macOS, `config.env` per platform, then a one-line bootstrap that puts
+  the builder profile on the machine and tells it to read the procedure.
+- **`templates/builder/`** holds the builder soul with placeholders, so a machine that is not
+  this one can be set up by someone who is not Sam (D35).
+- **`config/routing.json`** decides which profile id a person gets and which baseline it comes
+  from: a manager gets `ea`, everyone else `admin`, and both install `admin` because that is
+  the only baseline (D37).
+- **`hermes_files.py share`** copies the marked block of each soul into `baseline/soul-rules/`,
+  weekly, names scrubbed (D36). `admin` and `ea` still need their two markers.
+- **`scripts/`, `config/` and `baseline/` publish with the library**, so a new machine needs
+  nothing from git.
+- **Decisions D34 to D38** cover the soul boundary, the front door, the marked block, there
+  being one baseline, and keeping a personal knowledge base out of published files.
+- **Eight threads are numbered in `docs/projects/README.md`**, three of them raised today:
+  maintenance and the soul refresh, sync health across the estate, and protecting keys.
+- **Thread 0 closed for reading**: the OneDrive fault cleared once the working set was
+  downloaded. One PowerPoint remains a stub; the pin policy is still Sam's to decide.
 
 ## What to do next
 
