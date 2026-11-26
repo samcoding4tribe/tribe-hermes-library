@@ -111,6 +111,13 @@ as taste.
   become its own published baseline and the id is already correct (D37). `pa` was dropped.
   A new person gets a baseline installed and personalised by the interview, never a blank
   profile invented from `templates/role/`.
+- The routes are data, in `config/routing.json`, not prose: each route carries `profile_id`,
+  `baseline` and `applies_to`, and promoting one is a single field change plus publishing
+  `profiles/<id>/`. Both `docs/setup.md` and the interview kit say "read the file, do not
+  retype it" — keep it that way, or a promotion becomes a prose edit in three places.
+- Measuring OneDrive's stubbed files, testing the fetch path without downloading gigabytes,
+  and why a hydration count only means anything alongside the state it was taken in:
+  `references/onedrive-hydration.md`.
 - A machine that is not this one needs nothing from git: `Hermes Library` carries `scripts/`, `config.env.example`, the templates and the published profiles. Copy the folder to `~/tribe-hermes-library`, copy `config.env.example` to `config.env`, fill the three paths using the machine's asset name.
 - Bootstrap of a fresh install is one pasted line: that it is the builder, to read `README.md` in `TRIBE Group Tech/Hermes Library` and follow it, and to ask before anything destructive. The stock default profile knows nothing about the estate, so that line, not a hand-edited soul, is what makes the install self-directing.
 - Every machine writes its own backup into `Hermes Backups/<machine>/` (text plus dated `state.db` snapshots, created on first run) and needs to read back only its own. Per-folder permissions there are the open question; a backup read by every machine means every colleague can read every memory.
@@ -138,9 +145,13 @@ as taste.
   catalogue blobs (86 MB on one file) and will flood a tool result. Scope searches to
   `docs/`, `scripts/`, `templates/` or a named file.
 - `sync` publishes `profiles/`, `templates/`, `shared-skills/`, `apps/`, `scripts/`,
-  `baseline/`, `docs/` and `config.env.example`, and it wipes and rebuilds the library
-  folder from the repo each run. Anything put into the library by hand is deleted, so edits
-  belong in the repo. It also commits and pushes.
+  `baseline/`, `config/`, `docs/` and `config.env.example`, and it wipes and rebuilds the
+  library folder from the repo each run. Anything put into the library by hand is deleted, so
+  edits belong in the repo. It also commits and pushes.
+- A new top-level folder is invisible to the library until its name is added to the `parts`
+  tuple in `cmd_sync` — the publish step copies a list, not the tree. Adding the folder and
+  running `sync` is two changes, and forgetting the second one looks exactly like "the folder
+  never made it to OneDrive".
 - Two backup locations are described in the docs (a private per-user folder, and
   `Hermes Backups/<machine>`). Check what the script writes today instead of trusting the
   older note, and correct the note.

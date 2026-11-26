@@ -25,6 +25,16 @@ docs/architecture.md where each copy lives and why
 docs/decisions.md    one entry per choice, with the reason
 ```
 
+## What lives where
+
+Two knowledge bases, different jobs. This repo is the **estate**: decisions, procedures,
+open threads, scripts and published profiles — what anyone maintaining the machines needs.
+Sam's vault (`~/Documents/sam-tribe-brain`, its own private repo and remote) is **thinking
+and recall**: ideas that are not urgent, meeting records, and the things an assistant should
+remember rather than re-derive. Read by Sam, his admin profile and the builder; never
+published here. A question about how the estate works belongs in this repo; a question about
+what was decided in a meeting belongs in the vault.
+
 ## Everyday use
 
 ```
