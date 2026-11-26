@@ -96,7 +96,13 @@ as taste.
   `nightly`, `share` (marked soul rules → `baseline/soul-rules/`, weekly via the cron job
   'Hermes soul share' at Sunday 17:30, wrapper `~/.hermes/scripts/hermes-share.sh`).
   Souls contribute only what sits between `<!-- shared:start -->` and `<!-- shared:end -->`;
-  a soul without markers is reported as unmarked. `admin` and `ea` are still unmarked.
+  a soul without markers is reported as unmarked. The markers are HTML comments, so adding
+  them changes no behaviour and needs no `refresh-prompts`; all three souls on this machine
+  are marked now, with the block drawn around the numbered rules only — the paragraphs below
+  them (working notes, how it shares skills) are profile-specific and must not travel. The
+  summary pairs rules by exact wording, so the same rule phrased for a manager and for an
+  admin ("Email, messages, forms" against "Email, Teams messages") does not pair; real
+  distillation needs a model plus a cheap pre-filter, which is thread 5.
 - The loop back (harvest → distil → publish → pull → refresh) has a design in
   `docs/architecture-loop.md`. Design prose lives there, state lives in
   `docs/projects/checkpoint-distillation.md`; never both in one file. D34: no baseline
@@ -173,6 +179,11 @@ as taste.
   before the edit — the change reaches a session only when its system prompt is rebuilt. Use
   `hermes sessions refresh-prompts` (stamps a refresh epoch in that profile's `state.db`; the
   prompt rebuilds once on the session's next turn, one prefix-cache break), or start a new chat.
+- `SOUL.md` is a protected agent-instruction file: the write raises an approval prompt, and a
+  prompt that times out is **not** consent. Re-issue the edit and ask the person to approve it
+  in the dialog; never reach the same change through `terminal`, a heredoc or `execute_code`,
+  and do not read a silent turn as a yes. Two profile souls go through the gate one at a time —
+  a batch that is half-approved leaves one marked and one not.
 - Two backup locations are described in the docs (a private per-user folder, and
   `Hermes Backups/<machine>`). Check what the script writes today instead of trusting the
   older note, and correct the note.

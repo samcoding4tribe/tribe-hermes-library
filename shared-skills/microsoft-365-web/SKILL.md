@@ -120,12 +120,21 @@ js("document.body.innerText.match(/Loaded \\d+ events[^\\n]*/)[0]")
 - Cross-check the rendered rows against the folder's unread badge before saying
 you have read the inbox. Write "the seven threads that rendered" rather than
 "your inbox" — the list page is not the mailbox.
+- **A reply's text is not in the slice of page text after the subject line.** Threaded messages
+  collapse their quoted history, so reading `innerText` around the subject returns the signature
+  and the previous message while the new content sits unrendered. Click the message, or the
+  Expand / Show more control, and re-read before concluding the sender wrote nothing — or, worse,
+  summarising the wrong person's words back to the principal.
 - For one meeting, click its block on the calendar grid and read the details
 pane; the invite body and the attendee list are not in the subject line you
 clicked, and the attendees are usually the point.
 - The calendar header (`Loaded N events in N selected calendars`) is the cheapest
-  proof that a quiet week is genuinely quiet rather than not yet loaded. Quote it
-  when reporting an empty diary.
+  proof that a quiet week is genuinely quiet — **but only when no filter is applied.** Read the
+  toolbar for `Filter applied` first: with a filter on, the header counts the filtered view, and
+  you will report "0 events" for a day that has meetings in it. Check the filter before quoting
+  the count, and say which view you read whenever a day looks empty — "nothing on" and "nothing
+  visible in the view I happened to have open" are different claims, and only the first is worth
+  telling the principal.
 
 ### Scanning the diary for a date window
 
@@ -196,6 +205,15 @@ Pitfalls that cost real time here, each one observed:
   slot can select the slot and open nothing, so do not build the event out of the
   grid. If two attempts at a coordinate have not held, change route — grid cell,
   then hand-over — rather than trying a fifth coordinate.
+- **Two attempts at the date, then hand over.** The date control fails in several
+  distinct ways — typed dates ignored, select-all-then-type appending rubble, the
+  month grid rendering translucent over the time suggestions so clicks fall through
+  to the rows beneath, arrow keys doing nothing because the field never took focus.
+  Attendees, room and times will set fine throughout, which makes it tempting to keep
+  going. Stop at two: hand the owner a four-field block per invitation — title, start
+  and end, attendee address, room, Teams yes or no — and say plainly that the composer
+  would not take the date. They create three invites in two minutes; a dozen automation
+  attempts produce nothing sendable and spend their morning.
 - **Set the date before the times.** Once a time is in the fields, the picker renders the
   time-suggestion list underneath the month grid and the day cells stop taking clicks: the
   overlay swallows them and the popup closes with the old date intact. Choose the day on a clean
@@ -244,26 +262,10 @@ its rendered viewer is not.
 
 ## Composing a draft in the web editor
 
-The compose pane is a small editor with its own rules. These steps were exercised
-end to end; follow them in order rather than improvising clicks.
-
-1. **New mail**: click the button whose accessible name matches
-   `/New mail|New message/`.
-2. **To**: click the To row, `cdp('Input.insertText', text=address)`, then dispatch
-   an Enter key event so the address resolves into a recipient chip. Verify a chip
-   appeared; a raw string in the field is not a recipient.
-3. **Subject**: `document.querySelector('input[aria-label=Subject]')`, focus and
-   select it, then insertText.
-4. **Body**: `document.querySelector('[contenteditable=true][role=textbox]')`,
-   focus it, and send the whole body in one `cdp('Input.insertText')` call.
-   Newlines survive and render as paragraph breaks, so write the prose you want
-   rather than assembling it line by line.
-5. **Save and verify**: wait for the compose header to read `Draft saved at HH:MM`,
-   then open the Drafts folder and read the row. The compose pane is not proof; a
-   row in Drafts with the right subject and time is.
-6. **After sending, verify in Sent Items**: open the folder and read the row's
-   recipient, subject and time. A closed compose window is not a sent message, and
-   the row is what proves delivery.
+The compose pane is a small editor with its own rules: fill To, Cc, Subject and Body in that
+order, one `insertText` per field, and verify a recipient chip rather than a raw address string.
+`references/compose-and-send.md` carries the field-by-field sequence and the body-rewriting rules;
+read it before composing rather than improvising clicks.
 
 **Documents and attachments have a working path:** `references/compose-and-send.md` carries the
 field-by-field sequence, the `setFileInputFiles` attachment method, the headless-Chrome PDF recipe

@@ -43,20 +43,22 @@ identity. That matches D22 and D31, so nothing needs rewriting for the name rule
 
 ## Remaining work, in order
 
-1. Reconcile the README's step one, which says to give the profile the person's name,
-   with D22, where the folder id stays role-based and the name is only a label. Small
-   edit, but it is the one place the kit contradicts a decision.
-2. Point `templates/role/README.md` at the kit and delete its duplicate steps.
-3. Write the artefact table: artefact, where it lives, who writes it.
-4. Publish and remove the Downloads copy.
-5. Book the dry run. Kate's EA is the obvious volunteer if she agrees, otherwise run it
-   on yourself with a second profile.
+1. ~~Reconcile the README's step one~~ — done 26 November, and superseded by D37: the kit now
+   installs `profiles/admin` under a routed id rather than copying `templates/role`.
+2. ~~Point `templates/role/README.md` at the kit and delete its duplicate steps~~ — done 27
+   November. It keeps only the mechanics and points at this kit for the procedure.
+3. ~~Write the artefact table~~ — done, in this kit's README.
+4. ~~Remove the duplicate `templates/ea-profile/`~~ — done 27 November. It held a second copy of
+   two interview documents, including the two colleague names since genericised out of the
+   canonical copies.
+5. Publish and remove the Downloads copy — Sam's, since Downloads is outside what the builder reads.
+6. Book the dry run. Kate's EA is the obvious volunteer if she agrees, otherwise run it on
+   yourself with a second profile.
 
 ## What it needs from you
 
 - A volunteer for the dry run.
-- A yes on removing the duplicate steps from `templates/role/README.md`, since that file
-  is the one new builders read first.
+- Deleting the Downloads copy of the kit.
 - A decision on whether the kit is shared with everyone who builds a profile, or held to
   the builder role only. The README implies shared; the guardrails argue for held.
 
