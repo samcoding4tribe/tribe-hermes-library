@@ -631,7 +631,8 @@ admin he uses) know the vault; the templates and published profiles that set up 
 else's machine do not, and a colleague who wants the same thing gets it at their own setup.
 
 **Why.** Everything in a profile except its memory is published to the shared library. A soul
-or a skill naming `~/Documents/sam-tribe-brain` puts that path in front of every colleague who
+or a skill naming a personal knowledge base puts its location in front of every colleague who
 can open the folder, which is exactly the mixing this rule exists to stop. Memory is the one
 part that never leaves the machine (D14), so it is the only safe place for a pointer that is
-personal to Sam.
+personal to Sam. This entry deliberately does not repeat the location either, because these
+decisions are published too.
