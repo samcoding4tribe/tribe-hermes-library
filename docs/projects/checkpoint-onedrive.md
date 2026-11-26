@@ -6,6 +6,28 @@
 > projects can proceed. The fault is real and still worth fixing in what remains — client
 > archives, design assets, finance — but it no longer gates anything. Numbers below.
 
+## Resolved, 26 November 2026
+
+Sam downloaded the working set on the machine during the morning. By 16:30 the estate is
+hydrated: **199,041 files, one dataless stub left.** A read test across the four folders that
+failed this morning:
+
+| Folder | Files read | Failures |
+|---|---|---|
+| EVENTS CLIENTS | 123,501 | 1 |
+| DESIGN CLIENTS (Dani) | 31,618 | 0 |
+| FINANCE | 549 | 0 |
+| Travel / XXX - KELLY to review | 2,382 | 0 |
+
+The single failure is
+`EVENTS CLIENTS/AFG/AFG Fintelligence/2024_Conference Gold Coast/QT Sponsorship Options.pptx`
+— 16.8 MB, still a stub, and not progressing on its own over 30 seconds. It needs a manual
+touch: open it once in PowerPoint, or set "Always keep on this device" on the file.
+
+Definition of done, against the four items above: (1) reads work — done; (2) re-measured and
+the remaining set is one known file — done; (3) the pin policy is still unwritten, in the
+remaining work below; (4) the cause is recorded in this file.
+
 ## What is wrong
 
 Files carry the `dataless` flag: OneDrive keeps them online-only and is meant to fetch

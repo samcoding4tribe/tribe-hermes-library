@@ -6,7 +6,7 @@ the checkpoint, not the brief, when picking something up.
 
 | # | Thread | Checkpoint | State | Next action |
 |---|---|---|---|---|
-| 0 | OneDrive will not hand over files | `checkpoint-onedrive.md` | Real but narrower than thought: no longer blocks 2 or 3 | Relaunch the client, then reset with Sam's yes |
+| 0 | OneDrive will not hand over files | `checkpoint-onedrive.md` | Resolved 26 Nov: hydrated, one stuck file | Pin policy, then close |
 | 1 | Profile set-up interview | `checkpoint-interview.md` | Kit written, needs consolidating | Two small edits, then a dry run |
 | 2 | Events supplier knowledge base | `checkpoint-events-suppliers.md` | Brief done, nothing built | Fix hydration, then build the list |
 | 3 | Travel consultant support | `checkpoint-travel-support.md` | Brief done, waiting on design | Sam's five topics, then a pilot |
