@@ -68,7 +68,10 @@ as taste.
   The live `~/.hermes` runtime is never published.
 - `scripts/hermes_files.py` subcommands: `backup` (text mirror that keeps memories, plus
   `state.db` snapshots), `sync` (to the shared library, memories stripped), `pull`,
-  `nightly`.
+  `nightly`, `share` (marked soul rules → `baseline/soul-rules/`, weekly via the cron job
+  'Hermes soul share' at Sunday 17:30, wrapper `~/.hermes/scripts/hermes-share.sh`).
+  Souls contribute only what sits between `<!-- shared:start -->` and `<!-- shared:end -->`;
+  a soul without markers is reported as unmarked. `admin` and `ea` are still unmarked.
 - The loop back (harvest → distil → publish → pull → refresh) has a design in
   `docs/architecture-loop.md`. Design prose lives there, state lives in
   `docs/projects/checkpoint-distillation.md`; never both in one file. D34: no baseline

@@ -186,8 +186,15 @@ vault, then start Hermes and check what it remembers. The backup folder carries 
 ```
 python3 scripts/hermes_files.py pull <profile-id>    # show the diff
 python3 scripts/hermes_files.py pull <profile-id> --apply
+python3 scripts/hermes_files.py share               # marked soul rules -> baseline/
 python3 scripts/hermes_files.py sync                # publish, commit, push
 ```
+
+`share` copies only what a soul wraps in `<!-- shared:start -->` … `<!-- shared:end -->`,
+scrubs names, emails and numbers against the org map, and writes it to `baseline/soul-rules/`
+with a summary of which profiles offer a marked block. It runs weekly from the Hermes
+scheduler. A soul with no markers contributes nothing and is named as unmarked in the
+summary — that is a to-do, not a failure.
 
 Publish one way, pull with a diff (D4). Souls and skills travel both ways; memories never
 travel (D14). One writer at a time in this library: two editors in one file produce a

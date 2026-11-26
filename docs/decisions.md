@@ -574,3 +574,25 @@ first job has a third, and it is the one that scales.
 **Consequence.** `templates/builder/` holds placeholders, never one person's details, so the
 profile can be installed somewhere that is not this Mac. The role profile is created by the
 interview, never copied from a filled-in example.
+
+---
+
+## D36. A soul offers a marked block, and only that block leaves the machine
+
+**Decision.** A soul wraps the rules it is willing to share in `<!-- shared:start -->` and
+`<!-- shared:end -->`. `hermes_files.py share` copies that block and nothing else, replaces
+names, emails and numbers with placeholders using the org map, and writes the result to
+`baseline/soul-rules/` in the shared library each week. The rest of the soul — voice,
+relationship, working style — stays on the machine.
+
+**Why.** The rules are the part that generalises: a boundary learned the expensive way is
+true for anyone doing the job. The voice is the person, and publishing whole souls would put
+everyone's tone in a folder the team can read. Marking the block keeps the decision visible
+in the file itself, rather than in a script's opinion of which lines look personal.
+
+**Consequence.** A soul without markers contributes nothing, and the weekly summary names it
+as unmarked. `admin` and `ea` are unmarked as at 26 November 2026.
+
+**What this is not.** It is not the pooling loop in `docs/architecture-loop.md`. This keeps
+the rules; that one improves the baseline from several people's practice. Same material,
+different job, and the second is still parked.
