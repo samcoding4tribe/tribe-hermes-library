@@ -257,6 +257,22 @@ end to end; follow them in order rather than improvising clicks.
 5. **Save and verify**: wait for the compose header to read `Draft saved at HH:MM`,
    then open the Drafts folder and read the row. The compose pane is not proof; a
    row in Drafts with the right subject and time is.
+6. **After sending, verify in Sent Items**: open the folder and read the row's
+   recipient, subject and time. A closed compose window is not a sent message, and
+   the row is what proves delivery.
+
+**Attachments of arbitrary files do not survive automation.** The compose pane
+holds several `input[type=file]` elements; the first carries `accept="image/*"`
+and rejects anything else with "wasn't inserted because it isn't a supported image
+file type", while pushing files at one of the unrestricted inputs closed the draft
+without attaching. So when the owner needs a document, do not promise an
+attachment you cannot place: put the full content in the body (a text or markdown
+document of ~13k characters inserts and renders fine in one `insertText` call) and
+hand the file over separately — as a downloadable artifact in the chat, or through
+OneDrive. Then note in the message that the content is inline, not attached.
+- **Outlook blocks the send with an "Attachment reminder" dialog** when the body
+  mentions an attachment and none is present. It is a modal with **Send** and
+  **Don't send**; the send is not complete until the dialog's Send is clicked.
 
 Pitfalls that cost real time here:
 

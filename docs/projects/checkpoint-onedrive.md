@@ -1,10 +1,10 @@
 # Checkpoint: OneDrive will not hand over files
 
-> **Start here before either knowledge project.** The headers say it blocks reading any
-> supply or travel document. Re-measured on 26 November: it does not. The supplier,
-> workflow and travel-docs folders read cleanly, so both knowledge projects can proceed.
-> The fault is real and still worth fixing, but it is now a smaller job than it looked,
-> and it no longer gates anything. Numbers below.
+> **Start here before either knowledge project.** The headers said it blocks reading any
+> supply or travel document. After Sam downloaded the working set on 26 November, it does
+> not: the supplier, workflow and travel-docs folders read cleanly, so both knowledge
+> projects can proceed. The fault is real and still worth fixing in what remains — client
+> archives, design assets, finance — but it no longer gates anything. Numbers below.
 
 ## What is wrong
 
@@ -38,11 +38,13 @@ Read test, 26 November: SUPPLIERS 445/445 read, WORKFLOW 13/13, TRAVEL - DOCS 24
 CLIENT INFO 812/816 (the four failures are passport images, which no agent may open
 anyway).
 
-**Correction to the 25 November measurement.** That note recorded 3,463 of 3,714 Share
-Drive files unreadable and concluded the fault blocked both knowledge projects. Both
-claims are wrong today: the tree is 194,848 files, and every folder the two projects need
-reads cleanly. The fault is real and worth fixing, but it sits in client archives, design
-assets, finance and the Kelly review pile — not in suppliers, workflow or travel docs.
+**Why this changed.** On 26 November Sam downloaded the working set to the machine, which is
+why the picture below is different rather than contradictory. The 25 November note recorded
+3,463 of 3,714 Share Drive files unreadable; that was the state of a tree that had not been
+brought down, where most files were stubs and large parts of the tree were not even
+enumerated. After the download the same scan sees 194,848 files, and the folders the two
+projects need read cleanly. The earlier numbers were a measurement of a different state, not
+a mistake.
 
 The client is running, version 26.213.1101, four processes including the file provider.
 Its newest log file is dated 12 November, so the engine is up but has stopped logging and

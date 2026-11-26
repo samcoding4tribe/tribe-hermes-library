@@ -110,14 +110,40 @@ configurations only, not built-to-order memory upgrades. If the discount will no
 larger unified-memory tier, the upgraded machine silently reverts to full price and the
 recommendation changes — say so before the owner orders, not after.
 
-**Two linked small machines are not one large machine.** A consumer interconnect between desktop
-boxes runs at roughly an order of magnitude less bandwidth than the memory inside each box
-(~10GB/s link against 300–600GB/s unified memory). Splitting a model across that link makes every
-token wait on the pipe, so it suits two people running two independent models, or batch work that
-tolerates latency — not one person's interactive session. Quote the aggregate memory, then explain
-why the aggregate is not real: the arithmetic, not a verdict on the vendor's software.
+**Pooling two machines into one model does work now, and the toolchain is the price.** RDMA over
+Thunderbolt 5 (macOS 26.2 and later, on machines with TB5 ports), MLX's JACCL backend and exo all
+let two to four Apple machines present their unified memory as one pool, with aggregate bandwidth
+scaling close to linearly — Apple's own research ran an ~800B model across four M5 Ultras at over
+30 tok/s. So do not tell the owner a cluster is impossible or that the link is a narrow pipe; that
+was true of plain IP-over-Thunderbolt, not of RDMA.
 
-**A cluster of purpose-built boxes is a different case** and does work for models around 300–400B
-because the vendor provisions the fabric. Say that plainly while keeping the caveat: aggregated
-bandwidth does not scale like memory, so four nodes are not four times one node on decode, and no
-amount of clustering fixes a low tensor-throughput machine's prefill on long agent contexts.
+The costs that remain, and the ones to quote: the pooling path is MLX or exo, not Ollama or
+llama.cpp, so the serving stack has to be chosen for it; every node must run the same OS version
+and be cabled properly; and a model that fits on one node gains nothing from the second. Price it
+per configuration (2×, 3×, 4× nodes) against a single large-memory machine, and add the operational
+count — machines, power bricks, and who keeps them in step.
+
+**A cluster of purpose-built boxes is a slightly different case** and works for models around
+300–400B because the vendor provisions the fabric. Same caveats: aggregated bandwidth does not
+scale identically to memory, so four nodes are not four times one node on decode, and clustering
+does not fix a low tensor-throughput machine's prefill on long agent contexts.
+
+## 7. Serving several conversations at once
+
+For an agentic setup, "does the model fit" is the wrong question — the constraint is how many
+concurrent contexts stay resident. Weights take a fixed slice; the rest is KV cache per session:
+
+```
+resident sessions ≈ (memory − weights − ~4GB runtime) ÷ (context_k × KV per 1k tokens)
+KV per 1k tokens ≈ 0.26GB for a 32B-class dense model at fp16 cache (halve it at fp8)
+```
+
+A 32B model at FP8 is ~34GB of weights, so 48GB leaves ~5 sessions at 8k context and one at 32k;
+64GB leaves ~12 and three; 96GB leaves ~28 and seven. Quote the table rather than the total
+memory, because the second and third agents are what the owner is actually buying the headroom for.
+
+**Which model shape decides whether a low-bandwidth box is usable at all.** Dense 27–32B at FP8
+decodes around 3–4 tok/s on a ~300GB/s machine and 7–9 on a ~600GB/s one, which is the difference
+between unusable and tolerable in an agent loop. A MoE with ~3B active decodes at 35–40 and 70–80
+tok/s on the same two boxes, where the bandwidth difference stops mattering. Ask which checkpoint
+they intend to run before recommending either.
