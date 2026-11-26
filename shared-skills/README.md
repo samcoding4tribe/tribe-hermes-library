@@ -20,6 +20,16 @@ under 60 characters.
 
 ## Current members
 
+| Skill | What it is |
+|---|---|
+| `second-brain` | How to stand up a private notes vault an assistant can read, and the boundary that keeps it out of published profiles |
+| `executive-admin-support` | The admin role: what it covers and how it is done |
+| `mail-handling` | Reading, triage and drafting in mail |
+| `microsoft-365-web` | Reaching Outlook and the rest through the browser |
+| `morning-brief` | The shape of a morning brief |
+| `watchlist-digest` | The people and threads not to miss |
+| `link-batch-download` | Fetching a list of asset links |
+
 | Profile | Reads this folder |
 |---|---|
 | `admin` | Sam's own work admin |
