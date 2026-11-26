@@ -66,6 +66,37 @@ The bigger lever is not deletion but what gets written: large tool results belon
 a summary printed, not in the transcript. That is the same rule that keeps a profile responsive
 while it works.
 
+## Where the tokens actually go
+
+Measured on the builder's current session, 27 November 2026 — 645 messages:
+
+| Role | Messages | Content |
+|---|---|---|
+| Tool results | 297 | 543 KB |
+| Assistant | 286 | 68 KB |
+| User | 62 | 12 KB |
+
+The person's own words are 2% of the conversation. **The cost is tool output re-sent on every
+turn**, not the soul, not the memory, not the skills index. Those three together are about 7 KB
+of static prompt; one verbose tool result can be larger than all of them.
+
+That gives the order of work for keeping spend down:
+
+1. **A new chat per task.** The single biggest lever and it is free. A session carries its whole
+   history on every request; 600 messages of history is the bill.
+2. **Tool output discipline.** Big results go to a file, the chat gets the count and the path.
+   Two failures on this machine: a recursive grep that printed an 87 MB catalogue, and full
+   scans of skill caches. Both were avoidable and both were billed on every later turn.
+3. **Delegate volume.** A subagent's context is its own; only its summary comes back.
+4. **Fewer tools per profile.** Tool schemas are in every request. A role profile that never
+   opens a browser should not carry the browser toolset (`platform_toolsets`).
+5. **Fewer skills installed.** 48 on this profile; each adds a line to every prompt.
+6. **A smaller soul.** 3.6 KB to about 2 KB is real but minor — it is the size of one bad tool
+   result.
+7. **Earlier compaction.** `compression.threshold: 0.50` with `target_ratio: 0.20` summarises at
+   half the window. Lowering to 0.35 and 0.15 compacts sooner and keeps a shorter tail, at the
+   cost of losing detail earlier.
+
 ## Rules that keep it small
 
 - **Consolidate, never append.** Memory is capped; when it is full the tool refuses

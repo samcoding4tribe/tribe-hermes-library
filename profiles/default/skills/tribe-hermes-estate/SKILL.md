@@ -147,12 +147,29 @@ as taste.
   team. Durable personal operating facts belong in the memory file, and the rule that
   protects them must not restate the value it protects — `docs/decisions.md` is published
   too, so quoting the path inside the rule leaks it.
+- History hygiene is built in and needs no custom system. Compaction fires at 50 per cent of
+  the model window (`compression.threshold`), so a long chat summarises itself; the store on
+  disk only grows (builder 28 MB over 3,340 messages, `admin` 36 MB over 1,881). When asked
+  about bloat, answer with the two mechanisms apart: live context is already handled, the
+  archive grows and is managed with `hermes sessions archive` (hide), `prune` (delete) and
+  `optimize` (FTS merge + vacuum). Written-up policy and measurement commands:
+  `docs/context-budget.md`.
 - `docs/projects/README.md` numbers every thread with its checkpoint file. Parked threads
   still get a row and a file, so a direction raised mid-conversation costs one small page
   rather than a re-argument later.
 
 ## Pitfalls
 
+- A duplicate of a `docs/` procedure under `templates/` publishes twice and drifts: the
+  interview kit once lived in three places, and the two copies still carried the colleague
+  names that had been genericised out of the canonical one, so the leak reached the library.
+  One copy per procedure — `templates/role/README.md` now holds mechanics only and points at
+  `docs/profiles/interview/`. Check `templates/` for strays before publishing.
+- Editing another profile's `memories/MEMORY.md` is a capped write: read
+  `memory.memory_char_limit` from that profile's `config.yaml` (2200, with `user_char_limit`
+  1375) before appending. At the cap, consolidate two stale entries into one instead of adding
+  a third — the file loads on every turn, and trimming stale paths is usually the room you
+  need anyway.
 - `custom_skills()` skips bundled skills, so a backed-up `skills/` can look populated while
   holding only `.locks` and `.hub` metadata. Count `SKILL.md` files, never files.
 - Backups carry `memories/` and `db/` snapshots: the most personal material in the estate,
