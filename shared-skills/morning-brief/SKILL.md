@@ -36,7 +36,12 @@ rather than restoring it because it seems useful. The order below is the full se
 2. **Diary.** Not a copy. One line per event that carries stakes (a decision, a
    commitment, an external person), with location and join link; flag back-to-back
    clusters with no gap. Routine internal meetings collapse into one line. Quiet day:
-   give tomorrow's first event instead.
+   give tomorrow's first event instead. Before calling two entries a clash, open both:
+   a same-time duplicate is usually one meeting booked twice — someone books a room at
+   the same hour so the team can join a remote call together from the office, or an
+   assistant books on the principal's behalf. Compare organiser, subject and location
+   first; only a genuine pair of different commitments is a clash, and a false one
+   teaches the principal to skim the diary line.
 3. **Decisions needed.** At most three. Each: the ask, the deadline, a
    recommendation, two or three real options, and what happens by default if they
    say nothing.
@@ -130,6 +135,12 @@ Maintain `workspace/brief-log.md`: one line per item with date raised, state (op
 approved, declined, delegated, deferred, dropped) and the principal's answer verbatim.
 An item that appears unchanged for a third morning is escalated, not repeated. This
 is also the evidence of what was decided on their behalf.
+
+**Close items the principal says they handled another way.** "Replied verbally", "raised it
+in passing", "answered her in person" all end the item: record it as dropped with their words
+and the date, and do not raise it again because no email exists to prove it. Leaving it open
+until it turns up in a thread treats a settled matter as unsettled and teaches the principal
+that the log is not listening.
 
 ## Configuration comes after the first brief
 

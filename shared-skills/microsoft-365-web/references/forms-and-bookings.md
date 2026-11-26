@@ -71,6 +71,10 @@ what is actually live — their option lists, their question order, their settin
 the plan you wrote. That sheet is what the next rebuild or the next team copies from, and a
 sheet that disagrees with the live form is worse than no sheet.
 
+Leave one form in the account. Abandoned imports and the stray "Untitled form" a test click
+creates stay in the owner's list and get sent to colleagues by mistake months later; delete
+them once the live form is verified, and say you did.
+
 ## Designer pages are separate CDP targets
 
 Clicking a form card, or "Start review", opens a new tab. `js()` keeps evaluating on the
@@ -90,7 +94,11 @@ exist" and reads like a deleted form.
 ## Settings to set before sharing
 
 - **Who can fill**: "Only people in <tenant> can respond", with **Record name** ticked, so
-  every answer carries its respondent without asking.
+  every answer carries its respondent without asking. Do not add a "what is your name"
+  question — the response already has the name, address and timestamp, and the extra question
+  reads as distrust. The one gap it does not close is somebody answering while signed in as a
+  colleague on a shared machine; reconcile recorded names against the roster afterwards rather
+  than trying to design around it.
 - **One response per person**: tick it. Untick only for a form that is meant to be filled
   repeatedly.
 - **Start and end date**: leave off unless the deadline is real; the covering email carries

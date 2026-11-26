@@ -125,6 +125,23 @@ preamble, no praise, no restating the request.
 Every claim about a date, number, person or commitment carries its source: the
 message subject and time, the calendar entry, the document. "One unread from a supplier at 3:36 PM" beats "you have some unread mail".
 
+### When the owner defers work to later today
+
+"Remind me this afternoon and then we do it" is a scheduled reminder, not a note to
+remember. Create a one-off job with `cronjob_manage` at an absolute local time, set
+`attach_to_session` so they can answer it in place, and write the prompt
+self-contained — the item list with the ages already verified, and an explicit line
+that it must not send or draft anything. A cron session starts with no conversation
+behind it; anything left implicit is lost.
+
+- **Pick the hour the owner will act, and say why in one line.** A correspondent back
+  from leave triages top-down, so a consolidated chase lands better early afternoon
+  than at 9:15; anything needing daylight to read should not be pushed to 4:30.
+- **Carry the verified ages into the prompt**, so the reminder cannot repeat the
+  owner's remembered date back at them.
+- **Remind before drafting, when they said "then we do it"** — the deliverable is the
+  reminder plus the ready draft, not an invitation sitting in their inbox unannounced.
+
 ## Learning the mail rules over the first days
 
 Mail handling is not configured at set-up. Say one line so the person knows it is coming,
@@ -310,6 +327,31 @@ question is how to hand it over.
   every response, including remarks about people's workloads. When that is not wanted, send a
   preview link and a screenshot of the questions and keep ownership with the owner.
 
+## Notes for a standing management meeting
+
+"Put this in my notes for when I next see management" asks for a durable note they will speak
+from, not a recap of the conversation. Write it where durable knowledge lives — their vault, not
+the workspace — link it from the index so it is not an orphan, and give it a sentence-shaped title
+they could search for in a month.
+
+- **Carry the numbers with what produced them.** A figure quoted in a meeting gets challenged, so
+  the note states the figure, the rate it was derived from, and the assumption behind it. Mark a
+  self-reported or single-measurement figure as such rather than presenting it as a baseline; a
+  build-or-test spike annualised is the most common way a note arms the owner with a wrong number.
+- **Put the known and the assumed in different sentences.** "At published rates", "assuming prompt
+  caching of about 60%", "the volume assumption is unmeasured" — each clause protects a claim that
+  would otherwise collapse in the room.
+- **Record an unresolved tension as a tension.** When colleagues are already buying their own tool
+  because it works better than the sanctioned one, that is a signal about the sanctioned option
+  rather than a discipline problem. Note the trade-off honestly, name what would settle it, and
+  propose a sequence — working alternative first, measurement, then the rule — because a
+  restriction that arrives before an alternative gets worked around quietly.
+- **Close with the decisions the meeting has to make**, including the awkward one nobody has
+  raised: who owns the spend line, what the ceiling is, and what happens to the people already
+  paying out of their own pockets.
+- **Correct your own figure in the note when it turns out wrong.** Say plainly which number moved
+  and why; a silently edited note leaves the owner defending something they cannot explain.
+
 ## Pitfalls
 
 - **A title in a signature block is not a hierarchy.** Two people can both sign
@@ -344,6 +386,9 @@ question is how to hand it over.
   deployment.
 - `references/bulk-file-delivery.md` with `scripts/asset-download.py` and
   `scripts/asset-rename.py` — turning a sheet of links into a named, ordered folder.
+- `supplier-shortlist` — when the owner needs options bought rather than something
+  done: fix the buying shape, verify what each supplier actually sells, and get
+  proposals that compare.
 - `email-inbox-triage`, `meeting-action-items`, `weekly-review-planning` for the
   recurring jobs once the context exists.
 - `~/tribe-hermes-library/shared-skills/` — where a procedure that is about the job

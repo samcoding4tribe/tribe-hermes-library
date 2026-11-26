@@ -1,24 +1,52 @@
 # Checkpoint: OneDrive will not hand over files
 
-> **Start here before either knowledge project.** This is not a side issue. It blocks
-> reading any supply or travel document, so it blocks the import, the content work and
-> any grounding. Fixing it is the cheapest thing on the list.
+> **Start here before either knowledge project.** The headers say it blocks reading any
+> supply or travel document. Re-measured on 26 November: it does not. The supplier,
+> workflow and travel-docs folders read cleanly, so both knowledge projects can proceed.
+> The fault is real and still worth fixing, but it is now a smaller job than it looked,
+> and it no longer gates anything. Numbers below.
 
 ## What is wrong
 
 Files carry the `dataless` flag: OneDrive keeps them online-only and is meant to fetch
 one the moment something opens it. Instead every read fails instantly with
-`Resource deadlock avoided`. That is the file provider refusing, not a slow download.
+`Resource deadlock avoided`, in about zero seconds. That is the file provider refusing,
+not a slow download: a file already on disk reads fine, a stub never does.
 
-Measured on 25 November 2026:
+Measured again on 26 November 2026, whole tree, `st_flags & 0x40000000`:
 
-- Share Drive: 3,463 of 3,714 files unreadable.
-- Travel library: 1,093 of 1,112 unreadable.
-- One spreadsheet tested by hand: `cp` failed, and a Python read failed in 0.0 seconds.
+| Library | Files | Dataless |
+|---|---|---|
+| Share Drive | 194,848 | 52,698 |
+| TRIBE Travel | 4,124 | 1,419 |
+| TRIBE Group Tech | 141 | 0 |
 
-The client is running, version 26.213.1101, three processes including the file provider.
-Its last log entry is 12 November, and that log shows a failed update download with a
-network error. So the engine is up but not doing the one job needed.
+Where the weight sits, and where it does not:
+
+| Folder | Files | Dataless |
+|---|---|---|
+| Share Drive / EVENTS CLIENTS | 154,555 | 48,709 (31%) |
+| Share Drive / DESIGN CLIENTS (Dani) | 37,817 | 3,605 (9%) |
+| Travel / XXX - KELLY to review what to keep | 2,498 | 1,331 (53%) |
+| Share Drive / FINANCE | 549 | 385 (70%) |
+| **Share Drive / SUPPLIERS** | **445** | **0** |
+| **Share Drive / WORKFLOW** | **13** | **0** |
+| **Travel / TRIBE TRAVEL - DOCS** | **24** | **0** |
+| **Travel / CLIENT INFO** | **816** | **4** |
+
+Read test, 26 November: SUPPLIERS 445/445 read, WORKFLOW 13/13, TRAVEL - DOCS 24/24,
+CLIENT INFO 812/816 (the four failures are passport images, which no agent may open
+anyway).
+
+**Correction to the 25 November measurement.** That note recorded 3,463 of 3,714 Share
+Drive files unreadable and concluded the fault blocked both knowledge projects. Both
+claims are wrong today: the tree is 194,848 files, and every folder the two projects need
+reads cleanly. The fault is real and worth fixing, but it sits in client archives, design
+assets, finance and the Kelly review pile — not in suppliers, workflow or travel docs.
+
+The client is running, version 26.213.1101, four processes including the file provider.
+Its newest log file is dated 12 November, so the engine is up but has stopped logging and
+is not doing the one job needed.
 
 ## Definition of done
 
