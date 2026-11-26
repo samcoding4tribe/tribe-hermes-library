@@ -8,6 +8,12 @@ bill. Most "we should buy a GPU" conversations end at step 3.
 Re-check every price before quoting it. Figures below are anchors with the date they were
 read, not a price list.
 
+**Model generations move as fast as prices.** Open-weight families iterate every few months and
+parameter counts change with them, so a table built from a generation you remembered is wrong by
+the time it is read. Take the owner's generation if they name one, say which generation each row
+assumes, and when you have not checked that generation's actual size and benchmarks, label the
+figures as memory arithmetic at an assumed parameter count rather than measured performance.
+
 ## 1. Does the model fit
 
 ```

@@ -46,3 +46,23 @@ may travel.
 
 Per-item opt-in with a contribution skill and an audit receipt for the contributor.
 It assumed the material was not already central. It is.
+
+## What the weekly share job proved, 26 November 2026
+
+The first real material from the estate shows the check is too literal. `admin` and `ea` both
+carry a "draft, never send" rule as rule 1, and the summary pairs nothing because the wording
+differs — "Email, messages, forms" against "Email, Teams messages". Same rule, same intent,
+different words.
+
+So distilling is not string matching. It needs a capable model comparing two blocks and saying
+"these are the same rule", "this one is a variant for a different role", "this one is new".
+That means design work rather than a script:
+
+- a cheap deterministic pre-filter first (normalise, drop near-duplicates, group by shape) so
+  the model only sees the pairs worth its attention;
+- the model proposes the grouping and the baseline wording, with the source lines quoted;
+- a person approves, because the same rule written for a manager and for an admin is a
+  decision about what the baseline should say, not a merge conflict.
+
+Token cost is the constraint: comparing every profile against every other grows quadratically,
+so the pre-filter is what makes it affordable.

@@ -184,6 +184,49 @@ back. Reconcile the picks against the diary afterwards and prepare the invites f
 Spreading slots over several weeks is fine, but say so in the choice wording and keep the
 count near a dozen; a list of twenty-five times is a second questionnaire.
 
+## Reading who answered what
+
+Insights (Responses → View responses) gives aggregates only — a count per option. It will not
+tell you which person picked which slot, and that is normally the reason you opened it.
+
+- **Check individual results** walks one respondent per page with arrow navigation, printing the
+  name, the completion time and every question with its options. That view is the reliable source.
+- **Extract selections by walking up from the option text**, because the tick is not in the
+  text and there is no accessible `checked` attribute at the leaf:
+
+  ```python
+  # for each leaf element whose text looks like an option or a slot label,
+  # walk up ~4 ancestors; selected means an ancestor holds input:checked or aria-checked="true"
+  ```
+
+  Match on option text rather than question number: alongside the ticked labels are candidates
+  that happen to start with a digit (room names, dates), and numbering is not exposed consistently.
+- **Take the names from the workbook header row, not from the results page**, when the name text
+  is truncated or missing: the export carries id, start time, completion time, email and name in
+  the first five columns, in response order, and that order matches the individual-results pages.
+- **The exported workbook is usually a OneDrive placeholder.** Reading it from the terminal can
+  fail with `BadZipFile` or `Resource deadlock avoided` even minutes after the export, and `brctl`
+  refuses a OneDrive path. Prefer the results view for a handful of responses, and use the
+  SharePoint download endpoint when you genuinely need the file locally.
+
+## Turning picks into invitations
+
+- **Identical picks are the normal case, not a problem.** Two respondents choosing the same two
+  slots simply split across them: one takes the morning pick, the other the afternoon. Say in the
+  hand-off that you split them and on what basis, so the owner can swap them if a morning or an
+  afternoon genuinely does not suit one of the two.
+- **A single pick is not a fallback**, so use the diary rather than their second choice: place it,
+  and if it lands near an existing meeting, say what it sits beside.
+- **Extra requests ride with the booking**: a Teams link when the respondent is remote, a room
+  rather than their desk when the interview is in the office. Read the whole response before
+  choosing the format — a request buried in a free-text answer is missed by only reading the slot
+  question.
+- **Forms cannot reserve a slot**, and this will be asked. The three answers, in order of effort:
+  reconcile manually as responses arrive (fine while the numbers are small); delete the taken
+  option from the question (clean, applies to everyone, and does not invalidate existing
+  responses); or move to a scheduler if the ritual repeats. Recommend leaving the form alone when
+  the slot count comfortably exceeds the headcount, and say that is why.
+
 ## Put the responses where the analytics will look
 
 Forms writes responses to a workbook through Responses then Open in Excel, and that workbook

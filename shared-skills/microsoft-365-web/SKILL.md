@@ -196,6 +196,10 @@ Pitfalls that cost real time here, each one observed:
   slot can select the slot and open nothing, so do not build the event out of the
   grid. If two attempts at a coordinate have not held, change route — grid cell,
   then hand-over — rather than trying a fifth coordinate.
+- **Set the date before the times.** Once a time is in the fields, the picker renders the
+  time-suggestion list underneath the month grid and the day cells stop taking clicks: the
+  overlay swallows them and the popup closes with the old date intact. Choose the day on a clean
+  picker first, then fill start and end, then close from the margin.
 - **With the picker open, a click lands in whichever field sits under the cursor.**
   Text inserted after such a click went into a scheduling poll's end-date field
   and silently converted the draft into a poll with three options. Close the
@@ -317,7 +321,8 @@ does not licence Bookings, named slots in the form are the fallback.
 
 A designer page opens as its own CDP target, so a click that "does nothing" means `js()` is
 still on the old tab — list targets and navigate to the full URL, with the `id=` printed in
-full. Full recipe: `references/forms-and-bookings.md`.
+full. Full recipe, including how to read individual responses and reconcile the time picks into
+invitations: `references/forms-and-bookings.md`.
 
 ## The window belongs to them
 
@@ -396,12 +401,15 @@ needs an explicit one.
 - **Quote the badge, not a total you did not read.** An unread count is the
   folder's claim; the rows you reviewed are yours. Presenting one as the other is
   how an assistant reports an empty afternoon on a full inbox.
-- **A navigation that times out waiting for the daemon is not a broken browser.**
-  After a burst of clicks and text inserts, `Page.navigate` can return
-  `timed out after 5s waiting for the daemon`; call `ensure_real_tab()` in a fresh
-  `browser_exec` call and the session recovers with its state intact, including
-  anything that was already saved. Retry once before reporting the browser as
-  unusable, and prefer reading state you already have over re-driving the UI.
+- **A navigation that times out waiting for the daemon is not a broken browser, and
+  neither is a page that goes blank mid-sequence.** After a burst of clicks and text
+  inserts, `Page.navigate` can return `timed out after 5s waiting for the daemon`, and
+  a tab sometimes renders nothing at all with an empty `document.title`; call
+  `ensure_real_tab()` in a fresh `browser_exec` call and the session recovers with its
+  state intact, including anything that was already saved. Retry once before reporting
+  the browser as unusable, and prefer reading state you already have over re-driving the
+  UI. Unsaved compose content is the exception: after a blank-out, check Drafts before
+  retyping a message you had already written.
 - **Do not schedule inbox or diary briefs before access is verified.** A cron
   that fires into a sign-in page produces noise the human learns to ignore.
 

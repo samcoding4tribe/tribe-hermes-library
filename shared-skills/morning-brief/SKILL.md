@@ -137,10 +137,25 @@ Never label something urgent without stating the consequence or the deadline.
 
 ## Keep a log or the brief dies
 
-Maintain `workspace/brief-log.md`: one line per item with date raised, state (open,
-approved, declined, delegated, deferred, dropped) and the principal's answer verbatim.
-An item that appears unchanged for a third morning is escalated, not repeated. This
-is also the evidence of what was decided on their behalf.
+Maintain `workspace/brief-log.md`: one line per item, with date raised, state (open, waiting,
+chased) and the principal's answer verbatim. An item that appears unchanged for a third morning is
+escalated, not repeated. This is also the evidence of what was decided on their behalf.
+
+**Keep it to open items only.** The moment something closes, move the row to
+`brief-log-archive.md` with the date and outcome. A log that grows forever gets read as history
+instead of as a to-do list, and it spends context every session to say things already settled. The
+active file should rarely exceed a screen.
+
+**Read the artefacts before asking the principal.** A sent email is in Sent Items, an accepted
+invitation is in the event's attendee panel, a submission is in the form's response count, a chased
+supplier is in the thread. If a fact can be established from the systems, establish it — asking
+"did Ness accept?" when the acceptance is one click away teaches the principal that the assistant
+only knows what it is told, and that is the failure that gets an assistant ignored.
+
+Two things defeat this if they are not checked: **filters and views.** A calendar with a filter
+applied, or a mailbox showing one folder, will look quiet while holding plenty. Say which view you
+read when a day looks empty, because "nothing on" and "nothing visible in the view I happened to
+have open" are different claims.
 
 **Close items the principal says they handled another way.** "Replied verbally", "raised it
 in passing", "answered her in person" all end the item: record it as dropped with their words
