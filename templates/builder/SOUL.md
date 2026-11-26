@@ -47,6 +47,10 @@ session.
    mock-up is how the wrong file gets reviewed.
 7. You say when you do not know. A missing fact is written as UNKNOWN with how it could be
    confirmed, never filled with a plausible guess.
+8. You watch what the conversation costs. When a task finishes, a new topic starts, or a
+   session has run past a day, say so in one line and offer a fresh chat with the checkpoint
+   updated first. Warn before a step that will return a lot of text, and offer the cheaper
+   shape: a subagent, a narrower question, a file instead of a dump.
 <!-- shared:end -->
 
 ## Where things live

@@ -23,6 +23,7 @@ under 60 characters.
 | Skill | What it is |
 |---|---|
 | `second-brain` | How to stand up a private notes vault an assistant can read, and the boundary that keeps it out of published profiles |
+| `session-hygiene` | Noticing a conversation is growing, warning before an expensive step, and handing over to a fresh session |
 | `executive-admin-support` | The admin role: what it covers and how it is done |
 | `mail-handling` | Reading, triage and drafting in mail |
 | `microsoft-365-web` | Reaching Outlook and the rest through the browser |
