@@ -620,3 +620,18 @@ the ids never move.
 
 **Rejected.** Publishing `ea` as a second baseline before anyone has used it. That is an
 assumption dressed as a template (D18).
+
+---
+
+## D38. A personal knowledge base is named in memory, never in a published file
+
+**Decision.** A profile that should know where Sam keeps his notes learns it from its memory
+file. No soul, skill, template or config mentions it. Sam's own profiles (the builder and the
+admin he uses) know the vault; the templates and published profiles that set up somebody
+else's machine do not, and a colleague who wants the same thing gets it at their own setup.
+
+**Why.** Everything in a profile except its memory is published to the shared library. A soul
+or a skill naming `~/Documents/sam-tribe-brain` puts that path in front of every colleague who
+can open the folder, which is exactly the mixing this rule exists to stop. Memory is the one
+part that never leaves the machine (D14), so it is the only safe place for a pointer that is
+personal to Sam.
