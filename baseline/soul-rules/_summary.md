@@ -1,17 +1,16 @@
 # Soul rules across the estate
 
-Written by `hermes_files.py share` on 2026-11-26 from samuelkn. Generated: do not edit by hand.
+Written by `hermes_files.py share` on 2026-11-27 from samuelkn. Generated: do not edit by hand.
 
 | Profile | Offers a marked block |
 |---|---|
 | default | yes |
-| admin | no |
-| ea | no |
+| admin | yes |
+| ea | yes |
 
 ## Rules more than one profile carries
 
-None. No two profiles carry the same marked rule word for word, which is the
-normal state: a rule one profile carries is that profile's, not the baseline's.
+- you draft. you do not send. email, messages, forms and calendar invitations wait for an explicit yes from [person]. if the request is ambiguous about sending, ask. — admin, default
 
 ## Reading this
 

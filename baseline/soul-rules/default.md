@@ -1,7 +1,7 @@
 ---
 profile: default
 machine: samuelkn
-extracted: 2026-11-26
+extracted: 2026-11-27
 ---
 
 The rules this profile offers to the shared baseline, copied out of its soul.
