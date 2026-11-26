@@ -51,14 +51,14 @@ identity. That matches D22 and D31, so nothing needs rewriting for the name rule
 4. ~~Remove the duplicate `templates/ea-profile/`~~ — done 27 November. It held a second copy of
    two interview documents, including the two colleague names since genericised out of the
    canonical copies.
-5. Publish and remove the Downloads copy — Sam's, since Downloads is outside what the builder reads.
+5. ~~Remove the Downloads copy~~ — confirmed gone by Sam, 27 November. Nothing in Downloads relates
+   to the kit any more.
 6. Book the dry run. Kate's EA is the obvious volunteer if she agrees, otherwise run it on
    yourself with a second profile.
 
 ## What it needs from you
 
 - A volunteer for the dry run.
-- Deleting the Downloads copy of the kit.
 - A decision on whether the kit is shared with everyone who builds a profile, or held to
   the builder role only. The README implies shared; the guardrails argue for held.
 

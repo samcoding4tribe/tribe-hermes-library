@@ -43,6 +43,29 @@ with a summary printed, rather than printed in full.
 The failure mode is putting a procedure into `SOUL.md` because it is important. It
 is important, which is why it should not be repeated on every turn forever.
 
+## Conversation history, and what to do about it
+
+Measured 27 November 2026: the builder's `state.db` is 28 MB over 3,340 messages, `admin`'s is
+36 MB over 1,881. Neither is a problem yet; both will grow for as long as they are used.
+
+Two different things get called bloat, and only one needs attention:
+
+- **The live context.** Already handled. Compaction fires when prompt tokens reach 50 per cent
+  of the model's window (`compression.threshold: 0.50`), summarises the older part, and keeps a
+  tail of recent turns — 20 per cent of that window by default. Nothing has to be built for it.
+- **The store on disk.** Every turn is written once and read rarely afterwards. The tools are
+  built in: `hermes sessions prune` deletes old sessions, `hermes sessions archive` hides them
+  without deleting, and `hermes sessions optimize` merges the search index and vacuums.
+
+Suggested policy, to confirm rather than assume: archive sessions older than ninety days,
+prune anything past a year, and run `optimize` after either. Watch line of 100 MB per profile —
+past that, read the table sizes before deleting anything, because a large database is usually
+one long session rather than many short ones.
+
+The bigger lever is not deletion but what gets written: large tool results belong in a file with
+a summary printed, not in the transcript. That is the same rule that keeps a profile responsive
+while it works.
+
 ## Rules that keep it small
 
 - **Consolidate, never append.** Memory is capped; when it is full the tool refuses

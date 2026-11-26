@@ -9,9 +9,9 @@ A skill for the builder profile on a delegated machine — the Hermes that sets 
 else's assistant and then maintains it. Its pass, on a schedule:
 
 1. Measure: soul size against the target band, both memory files against their caps, skill
-   count.
+   count, and the size of `state.db` against a watch line.
 2. Flag: soul over the band, memory above ninety per cent, a line present in both soul and
-   memory, a rule that duplicates a shipped one.
+   memory, a rule that duplicates a shipped one, a database past the watch line.
 3. Propose a diff. Never apply it. The person says yes.
 4. Repeat the pass after a soul change so the profile knows it is running a new self.
 
