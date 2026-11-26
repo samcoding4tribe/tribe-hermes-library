@@ -1,6 +1,6 @@
 ---
 name: tribe-hermes-estate
-description: "TRIBE Hermes estate: repo, profiles, rollout, vault notes."
+description: "TRIBE Hermes estate: repo, profiles, rollout."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -91,9 +91,6 @@ as taste.
 - Order of work when both are on the table: rollout and testing first, distillation of
   worked profiles later. Building the harvester before anyone has worked a profile
   produces a tool validated against nothing.
-- Sam's idea vault is `~/Documents/sam-tribe-brain` (Obsidian, git on `main`, Obsidian Git
-  commits and pushes). Reading it is allowed; writes happen on request only. Its note
-  format, tag rules and the `hermes` tag are in `references/sam-tribe-brain.md`.
 - `docs/setup.md` is the estate's front door: install on Windows and macOS, the three
   `config.env` paths per platform, then the first-run sequence. It publishes as the
   library's `README.md` through a name special-case in the scripts. Publishing steps and
@@ -124,9 +121,6 @@ as taste.
 - `docs/projects/README.md` numbers every thread with its checkpoint file. Parked threads
   still get a row and a file, so a direction raised mid-conversation costs one small page
   rather than a re-argument later.
-- The vault holds ideas; the repo holds decisions and procedures. Do not copy a decision
-  into the vault as a second version — the vault note says what the idea is and points at
-  the repo path that settles it.
 
 ## Pitfalls
 
