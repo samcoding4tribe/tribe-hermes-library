@@ -40,7 +40,10 @@ else is a person who thinks their files are there.
 
 ## What it needs from Sam
 
-- Whether M365 sync health reporting is available to him; if yes, it is the cheapest estate view.
+- ~~Whether M365 sync health reporting is available to him~~ — answered 26 November 2026: he
+  does not have the admin role, so the tenant view is closed. The questions to put to Kate
+  (policy on what syncs, who monitors, whether monitoring can be delegated) are prepared
+  separately, for tomorrow.
 - Whether the per-machine check runs from the delegated builder as part of its maintenance
   pass, or as a standalone weekly job.
 - What counts as reportable: one dataless file, or only failures older than a day.

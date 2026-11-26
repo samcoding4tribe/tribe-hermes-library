@@ -45,6 +45,31 @@ Record which state the measurement was taken in: downloaded, partially pinned, o
 A checkpoint that says "3,463 of 3,714 unreadable" is useless without that, and the next
 reader will conclude the previous one could not measure.
 
+## What the client already knows, before you theorise
+
+`~/Library/Logs/OneDrive/Business1/SyncDiagnostics.log` is rewritten continuously and carries
+running counters for the whole account:
+
+```
+numFileFailedDownloads = 95037
+numFileFailedUploads   = 484
+failedBytesUploadedTotal = 95552202
+StallErrorSummary = [Source:3 Reason:111 Context:0 ... Files:1 Hits:3 Extensions:pptx;]
+```
+
+Read those four before designing a fix. On this estate they showed tens of thousands of
+failed downloads and a single stalled `.pptx` while nothing surfaced in a form a person would
+notice, which is why "the files are there but will not open" arrived as a mystery.
+
+- **One file that never hydrates is a stall, not a policy.** `StallErrorSummary` names it and
+the extension. The fix is a manual touch — open it once in its own app, or set "Always keep on
+this device" on that file — not a client reset, and not a re-measurement.
+- **Healthy machines need a second source.** The counters are per account, so a colleague's
+problem is invisible from your machine; a bot chat that reports one dataless file will say
+"there are 95k downloads failing" long before the user connects the two.
+- **Dated logs are weak evidence.** `SyncEngine-*.odl` / `.aodl` files with a mtime of a minute
+ago prove the engine is running now. Older dated log files stopping says nothing on its own.
+
 ## Conflict copies
 
 `find -iname "*conflict*"` returns false positives that look alarming: a document genuinely

@@ -128,8 +128,9 @@ as taste.
   `baseline` and `applies_to`, and promoting one is a single field change plus publishing
   `profiles/<id>/`. Both `docs/setup.md` and the interview kit say "read the file, do not
   retype it" — keep it that way, or a promotion becomes a prose edit in three places.
-- Measuring OneDrive's stubbed files, testing the fetch path without downloading gigabytes,
-  and why a hydration count only means anything alongside the state it was taken in:
+- Measuring OneDrive's stubbed files, reading the client's own failure counters out of
+  `SyncDiagnostics.log`, testing the fetch path without downloading gigabytes, and why a
+  hydration count only means anything alongside the state it was taken in:
   `references/onedrive-hydration.md`.
 - A machine that is not this one needs nothing from git: `Hermes Library` carries `scripts/`, `config.env.example`, the templates and the published profiles. Copy the folder to `~/tribe-hermes-library`, copy `config.env.example` to `config.env`, fill the three paths using the machine's asset name.
 - Bootstrap of a fresh install is one pasted line: that it is the builder, to read `README.md` in `TRIBE Group Tech/Hermes Library` and follow it, and to ask before anything destructive. The stock default profile knows nothing about the estate, so that line, not a hand-edited soul, is what makes the install self-directing.
