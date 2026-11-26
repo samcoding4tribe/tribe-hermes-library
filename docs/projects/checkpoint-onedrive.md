@@ -1,10 +1,8 @@
 # Checkpoint: OneDrive will not hand over files
 
-> **Start here before either knowledge project.** The headers said it blocks reading any
-> supply or travel document. After Sam downloaded the working set on 26 November, it does
-> not: the supplier, workflow and travel-docs folders read cleanly, so both knowledge
-> projects can proceed. The fault is real and still worth fixing in what remains — client
-> archives, design assets, finance — but it no longer gates anything. Numbers below.
+> **Resolved for reading, 26 November 2026.** One stuck file and the pin policy remain — see
+> the resolution section below and the remaining work. The estate-wide version of this problem,
+> where a colleague's machine looks fine and isn't, is thread 8, `checkpoint-sync-health.md`.
 
 ## Resolved, 26 November 2026
 
