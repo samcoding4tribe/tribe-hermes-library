@@ -14,10 +14,11 @@ TRIBE, without re-deriving the design or moving facts between profiles by hand.
 
 ## The order of operations for a new profile
 
-1. Copy the role profile from `templates/role/` to a role-based id
-   (`assistant-kate`), not to the assistant's name. The name the person chooses is a
-   label, so renaming it later changes nothing downstream (D22, D31). Ask for it in
-   Block 0, before anything else.
+1. Install the baseline this person gets: `profiles/admin/` for anyone, `profiles/ea/` for a
+   manager. Copy it to `~/.hermes/profiles/<id>`, keeping the id role-based — `admin`, `ea`,
+   or a role name for a second assistant. Never the assistant's name and never the person's
+   (D22). `templates/role/` is only for a role neither baseline fits. The name is a label,
+   asked in Block 0 and changing nothing downstream (D31).
 2. Read `onboarding-interview.md` and run it as a conversation, not a form. Blocks
    zero to eight, twenty to thirty minutes, two short sessions if the answers get
    thin.
@@ -29,6 +30,18 @@ TRIBE, without re-deriving the design or moving facts between profiles by hand.
    `microsoft-365-web`, and `link-batch-download` if they receive asset lists.
 5. Write the review into the calendar: two weeks, one question, which part is not
    earning its place.
+
+## The four artefacts the interview produces, and where each one goes
+
+| Artefact | Written to | Produced in |
+|---|---|---|
+| The assistant's name | The profile's label: roster title, bot name, and optionally the first line of `SOUL.md`. Never the folder id | Block 0 |
+| `workspace/context.md` | Inside the profile. Private: copied into the machine's backup, excluded from the repo and the library | Blocks 1 to 5 |
+| `workspace/procedures.md` | Inside the profile, same handling. Only the steps the person actually described, never a full task list | Wherever a task was described in detail |
+| Brief preferences | `workspace/context.md`, under a heading of its own, after a real brief has been read | `brief-interview.md` |
+
+Nothing else is written at setup. A skill is not one of the four: skills come after a
+procedure has been done twice and held.
 
 ## What must not travel between profiles
 

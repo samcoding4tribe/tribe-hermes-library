@@ -9,9 +9,9 @@ document should say so once rather than reassuring the person block by block.
 
 Run it as a conversation, not a form. One question at a time. Read their mail and
 calendar first where access exists and offer what you found for confirmation
-("you seem to report to Kate, is that right?") rather than asking them to recite
-things the system already knows. Never fill a gap with a guess: write `[unknown]`
-and move on, because a wrong answer is worse than a blank one.
+("you seem to report to <the manager the calendar shows>, is that right?") rather than
+asking them to recite things the system already knows. Never fill a gap with a guess: write
+`[unknown]` and move on, because a wrong answer is worse than a blank one.
 
 ## What is fixed for everyone, and what each person chooses
 
@@ -240,11 +240,11 @@ and `works_with` in this person's context file, described in their words. When t
 on, their lateral map leaves with them, which is the correct behaviour.
 
 Record each link as a sentence rather than a name, because the weight differs from person
-to person. "Bianca: every event, she signs off the floor plan before it goes out" and
-"Bianca: only when design is on the table" can both be true of the same pair, in two
-different profiles, and neither is a mistake. Ask for the work that flows over the link,
-how often, and what it costs when it goes wrong; that is what makes the note useful when
-a chase is due or a message arrives.
+to person. "The design lead: every event, she signs off the floor plan before it goes out"
+and "the design lead: only when design is on the table" can both be true of the same pair,
+in two different profiles, and neither is a mistake. Ask for the work that flows over the
+link, how often, and what it costs when it goes wrong; that is what makes the note useful
+when a chase is due or a message arrives.
 
 The corollary matters more than it looks: relationships are not symmetric, so never merge
 two people's accounts of the same pair into one shared fact, and never "fix" a difference
