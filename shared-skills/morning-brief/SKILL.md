@@ -118,7 +118,13 @@ Never label something urgent without stating the consequence or the deadline.
   lower the bar to yes or no; rung 3 at 7-10 working days, a graceful close that
   offers to park it, after which stop chasing and report. Count working days, not
   calendar days; an out-of-office resets the clock; never chase a VIP without
-  showing the proposed rung first.
+  showing the proposed rung first. When the correspondent is away, the message you
+  already sent needs no re-sending — it will be at the top of a returning inbox,
+  which is where you want it — and the dates that move are the *next* rung and the
+  phone call behind it, not the first. Do not chase on their first day back: two
+  working days after the return is the earliest that reads as diligence rather than
+  nagging, and the wait is worth stating in the brief so a later session does not
+  look at the silence and get eager.
 - **Consolidate chases to one correspondent.** When several threads with the same
   person have gone quiet, send one message listing each ask with its date rather
   than a nudge per thread: a returning inbox is worked top-down, so three separate

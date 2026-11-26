@@ -81,6 +81,43 @@ twice.
   dates and scope, and anything they said about specific senders.
 - Never in the setup document: that is read once, and this behaviour is needed daily.
 
+## Draft first, always
+
+Write to Drafts, never send. A general instruction to send one message does not licence the next:
+each message waits for its own yes, given after the draft exists and has been read.
+
+The reason is not caution, it is voice. Until the principal has corrected enough drafts to define
+their tone, every send is a guess made in their name, and a wrong guess spends trust that took
+weeks to build. Drafts are the cheap version of being wrong.
+
+- **One draft per thread**, left in Drafts, with the exact text shown in chat so the decision is
+  made on the words rather than on a description of them.
+- **Signature: use the one already configured, and add nothing.** The owner's account has a
+  standard signature set. When composing, the body ends where the content ends and the signature
+  does its own job — never hand-write a first name or invent a block below it.
+- **Do not open the account settings**, not for the signature, not for rules, not to check
+  something they say is already set. Reading it is still an intrusion into the part of the account
+  that is theirs alone, and asking costs a sentence. If a draft's sign-off looks wrong, ask.
+- **Let the owner press send.** The useful division is: the assistant writes the body into Drafts,
+  the owner reads it, adjusts the close, checks the signature and sends. Responsibility stays with
+  the person whose name is on the message, and the difference between your draft and their sent
+  version is the best evidence available about their voice — read what they changed and write the
+  next draft to match, rather than waiting to be told.
+- **Tone is a setting, not an opinion.** Record what they correct — length, greeting, contractions,
+  how bluntly they chase — and reuse it. After two rounds of corrections, write the voice into
+  their context file so a later session does not restart from zero.
+- **A closing line is a judgement, not furniture.** Many people close with a pleasantry, `Regards,`
+  and then the configured signature. Treat the pleasantry as optional and situational: include it
+  only where a reply is genuinely wanted. On a chase, a notification, an FYI, or a request already
+  chased twice, "looking forward to your reply" reads as sarcasm because it is — leave it out and
+  let `Regards,` carry the close. When in doubt, omit: a missing pleasantry costs nothing, an
+  ironic one costs credibility.
+- **Do not adopt "Thanks," as a default close.** It is an act of gratitude, not a sign-off, and
+  using it as one is how tone drifts away from the owner's. Default to the close their sent mail
+  uses.
+- **A sent message stays sent.** Do not "fix" the tone of something already sent by sending another;
+  note it and let the next message carry the correction.
+
 ## Pitfalls
 
 - **Treating low reply rates as consent.** The most common wrong turn, and the one that loses

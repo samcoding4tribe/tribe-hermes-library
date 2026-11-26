@@ -145,10 +145,20 @@ too so people know before they start clicking.
 ## The share link
 
 The link is rendered in a way page JavaScript cannot read, and `navigator.clipboard.readText()`
-is refused without a user gesture. The embed panel is the way in: open **Collect responses →
-Embed** and read the iframe `src` from the element text, which contains the full
-`ResponsePage.aspx?id=…` URL. Failing that, ask the human to press **Copy link**. Do not
-claim to have the link.
+is refused without a user gesture. Three ways in, best first:
+
+1. **Derive it from the designer's own id.** The fill link is the same GUID with a different
+   page: take everything after `&id=` on the open `DesignPageV2.aspx` URL and append it to
+   `https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=`. Then **load that URL and read the
+   page title and the first question back** — a form that resolves with the right title and
+   question text is the right form, and a wrong id returns "This form doesn't exist" rather than
+   a plausible-looking page. Never paste a derived link into an email without opening it first.
+2. **Collect responses → Embed**, and read the iframe `src` from the element text, which carries
+   the full `ResponsePage.aspx?id=…` URL.
+3. **Ask the human to press Copy link.**
+
+Do not claim to have the link, and do not reuse a link captured earlier in the session: a form
+rebuilt by hand has a new id, so the old link points at the broken original.
 
 ## Booking before you promise a scheduler
 

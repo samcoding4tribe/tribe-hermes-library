@@ -39,6 +39,22 @@ that have nothing to do with the estate (use `hermes-agent`).
    `profiles/` before declaring it done — a half-propagated rule is worse than one not yet
    written, because the newest file wins the reader's belief.
 
+## Before you change anything
+
+- **Say what you understood, and act only on that.** When an instruction has two readings —
+  which profile, which copy, whose machine — state your reading in one line and wait. A
+  stopped turn costs one question; work in a direction he did not ask for costs the whole
+  morning and his confidence in every other report.
+- **A documentation task is not licence to edit live profiles.** The souls, memory files and
+  skills of `admin` and `ea` are behaviour files. Touching them because the surrounding
+  conversation mentioned them is exactly the change that gets interrupted.
+- **Keep the three estates apart.** The Hermes repo (the system), the shared library
+  (colleagues), and Sam's own notes (his) have three audiences. Do not connect two of them
+  to be helpful; a pointer added in one direction leaks in that direction.
+- **When he interrupts, or asks whether something went wrong:** stop editing, run the state
+  check in `references/library-publishing.md`, report the facts in a few lines, then ask. Do
+  not defend the reasoning and do not start the next edit.
+
 ## Reply style: the rule that gets broken
 
 This section exists because it is broken repeatedly. Treat the limits as mechanical, not
@@ -118,6 +134,12 @@ as taste.
 - A machine that is not this one needs nothing from git: `Hermes Library` carries `scripts/`, `config.env.example`, the templates and the published profiles. Copy the folder to `~/tribe-hermes-library`, copy `config.env.example` to `config.env`, fill the three paths using the machine's asset name.
 - Bootstrap of a fresh install is one pasted line: that it is the builder, to read `README.md` in `TRIBE Group Tech/Hermes Library` and follow it, and to ask before anything destructive. The stock default profile knows nothing about the estate, so that line, not a hand-edited soul, is what makes the install self-directing.
 - Every machine writes its own backup into `Hermes Backups/<machine>/` (text plus dated `state.db` snapshots, created on first run) and needs to read back only its own. Per-folder permissions there are the open question; a backup read by every machine means every colleague can read every memory.
+- Everything in a profile except `memories/` reaches the shared library: `SOUL.md`, `skills/`,
+  `config.yaml`, `cron/`, and every file under `docs/`. So a personal path, a private vault or
+  a colleague's detail written into a soul, a skill, a doc or a decision is published to the
+  team. Durable personal operating facts belong in the memory file, and the rule that
+  protects them must not restate the value it protects — `docs/decisions.md` is published
+  too, so quoting the path inside the rule leaks it.
 - `docs/projects/README.md` numbers every thread with its checkpoint file. Parked threads
   still get a row and a file, so a direction raised mid-conversation costs one small page
   rather than a re-argument later.

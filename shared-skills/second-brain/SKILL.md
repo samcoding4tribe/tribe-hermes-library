@@ -1,7 +1,7 @@
 ---
 name: second-brain
 description: "Set up a private notes vault an agent can read and grow."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
 platforms: [macos, windows, linux]
@@ -96,7 +96,34 @@ skills and config reach a library other people can read. So:
 - Never run git in the vault if an editor plugin already owns the history.
 - Never bulk-rename, restructure or delete without an explicit yes.
 
+## Renaming or re-angling a note
+
+The filename is the title, so a rename is a content change that reaches every page pointing at
+it. Do it in this order:
+
+1. `mv` the file, keeping the sentence form. Propose it first if the vault's rules say renames
+   need a yes; an agent that renames on its own breaks links it cannot see.
+2. Grep the vault for the **old title as link text**, not the path, and update every hit. The
+   index almost always links it and other notes sometimes do; a wikilink to a filename that no
+   longer exists renders as a dead link and nothing warns you.
+3. Rewrite the lede to match the new name. A note renamed to a new purpose keeps an opening
+   sentence about the old one, and the title then promises something the body does not answer.
+4. If the new name is a working artefact — "points to raise at a meeting", "options for the
+   board" — put a short numbered summary at the top. A note opened in a room gets read in its
+   first ten lines, not in order.
+
 ## Pitfalls
+
+- **Anchoring a section insert on a heading deletes the heading.** When patching to add a
+  section "before" another, the anchor is the heading line itself: re-emit it at the end of the
+  replacement or it disappears and the content under it silently joins the previous section.
+  Headings above reference lists are the usual casualty. After any structural patch, read the
+  headings back (`grep -n '^## '`) rather than trusting the diff summary.
+- **Write what people did, not what it says about them.** A note about a colleague using a tool
+  the owner dislikes, or a team keeping a supplier alongside a new one, records an observation
+  plus the decision it creates. Dressing it as resistance, shadow purchasing or a discipline
+  problem turns a factual record into an accusation the owner has to walk back in the next
+  meeting — and the vault keeps the first version forever.
 
 - **Dates in filenames age badly.** A note is edited for months; the date in its name starts
   lying almost immediately, while the body can carry the date where it belongs.

@@ -1,7 +1,7 @@
 ---
 name: microsoft-365-web
 description: "Outlook and Teams web access when Graph is blocked."
-version: 1.2.0
+version: 1.4.0
 author: TRIBE admin profiles
 license: MIT
 metadata:
@@ -261,15 +261,20 @@ end to end; follow them in order rather than improvising clicks.
    recipient, subject and time. A closed compose window is not a sent message, and
    the row is what proves delivery.
 
-**Attachments of arbitrary files do not survive automation.** The compose pane
-holds several `input[type=file]` elements; the first carries `accept="image/*"`
-and rejects anything else with "wasn't inserted because it isn't a supported image
-file type", while pushing files at one of the unrestricted inputs closed the draft
-without attaching. So when the owner needs a document, do not promise an
-attachment you cannot place: put the full content in the body (a text or markdown
-document of ~13k characters inserts and renders fine in one `insertText` call) and
-hand the file over separately — as a downloadable artifact in the chat, or through
-OneDrive. Then note in the message that the content is inline, not attached.
+**Documents and attachments have a working path:** `references/compose-and-send.md` carries the
+field-by-field sequence, the `setFileInputFiles` attachment method, the headless-Chrome PDF recipe
+for material the owner wants to read later, and the rules for sending to an external personal
+address — including the "Attachment reminder" modal, whose Send is a second click. Two rules to
+keep in view without opening it: the attachment chip must be on screen before Send, and a document
+asked for "to read later" ships as a PDF, not as markdown pasted into the body.
+
+**Sending work material to an external personal address** is the owner's call, not a boundary to
+argue: confirm the recipient is one they named, say what you checked is not in the file (client
+names, contact details, another party's pricing), then send. Flag rather than refuse if something
+sensitive is in it.
+
+Two attachment failures worth knowing even without the reference:
+
 - **Outlook blocks the send with an "Attachment reminder" dialog** when the body
   mentions an attachment and none is present. It is a modal with **Send** and
   **Don't send**; the send is not complete until the dialog's Send is clicked.
@@ -323,6 +328,10 @@ and they will notice before you finish the next call.
 - **Say so before you take the window.** One line: what you are about to do and that the tab
   will move. It costs a sentence and prevents the interruption being read as the agent
   breaking their machine.
+- **Account settings are not yours to open.** Not the signature, not rules, not a setting the
+  principal has already told you is configured. Reading one is still an intrusion into the
+  part of the account that is theirs alone, and asking costs a sentence. If a draft's sign-off
+  looks wrong, leave the ending to them or ask — do not go looking for the configuration.
 - **Prefer a new tab over reusing theirs**, and leave their reading tab where it was.
 - **One profile means one browser.** There is no side channel to build in: a second Chromium
   on the same `user_data_dir` collides, and pointing the config at Edge drops the Microsoft
@@ -398,6 +407,8 @@ needs an explicit one.
 
 ## Related
 
+- `references/compose-and-send.md` — filling, attaching and rewriting a compose body; the
+  headless-Chrome recipe for PDFs the owner will read later; external-address sending.
 - `executive-admin-support` — what the assistant does with this access once it
   works: context file, people map, day shape, drafting boundary.
 - The `hermes-agent` skill's `org-rollout` reference: the Graph/Entra route and

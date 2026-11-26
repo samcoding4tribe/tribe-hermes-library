@@ -46,6 +46,30 @@ python3 -c "import json,sys;print(len(json.load(open(sys.argv[1]))['files']))" "
 on one side only is worth naming explicitly to the user — that is how `apps/team-map`
 run-time state was found being published.
 
+## Closing out: what "finished on your end" means
+
+When Sam asks whether the work is actually done, run these and report the numbers, not the
+intention.
+
+```bash
+cd ~/tribe-hermes-library
+git status --porcelain                     # empty = nothing left uncommitted
+git log --oneline -1
+grep -rl "<string that must never be published>" --include="*.md" --include="*.json" . \
+  | grep -v '\.hub'                        # must print nothing
+wc -c ~/.hermes/memories/MEMORY.md ~/.hermes/profiles/*/memories/MEMORY.md
+grep -c '"name"' ~/.hermes/cron/jobs.json  # jobs still scheduled
+```
+
+- **Run the leak grep last, and against the library too.** The rule that forbids a value is
+  itself published, so a sensitive string survives in `docs/decisions.md` after being removed
+  everywhere else. Write the rule about the value, never the value.
+- **Filter `.hub`.** `profiles/*/skills/.hub/index-cache/` matches almost any word and one of
+  those files is 86 MB; an unfiltered hit list is unreadable and hides the real match.
+- **Memory caps are per profile** (`memory.memory_char_limit`, 2200 by default). Check each
+  file against the config of the profile that owns it, and consolidate stale entries rather
+  than adding a sixth version of one fact — the cap refuses the write when it is full.
+
 ## Pulling a published change onto a machine
 
 ```bash
