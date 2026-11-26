@@ -1,0 +1,20 @@
+{
+  "note": "Where a new machine's assistant profile comes from. The setup procedure reads this file; it does not retype the rules. Promoting a route to its own baseline is one edit here, not a prose change in two documents.",
+  "routes": [
+    {
+      "profile_id": "ea",
+      "baseline": "admin",
+      "applies_to": "a person who manages others, or whose work is mostly diary, approvals and correspondence"
+    },
+    {
+      "profile_id": "admin",
+      "baseline": "admin",
+      "applies_to": "everyone else"
+    }
+  ],
+  "fallback": {
+    "baseline": "admin",
+    "applies_to": "a role neither route fits, including a second assistant for one person"
+  },
+  "promotion": "A route gets its own baseline when its instances have skills or soul sections the baseline lacks, held long enough to be worth copying. Change that route's baseline here, publish profiles/<id>/ as a baseline, and leave the profile ids alone."
+}

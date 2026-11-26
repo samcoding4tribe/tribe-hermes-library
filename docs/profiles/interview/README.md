@@ -14,13 +14,13 @@ TRIBE, without re-deriving the design or moving facts between profiles by hand.
 
 ## The order of operations for a new profile
 
-1. Route on the org role, then install. A person who manages others, or whose work is mostly
-   diary, approvals and correspondence, gets the id `ea`; everyone else gets `admin`. The
-   content comes from `profiles/admin` in both cases — one baseline exists today, and
-   `profiles/ea` is a single manager's pilot instance rather than a second baseline. Keep the
-   id role-based: `admin`, `ea`, or a role name for a second assistant, never the assistant's
-   name and never the person's (D22). The name is a label, asked in Block 0 and changing
-   nothing downstream (D31). `templates/role/` is only for a role neither fits.
+1. Route on the org role, then install. The route table is `config/routing.json`: read it
+   rather than retyping it. Today a manager gets the id `ea` and everyone else `admin`, and
+   both install `profiles/admin`, because that is the only baseline — `profiles/ea` is one
+   manager's pilot instance. Keep the id role-based: `admin`, `ea`, or a role name for a
+   second assistant, never the assistant's name and never the person's (D22). The name is a
+   label, asked in Block 0 and changing nothing downstream (D31). `templates/role/` is only
+   for a role neither route fits.
 2. Read `onboarding-interview.md` and run it as a conversation, not a form. Blocks
    zero to eight, twenty to thirty minutes, two short sessions if the answers get
    thin.

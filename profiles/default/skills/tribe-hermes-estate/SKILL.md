@@ -33,6 +33,11 @@ that have nothing to do with the estate (use `hermes-agent`).
    `docs/projects/README.md` for the numbered threads. Three reads instead of guessing.
 2. Say which numbered thread is in play, then work only that one.
 3. Read `config.env` before running any script: paths are configuration, not constants.
+4. When a decision changes, change every carrier in one pass: `docs/decisions.md`,
+   `docs/setup.md`, the kit under `docs/profiles/interview/`, any template that repeats the
+   rule, then `sync`. `grep -rn` the old wording across `docs/`, `templates/` and
+   `profiles/` before declaring it done — a half-propagated rule is worse than one not yet
+   written, because the newest file wins the reader's belief.
 
 ## Reply style: the rule that gets broken
 
@@ -52,6 +57,10 @@ as taste.
 - **Self-check before sending:** would a five-line version still be true and still answer
   the question? If yes, send the five lines. Anything cut goes in the doc, not in a
   PS.
+- **Ask once, then let the checkpoint hold it.** An unanswered question goes into the
+  thread's checkpoint as an open item and comes back when that thread is worked. Repeating
+  the same two or three asks at the end of every turn is noise, and it makes a reply that
+  was supposed to be one line into a nag.
 - One question per turn, two at most when they gate genuinely different things.
 
 ## Evidence
@@ -94,7 +103,14 @@ as taste.
   the person over (D35). It holds `{{OWNER}}`-style placeholders and must never carry one
   person's details. The live `profiles/default/SOUL.md` is a separate copy and is not
   regenerated from the template.
-- Two baselines only: `admin` for anyone, `ea` for a manager. `ea` is adapted from manager use; `pa` was dropped and D31 now names only those two. A new person gets a baseline installed and personalised by the interview, not a blank role profile invented from `templates/role/`.
+- One baseline: `admin`. Setup routes on the org role — someone who manages others, or
+  whose work is mostly diary, approvals and correspondence, gets the id `ea`; everyone else
+  gets `admin` — but the content installed is `profiles/admin` either way. `profiles/ea` in
+  the library is one manager's pilot instance, not a baseline, so setup does not install it;
+  when managers' use makes `ea` differ in skills or soul attributes, those differences
+  become its own published baseline and the id is already correct (D37). `pa` was dropped.
+  A new person gets a baseline installed and personalised by the interview, never a blank
+  profile invented from `templates/role/`.
 - A machine that is not this one needs nothing from git: `Hermes Library` carries `scripts/`, `config.env.example`, the templates and the published profiles. Copy the folder to `~/tribe-hermes-library`, copy `config.env.example` to `config.env`, fill the three paths using the machine's asset name.
 - Bootstrap of a fresh install is one pasted line: that it is the builder, to read `README.md` in `TRIBE Group Tech/Hermes Library` and follow it, and to ask before anything destructive. The stock default profile knows nothing about the estate, so that line, not a hand-edited soul, is what makes the install self-directing.
 - Every machine writes its own backup into `Hermes Backups/<machine>/` (text plus dated `state.db` snapshots, created on first run) and needs to read back only its own. Per-folder permissions there are the open question; a backup read by every machine means every colleague can read every memory.
@@ -122,9 +138,9 @@ as taste.
   catalogue blobs (86 MB on one file) and will flood a tool result. Scope searches to
   `docs/`, `scripts/`, `templates/` or a named file.
 - `sync` publishes `profiles/`, `templates/`, `shared-skills/`, `apps/`, `scripts/`,
-  `docs/` and `config.env.example`, and it wipes and rebuilds the library folder from the
-  repo each run. Anything put into the
-  library by hand is deleted, so edits belong in the repo. It also commits and pushes.
+  `baseline/`, `docs/` and `config.env.example`, and it wipes and rebuilds the library
+  folder from the repo each run. Anything put into the library by hand is deleted, so edits
+  belong in the repo. It also commits and pushes.
 - Two backup locations are described in the docs (a private per-user folder, and
   `Hermes Backups/<machine>`). Check what the script writes today instead of trusting the
   older note, and correct the note.

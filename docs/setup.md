@@ -20,6 +20,7 @@ decision was made, go to `docs/decisions.md`. If you are picking up unfinished w
 | `scripts/` | `hermes_files.py` — `backup`, `sync`, `pull`, `nightly`, `share` — plus the older shell versions. One implementation for macOS and Windows (D21) |
 | `config.env.example` | The only file that holds paths. Copied to `config.env` and filled per machine |
 | `baseline/` | The rules each soul offers to the shared baseline, generated weekly by `hermes_files.py share`. Names and numbers already stripped |
+| `config/` | `routing.json` — which profile id a new machine gets and which baseline it comes from — and `exclusions.txt`, what no agent may open |
 | `_manifest.json` | A hash per file. If a local copy differs, this shows it in one line |
 
 ## What is deliberately absent
@@ -130,13 +131,12 @@ Doing it by hand is the fallback, not the plan — `templates/builder/README.md`
 The builder's one job before it becomes a maintainer is to turn this machine into a working
 assistant for its owner, by personalising a baseline rather than inventing a persona.
 
-1. **Route on the org role, then install.** A person who manages others, or whose work is
-   mostly diary, approvals and correspondence, gets the id `ea`; everyone else gets `admin`.
-   The content comes from `profiles/admin` either way, because there is only one baseline
-   today — `profiles/ea` is one manager's pilot instance, not a second baseline. When real
-   managers have worked an `ea` long enough for it to differ, it becomes its own published
-   baseline and this step splits. The id stays role-based either way: never the assistant's
-   name and never the person's (D22).
+1. **Route on the org role, then install.** The route table is `config/routing.json` — read
+   it, do not retype it. Today it gives a manager the id `ea` and everyone else `admin`, and
+   both come from `profiles/admin`, because that is the only baseline: `profiles/ea` in the
+   library is one manager's pilot instance, not a baseline. Promoting a route later is one
+   field in that file, not a prose change here. The id stays role-based either way: never the
+   assistant's name and never the person's (D22).
 2. **Install it from this library.** Copy `profiles/admin/` into `~/.hermes/profiles/<id>`.
    Set the model explicitly — a clone inherits a broken one — then prove it answers before
    anything else happens.

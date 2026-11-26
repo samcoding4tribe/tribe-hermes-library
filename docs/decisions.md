@@ -614,5 +614,9 @@ manager's draft soul is not a starting point for a different manager. The role i
 worth having now: they keep the folder, the backup and the library copy keyed correctly, so
 the day `ea` diverges nothing has to be renamed.
 
+**Where it lives.** The routes are data, in `config/routing.json`, not prose in two documents.
+Promoting a route means changing its `baseline` field there and publishing `profiles/<id>/`;
+the ids never move.
+
 **Rejected.** Publishing `ea` as a second baseline before anyone has used it. That is an
 assumption dressed as a template (D18).
