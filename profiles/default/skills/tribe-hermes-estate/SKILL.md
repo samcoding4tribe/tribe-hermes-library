@@ -91,6 +91,10 @@ as taste.
   the person over (D35). It holds `{{OWNER}}`-style placeholders and must never carry one
   person's details. The live `profiles/default/SOUL.md` is a separate copy and is not
   regenerated from the template.
+- Two baselines only: `admin` for anyone, `ea` for a manager. `ea` is adapted from manager use; `pa` was dropped and D31 now names only those two. A new person gets a baseline installed and personalised by the interview, not a blank role profile invented from `templates/role/`.
+- A machine that is not this one needs nothing from git: `Hermes Library` carries `scripts/`, `config.env.example`, the templates and the published profiles. Copy the folder to `~/tribe-hermes-library`, copy `config.env.example` to `config.env`, fill the three paths using the machine's asset name.
+- Bootstrap of a fresh install is one pasted line: that it is the builder, to read `README.md` in `TRIBE Group Tech/Hermes Library` and follow it, and to ask before anything destructive. The stock default profile knows nothing about the estate, so that line, not a hand-edited soul, is what makes the install self-directing.
+- Every machine writes its own backup into `Hermes Backups/<machine>/` (text plus dated `state.db` snapshots, created on first run) and needs to read back only its own. Per-folder permissions there are the open question; a backup read by every machine means every colleague can read every memory.
 - `docs/projects/README.md` numbers every thread with its checkpoint file. Parked threads
   still get a row and a file, so a direction raised mid-conversation costs one small page
   rather than a re-argument later.
@@ -114,8 +118,9 @@ as taste.
 - Never `grep -r` from the repo root: `profiles/*/skills/.hub/index-cache/` holds huge
   catalogue blobs (86 MB on one file) and will flood a tool result. Scope searches to
   `docs/`, `scripts/`, `templates/` or a named file.
-- `sync` publishes `profiles/`, `templates/`, `shared-skills/`, `apps/` and `docs/`, and it
-  wipes and rebuilds the library folder from the repo each run. Anything put into the
+- `sync` publishes `profiles/`, `templates/`, `shared-skills/`, `apps/`, `scripts/`,
+  `docs/` and `config.env.example`, and it wipes and rebuilds the library folder from the
+  repo each run. Anything put into the
   library by hand is deleted, so edits belong in the repo. It also commits and pushes.
 - Two backup locations are described in the docs (a private per-user folder, and
   `Hermes Backups/<machine>`). Check what the script writes today instead of trusting the

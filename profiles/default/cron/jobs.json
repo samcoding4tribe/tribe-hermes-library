@@ -113,7 +113,58 @@
       "canonical_completions": [
         "175c27f0bd904b2fa20a6e5ca637e779"
       ]
+    },
+    {
+      "id": "2583be0f3c1e",
+      "name": "Hermes soul share",
+      "prompt": "Copy the marked rules out of each profile soul into the shared baseline, then publish the library. Output is the script's own stdout.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "hermes-share.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 17 * * 0",
+        "display": "30 17 * * 0"
+      },
+      "schedule_display": "30 17 * * 0",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-26T11:44:14.196166+11:00",
+      "next_run_at": "2026-11-29T17:30:00+11:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "origin",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-f2b93c77716671b8de7db749c817b395eb1afe317fbc9922bba1e34269cc75d7",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:502",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "wrap_response": false
     }
   ],
-  "updated_at": "2026-11-25T17:00:58.398299+11:00"
+  "updated_at": "2026-11-26T11:44:14.198912+11:00"
 }
