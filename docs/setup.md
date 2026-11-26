@@ -17,8 +17,9 @@ decision was made, go to `docs/decisions.md`. If you are picking up unfinished w
 | `shared-skills/` | Procedures the assistants share, loaded by reference so one edit serves all |
 | `docs/` | Architecture, decisions, the rollout plan, the setup interview, the open threads |
 | `apps/` | Small tools that read the shared data, such as the team map |
-| `scripts/` | `hermes_files.py` — `backup`, `sync`, `pull`, `nightly` — plus the older shell versions. One implementation for macOS and Windows (D21) |
+| `scripts/` | `hermes_files.py` — `backup`, `sync`, `pull`, `nightly`, `share` — plus the older shell versions. One implementation for macOS and Windows (D21) |
 | `config.env.example` | The only file that holds paths. Copied to `config.env` and filled per machine |
+| `baseline/` | The rules each soul offers to the shared baseline, generated weekly by `hermes_files.py share`. Names and numbers already stripped |
 | `_manifest.json` | A hash per file. If a local copy differs, this shows it in one line |
 
 ## What is deliberately absent
