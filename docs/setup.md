@@ -153,7 +153,35 @@ assistant for its owner, by personalising a baseline rather than inventing a per
 Hermes stays as the maintainer profile on that machine, and stays out of the assistant's
 job. Both live on the same computer with separate memories, backups and skills.
 
-## 4. Keeping machines in step
+## 4. Backups, on every machine
+
+Every machine writes its own backup, and the folder it writes into is a sibling of this one
+inside `TRIBE Group Tech`:
+
+```
+TRIBE Group Tech/
+  Hermes Library/            this folder: templates, profiles, scripts, docs
+  Hermes Backups/<machine>/  one per machine: text/ and db/
+```
+
+`text/` mirrors each profile's soul, memories, config, notes and skills. `db/` holds dated
+`state.db` snapshots, ten kept. The nightly job creates both folders on its first run, so
+nothing has to be made by hand; the machine name comes from `HERMES_BACKUP_ONEDRIVE` in
+`config.env`, which is why it must be the OS asset name.
+
+**This is the half that is not shareable.** A backup holds memories and whole
+conversations, which belong to the person whose assistant it is. Every machine needs to
+write to its own folder and be able to read it back after a failure; no machine needs to
+read another machine's folder. If folder permissions cannot express that, say so before the
+second machine is set up, because retrofitting it across fifteen is a project and doing it
+now is an afternoon (D19, D20).
+
+Restoring a machine: quit Hermes, copy `text/<profile>/` back into the matching profile
+folder, put a `db/<date>-<profile>.db` in place as `state.db`, add the credentials from the
+vault, then start Hermes and check what it remembers. The backup folder carries its own
+`README.md` saying the same thing, for whoever restores it without this document.
+
+## 5. Keeping machines in step
 
 ```
 python3 scripts/hermes_files.py pull <profile-id>    # show the diff
@@ -165,7 +193,7 @@ Publish one way, pull with a diff (D4). Souls and skills travel both ways; memor
 travel (D14). One writer at a time in this library: two editors in one file produce a
 "conflicted copy" nobody reads.
 
-## 5. The other procedures
+## 6. The other procedures
 
 | When | Read |
 |---|---|
