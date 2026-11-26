@@ -130,12 +130,16 @@ Doing it by hand is the fallback, not the plan — `templates/builder/README.md`
 The builder's one job before it becomes a maintainer is to turn this machine into a working
 assistant for its owner, by personalising a baseline rather than inventing a persona.
 
-1. **Choose the baseline.** `admin` for anyone, `ea` for a manager. Those are the two
-   baselines; there is no third to choose from. The profile id is the baseline id, never
-   the assistant's name and never the person's (D22).
-2. **Install it from this library.** `profiles/admin/` or `profiles/ea/` into
-   `~/.hermes/profiles/<id>`. Set the model explicitly — a clone inherits a broken one —
-   then prove it answers before anything else happens.
+1. **Route on the org role, then install.** A person who manages others, or whose work is
+   mostly diary, approvals and correspondence, gets the id `ea`; everyone else gets `admin`.
+   The content comes from `profiles/admin` either way, because there is only one baseline
+   today — `profiles/ea` is one manager's pilot instance, not a second baseline. When real
+   managers have worked an `ea` long enough for it to differ, it becomes its own published
+   baseline and this step splits. The id stays role-based either way: never the assistant's
+   name and never the person's (D22).
+2. **Install it from this library.** Copy `profiles/admin/` into `~/.hermes/profiles/<id>`.
+   Set the model explicitly — a clone inherits a broken one — then prove it answers before
+   anything else happens.
 3. **Run the interview in that profile**, not about it.
    `docs/profiles/interview/onboarding-interview.md`, blocks 0 to 8, as a conversation held
    inside the assistant. Block 0 asks what the person wants their assistant called, which is

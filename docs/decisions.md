@@ -471,8 +471,8 @@ That is a separate decision.
 2. That label is what the person says on any channel to reach it: typing the name in
    Teams, addressing it in an email, naming it in the desktop app.
 3. The label changes nothing that the shared baseline depends on. Skills, guardrails
-   and profile updates still flow from the two baselines, `admin` and `ea`, and from the
-   library, keyed on the role id, not on the name.
+   and profile updates still flow from the admin baseline and from the library, keyed on the
+   role id, not on the name.
 
 **Why.** People personalise what they talk to, and they should. But if a nickname
 becomes an id, then every future update to the baseline has to be applied by hand to a
@@ -596,3 +596,23 @@ as unmarked. `admin` and `ea` are unmarked as at 26 November 2026.
 **What this is not.** It is not the pooling loop in `docs/architecture-loop.md`. This keeps
 the rules; that one improves the baseline from several people's practice. Same material,
 different job, and the second is still parked.
+
+---
+
+## D37. There is one baseline; `ea` is a role and an instance, not a second baseline
+
+**Decision.** Setup routes on the org role: a person who manages others, or whose work is
+mostly diary, approvals and correspondence, gets the profile id `ea`; everyone else gets
+`admin`. Both are installed from `profiles/admin`, because that is the only baseline today.
+`profiles/ea` in the library is one manager's pilot instance — its soul is written for that
+manager, so it is not a baseline and setup does not install it. When managers have used an
+`ea` long enough for the two to differ, the differences are promoted and `ea` becomes a
+published baseline in its own right.
+
+**Why.** Two published copies that are identical drift apart by hand, and a copy of one
+manager's draft soul is not a starting point for a different manager. The role ids are still
+worth having now: they keep the folder, the backup and the library copy keyed correctly, so
+the day `ea` diverges nothing has to be renamed.
+
+**Rejected.** Publishing `ea` as a second baseline before anyone has used it. That is an
+assumption dressed as a template (D18).

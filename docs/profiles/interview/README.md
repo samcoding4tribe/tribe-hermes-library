@@ -14,11 +14,13 @@ TRIBE, without re-deriving the design or moving facts between profiles by hand.
 
 ## The order of operations for a new profile
 
-1. Install the baseline this person gets: `profiles/admin/` for anyone, `profiles/ea/` for a
-   manager. Copy it to `~/.hermes/profiles/<id>`, keeping the id role-based — `admin`, `ea`,
-   or a role name for a second assistant. Never the assistant's name and never the person's
-   (D22). `templates/role/` is only for a role neither baseline fits. The name is a label,
-   asked in Block 0 and changing nothing downstream (D31).
+1. Route on the org role, then install. A person who manages others, or whose work is mostly
+   diary, approvals and correspondence, gets the id `ea`; everyone else gets `admin`. The
+   content comes from `profiles/admin` in both cases — one baseline exists today, and
+   `profiles/ea` is a single manager's pilot instance rather than a second baseline. Keep the
+   id role-based: `admin`, `ea`, or a role name for a second assistant, never the assistant's
+   name and never the person's (D22). The name is a label, asked in Block 0 and changing
+   nothing downstream (D31). `templates/role/` is only for a role neither fits.
 2. Read `onboarding-interview.md` and run it as a conversation, not a form. Blocks
    zero to eight, twenty to thirty minutes, two short sessions if the answers get
    thin.
