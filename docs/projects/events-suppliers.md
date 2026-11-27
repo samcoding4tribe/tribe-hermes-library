@@ -16,7 +16,7 @@ Insurance is a filename convention, not a register: `ADMIN/PL insurance and Work
 
 Friction: no owner field, dates only in filenames, one supplier in up to four places.
 
-Caveat: 3,463 of 3,714 Share Drive files are online-only placeholders that would not open here (Resource deadlock avoided), including every `SUPPLIERS/` file I saw, so contents are UNKNOWN.
+Caveat: 3,463 of 3,714 Share Drive files were online-only placeholders that would not open here (Resource deadlock avoided), including every `SUPPLIERS/` file I saw, so contents were UNKNOWN. **Resolved 27 November 2026:** hydration is clean (445 files in `SUPPLIERS/`, 0 dataless) and the master list has been read — 176 name rows, 165 distinct suppliers, 14 category sheets. What it holds, the proposed fields and the owner evidence are in `docs/projects/events-suppliers-phase1.md`. The paragraph above stands as the finding of 25 November, not as the current state.
 
 ## 2. Options
 
@@ -74,8 +74,8 @@ Recommended: the same with the expiry flow in phase 1. The failures worth fixing
 
 ## What I could not verify
 
-- Contents of `SUPPLIERS/`: none would open.
-- Whether the 2025 list is the live master, and where the `.lnk` points.
-- Any supplier WHS or insurance certificate.
-- Existing tiers.
+- Contents of `SUPPLIERS/`: none would open. — Resolved 27 Nov: read in full, see `events-suppliers-phase1.md`.
+- Whether the 2025 list is the live master, and where the `.lnk` points. — The `.lnk` points at `C:\Users\SarahAdams\…\Share Drive\SUPPLIERS\`, a local OneDrive path, not a second master. Whether the sheet is still live: UNKNOWN.
+- Any supplier WHS or insurance certificate. — Checked 27 Nov: none exists. The certificates in `ADMIN/PL insurance and WorkCover/` are TRIBE's own.
+- Existing tiers. — Resolved: there are none, in any of the four records.
 - Tenant licensing and admin.

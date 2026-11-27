@@ -8,7 +8,7 @@ the checkpoint, not the brief, when picking something up.
 |---|---|---|---|---|
 | 0 | OneDrive will not hand over files | `checkpoint-onedrive.md` | Closed 27 Nov: hydrated, pin policy decided, one stub left by design | — |
 | 1 | Profile set-up interview | `checkpoint-interview.md` | Done except the dry run | Book the dry run |
-| 2 | Events supplier knowledge base | `checkpoint-events-suppliers.md` | Brief done, nothing built; hydration no longer blocks it | Build the list |
+| 2 | Events supplier knowledge base | `checkpoint-events-suppliers.md` | Phase-one proposal written 27 Nov, nothing built | Sam's yes on the five decisions in `events-suppliers-phase1.md` |
 | 3 | Travel consultant support | `checkpoint-travel-support.md` | Brief done, waiting on design | Sam's five topics, then a pilot |
 | 4 | Weekly whereabouts note | `checkpoint-whereabouts.md` | Running, scheduled, rehearsed | One access test by an ordinary employee |
 | 5 | Pooling worked profiles into the baseline | `checkpoint-distillation.md` | Parked, nothing built | Start after profiles have been worked for a month |
