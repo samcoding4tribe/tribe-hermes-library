@@ -38,10 +38,29 @@ Do not raise it mid-task, and do not raise it twice in one session.
 One or two lines, with a number if it is easy:
 
 > This chat is at about 400 messages, so every turn is re-sending a lot of history. Worth
-> starting a fresh one for the supplier work — the checkpoint has what's needed.
+> starting a fresh one for the supplier work — here is the handover.
 
 Offer the handover rather than just the reset. The person should never feel they are losing the
 thread.
+
+**Recommend, never open.** The assistant does not create or switch sessions itself — there is no
+supported way to open a new chat and put a prompt in it, and doing it through UI automation is
+fragile. What it does instead: say the new thread belongs in a new session, and hand over a
+document so the next session starts with everything it needs.
+
+## The morning handover
+
+`scripts/daily_handover.py` writes `docs/handover-today.md` from the repo alone — no model, no
+tokens: what changed yesterday (grouped by folder), every thread still open with its next
+action, and anything the previous handover carried forward. A scheduled job runs it at 07:30 and
+publishes it with the library.
+
+So a day starts the same way every time: **open a fresh chat and paste one line** —
+
+> Read docs/handover-today.md, then start on the first thread.
+
+That is the whole of the morning routine. Nothing from yesterday's conversation needs to come
+with it, because the checkpoints and the changed-file list already did.
 
 ## The handover, which is the actual mechanism
 

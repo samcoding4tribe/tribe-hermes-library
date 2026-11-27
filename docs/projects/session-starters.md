@@ -10,10 +10,14 @@ Each session ends by editing that checkpoint — three lines: done, next, blocke
 ## The routine, in three lines
 
 ```
-Start:  read docs/projects/README.md, then the thread's checkpoint. Work only that thread.
-During: say so if the work moves to a new topic or the session passes a hundred messages.
-End:    update the checkpoint. Three lines. Then stop.
+Morning: open a fresh chat and paste: "Read docs/handover-today.md, then start on the first thread."
+Start:   read docs/projects/README.md, then the thread's checkpoint. Work only that thread.
+During:  say so if the work moves to a new topic or the session passes a hundred messages.
+End:     update the checkpoint. Three lines. Then stop.
 ```
+
+`docs/handover-today.md` is rebuilt at 07:30 each day from the repo alone — yesterday's changed
+files, every open thread with its next action, and anything carried forward.
 
 ---
 
