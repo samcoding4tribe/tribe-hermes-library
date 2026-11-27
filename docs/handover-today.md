@@ -1,6 +1,6 @@
 # Handover for Friday 27 November 2026
 
-Generated 11:15 from the repo. Read this first, then the
+Generated 11:19 from the repo. Read this first, then the
 checkpoint of whichever thread you are taking.
 
 ## Start a new session with
@@ -32,6 +32,7 @@ Read docs/handover-today.md, then start on the first thread below.
 - **6. Protecting keys across the estate** — Parked, not started. Next: Only when a trigger in that file is met (`checkpoint-credentials.md`)
 - **7. Profile maintenance and the soul refresh** — Mechanism known (`refresh-prompts`), nothing built. Next: Write the refresh step into the maintenance pass (`checkpoint-maintenance.md`)
 - **8. Is everyone's OneDrive syncing?** — Raised, nothing built. Next: Sam's answer on tenant-level sync reports (`checkpoint-sync-health.md`)
+- **9. Token spend and session hygiene** — Measured; changes proposed, none applied. Next: Rule 8 into the live souls, then a before/after comparison (`checkpoint-token-spend.md`)
 
 ## Carried over
 

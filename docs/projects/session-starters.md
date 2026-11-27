@@ -109,6 +109,18 @@ Produces: a script the delegated builder can run weekly.
 
 ---
 
+## Thread 9 — token spend and session hygiene
+
+```
+Load the tribe-hermes-estate skill. Read docs/projects/checkpoint-token-spend.md, then
+docs/context-budget.md. Work the "what is not done" list in order. Measure before changing
+anything, and record each number in the checkpoint as you go.
+```
+
+Produces: rule 8 in the live souls, and a before/after token comparison per session.
+
+---
+
 ## Notes
 
 - Do not paste two threads into one session "to save time". That is the pattern that produced a
