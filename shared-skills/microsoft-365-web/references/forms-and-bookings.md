@@ -189,8 +189,16 @@ count near a dozen; a list of twenty-five times is a second questionnaire.
 Insights (Responses → View responses) gives aggregates only — a count per option. It will not
 tell you which person picked which slot, and that is normally the reason you opened it.
 
-- **Check individual results** walks one respondent per page with arrow navigation, printing the
-  name, the completion time and every question with its options. That view is the reliable source.
+- **Check individual results** opens the individual pages in the same tab (`topview=SurveyResults`),
+  one respondent at a time, with the name and completion time above the answers. If a banner is
+  offering **Got it**, dismiss it first: it sits over the control and swallows the click, which
+  reads as a dead button.
+- **Take the respondent's name from the button whose aria-label matches `/Time to complete/`**, and
+  move between respondents from the list at the foot of the page (`Name (1)`, `Name (2)` …) — one
+  click to any of them instead of nine. Arrow paging holds only with a wait after each click: fire
+  Next/Previous in a loop and the view stays on the respondent it started from while every page
+  reads identically, which looks like nine respondents giving the same answers rather than a stuck
+  view.
 - **Extract selections by walking up from the option text**, because the tick is not in the
   text and there is no accessible `checked` attribute at the leaf:
 
@@ -201,6 +209,9 @@ tell you which person picked which slot, and that is normally the reason you ope
 
   Match on option text rather than question number: alongside the ticked labels are candidates
   that happen to start with a digit (room names, dates), and numbering is not exposed consistently.
+  Dedupe the labels, because a selected option can come back as two nested nodes, and confirm a
+  question that reads zero by counting `[aria-checked="true"]` inside its own card — a genuine
+  zero and a question that failed to render are indistinguishable in a flat label list.
 - **Take the names from the workbook header row, not from the results page**, when the name text
   is truncated or missing: the export carries id, start time, completion time, email and name in
   the first five columns, in response order, and that order matches the individual-results pages.
@@ -208,6 +219,20 @@ tell you which person picked which slot, and that is normally the reason you ope
   fail with `BadZipFile` or `Resource deadlock avoided` even minutes after the export, and `brctl`
   refuses a OneDrive path. Prefer the results view for a handful of responses, and use the
   SharePoint download endpoint when you genuinely need the file locally.
+- **A downloaded export can be hours stale, and it fails silently.** Forms rewrites the workbook
+  when it is opened from the form, not when a response arrives, so a copy pulled from OneDrive can
+  hold three responses while the overview shows nine. Compare the data-row count with the Responses
+  figure before trusting a single cell: if it is short, the file is stale, and re-downloading the
+  same file does not refresh it. Read the individual results, or re-export from Forms.
+- **Verify a download by its first bytes, not its status.** A SharePoint `download.aspx` with a
+  double-encoded `SourceUrl` (a space sent as `%2520`) answers `200` with a 143 KB HTML error page.
+  Accept the file only when the content type is
+  `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` and the first two bytes are
+  `PK`; read those bytes back in the browser before writing anything to disk.
+- **A typed "Other" is invisible in the individual view.** Where the selected option is not in the
+  current option list, the respondent's page shows no tick and no text, while the aggregate counts
+  it under `Other`. Do not read a slot out of it and do not report that they answered: name the gap
+  ("recorded as Other, no readable text") and ask them, which costs one message.
 
 ## Turning picks into invitations
 
@@ -215,8 +240,21 @@ tell you which person picked which slot, and that is normally the reason you ope
   slots simply split across them: one takes the morning pick, the other the afternoon. Say in the
   hand-off that you split them and on what basis, so the owner can swap them if a morning or an
   afternoon genuinely does not suit one of the two.
+- **Look for bookings that already exist before proposing anything.** A form stays open for days
+  and the owner books respondents between passes, so count who is already on the calendar from the
+  invitations themselves rather than from the owner's memory, and list only the outstanding people.
+- **One slot holds one person, so count demand per slot.** Four respondents can pick the same
+  20-minute slot. Give a contested slot to whoever supplied no fallback, and move the rest onto
+  their own second choices, which is what the second pick is for. Where the owner would rather not
+  fragment the week, offer the alternative of stacking consecutive slots on the contested day and
+  let them choose.
+- **Copy the convention of the invitations already sent** — subject shape, length, location,
+  category — so the new ones match the old. Where the location field holds something you cannot
+  tell apart from a room or a person, say so and ask before putting it on five more invites.
 - **A single pick is not a fallback**, so use the diary rather than their second choice: place it,
   and if it lands near an existing meeting, say what it sits beside.
+- **Hand the list as a table — person, what they picked, what you propose, why.** The owner can
+  approve or swap it in one read, and only then do the invitations get drafted.
 - **Extra requests ride with the booking**: a Teams link when the respondent is remote, a room
   rather than their desk when the interview is in the office. Read the whole response before
   choosing the format — a request buried in a free-text answer is missed by only reading the slot

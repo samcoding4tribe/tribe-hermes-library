@@ -1,7 +1,7 @@
 ---
 name: microsoft-365-web
 description: "Outlook and Teams web access when Graph is blocked."
-version: 1.4.0
+version: 1.5.0
 author: TRIBE admin profiles
 license: MIT
 metadata:
@@ -129,12 +129,13 @@ you have read the inbox. Write "the seven threads that rendered" rather than
 pane; the invite body and the attendee list are not in the subject line you
 clicked, and the attendees are usually the point.
 - The calendar header (`Loaded N events in N selected calendars`) is the cheapest
-  proof that a quiet week is genuinely quiet — **but only when no filter is applied.** Read the
-  toolbar for `Filter applied` first: with a filter on, the header counts the filtered view, and
-  you will report "0 events" for a day that has meetings in it. Check the filter before quoting
-  the count, and say which view you read whenever a day looks empty — "nothing on" and "nothing
-  visible in the view I happened to have open" are different claims, and only the first is worth
-  telling the principal.
+  proof that a quiet week is genuinely quiet — **but only when no filter is applied.** The words
+  `Filter applied` are the filter button's own accessible name and appear whether or not one is
+  active, so their presence proves nothing; look for an active filter chip or a changed button
+  state instead. With a filter on, the header counts the filtered view, and you will report
+  "0 events" for a day that has meetings in it. Check the filter before quoting the count, and say
+  which view you read whenever a day looks empty — "nothing on" and "nothing visible in the view I
+  happened to have open" are different claims, and only the first is worth telling the principal.
 
 ### Scanning the diary for a date window
 
@@ -148,10 +149,26 @@ js("""[...document.querySelectorAll('[aria-label]')]
   .filter(l => /December \\d{1,2}, 2026/.test(l) && /\\d{1,2}:\\d{2}/.test(l))""")
 ```
 
-Swap the month for the window you need and run it in month view: one line per
-event, each carrying its date. It covers the days the view has rendered, which is
-what a slot check needs. Report two things from it beyond clashes: an empty day,
-and any pair of events starting at the same minute.
+That recipe reads whatever the view has rendered, and **month view does not render
+everything**: events past a cell's capacity collapse into a `+2` chip whose own label reads
+`2 more events from Tuesday, December 8, 2026 in agenda view`, while the header still claims
+`Loaded 9 events`. A month scan therefore under-reports, and a day you call empty can hold two
+meetings. The chip is a button and opens a day panel listing every event on that date, which is
+the cheapest way to read a busy day from month view.
+
+For a slot check on named dates, read the day itself:
+
+1. `goto_url("https://outlook.cloud.microsoft/calendar/view/day")`. A `?date=` query on the week
+   or month URL is ignored — it opens the current period regardless, so never build a date window
+   out of query strings.
+2. Click the mini-calendar cell whose aria-label is exactly `3, December, 2026`.
+3. **Require the header to name that date**: `Loaded N events in 1 selected calendars
+   3 December, 2026`. A mini-calendar click that missed leaves the previous date's header in
+   place, and its event list then reads as an empty day for the date you asked about. Retry once,
+   then fall back to month view and open the `+N` chips.
+
+Report two things from it beyond clashes: an empty day, and any pair of events starting at the
+same minute.
 
 A same-minute pair is a prompt to look, not a clash to report. Before calling it
 one, open both and compare organiser, subject and location: organisations
@@ -257,8 +274,10 @@ session, so the cookies do the authorising:
 3. **Confirm it arrived**: `ls -lt ~/Downloads | head` and `file <name>`, not the
    absence of an error message.
 
-Then parse the file locally with openpyxl or pandas. A spreadsheet is workable data;
-its rendered viewer is not.
+Then parse the file locally with openpyxl or pandas. Where neither is installed, `scripts/xlsx-dump.py`
+reads a workbook with the standard library alone (shared strings plus the first sheet) and prints it
+as TSV with the row count on stderr — that count is also how you check the file against the number
+of responses. A spreadsheet is workable data; its rendered viewer is not.
 
 ## Composing a draft in the web editor
 

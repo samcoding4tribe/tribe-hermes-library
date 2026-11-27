@@ -33,6 +33,33 @@ archive can be 30% stubs while the supplier and workflow folders are fully hydra
 To test the fetch path itself, pick a `dataless` file whose logical size is small (under a
 even couple of MB) and open it. Anything larger costs a real download for one data point.
 
+## When the content is needed and the stub refuses
+
+A refusal needs locating before it can be reported: one stalled file and a mount that refuses
+every stub look identical from a single failed read. Probe three or four small stubs across
+different top-level folders and print the outcome per file — a mix of successes and `Errno 11`
+means a stalled file, all failures mean the provider, and the difference is what the person has
+to act on.
+
+```python
+for p in small_dataless_files[:4]:      # skip 0-byte and >300 KB files
+    try:
+        with open(p, 'rb') as f: f.read(4); print("OK  ", p)
+    except OSError as e: print("FAIL", e, p)
+```
+
+- **Do not reach for `brctl download`.** That is iCloud Drive's tool; against a OneDrive mount
+  it answers `Logged out - iCloud Drive is not configured` and changes nothing. There is no
+  shell equivalent for the OneDrive file provider, so a refused stub stays refused locally.
+- **The content then comes from wherever the file is authored**, not from the mount: the app or
+  web view that owns the record can export it, and that is a decision to hand back to the owner
+  of the account rather than a download to keep retrying. Say the file is unreadable locally and
+  offer the two shapes; do not narrate the probes as progress.
+- **A browser session has to be proven signed in first.** The automated browser reports whether
+  it carries the person's profile (`real_profile_unavailable` when the default browser is not
+  Chromium-family — the fix is a Chromium default or the `browser.use_real_profile` toggle, not
+  a retry). Read that before promising to fetch anything behind a Microsoft login.
+
 ## A count is true only of the moment it was taken
 
 Sample numbers on this estate moved by an order of magnitude in a day because Sam downloaded

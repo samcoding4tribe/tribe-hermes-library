@@ -27,6 +27,14 @@ scheduled jobs and the rollout to colleagues. Not the admin profile's day job.
 Not for a colleague's day-to-day assistance, and not for Hermes configuration questions
 that have nothing to do with the estate (use `hermes-agent`).
 
+**Route the request before investigating it.** A request that is Sam's own day — inbox, diary,
+forms and their responses, expenses, a supplier quote — belongs to the `admin` profile (or `ea`
+for the manager's), because it needs that profile's browser logins and its own session store.
+Say so in one line, give one paste line for a session in that profile, and stop. Starting the
+investigation here burns tokens and hands over a half-answer: a form whose responses live behind
+the other profile's Microsoft login cannot be read from this one, and the reply has to admit that
+after the work rather than before it. Builder work that merely mentions a form or a meeting stays.
+
 ## Orient, then work one thread
 
 0. **Start of a day: `docs/handover-today.md`.** A 07:30 job (`scripts/daily_handover.py`,
@@ -34,7 +42,9 @@ that have nothing to do with the estate (use `hermes-agent`).
    no tokens: what changed yesterday grouped by folder, every open thread with its state and
    next action, and anything the previous handover carried forward. Paste-ready kickoff lines
    per thread are in `docs/projects/session-starters.md`. The morning routine is one line:
-   "Read docs/handover-today.md, then start on the first thread."
+   "Read docs/handover-today.md, then start on the first thread." Every open thread needs a
+   block there, the nearly-finished one included: a thread with no kickoff line is the one a
+   daily routine silently skips, and adding it is a two-minute job.
 1. `docs/handover.md` first, then `grep -n '^#' docs/decisions.md` for the index, then
    `docs/projects/README.md` for the numbered threads. Three reads instead of guessing.
 2. Say which numbered thread is in play, then work only that one.
@@ -70,6 +80,10 @@ as taste.
   short list. If the answer needs a heading, it is a document.
 - **No headings, no multi-section essays, no numbered argument in chat.** Draft the doc in
   the repo, then reply with its path and one sentence saying what it settles.
+- **Profile ids are your vocabulary, not his.** When he asks what you meant about a window, a
+  session or a profile, answer in terms of files and windows — "the edits are in the repo both
+  windows read" — then the one decision. An explanation about which profile is running reads as
+  evasion when the question was practical, and it earns a "what do you mean?"
 - **A direction is not a build request.** "We could use the backups for this" means agree,
   name the one consequence, ask the one decision it needs — and stop. Sam asks explicitly
   when he wants the system.
@@ -91,6 +105,10 @@ as taste.
   prose goes stale faster than the live tree; verify against OneDrive and `~/.hermes`.
 - Where a fact was not observed, write UNKNOWN plus how it could be confirmed. D18 in
   `docs/decisions.md` makes assumed content worse than an empty field.
+- "The previous session managed it" sends you to a profile's `state.db`, not to this chat and
+  not to the repo: each profile has its own store, a day-job task usually sat in `admin`, and a
+  read-only `LIKE` query over `messages` recovers the route it took. Query, the schema traps and
+  the boundary on what may be quoted: `references/past-session-lookup.md`.
 
 ## Estate facts
 
@@ -98,17 +116,11 @@ as taste.
   `OneDrive/.../TRIBE Group Tech/{Hermes Library, Hermes WIP, Hermes Backups/<machine>}`.
   The live `~/.hermes` runtime is never published.
 - `scripts/hermes_files.py` subcommands: `backup` (text mirror that keeps memories, plus
-  `state.db` snapshots), `sync` (to the shared library, memories stripped), `pull`,
-  `nightly`, `share` (marked soul rules → `baseline/soul-rules/`, weekly via the cron job
-  'Hermes soul share' at Sunday 17:30, wrapper `~/.hermes/scripts/hermes-share.sh`).
-  Souls contribute only what sits between `<!-- shared:start -->` and `<!-- shared:end -->`;
-  a soul without markers is reported as unmarked. The markers are HTML comments, so adding
-  them changes no behaviour and needs no `refresh-prompts`; all three souls on this machine
-  are marked now, with the block drawn around the numbered rules only — the paragraphs below
-  them (working notes, how it shares skills) are profile-specific and must not travel. The
-  summary pairs rules by exact wording, so the same rule phrased for a manager and for an
-  admin ("Email, messages, forms" against "Email, Teams messages") does not pair; real
-  distillation needs a model plus a cheap pre-filter, which is thread 5.
+  `state.db` snapshots), `sync` (to the shared library, memories stripped), `pull`, `nightly`,
+  and `share` — marked soul rules into `baseline/soul-rules/`, weekly via the cron job 'Hermes
+  soul share' (Sunday 17:30, wrapper `~/.hermes/scripts/hermes-share.sh`). What travels, how the
+  summary compares rules and why identical wording matters, plus the two traps in that folder:
+  `references/soul-sharing.md`.
 - The loop back (harvest → distil → publish → pull → refresh) has a design in
   `docs/architecture-loop.md`. Design prose lives there, state lives in
   `docs/projects/checkpoint-distillation.md`; never both in one file. D34: no baseline
@@ -144,6 +156,13 @@ as taste.
   `SyncDiagnostics.log`, testing the fetch path without downloading gigabytes, and why a
   hydration count only means anything alongside the state it was taken in:
   `references/onedrive-hydration.md`.
+- Surveying the Share Drive's own records (how many rows a master sheet really holds, what a
+  folder contains per-event, who last touched a file) is the recipe in
+  `knowledge-base-over-documents` plus its `scripts/census_workbook.py`. `read_file` extracts an
+  `.xlsx` to text and is the right first look, but it truncates and does no arithmetic, so
+  counts come from the script; authorship and ownership come from
+  `unzip -p <book>.xlsx docProps/core.xml`; a `.lnk`'s target from `strings`. Every count is
+  quoted with its depth and the hydration state it was taken in.
 - A machine that is not this one needs nothing from git: `Hermes Library` carries `scripts/`, `config.env.example`, the templates and the published profiles. Copy the folder to `~/tribe-hermes-library`, copy `config.env.example` to `config.env`, fill the three paths using the machine's asset name.
 - Bootstrap of a fresh install is one pasted line: that it is the builder, to read `README.md` in `TRIBE Group Tech/Hermes Library` and follow it, and to ask before anything destructive. The stock default profile knows nothing about the estate, so that line, not a hand-edited soul, is what makes the install self-directing.
 - Every machine writes its own backup into `Hermes Backups/<machine>/` (text plus dated `state.db` snapshots, created on first run) and needs to read back only its own. Per-folder permissions there are the open question; a backup read by every machine means every colleague can read every memory.
@@ -153,23 +172,32 @@ as taste.
   team. Durable personal operating facts belong in the memory file, and the rule that
   protects them must not restate the value it protects — `docs/decisions.md` is published
   too, so quoting the path inside the rule leaks it.
-- **Token spend is a session-length problem, not a config problem.** Attribute first: `hermes
-  insights` for this profile, `hermes -p <profile> insights` for another — sessions, messages,
-  input/output tokens, cost estimate and top tools. `Total tokens` dwarfs input+output because
-  it counts cached re-reads of the same prompt on every turn, and a session re-sends its whole
-  history each turn, so its total grows with the square of its length: one 600-message chat cost
-  351M while six 100-message chats would have cost roughly a sixth of that. Two marathon local
-  sessions were 562M of about 728M across the builder and `admin`; cron runs were 2M and
-  subagents 7M. Order of work when asked to cut spend: short thread-scoped sessions, then tool
-  output discipline, then fewer tools/skills per profile, then the soul, then compaction.
-- History hygiene is otherwise built in. Compaction fires at `compression.threshold` 0.50 with
-  `target_ratio` 0.20, so a long chat summarises itself. The store on disk only grows (builder
-  28 MB over 3,340 messages, `admin` 36 MB over 1,881) and is managed with `hermes sessions
-  archive` (hide), `prune` (delete), `optimize` (FTS merge + vacuum). Policy, watch line and
-  measurement commands: `docs/context-budget.md`. The habit ships as
-  `shared-skills/session-hygiene` plus rule 8 ("watch what the conversation costs") inside the
-  shared block of both role templates — but rule 8 is live only in the templates; each live
-  soul needs it added and `refresh-prompts` run before the habit actually fires.
+- **Token spend is a session-length problem, not a config problem.** A session re-sends its
+  whole history on every turn, so thread-sized sessions beat one marathon chat. Attribute with
+  `hermes insights` and `hermes prompt-size --json` (offline; there is no `--list-toolsets` flag
+  in this build — the schema byte count is the number). Order of work: sessions, tool-output
+  discipline, toolsets, skills, soul, compaction. Figures and commands:
+  `references/context-cost-measurement.md`.
+- Compaction fires at `threshold` 0.50 with `target_ratio` 0.20; on a 1M window those fractions
+  are nearly inoperative (0.35 would have tripped at turn 286 of a 1,004-call marathon), so the
+  lever is the absolute `compression.threshold_tokens`, which ships unset and fires at whichever is
+  lower. The store is managed with `hermes sessions archive`, `prune` and `optimize`, and must be
+  split by table before its size means anything — `state_meta` can be most of it. Policy:
+  `docs/context-budget.md`; queries, the log lines that prove compaction fired, and the turn
+  positions each threshold would fire at: `references/context-cost-measurement.md`.
+  The habit ships as `shared-skills/session-hygiene` plus the conversation-cost rule in both role
+  templates **and all three live souls**, word-identical because `share` pairs by exact wording;
+  it is the last rule in the builder's block and a different number elsewhere, so never cite a
+  shared rule by number. A soul edit is live only after `hermes sessions refresh-prompts`, and the
+  proof is `prompt-size --json` growing by the rule's length, not the write returning success.
+- **The cost is visible in the product, and the surface is hidden by default.** The status bar
+  along the bottom edge carries a context meter (`[▇▇▇░░] 5%`) that ships switched off —
+  right-click the bar, tick "Context meter" — and clicking it opens the used/max, percent-full,
+  compression and per-category popover; `/context` is the CLI equivalent. Point a person there
+  before quoting a number, and read `apps/desktop/src` before proposing to build a gauge, counter
+  or alert that may already ship: the desktop runs from a built bundle, so a local patch dies on
+  the next `hermes update` (D40). Meter location, popover contents and the traffic-light bands:
+  `references/context-cost-measurement.md`.
 - `docs/projects/README.md` numbers every thread with its checkpoint file. Parked threads
   still get a row and a file, so a direction raised mid-conversation costs one small page
   rather than a re-argument later.
@@ -182,6 +210,20 @@ as taste.
 
 ## Pitfalls
 
+- **An improvement suggestion arriving from outside is usually already the architecture.** Lazy
+  skill and tool loading, loop guardrails and retry caps all exist in this build; the productive
+  answer is to open `config.yaml`, `hermes prompt-size --json` and the guardrail's own log line,
+  then reply with the values and the one number that is genuinely unset. Agreeing to build what
+  ships costs a session and teaches the person the estate did not know itself. The same holds when
+  Sam attributes spend to a knob: measure which mechanism trips at which turn before agreeing that
+  it would have fired earlier — the plausible lever is often the inert one.
+- A question about the soul's own rules is an evidence task, not a recall task. The builder's
+  shared block carries **eight** numbered rules, with "watch what the conversation costs" last;
+  `admin` and `ea` carry a shorter block, so the same rule lands on a different number. Read the
+  live `SOUL.md` and count before saying "there is no rule N" — a false negative about a rule
+  that is on screen reads as the estate not knowing its own guardrails. And `session-hygiene` is
+  a hub skill under `shared-skills/` in the repo, so this profile's `skills_list` legitimately
+  does not list it; absence there is not absence everywhere.
 - A duplicate of a `docs/` procedure under `templates/` publishes twice and drifts: the
   interview kit once lived in three places, and the two copies still carried the colleague
   names that had been genericised out of the canonical one, so the leak reached the library.
@@ -225,17 +267,48 @@ as taste.
   before the edit — the change reaches a session only when its system prompt is rebuilt. Use
   `hermes sessions refresh-prompts` (stamps a refresh epoch in that profile's `state.db`; the
   prompt rebuilds once on the session's next turn, one prefix-cache break), or start a new chat.
+  It is **not a dry run**: a bare call stamps every session in the profile at once (`--json`
+  reports `{"epoch": N, "session_id": null, "sessions": 13}`), so use `--session <id>` when only
+  one chat should change — and do not run it with `--help`-style curiosity on a profile you are
+  not maintaining. `hermes prompt-size --json` (works with `-p`) is the other half: the fixed
+  prompt including tool schemas, 33.6 KB against a 3.7 KB skills index on 27 November 2026, so
+  trim a toolset before curating skills.
 - `SOUL.md` is a protected agent-instruction file: the write raises an approval prompt, and a
-  prompt that times out is **not** consent. Re-issue the edit and ask the person to approve it
-  in the dialog; never reach the same change through `terminal`, a heredoc or `execute_code`,
-  and do not read a silent turn as a yes. Two profile souls go through the gate one at a time —
-  a batch that is half-approved leaves one marked and one not.
+  prompt that times out is **not** consent — the gate refuses an immediate retry, so a
+  same-turn re-issue only times out again. End the turn, say in one line that the dialog needs
+  approving, and re-issue once he is at the screen. Never reach the same change through
+  `terminal`, a heredoc or `execute_code`, and do not read a silent turn as a yes. Two profile
+  souls go through the gate one at a time — a batch that is half-approved leaves one approved
+  and one not, and the reply has to say which.
 - Two backup locations are described in the docs (a private per-user folder, and
   `Hermes Backups/<machine>`). Check what the script writes today instead of trusting the
   older note, and correct the note.
+- `scripts/rule_pair_probe.py` is the cheap way to answer "are these two rules the same
+  rule": word 2–5-gram Jaccard per cross-profile pair, blocking key, best partner per rule.
+  Run it before proposing a matcher or asking a model — it costs nothing and turns an opinion
+  about wording into numbers you can quote.
+- Appending a new section to a `docs/` file: anchor the edit on the `---` break or the next
+  section's heading, never on the last lines of the previous section. Those last lines are
+  often a wrapped bullet, and replacing them splits the sentence and orphans its tail after
+  the section you just added — the diff looks clean and the file reads as two broken halves.
+  Re-read the tail after the write.
 - A checkpoint's "remaining work" list goes stale: verify each item against the file before
   editing it. Doing an item that was already done wastes a turn; claiming it was pending
-  makes the handover document lie.
+  makes the handover document lie. Carry a status cell per item in the same pass — the measured
+  fact it now holds, or who it waits on (Sam's decision, an approval, a later session). When
+  most of a list is gated on him, measure all of it first, record the numbers, and end the turn
+  with the one decision that unblocks the head of the list rather than a summary of the seven.
+  The stalest part of a checkpoint is its preamble — the "tomorrow morning, start here" note
+  still names items finished days ago — so rewrite the opening paragraph in the same pass, and
+  delete any copied thread-state table in favour of one line pointing at
+  `docs/projects/README.md`: a second copy of the list drifts against the first within days and
+  the generated handover reads only the canonical one.
+- The same staleness runs the other way, and costs more. When the thing that blocked a thread
+  is fixed — hydration, an access grant, a missing plan answer — the brief and checkpoint
+  written under the block keep offering its UNKNOWNs as current state, and the next session
+  re-does the investigation. In the same pass that records the new evidence, mark the old
+  finding dated-and-superseded with a pointer to where the truth now lives, and rewrite the
+  checkpoint's blocker paragraph rather than appending to the list below it.
 - Where a doc states a rule and then gives an example that breaks it, readers follow the
   example. Fix the example, not just the rule (a role id illustrated with a person's name
   is how `assistant-<their name>` survived a naming decision).
@@ -248,7 +321,9 @@ as taste.
   because that is what the file browser surfaces; the title inside carries the meaning.
 - The 17:00 job, `sync` and any manual publish all push to `origin`, so a claim that work is
   "committed locally" is wrong on this estate. Check `git remote -v` before describing the
-  repo as local-only.
+  repo as local-only. And read `git status --short` before any commit: another session's
+  in-flight edits sit in the same working tree, so committing "your" docs sweeps theirs in.
+  Leave the tree dirty and name the foreign files in the reply, unless he said to commit.
 - A generated handover is only useful if it is quiet: filter `.locks/`, `.hub/`, `logs/` and
   generated artefacts out of the changed-file list, or yesterday's cron lock churn buries the
   three edits that matter. And its "still open" list reads the thread table, so **mark a

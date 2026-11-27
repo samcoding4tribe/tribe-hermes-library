@@ -19,6 +19,45 @@ write the prose you want rather than assembling it line by line.
 row in Drafts proves the draft; a row in **Sent Items** with the recipient, subject and time
 proves the send. A closed compose window proves nothing.
 
+### The body can save empty while the compose reports success
+
+Observed 27 Nov 2026 drafting a multi-paragraph message: `insertText` into the body returned the
+full 1,706-character count, the header said "Draft saved", and the draft reopened with subject and
+three recipient chips and **no body at all**. Navigating away from the compose dropped the text a
+second time. `Draft saved at` alone is not proof.
+
+- **Blur the body before trusting the save**: click the subject line, then wait for the saved time
+to *change* (`Draft saved at 4:04` → `4:06`). A marker that does not move means nothing was written
+since the last save.
+- **Leave the compose and read the Drafts row preview.** The row shows the opening words of the
+body. An empty preview, or "No preview is available", means the body did not persist — retype it
+and save again.
+- **A draft is real when its row previews the text**, not when the editor shows it and not when
+the header claims a save. Verify before reporting the draft to the owner, because a subject-only
+draft looks finished in the list and reads as empty when they open it.
+
+## Finding the recipient's address
+
+The address book is not where the organisation directory lives. `outlook.cloud.microsoft/people/`
+returns personal contacts only — searching a colleague there answers "No suggestions found" for
+somebody who plainly exists, so read that as an empty address book, not a missing person.
+
+Resolve a name against the directory inside a compose window:
+
+1. **New mail**, then click the **To row** (a `div` with `aria-label="To"`) before typing anything.
+   Typing without that click puts the text into the global search box `#topSearchInput`, which
+   swallows it silently and shows unrelated results while the To field stays empty. When no
+   suggestions appear, read `document.activeElement` first — the usual cause is that the focus
+   never left the search box.
+2. Insert the name and wait a beat: directory matches render as element text of the shape
+   `Name - name@domain`, not as `[role="option"]`, so read text containing the domain rather than
+   reaching for a listbox selector that is not there.
+3. **Two entries for one person is normal** — a renamed or duplicate account. Do not pick one: ask
+   the owner which address they use, in one question, with the candidates quoted. A wrong address
+   on a standing job is mail nobody reads, and it stays wrong for months.
+4. **Discard the probe draft** and confirm the `Discard message` dialog's OK; a compose left open
+   keeps saving itself into Drafts.
+
 ## Attaching a file
 
 Use `DOM.setFileInputFiles` on an unrestricted input, never the image one:

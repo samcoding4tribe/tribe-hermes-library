@@ -114,9 +114,12 @@ work one step at a time, with your yes on each:
 
 1. Copy `templates/builder/SOUL.md` over its own soul and fill `{{OWNER}}`, `{{ROLE}}`,
    `{{MACHINE}}` and `{{DATE}}`.
-2. Copy `config.env.example` to `config.env` and fill the three paths for this machine.
-3. Run the proof query and the backup dry run.
-4. Offer the nightly job, and wait for your yes before scheduling it.
+2. Copy `templates/builder/skills/*` into `~/.hermes/skills/` — the builder's own
+   `profile-maintenance` pass, which measures a profile and proposes changes instead of
+   making them.
+3. Copy `config.env.example` to `config.env` and fill the three paths for this machine.
+4. Run the proof query and the backup dry run.
+5. Offer the nightly job, and wait for your yes before scheduling it.
 
 The label is Hermes. The folder stays `default`, because the label is presentation and the
 id is the role (D22).

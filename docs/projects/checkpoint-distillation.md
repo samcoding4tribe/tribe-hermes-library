@@ -17,6 +17,18 @@ files under the `skills/` folders are `.locks` and `.hub` metadata. Every skill 
 every profile is bundled and inherited from the same baseline, so there is nothing
 to compare and nothing to pool.
 
+**27 November 2026 — the two steps are designed; nothing built.** §9 of
+`docs/architecture-loop.md` now holds the pre-filter and the model comparison in enough
+detail to build or reject: deterministic parse and shingle candidate-finding, one model call
+over the whole rule set rather than per pair, quotes verified against the source files in code,
+output as `baseline/soul-rules/_proposal.md` awaiting a hand-written yes. It is written
+against the real material — 17 rules across the three profiles — and two measured findings
+went with it: the summary's exact key under-reports (admin#1 ~ ea#1 scores 0.30 at word
+3-grams and pairs nothing), and `cmd_share`'s filenames are keyed on profile id alone, so a
+second machine's `admin` would overwrite this one's. That filename change is the one piece of
+code that should land before any colleague runs `share`, and it is not written. No decision
+recorded: §9 is a proposal, and D34 still governs what may travel.
+
 ## What finished looks like
 
 A harvester that reads a machine backup, keeps only what generalises, and proposes a

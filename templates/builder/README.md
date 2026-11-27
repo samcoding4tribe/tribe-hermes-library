@@ -15,7 +15,18 @@ the thing that sets up the first assistant and then keeps the estate in step.
 2. Fill the four placeholders: `{{OWNER}}`, `{{ROLE}}`, `{{MACHINE}}`, `{{DATE}}`. The
    machine name is the OS asset name, not a nickname, because the backup folder uses it.
 
-3. Confirming the label. The profile id stays `default`; the name people see is the label
+3. Copy the builder's own skills into place, so it can maintain the profiles it creates:
+
+   ```
+   cp -R templates/builder/skills/* ~/.hermes/skills/                     # macOS
+   xcopy /E /I templates\builder\skills\* %LOCALAPPDATA%\hermes\skills\   # Windows
+   ```
+
+   Today that is one skill, `profile-maintenance`: measure a profile's soul, memory, skill
+   count and `state.db`, flag what is over its line, propose a diff, and refresh the open
+   chats only after the person says yes. Its script is `scripts/profile_audit.py`.
+
+4. Confirming the label. The profile id stays `default`; the name people see is the label
    (D22). So:
 
    ```
@@ -28,8 +39,9 @@ the thing that sets up the first assistant and then keeps the estate in step.
 ## What it does next
 
 Its soul tells it the first job: run the set-up interview and create the owner's assistant
-profile. Nothing else is scaffolded here — no skills, no cron, no persona for the assistant
-itself. Those come from the interview and from watching the work.
+profile. The only skill scaffolded here is the builder's own — `profile-maintenance`, which
+measures and proposes rather than editing. Nothing is scaffolded for the assistant: no cron,
+no persona, no skills. Those come from the interview and from watching the work.
 
 ## What it must not do
 

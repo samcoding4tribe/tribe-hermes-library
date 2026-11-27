@@ -171,3 +171,129 @@ is a baseline candidate.
 - Not in this file: what a colleague is told at handover about their backup being
   read for this purpose. That belongs in `docs/onboarding.md`, and it has to be
   written before the first colleague receives a profile, not after the harvest works.
+- §9's two steps are a proposal, not a fill: §9 has the pre-filter and the model
+  comparison in enough detail to build or reject, and no decision behind it yet.
+
+---
+
+## 9. Steps ① and ② in detail: the pre-filter and the model comparison
+
+Proposal, 27 November 2026. Written against real material — the weekly `share` job's own
+output — and not built. Expands §2.1 (harvest) and §2.2 (distil) for the soul-rule lane only.
+
+### 9.1 What `share` already hands us, measured
+
+`hermes_files.py share` writes `baseline/soul-rules/<profile>.md` for each profile: frontmatter
+(`profile`, `machine`, `extracted`), a fixed header, then the marked block's rules as plain
+numbered lines, names, emails and numbers already replaced by `[person]`, `[email]`,
+`[number]`. A `_summary.md` is regenerated in the same run: whether each profile offers a
+marked block, and the rules more than one profile carries.
+
+On this machine, 27 November 2026: `admin.md` 5 rules, `ea.md` 5, `default.md` 7 — 17 rules,
+2,774 characters — plus `_summary.md`. All three offered a marked block.
+
+Its pairing key is the whole line lowercased with leading markers stripped, gated at more than
+25 characters. Any word anywhere in the line makes it a different key. So the summary answers
+"identical", and the question is "the same rule":
+
+| Pair | Word Jaccard k=3 | Verdict the summary gives |
+|---|---|---|
+| `admin#1` ~ `default#1` | 1.00 | paired — character-identical after normalising |
+| `admin#1` ~ `ea#1` | 0.30 | invisible — same rule, written for a manager |
+| `admin#2` ~ `default#2` | 0.57 | paired |
+| `admin#2` ~ `ea#2` | 0.375 | invisible |
+| `admin#5` ~ `ea#5` | 0.118 | invisible |
+
+Two facts the source material forces on any consumer of it:
+
+- **`_summary.md` must be skipped.** A probe that globbed `*.md` read the summary as an 18th
+  rule authored by a profile called `_summary`. Skip files whose stem starts with `_`.
+- **The filename is keyed on profile id alone.** Two machines both have an `admin`, so both
+  write `admin.md` and overwrite each other in git. Nothing bites today because all three
+  profiles are on this machine. Fixed in 9.6, before a second machine runs `share`.
+
+### 9.2 The pre-filter: deterministic, no model, no synonym list
+
+Its job is not to be clever. It collapses exact duplicates, hands the model the pairs it must
+not miss, and labels what had no partner so nothing is dropped silently.
+
+1. **Parse.** A rule starts at `^\s*(?:\d+[.)]|[-*])\s+`; unmarked non-blank lines continue it;
+   a blank line ends it. Skip `_`-prefixed files.
+2. **Normalise.** Lowercase; `[person]`/`[email]`/`[number]` → `slot`; backticked text → `path`;
+   drop stopwords; keep the rest as tokens. Compare at k = 2, 3, 4 and 5 word-shingles and
+   report all four, because k=2 survives paraphrase and k=5 proves a lift.
+3. **Blocking key.** `(leading imperative verb family, polarity)`, polarity N when
+   `not|never|no` appears in the first 12 tokens. The verb family list (draft, cite, keep, say,
+   protect, never, … about twenty) is data, in `config/soul-rules-blockers.json`, not code.
+4. **Candidacy.** Any pair at or above 0.10 Jaccard (k=3), or sharing a blocking key, is a
+   candidate. The threshold is set for recall, not precision: a missed pair is invisible in
+   the output, a false one costs a few tokens.
+5. **Ids.** Every rule gets `<machine>__<profile>#<n>`, stable across runs so a proposal can
+   quote it after the numbering of a soul changes.
+6. **Output.** `baseline/soul-rules/_candidates.json` — rules, candidate pairs with scores,
+   singletons — written by the same weekly job, `_`-prefixed so nothing globs it as a profile.
+
+Measured discrimination on today's 17 rules: the six closest cross-profile pairs score 0.118
+to 1.0 at k=3, every other cross-profile pair 0.021 or less. That gap is real but it is not a
+verdict, and it narrows as profiles multiply. Hence step 5: the pre-filter proposes, the model
+decides.
+
+### 9.3 The model step
+
+**One call per bundle, never one call per pair.** Today is 17 rules and one bundle of about
+700 tokens. At twenty people carrying six rules each it is ~5,400 tokens — still one call. The
+quadratic worry in §2 is a property of pairwise comparison (95 pairs today, ~7,100 at twenty
+profiles), not of comparing rules at all.
+
+**Input:** the candidates file as JSON — every rule once with its id and text, the candidate
+pairs with scores, the singleton list.
+
+**Ask:** cluster by intent. Per cluster, emit a relation for each member (`same`, `variant`,
+`new`), the proposed baseline wording, and a verbatim quote from each member. A role
+difference is named as a role difference, not smoothed away: "form" against "Teams message" is
+a claim about a manager's workspace, and that is a decision, not a merge.
+
+**Model:** `deepseek-v4-pro`, temperature 0 — this machine's provider serves only
+`deepseek-flash` and `deepseek-v4-pro`, so a config naming an Anthropic model fails with HTTP
+400. `deepseek-flash` is the cheap re-run for an unchanged bundle, not the clustering model.
+
+**Verification in code, not by trust.** Every quote must be a verbatim substring of the named
+rule's text in `baseline/soul-rules/`; every id must be one the pre-filter issued. A cluster
+failing either check is dropped and reported, never repaired. Responses are cached by the
+SHA-256 of the bundle, so re-running an unchanged week costs nothing.
+
+**Output:** `baseline/soul-rules/_proposal.md` — per cluster the proposed wording, the quoted
+sources, the spread across profiles and machines, and whether a baseline soul already carries
+it. Generated, never hand-edited. The human yes is a separate dated line at the top, added by
+hand or by a later command.
+
+### 9.4 Where the human yes sits
+
+Nothing in 9.2 or 9.3 writes to `profiles/admin/SOUL.md`, `profiles/ea/SOUL.md` or a template.
+A cluster marked `same` across three profiles is evidence; what the baseline then says — and
+whether the manager variant is a second rule or a clause in the first — is a soul edit under
+D34 and D18. `_proposal.md` is that edit's input and its receipt.
+
+### 9.5 Access
+
+For this lane there is no new access at all, and that is deliberate. `share` already reads each
+soul, extracts only the marked block and scrubs it; the pre-filter reads `share`'s output in
+the repo. So §2.1 ("harvest" from the backups) is about skills. The rule lane's harvester is
+`share`, and it runs where the soul already is.
+
+### 9.6 Prerequisites, all of them before this means anything
+
+- **Machine-keyed filenames.** `cmd_share` writes `<profile>.md`; two machines collide on
+  `admin.md`. Change to `<machine>__<profile>.md`, and key the summary's pairing map on the
+  same id. One small edit to one function, but it must land before a second machine runs the
+  job, or the first colleague's share silently shortens the builder's evidence.
+- **Backup readability** (§4, D19/D20). Pooling across people needs their share output to
+  reach one folder the builder can read. UNKNOWN which route is acceptable to Sam.
+- **Threshold and approval** (§7). Still UNKNOWN, still Sam's, and the pre-filter's 0.10 is a
+  recall setting, not that threshold.
+- **Rule numbering is not yet comparable.** The token-spend rule (8) is live in the templates
+  but in none of the three live souls, so today's rule 5 means different things in different
+  files. Read ids, never rule numbers, when quoting.
+- **Nothing here is worth building before people have worked profiles** — §1 of the
+  checkpoint. The pre-filter is cheap to write and would be validated against three souls
+  written by one person.

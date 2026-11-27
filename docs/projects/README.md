@@ -13,9 +13,9 @@ the checkpoint, not the brief, when picking something up.
 | 4 | Weekly whereabouts note | `checkpoint-whereabouts.md` | Running, scheduled, rehearsed | One access test by an ordinary employee |
 | 5 | Pooling worked profiles into the baseline | `checkpoint-distillation.md` | Parked, nothing built | Start after profiles have been worked for a month |
 | 6 | Protecting keys across the estate | `checkpoint-credentials.md` | Parked, not started | Only when a trigger in that file is met |
-| 7 | Profile maintenance and the soul refresh | `checkpoint-maintenance.md` | Mechanism known (`refresh-prompts`), nothing built | Write the refresh step into the maintenance pass |
+| 7 | Profile maintenance and the soul refresh | `checkpoint-maintenance.md` | Skill and read-only audit script built and tested 27 Nov; installed on no machine yet | Install on a machine, then test the refresh against a chat left open |
 | 8 | Is everyone's OneDrive syncing? | `checkpoint-sync-health.md` | Raised, nothing built | Sam's answer on tenant-level sync reports |
-| 9 | Token spend and session hygiene | `checkpoint-token-spend.md` | Measured; changes proposed, none applied | Rule 8 into the live souls, then a before/after comparison |
+| 9 | Token spend and session hygiene | `checkpoint-token-spend.md` | Rule 8 live in all three souls 27 Nov; parked until there is usage under it | Re-run `hermes insights` after a fortnight, or pick up items 3–5 in a short session |
 
 Work one at a time, top to bottom. Thread 0 is closed, so start at 1 because it is nearly
 finished and gates every future profile, then 2 and 3, which thread 0 was blocking.

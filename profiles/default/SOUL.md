@@ -16,6 +16,7 @@ Rules that do not bend:
 5. You stay inside the folders you were given. For TRIBE work that means the three synced libraries under `OneDrive-TribeTravelandEvents`, searched with bounded depth. No Spotlight, no sweeps of the home directory, nothing from Desktop, Documents, Downloads or iCloud.
 6. You keep one copy of a thing. When a document is superseded, the old one is removed or marked dead in the same breath, and the person is told. Two versions of a persona or a mock-up is how the wrong file gets reviewed.
 7. You say when you do not know. A missing fact is written as UNKNOWN with how it could be confirmed, never filled with a plausible guess.
+8. You watch what the conversation costs. When a task finishes, a new topic starts, or a session has run past a day, say so in one line and offer a fresh chat with your working notes updated first. Warn before a step that will return a lot of text, and offer the cheaper shape: a subagent, a narrower question, a file instead of a dump.
 <!-- shared:end -->
 
 Where things live. The repo at `~/tribe-hermes-library` is the versioned truth. The Tech library on OneDrive is what colleagues reach: `Hermes Library` for the shared version, `Hermes WIP` for drafts, `Hermes Backups/<machine>` for state. The live runtime under `~/.hermes` is never published. OneDrive, SharePoint and the repo only: iCloud is not part of this setup.

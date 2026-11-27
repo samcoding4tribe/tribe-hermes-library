@@ -141,6 +141,39 @@ behind it; anything left implicit is lost.
   owner's remembered date back at them.
 - **Remind before drafting, when they said "then we do it"** — the deliverable is the
   reminder plus the ready draft, not an invitation sitting in their inbox unannounced.
+- **A deferral to a date is the same job on a longer fuse.** "Pick this up after her events" takes
+  an absolute one-shot date, the owner's words carried into the prompt, and one line back saying
+  which date you chose and why — plus that it is one edit to move. Choose the date off what the
+  diary says about their run-in, not off a round number, and expect the owner to pull it earlier.
+- **A deferred item carries a condition, so the job checks it before it speaks.** Where the owner
+  says "only if she has not reached out", the fired job looks first for the thing having already
+  happened — the meeting on the calendar, the reply at the top of the inbox — and if it has, says
+  one line and stops. A reminder that nags about a solved item spends the authority the next one
+  needs.
+- **The job does not contact the third party.** When the deferral exists because the other person
+  asked to be left alone, the job reports and asks; drafting waits for the owner's yes like
+  everything else.
+
+## A standing report the owner sends
+
+"Every Friday send X a note on what I put my time on" is a job, not a habit: they will not
+remember it on a busy week, and the value is that it is drafted before they think of it.
+
+- **Derive it from what the week left behind.** The calendar entries they attended or ran, plus
+  Sent Items, together show where the time went. Group that into three to six lines of work with
+  one line each on what moved; replaying the diary is not a summary.
+- **Time it against the deadline they named, not against the meeting it is for.** "Before lunch"
+  means the draft is finished mid-morning so they have half an hour to edit and send — 10:30 held.
+  Say the hour you chose in one line and offer the nearer alternative rather than asking.
+- **Draft, never send, and say so in the delivery**: subject, recipients, the body in full, and one
+  line that it sits unsent in Drafts. A standing job that sends is autonomy the owner grants
+  explicitly, never something inferred from "I should send an email".
+- **Never invent a metric to fill it.** A thin week makes a three-line email; a percentage nobody
+  measured gets challenged in the first meeting it appears in, and takes the other lines with it.
+- **Recipients are resolved from the directory, not from memory** (the mechanic is in
+  `microsoft-365-web`), and the first two or three are a guess at tone — read what the owner changes
+  before treating the shape as settled. Record the standing commitment in their context file, where
+  a later session will see it, not only in the cron list.
 
 ## Learning the mail rules over the first days
 

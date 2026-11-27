@@ -59,8 +59,14 @@ Two different things get called bloat, and only one needs attention:
 
 Suggested policy, to confirm rather than assume: archive sessions older than ninety days,
 prune anything past a year, and run `optimize` after either. Watch line of 100 MB per profile —
-past that, read the table sizes before deleting anything, because a large database is usually
-one long session rather than many short ones.
+past that, read the table sizes before deleting anything.
+
+Measured 27 November 2026, and it contradicts the earlier guess that a big database is one long
+session: the builder's `state_meta` was 12.93 MB of 29 MB and `admin`'s 25.07 MB of 36 MB, of
+which 13.36 MB and 24.87 MB were `gateway.admission.result.*` cache entries — 46% and 69% of each
+database, against 9.3 MB and 6.1 MB of messages. Pruning sessions does not shrink that. Any report
+on database size has to show the table split, or the next person trims transcripts to fix a cache
+table.
 
 The bigger lever is not deletion but what gets written: large tool results belong in a file with
 a summary printed, not in the transcript. That is the same rule that keeps a profile responsive
@@ -117,14 +123,39 @@ That gives the order of work for keeping spend down:
 ## Measuring a profile
 
 ```bash
+hermes prompt-size --json                    # the fixed prompt: system, skills index, memory,
+                                             # user profile and the tool-schema byte count
 cd ~/.hermes/profiles/<name>
 sqlite3 state.db "select name, round(sum(pgsize)/1048576.0,2) mb from dbstat group by name order by mb desc limit 6;"
 wc -c memories/*.md
 find skills -name SKILL.md | wc -l
 ```
 
+`prompt-size` runs offline and is the only one of these that weighs tool schemas, which on
+27 November 2026 were 33.6 KB per profile against a 3.7 KB skills index — the largest fixed
+block, and the reason trimming a toolset beats curating skills. Its `--platform gui` variant
+reports no tools and no index, so it does not model the desktop app; use the default `cli`.
+
 The two numbers that matter are the memory files against 2,200 and 1,375 characters,
 and the skill count, since each skill adds a line to every prompt.
+
+## The pass that acts on these numbers
+
+The maintenance pass for a deployed profile — what to flag, how to propose a diff, and the
+`hermes sessions refresh-prompts` step that makes an approved change reach a chat that is
+already open — is a skill, not this document: it ships with the builder template at
+`templates/builder/skills/profile-maintenance/SKILL.md`, and `docs/setup.md` step 2 installs
+it. It proposes and never applies (D39).
+
+Its measurement is `scripts/profile_audit.py`, which does the four checks above in one
+read-only command and prints the flags:
+
+```bash
+python3 ~/tribe-hermes-library/scripts/profile_audit.py --profile <name>   # --all, --json
+```
+
+It opens `state.db` with SQLite `mode=ro` and writes nothing, so it is safe on a live profile.
+It counts memory characters; it never reads out or quotes them.
 
 ## The conversation to have with the builder
 

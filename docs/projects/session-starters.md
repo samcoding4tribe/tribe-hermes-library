@@ -26,6 +26,18 @@ files, every open thread with its next action, and anything carried forward.
 Reading was resolved on 26 November and the pin policy decided on 27 November; the record is
 `checkpoint-onedrive.md`. No kickoff line: nothing here is open.
 
+## Thread 1 — profile set-up interview
+
+```
+Load the tribe-hermes-estate skill. Read docs/projects/checkpoint-interview.md, then
+docs/profiles/interview/README.md. The build is finished; the dry run is the last item and it
+needs a volunteer. Tell me in three lines what the kit is ready to do, then ask me who to run
+it with. If I name someone, write the dry-run script and the record sheet, and do not touch
+the kit until it has been run.
+```
+
+Produces: a dry-run script and a record sheet, or one line naming the volunteer it waits on.
+
 ## Thread 2 — events supplier knowledge base
 
 ```
@@ -80,13 +92,14 @@ Produces: usually nothing. That is the correct answer.
 ## Thread 7 — profile maintenance and the soul refresh
 
 ```
-Load the tribe-hermes-estate skill. Read docs/projects/checkpoint-maintenance.md. Build the
-maintenance pass as a skill for the delegated builder: measure soul, memory, skill count and
-state.db size; flag; propose; never apply. Include the refresh step using
-`hermes sessions refresh-prompts`.
+Load the tribe-hermes-estate skill. Read docs/projects/checkpoint-maintenance.md. The pass is
+built at templates/builder/skills/profile-maintenance/ with scripts/profile_audit.py. Install
+it on a delegated machine, run one pass against a real profile, and leave a chat open across
+`hermes sessions refresh-prompts` so the untested half becomes a measured fact.
 ```
 
-Produces: the maintenance skill, ready to test on this machine.
+Produces: the skill installed on a machine other than this one, and an answer on whether a
+chat held open across a refresh picks up the new soul on its next turn.
 
 ## Thread 8 — is everyone's OneDrive syncing
 

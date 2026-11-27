@@ -56,7 +56,114 @@
       "canonical_completions": [
         "f93276533a644e50a5e302a9882e05e6"
       ]
+    },
+    {
+      "id": "ef77603a5bc5",
+      "name": "Carlita discovery chat — pick up 16 Dec",
+      "prompt": "One-off reminder for Sam (TRIBE Group, AI and Innovation Lead). Carlita Gray filled in the AI Discovery Survey on 27 November 2026, but asked that her 20-minute AI discovery chat be organised after she got past some big events she had on. Sam agreed not to email her about it in the meantime. This reminder exists in case she has not come back to him first.\n\nFirst, check whether she already has: look at Sam's Outlook calendar (browser route, outlook.cloud.microsoft day or month view — read the filter state before quoting a count) for any Carlita AI discovery call between now and the end of January, and at the top of the inbox for anything from her. If her chat is already booked, or she has written to Sam about it, say that in one line and stop — do not chase her.\n\nIf she has not been in touch and nothing is booked:\n1. In three lines or fewer: who she is, that the chat is still outstanding, and that she asked to be left alone until her events were behind her.\n2. Propose two or three free 20-minute slots from the diary in the week after 4 January, late morning or afternoon.\n3. Ask Sam whether to draft the email to her.\n\nDo not draft or send anything, and do not email Carlita from this job — Sam has to say yes first.\n\nAlso, in one line: if Luci De Iulio or Zoe Aris still has no AI discovery call on the calendar, say so. Sam contacted both on 27 November 2026 to set a date.\n\nBackground and the survey picks are in ~/.hermes/profiles/admin/workspace/interview-schedule.md.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-12-16T09:00:00+11:00",
+        "display": "once at 2026-12-16 09:00"
+      },
+      "schedule_display": "once at 2026-12-16 09:00",
+      "repeat": {
+        "times": 1,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-27T15:06:14.422282+11:00",
+      "next_run_at": "2026-12-16T09:00:00+11:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "origin",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-4df30f7da61688c2d6af65a710a88010aa08c0eebd957be7d4d6177f8423f144",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:502",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "attach_to_session": true,
+      "timezone": "Australia/Melbourne"
+    },
+    {
+      "id": "f413201bb4ae",
+      "name": "Friday weekly summary to Leon, Kate and Kelly",
+      "prompt": "Every Friday at 10:30, prepare Sam's weekly summary email to his three seniors at TRIBE Group and leave it as a DRAFT. Sam is Samuel Klett Navarro, AI and Innovation Lead, samuel@tribe-group.com.au. Recipients: Leon Burman (Managing Director) leonb@tribe-group.com.au, Kate Ashton (General Manager, Sam's line manager) katea@tribe-group.com.au, Kelly Gelfand (Managing Director Travel, part owner) kelly@tribe-group.com.au. Type the full addresses so the right chip resolves.\n\nWhat the email is: the lines of work Sam put time on this week (Monday to Friday morning). Three to six short paragraphs or bullets, one per line of work, saying what moved. Not a task list, not a status report on other people, no invented numbers or percentages.\n\nWhere the evidence comes from, all three:\n1. His Outlook calendar for the week (browser route: outlook.cloud.microsoft; read the filter state before quoting anything). Every meeting he attended or ran.\n2. His inbox and Sent Items for the week, plus the brief log at ~/.hermes/profiles/admin/workspace/brief-log.md.\n3. His own builder work, which never touches Outlook. That work lives in the DEFAULT Hermes profile's session store: query ~/.hermes/state.db read-only (mode=ro) for sessions whose last_activity_at falls in the week, and for each take the title, the first user request and the closing assistant conclusion. translate that into plain English: what was built, decided or measured. No tokens, cron ids, skill names or other internals in the email unless the fact itself is the point.\n\nWrite it in Sam's voice: plain sentences, short paragraphs, no \"I hope this finds you well\", no exclamation marks, no sign-off he would not type (the signature applies itself). Subject: \"Weekly summary, week ending <date>\".\n\nSaving the draft is the fragile step in Outlook web: inserting text into the body can report success and then save an empty body. After typing, click the subject line to blur the body, wait for \"Draft saved at <new time>\", then navigate to Drafts and confirm the row preview shows the opening words of the body. If the preview is empty, retype the body and save again.\n\nDo not send, do not schedule send. Then reply in the chat with the draft's subject, the three recipients, the body in full, and one line that it is unsent in Drafts. If a recipient is showing an out-of-office until a date, say so in one line so Sam can decide whether to send anyway.\n\nIf the calendar or the mail cannot be read (browser signed out, page will not load), say so plainly and stop. Never invent a week you could not read. Background: ~/.hermes/profiles/admin/workspace/sam-context.md.",
+      "skills": [
+        "microsoft-365-web",
+        "executive-admin-support"
+      ],
+      "skill": "microsoft-365-web",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 10 * * 5",
+        "display": "every friday 10:30"
+      },
+      "schedule_display": "every friday 10:30",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-11-27T16:01:11.903187+11:00",
+      "next_run_at": "2026-12-04T10:30:00+11:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "origin",
+      "origin": {
+        "platform": "local",
+        "chat_id": "local-4df30f7da61688c2d6af65a710a88010aa08c0eebd957be7d4d6177f8423f144",
+        "chat_name": null,
+        "thread_id": null,
+        "user_id": "uid:502",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "attach_to_session": true,
+      "timezone": "Australia/Melbourne"
     }
   ],
-  "updated_at": "2026-11-26T14:31:10.356173+11:00"
+  "updated_at": "2026-11-27T16:06:59.136396+11:00"
 }

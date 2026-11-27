@@ -591,7 +591,8 @@ everyone's tone in a folder the team can read. Marking the block keeps the decis
 in the file itself, rather than in a script's opinion of which lines look personal.
 
 **Consequence.** A soul without markers contributes nothing, and the weekly summary names it
-as unmarked. `admin` and `ea` are unmarked as at 26 November 2026.
+as unmarked. All three souls on this machine — `default`, `admin`, `ea` — are marked as at
+27 November 2026, which `baseline/soul-rules/_summary.md` of that date shows.
 
 **What this is not.** It is not the pooling loop in `docs/architecture-loop.md`. This keeps
 the rules; that one improves the baseline from several people's practice. Same material,
@@ -636,3 +637,72 @@ can open the folder, which is exactly the mixing this rule exists to stop. Memor
 part that never leaves the machine (D14), so it is the only safe place for a pointer that is
 personal to Sam. This entry deliberately does not repeat the location either, because these
 decisions are published too.
+
+---
+
+## D39. The maintenance pass measures and proposes; it never applies
+
+**Decision.** The builder on a delegated machine runs one maintenance pass per profile it has
+set up: soul size, both memory files against the caps in that profile's own `config.yaml`,
+skill count, and `state.db` against a watch line. It **flags and proposes a diff in chat, then
+stops.** The person applying it says yes, file by file. After an approved change to `SOUL.md`,
+a skill or a memory file, the builder runs `hermes sessions refresh-prompts` for that profile
+and says out loud that it did.
+
+**Why.** The profile is the other person's working self. A builder that edits it on its own
+initiative — to fix a duplicate it found, to trim a soul it judged long, to "tidy up" after a
+general instruction — takes decisions about somebody's assistant that they never saw and
+cannot unlearn. Proposing keeps the judgement where the knowledge is: the builder can see the
+budget, the person knows which fact still matters (the split already agreed in
+`docs/context-budget.md`).
+
+The refresh is part of the decision rather than a detail because a soul change is otherwise
+invisible: a session builds its system prompt once and replays it, so the person whose soul
+changed keeps talking to the old one and concludes the pass did nothing. `refresh-prompts`
+stamps an epoch in that profile's `state.db` and the prompt rebuilds on the session's next
+turn, keeping history, session id and the `tools[]` pin, at the cost of one prompt-cache miss.
+
+**Where it lives.** `templates/builder/skills/profile-maintenance/SKILL.md`, shipped with the
+builder template and installed by `docs/setup.md` step 2. Measurement is
+`scripts/profile_audit.py`, which opens `state.db` read-only and writes nothing.
+
+**Not decided here.** The cadence (weekly, monthly, on demand) — do not schedule the pass
+until the person whose profile it is has said a cadence. And whether a handover note should
+accompany a refresh when someone wants the old chat's context carried forward; the refresh
+alone does not carry context, it rebuilds the prompt.
+
+## D40. No traffic-light patch to the app; rule 8 carries the warning
+
+**Decision.** The desktop app is not patched to colour its context meter green/amber/orange/red.
+Rule 8 of the soul block — now live in `default`, `admin` and `ea` — is the mechanism that tells a
+person the conversation is getting expensive, and it says so in one line with a suggestion to
+start a fresh session. If it proves too quiet in practice, the next step is a scheduled report on
+the numbers (thread 7's maintenance pass), not a fork of the app.
+
+**Why.** The measurement already exists in the product: the status bar carries a context meter
+(`[▇▇▇░░] 5%`), and clicking it opens a popover with used/max tokens, percent full, compression
+count and a per-category split, from the same engine as the CLI's `/context`. What is missing is
+only severity colouring, which is a threshold function over `usage.context_percent`. But the app
+runs from a built bundle under `apps/desktop`, so a patch means editing source, rebuilding, and
+being overwritten by the next `hermes update`. The estate's own rule is that one copy of a thing
+survives and a fork does not; carrying a local patch to a vendored app buys a colour and costs a
+maintenance thread.
+
+**Where it lives.** Status bar, bottom edge of the window, `data-slot="statusbar"`. The meter is
+**hidden by default**: right-click the status bar and turn on "Context meter" — a colleague who
+was told "the app shows your context" will not find it otherwise, so any interview or setup step
+that mentions it has to say this.
+
+**Bands, if it is ever built** (recorded so the thinking is not lost): green below 25%, amber
+25–35%, orange 35–50%, red at 50% and above — anchored to `compression.threshold`, so red means
+the next long turn triggers a summarise-and-rewrite, not "half full".
+
+**The meter is not wired into the prompt.** Checked 27 November: nothing agent-side reads
+`context_used` or `context_max` — they are computed in `agent/context_breakdown.py` for the
+status-bar popover and the CLI's `/context`, and never enter the system prompt. So rule 8 is not
+costing tokens to re-derive a number, and there is nothing to save by reusing the meter's figure.
+Wiring it in would cost the opposite way: a per-turn line in the prompt (~15 tokens on every
+request of every session, forever), or the app fork this decision already refused. It is also the
+wrong trigger: a session switch is cheapest at a task boundary, which rule 8 can see without a
+percentage and at no cost. Keep the number for the person and for diagnosing one chat; let the
+host's compaction threshold be the automatic reaction to real pressure.

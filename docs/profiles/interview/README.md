@@ -21,9 +21,9 @@ TRIBE, without re-deriving the design or moving facts between profiles by hand.
    second assistant, never the assistant's name and never the person's (D22). The name is a
    label, asked in Block 0 and changing nothing downstream (D31). `templates/role/` is only
    for a role neither route fits.
-2. Read `onboarding-interview.md` and run it as a conversation, not a form. Blocks
-   zero to eight, twenty to thirty minutes, two short sessions if the answers get
-   thin.
+2. Read `onboarding-interview.md` and run it as a conversation, not a form. Block 0,
+   Block 0b, then Blocks 1 to 6, twenty to thirty minutes, two short sessions if the
+   answers get thin.
 3. Mail and calendar access first, before any preference question. In this
    organisation that means the browser route in the `microsoft-365-web` skill; if
    read access fails, fix that before asking what they want in a brief.

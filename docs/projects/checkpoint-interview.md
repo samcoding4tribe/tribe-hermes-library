@@ -1,78 +1,60 @@
 # Checkpoint: the profile set-up interview
 
-> **Tomorrow morning, start here.** Open this file, then
-> `docs/profiles/interview/README.md`. The first job is remaining work item 1 and 2:
-> the README line that says to give the profile the person's name, and the duplicate
-> steps in `templates/role/README.md`. Both are small edits. Stop after those two and
-> tell Sam, because everything after them needs his answers, not more work.
->
-> Nothing else is waiting on the machine. The backup job ran at 17:00 on 25 November,
-> the whereabouts job next fires Monday 11:00, and the OneDrive hydration fault is
-> still unfixed, so no file contents can be read until that is sorted.
-
-**Chosen to finish first, 25 November 2026.** Of the threads running today this is the
-one that is nearly done, gates every future profile, and does not depend on the broken
-OneDrive hydration. It is also the smallest: an afternoon, not a week.
+**State, 27 November 2026: build work finished. One item open, and it is a booking, not a
+build.** The kit is consolidated and verified in the working tree. What remains is the dry
+run (item 6), which needs a volunteer, not more edits.
 
 ## Where it stands
 
-The kit exists and is good. Five files, now copied into `docs/profiles/interview/` so
-they are versioned rather than sitting in Downloads:
+The kit lives in `docs/profiles/interview/` and publishes with `sync` — five files:
+`onboarding-interview.md`, `brief-interview.md`, `context-budget.md`,
+`FOR-THE-BUILDER-PROFILE.md`, `README.md`.
 
-- `onboarding-interview.md` — the set-up conversation, blocks 0 to 6 plus 0b.
-- `brief-interview.md` — the second conversation, run after a real brief has been read.
-- `context-budget.md` — what loads every turn against what only costs disk.
-- `FOR-THE-BUILDER-PROFILE.md` — the note to whoever deploys, on the boundary between
-  admin work and building.
-- `README.md` — the order of operations.
+Verified against the tree on 27 November:
 
-Already correct: the interview asks what the person wants to call the assistant before
-anything else (Block 0), and says plainly that the name is personalisation, not
-identity. That matches D22 and D31, so nothing needs rewriting for the name rule.
+- `templates/role/README.md` holds only mechanics and points at the kit (done 27 Nov).
+- The four-artefact table is in the kit's README; nothing else is written at setup.
+- `templates/ea-profile/` is gone (27 Nov) — it held a second copy of two interview
+  documents, including the two colleague names since genericised out.
+- Nothing kit-related in Downloads (confirmed by Sam, 27 Nov).
+- The name is asked in Block 0 and is a label only, matching D22 and D31.
+- Fixed 27 Nov: the kit's README said "blocks zero to eight". The document has Block 0,
+  Block 0b and Blocks 1 to 6. Corrected in the README.
 
 ## Definition of done
 
-1. The kit lives in the repo and in `Hermes Library`, and the Downloads copy is gone.
-2. `templates/role/README.md` points at the kit instead of describing the interview in
-   its own words, so there is one procedure, not two.
-3. The four artefacts the interview must produce are listed in one place with where each
-   is written: the context file, the procedures file, the brief preferences, the name.
-4. Nothing person-specific is in the kit. No answers, no example from a real person.
-5. One dry run with a volunteer, using the kit, noting where they paused or asked what
-   a question meant.
+1. The kit lives in the repo and in `Hermes Library`, and the Downloads copy is gone. — done
+2. `templates/role/README.md` points at the kit instead of describing the interview in its
+   own words. — done
+3. The four artefacts are listed in one place with where each is written. — done
+4. Nothing person-specific is in the kit. — done
+5. One dry run with a volunteer, noting where they paused or asked what a question meant.
+   — **open, item 6**
 
-## Remaining work, in order
+## Remaining work
 
-1. ~~Reconcile the README's step one~~ — done 26 November, and superseded by D37: the kit now
+1. ~~Reconcile the README's step one~~ — done 26 November, superseded by D37: the kit now
    installs `profiles/admin` under a routed id rather than copying `templates/role`.
 2. ~~Point `templates/role/README.md` at the kit and delete its duplicate steps~~ — done 27
-   November. It keeps only the mechanics and points at this kit for the procedure.
+   November.
 3. ~~Write the artefact table~~ — done, in this kit's README.
-4. ~~Remove the duplicate `templates/ea-profile/`~~ — done 27 November. It held a second copy of
-   two interview documents, including the two colleague names since genericised out of the
-   canonical copies.
-5. ~~Remove the Downloads copy~~ — confirmed gone by Sam, 27 November. Nothing in Downloads relates
-   to the kit any more.
-6. Book the dry run. Kate's EA is the obvious volunteer if she agrees, otherwise run it on
-   yourself with a second profile.
+4. ~~Remove the duplicate `templates/ea-profile/`~~ — done 27 November.
+5. ~~Remove the Downloads copy~~ — confirmed gone by Sam, 27 November.
+6. **Book the dry run.** Kate's EA is the obvious volunteer if she agrees, otherwise run it
+   on a second profile of Sam's own. Waiting on Sam's answer to who.
 
-## What it needs from you
+## Open items for Sam
 
-- A volunteer for the dry run.
-- A decision on whether the kit is shared with everyone who builds a profile, or held to
-  the builder role only. The README implies shared; the guardrails argue for held.
+- **A volunteer for the dry run.** Asked 27 November. Nothing else in this thread moves
+  until there is one.
+- **Is the kit shared with everyone who builds a profile, or held to the builder role?**
+  The README implies shared; the guardrails argue for held. Not yet in `docs/decisions.md`
+  (grepped 27 Nov — no decision recorded). Parked here, not repeated in chat.
 
-## The other threads, so the list is in one place
+## Notes for whoever picks this up
 
-| Thread | State | Next thing |
-|---|---|---|
-| Profile set-up interview | Kit written, name rule correct, needs consolidating | This checkpoint |
-| Events supplier KB | Brief done, blocked by hydration, needs owner and tier decisions | Phase one list, after hydration |
-| Travel consultant support | Brief done, needs your design work | Your five topics, then a pilot scope |
-| Weekly whereabouts note | Running, Monday 11am job rehearsed and fixed | Access check by an ordinary employee |
-
-## Start here after lunch
-
-Open `docs/profiles/interview/README.md`, do remaining work items 1 and 2, then stop and
-tell me. Those two are the contradiction and the duplicate, and they are the only things
-in the kit that can mislead the next builder.
+- A dry run is a conversation, not a rehearsal of a script: the value is the places the
+  volunteer pauses and the questions they ask back.
+- Record the pauses against the block they happened in, in this file, so the next edit to
+  the kit is driven by evidence.
+- The thread list is `docs/projects/README.md`; this file no longer carries a copy of it.
