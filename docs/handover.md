@@ -105,8 +105,10 @@ The `.sh` versions still work on the Mac and are no longer developed (D21).
   being one baseline, and keeping a personal knowledge base out of published files.
 - **Eight threads are numbered in `docs/projects/README.md`**, three of them raised today:
   maintenance and the soul refresh, sync health across the estate, and protecting keys.
-- **Thread 0 closed for reading**: the OneDrive fault cleared once the working set was
-  downloaded. One PowerPoint remains a stub; the pin policy is still Sam's to decide.
+- **Thread 0 closed**, 27 November: the OneDrive fault cleared once the working set was
+  downloaded, and the pin policy is decided and written into `checkpoint-onedrive.md`. One
+  PowerPoint is still a stub, in a folder the policy keeps online-only. The policy is not yet
+  applied: the online-only folders still hold about 621 GB on a disk with 191 GB free.
 
 ## What to do next
 

@@ -6,9 +6,9 @@ the checkpoint, not the brief, when picking something up.
 
 | # | Thread | Checkpoint | State | Next action |
 |---|---|---|---|---|
-| 0 | OneDrive will not hand over files | `checkpoint-onedrive.md` | Resolved 26 Nov: hydrated, one stuck file | Pin policy, then close |
+| 0 | OneDrive will not hand over files | `checkpoint-onedrive.md` | Closed 27 Nov: hydrated, pin policy decided, one stub left by design | — |
 | 1 | Profile set-up interview | `checkpoint-interview.md` | Done except the dry run | Book the dry run |
-| 2 | Events supplier knowledge base | `checkpoint-events-suppliers.md` | Brief done, nothing built | Fix hydration, then build the list |
+| 2 | Events supplier knowledge base | `checkpoint-events-suppliers.md` | Brief done, nothing built; hydration no longer blocks it | Build the list |
 | 3 | Travel consultant support | `checkpoint-travel-support.md` | Brief done, waiting on design | Sam's five topics, then a pilot |
 | 4 | Weekly whereabouts note | `checkpoint-whereabouts.md` | Running, scheduled, rehearsed | One access test by an ordinary employee |
 | 5 | Pooling worked profiles into the baseline | `checkpoint-distillation.md` | Parked, nothing built | Start after profiles have been worked for a month |
@@ -17,8 +17,8 @@ the checkpoint, not the brief, when picking something up.
 | 8 | Is everyone's OneDrive syncing? | `checkpoint-sync-health.md` | Raised, nothing built | Sam's answer on tenant-level sync reports |
 | 9 | Token spend and session hygiene | `checkpoint-token-spend.md` | Measured; changes proposed, none applied | Rule 8 into the live souls, then a before/after comparison |
 
-Work one at a time, top to bottom. Thread 0 first because it unblocks 2 and 3, then 1
-because it is nearly finished and gates every future profile.
+Work one at a time, top to bottom. Thread 0 is closed, so start at 1 because it is nearly
+finished and gates every future profile, then 2 and 3, which thread 0 was blocking.
 
 **One session per thread.** `session-starters.md` holds a first message for each thread that can
 be pasted into a fresh chat, and the three-line routine: read the index and the checkpoint, work

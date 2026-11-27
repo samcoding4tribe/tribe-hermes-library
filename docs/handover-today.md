@@ -1,6 +1,6 @@
 # Handover for Friday 27 November 2026
 
-Generated 11:19 from the repo. Read this first, then the
+Generated 11:39 from the repo. Read this first, then the
 checkpoint of whichever thread you are taking.
 
 ## Start a new session with
@@ -23,9 +23,8 @@ Read docs/handover-today.md, then start on the first thread below.
 
 ## Threads still open
 
-- **0. OneDrive will not hand over files** — Resolved 26 Nov: hydrated, one stuck file. Next: Pin policy, then close (`checkpoint-onedrive.md`)
 - **1. Profile set-up interview** — Done except the dry run. Next: Book the dry run (`checkpoint-interview.md`)
-- **2. Events supplier knowledge base** — Brief done, nothing built. Next: Fix hydration, then build the list (`checkpoint-events-suppliers.md`)
+- **2. Events supplier knowledge base** — Brief done, nothing built; hydration no longer blocks it. Next: Build the list (`checkpoint-events-suppliers.md`)
 - **3. Travel consultant support** — Brief done, waiting on design. Next: Sam's five topics, then a pilot (`checkpoint-travel-support.md`)
 - **4. Weekly whereabouts note** — Running, scheduled, rehearsed. Next: One access test by an ordinary employee (`checkpoint-whereabouts.md`)
 - **5. Pooling worked profiles into the baseline** — Parked, nothing built. Next: Start after profiles have been worked for a month (`checkpoint-distillation.md`)

@@ -21,18 +21,10 @@ files, every open thread with its next action, and anything carried forward.
 
 ---
 
-## Thread 0 — close it
+## Thread 0 — closed 27 November 2026
 
-```
-Load the tribe-hermes-estate skill. Read ~/tribe-hermes-library/docs/projects/checkpoint-onedrive.md.
-The pin policy is decided: pinned = SUPPLIERS, WORKFLOW, MASTER TEMPLATES & DOCS, PROPOSALS,
-ADMIN, Travel's TRIBE TRAVEL - DOCS, CLIENT INFO, Supplier - *, DESTINATION INFORMATION and the
-three Hermes folders; online-only = EVENTS CLIENTS, DESIGN CLIENTS (Dani), FINANCE, XXX - KELLY
-and XXX - LUCI review folders. Write that into the checkpoint, note the one stuck PowerPoint,
-and close the thread.
-```
-
-Produces: the pin policy in the checkpoint, thread 0 marked closed.
+Reading was resolved on 26 November and the pin policy decided on 27 November; the record is
+`checkpoint-onedrive.md`. No kickoff line: nothing here is open.
 
 ## Thread 2 — events supplier knowledge base
 
