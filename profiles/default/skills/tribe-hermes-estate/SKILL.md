@@ -147,13 +147,23 @@ as taste.
   team. Durable personal operating facts belong in the memory file, and the rule that
   protects them must not restate the value it protects — `docs/decisions.md` is published
   too, so quoting the path inside the rule leaks it.
-- History hygiene is built in and needs no custom system. Compaction fires at 50 per cent of
-  the model window (`compression.threshold`), so a long chat summarises itself; the store on
-  disk only grows (builder 28 MB over 3,340 messages, `admin` 36 MB over 1,881). When asked
-  about bloat, answer with the two mechanisms apart: live context is already handled, the
-  archive grows and is managed with `hermes sessions archive` (hide), `prune` (delete) and
-  `optimize` (FTS merge + vacuum). Written-up policy and measurement commands:
-  `docs/context-budget.md`.
+- **Token spend is a session-length problem, not a config problem.** Attribute first: `hermes
+  insights` for this profile, `hermes -p <profile> insights` for another — sessions, messages,
+  input/output tokens, cost estimate and top tools. `Total tokens` dwarfs input+output because
+  it counts cached re-reads of the same prompt on every turn, and a session re-sends its whole
+  history each turn, so its total grows with the square of its length: one 600-message chat cost
+  351M while six 100-message chats would have cost roughly a sixth of that. Two marathon local
+  sessions were 562M of about 728M across the builder and `admin`; cron runs were 2M and
+  subagents 7M. Order of work when asked to cut spend: short thread-scoped sessions, then tool
+  output discipline, then fewer tools/skills per profile, then the soul, then compaction.
+- History hygiene is otherwise built in. Compaction fires at `compression.threshold` 0.50 with
+  `target_ratio` 0.20, so a long chat summarises itself. The store on disk only grows (builder
+  28 MB over 3,340 messages, `admin` 36 MB over 1,881) and is managed with `hermes sessions
+  archive` (hide), `prune` (delete), `optimize` (FTS merge + vacuum). Policy, watch line and
+  measurement commands: `docs/context-budget.md`. The habit ships as
+  `shared-skills/session-hygiene` plus rule 8 ("watch what the conversation costs") inside the
+  shared block of both role templates — but rule 8 is live only in the templates; each live
+  soul needs it added and `refresh-prompts` run before the habit actually fires.
 - `docs/projects/README.md` numbers every thread with its checkpoint file. Parked threads
   still get a row and a file, so a direction raised mid-conversation costs one small page
   rather than a re-argument later.
@@ -181,6 +191,13 @@ as taste.
   (`~/tribe-hermes-library/shared-skills`), so it is not portable to another machine. Any
   plan to push updates back has to close that gap first — design §4 in
   `docs/architecture-loop.md`.
+- The transcript is mostly tool output, so the cheapest saving is rarely a smaller soul.
+  Measured on the builder's own session: 543 KB of tool results against 12 KB of the user's
+  messages, with soul, memory and the skills index together about 7 KB. Write large results to
+  a file and print the count and the path; one recursive `grep` that printed an 86 MB
+  catalogue was billed again on every later turn of that session. When the user asks why spend
+  is high, measure the split first (`hermes insights`, and the `messages` table by role) rather
+  than proposing config they do not need.
 - Never `grep -r` from the repo root: `profiles/*/skills/.hub/index-cache/` holds huge
   catalogue blobs (86 MB on one file) and will flood a tool result. Scope searches to
   `docs/`, `scripts/`, `templates/` or a named file.

@@ -19,6 +19,11 @@ the checkpoint, not the brief, when picking something up.
 Work one at a time, top to bottom. Thread 0 first because it unblocks 2 and 3, then 1
 because it is nearly finished and gates every future profile.
 
+**One session per thread.** `session-starters.md` holds a first message for each thread that can
+be pasted into a fresh chat, and the three-line routine: read the index and the checkpoint, work
+only that thread, update the checkpoint before stopping. A 600-message session costs roughly six
+times what six 100-message sessions cost for the same work.
+
 Out of scope here, and owned by the builder workstream: naming rules beyond the label,
 telemetry on which skills get used, and pooling improved skills back into the baseline.
 The naming rule itself is D22 and D31 in `docs/decisions.md`.
