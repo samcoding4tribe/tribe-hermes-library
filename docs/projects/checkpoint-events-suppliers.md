@@ -10,7 +10,9 @@
 ## Where it stands
 
 The brief is written and researched: `docs/projects/events-suppliers.md`. The phase-one proposal
-is written: `docs/projects/events-suppliers-phase1.md`. Nothing has been built and nothing on
+is written: `docs/projects/events-suppliers-phase1.md`. The research on how agents should reach the
+record — export, Work IQ MCP, SharePoint agent, and why not a vector store or a graph database —
+is in `docs/projects/events-suppliers-kb-research.md`. Nothing has been built and nothing on
 OneDrive has been changed.
 
 What exists today, measured on 27 November 2026 with hydration clean (445 files in `SUPPLIERS/`,
