@@ -174,10 +174,11 @@ as taste.
   still get a row and a file, so a direction raised mid-conversation costs one small page
   rather than a re-argument later.
 - **The assistant recommends a new session; it never opens one.** There is no supported way to
-  create a chat and put a prompt in it — `hermes desktop` has no `--new`, and driving the New
-  chat button through UI automation is brittle. Say the new thread belongs in its own session,
-  write the handover, and give one paste line. `hermes chat -q "<kickoff>"` is the terminal
-  equivalent when the work is mechanical and does not need the desktop.
+  create a chat and put a prompt in it — `hermes desktop` has no `--new`, and driving the app's
+  button through UI automation is brittle. That button is labelled **"New session"**, not "New
+  chat": use the app's word when telling a person what to click. Say the new thread belongs in
+  its own session, write the handover, and give one paste line. `hermes chat -q "<kickoff>"` is
+  the terminal equivalent when the work is mechanical and does not need the desktop.
 
 ## Pitfalls
 

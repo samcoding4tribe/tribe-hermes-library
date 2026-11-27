@@ -20,6 +20,32 @@ local session at 351M on the builder and one at 210M on admin. Cron runs are 2M;
 Inside this builder session, 645 messages: tool results 543 KB, assistant 68 KB, user 12 KB. The
 person's words are 2% of the conversation.
 
+## Baseline re-measured, 27 November 2026 11:45 AEDT
+
+Taken before any change, from `hermes insights`, `hermes -p <p> insights`, `du`, `wc -c`,
+`find skills -name SKILL.md | wc -l` and `sqlite3 state.db`.
+
+| | builder (`default`) | `admin` | `ea` |
+|---|---|---|---|
+| Sessions (30d) | 8 | 8 | 3 |
+| Messages | 2,259 | 839 | 4 |
+| Input / output | 2.04M / 1.05M | 1.62M / 0.76M | 10.9K / 84 |
+| **Total tokens** | **461.4M** | **283.1M** | **21,632** |
+| Cost estimate | $2.30 | $1.54 | $0.0017 |
+| Largest single platform | local: 2 sessions, 1,848 msgs, **362.4M** | local: 1 session, 698 msgs, **210.6M** | oneshot: 21,632 |
+| `state.db` | 29 MB | 36 MB | 584 KB |
+| Skills (`SKILL.md`) | 48 | 45 | 44 |
+| `MEMORY.md` / `USER.md` chars | 2,112 / 2,200 · 1,371 / 1,375 | 2,195 / 2,200 · 1,359 / 1,375 | none · 85 / 1,375 |
+| `compression.threshold` / `target_ratio` | 0.50 / 0.20 | 0.50 / 0.20 | 0.50 / 0.20 |
+
+Builder content split by role, whole store, this measurement: tool 1,560 rows / 2,202 KB,
+assistant 1,659 / 288 KB, user 246 / 99 KB. So the person's words are **4%** of stored content
+and tool results are 85% — the same shape as the single-session measurement above, which had
+it at 87%. Builder `state.db` by table: `state_meta` 12.93 MB, `messages` 9.3 MB, FTS 1.72 +
+1.05 MB. The database is a third session metadata: that is worth knowing before any prune.
+
+Item 2's comparison has to be run after items 1 and 3 land, in fresh sessions.
+
 ## What is already done
 
 - `docs/context-budget.md` carries the numbers and the ranked levers: new chat per task, tool
