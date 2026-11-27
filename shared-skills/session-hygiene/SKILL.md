@@ -55,7 +55,7 @@ tokens: what changed yesterday (grouped by folder), every thread still open with
 action, and anything the previous handover carried forward. A scheduled job runs it at 07:30 and
 publishes it with the library.
 
-So a day starts the same way every time: **open a fresh chat and paste one line** —
+So a day starts the same way every time: **open a new session and paste one line** —
 
 > Read docs/handover-today.md, then start on the first thread.
 

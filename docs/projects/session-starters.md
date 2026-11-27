@@ -10,7 +10,7 @@ Each session ends by editing that checkpoint — three lines: done, next, blocke
 ## The routine, in three lines
 
 ```
-Morning: open a fresh chat and paste: "Read docs/handover-today.md, then start on the first thread."
+Morning: open a new session (the button says "New session") and paste: "Read docs/handover-today.md, then start on the first thread."
 Start:   read docs/projects/README.md, then the thread's checkpoint. Work only that thread.
 During:  say so if the work moves to a new topic or the session passes a hundred messages.
 End:     update the checkpoint. Three lines. Then stop.

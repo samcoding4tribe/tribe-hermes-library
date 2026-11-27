@@ -29,6 +29,12 @@ that have nothing to do with the estate (use `hermes-agent`).
 
 ## Orient, then work one thread
 
+0. **Start of a day: `docs/handover-today.md`.** A 07:30 job (`scripts/daily_handover.py`,
+   wrapper `~/.hermes/scripts/hermes-handover.sh`) rebuilds it from the repo alone — no model,
+   no tokens: what changed yesterday grouped by folder, every open thread with its state and
+   next action, and anything the previous handover carried forward. Paste-ready kickoff lines
+   per thread are in `docs/projects/session-starters.md`. The morning routine is one line:
+   "Read docs/handover-today.md, then start on the first thread."
 1. `docs/handover.md` first, then `grep -n '^#' docs/decisions.md` for the index, then
    `docs/projects/README.md` for the numbered threads. Three reads instead of guessing.
 2. Say which numbered thread is in play, then work only that one.
@@ -167,6 +173,11 @@ as taste.
 - `docs/projects/README.md` numbers every thread with its checkpoint file. Parked threads
   still get a row and a file, so a direction raised mid-conversation costs one small page
   rather than a re-argument later.
+- **The assistant recommends a new session; it never opens one.** There is no supported way to
+  create a chat and put a prompt in it — `hermes desktop` has no `--new`, and driving the New
+  chat button through UI automation is brittle. Say the new thread belongs in its own session,
+  write the handover, and give one paste line. `hermes chat -q "<kickoff>"` is the terminal
+  equivalent when the work is mechanical and does not need the desktop.
 
 ## Pitfalls
 
@@ -237,3 +248,9 @@ as taste.
 - The 17:00 job, `sync` and any manual publish all push to `origin`, so a claim that work is
   "committed locally" is wrong on this estate. Check `git remote -v` before describing the
   repo as local-only.
+- A generated handover is only useful if it is quiet: filter `.locks/`, `.hub/`, `logs/` and
+  generated artefacts out of the changed-file list, or yesterday's cron lock churn buries the
+  three edits that matter. And its "still open" list reads the thread table, so **mark a
+  finished thread's state cell starting with `Closed`** — any other wording keeps it in the
+  morning list, while a filter on the word "done" silently drops rows like "Brief done,
+  nothing built".
